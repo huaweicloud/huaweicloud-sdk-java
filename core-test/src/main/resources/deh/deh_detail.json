@@ -1,0 +1,41 @@
+{ 
+    "dedicated_host": { 
+        "dedicated_host_id": "ab910cf0daebca90c4001", 
+        "name": "win_2008 servers", 
+        "auto_placement": "off", 
+        "availability_zone": "az1", 
+        "host_properties": { 
+            "vcpus": 36, 
+            "cores": 12, 
+            "sockets": 2, 
+            "memory": 1073741824, 
+            "host_type": "h1", 
+            "host_type_name": "High performance", 
+            "available_instance_capacities": [ 
+                { 
+                    "flavor": "h1.large" 
+                }, 
+                { 
+                    "flavor": "h1.2large" 
+                }, 
+                { 
+                    "flavor": "h1.4large" 
+                }, 
+                { 
+                    "flavor": "h1.8large" 
+                } 
+            ] 
+        }, 
+        "state": "available", 
+        "project_id": "9c53a566cb3443ab910cf0daebca90c4", 
+        "available_vcpus": 20, 
+        "available_memory": 1073201821, 
+        "instance_total": 2, 
+        "allocated_at": "2016-10-10T14:35:47Z", 
+        "released_at": null, 
+        "instance_uuids": [ 
+            "erf5th66cb3443ab912ff0daebca3456", 
+            "23457h66cb3443ab912ff0daebcaer45" 
+        ] 
+    } 
+}

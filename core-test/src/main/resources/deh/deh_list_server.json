@@ -1,0 +1,27 @@
+{ 
+    "servers": [ 
+        { 
+            "addresses": { 
+                "68269e6e-4a27-441b-8029-35373ad50bd9": [ 
+                    { 
+                        "addr": "192.168.0.3",  
+                        "version": 4 
+                    } 
+                ] 
+            },  
+            "created": "2012-09-07T16:56:37Z",  
+            "flavor": { 
+                "id": "1" 
+            }, 
+            "id": "05184ba3-00ba-4fbc-b7a2-03b62b884931", 
+            "metadata": { 
+                "os_type": "Linux" 
+            },  
+            "name": "new-server-test",  
+            "status": "ACTIVE",  
+            "tenant_id": "openstack",  
+            "updated": "2012-09-07T16:56:37Z",  
+            "user_id": "fake" 
+        } 
+    ] 
+}

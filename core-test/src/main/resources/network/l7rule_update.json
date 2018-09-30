@@ -1,0 +1,6 @@
+{ 
+    "rule": { 
+        "compare_type": "STARTS_WITH",  
+        "value": "/ccc.html" 
+    } 
+}

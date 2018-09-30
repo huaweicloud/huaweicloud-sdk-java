@@ -1,0 +1,28 @@
+{
+    "nat_gateways": [
+        {
+            "router_id": "b1d81744-5165-48b8-916e-e56626feb88f",
+            "status": "ACTIVE",
+            "description": "",
+            "admin_state_up": true,
+            "tenant_id": "27e25061336f4af590faeabeb7fcd9a3",
+            "created_at": "2017-11-15 14:50:39.505112",
+            "spec": "2",
+            "internal_network_id": "5930796a-6026-4d8b-8790-6c6bfc9f87e8",
+            "id": "a253be25-ae7c-4013-978b-3c0785eccd63",
+            "name": "wj3"
+        },
+        {
+            "router_id": "305dc52f-13dd-429b-a2d4-444a1039ba0b",
+            "status": "ACTIVE",
+            "description": "",
+            "admin_state_up": true,
+            "tenant_id": "27e25061336f4af590faeabeb7fcd9a3",
+            "created_at": "2017-11-17 07:41:07.538062",
+            "spec": "2",
+            "internal_network_id": "fc09463b-4ef8-4c7a-93c8-92d9ca6daf9d",
+            "id": "e824f1b4-4290-4ebc-8322-cfff370dbd1e",
+            "name": "lyl001"
+        }
+    ]
+}

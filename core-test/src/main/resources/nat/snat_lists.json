@@ -1,0 +1,26 @@
+{
+    "snat_rules": [
+      {
+            "floating_ip_id": "bf99c679-9f41-4dac-8513-9c9228e713e1",
+            "status": "ACTIVE",
+            "nat_gateway_id": "cda3a125-2406-456c-a11f-598e10578541",
+            "admin_state_up": true,
+            "network_id": "9a469561-daac-4c94-88f5-39366e5ea193",
+            "tenant_id": "abc",
+            "created_at": "2017-11-15 15:44:42.595173",
+            "id": "79195d50-0271-41f1-bded-4c089b2502ff",
+            "floating_ip_address": "5.21.11.242"
+        },
+        {
+            "floating_ip_id": "6e496fba-abe9-4f5e-9406-2ad8c809ac8c",
+            "status": "ACTIVE",
+            "nat_gateway_id": "e824f1b4-4290-4ebc-8322-cfff370dbd1e",
+            "admin_state_up": true,
+            "network_id": "97e89905-f9c8-4ae3-9856-392b0b2fbe7f",
+            "tenant_id": "abc",
+            "created_at": "2017-11-17 07:43:44.830845",
+            "id": "4a1a10d7-0d9f-4846-8cda-24cffeffef5c",
+            "floating_ip_address": "5.21.11.142"
+        }
+    ]
+}

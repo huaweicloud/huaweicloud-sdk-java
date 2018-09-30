@@ -1,0 +1,39 @@
+{
+  "quota_set": [
+    {
+      "used": 0,
+      "resource": "d1",
+      "hard_limit": 10
+    },
+    {
+      "used": 0,
+      "resource": "lctest",
+      "hard_limit": 10
+    },
+    {
+      "used": 0,
+      "resource": "general",
+      "hard_limit": 10
+    },
+    {
+      "used": 0,
+      "resource": "h1",
+      "hard_limit": 5
+    },
+    {
+      "used": 0,
+      "resource": "lctest_20170511",
+      "hard_limit": 10
+    },
+    {
+      "used": 0,
+      "resource": "s2",
+      "hard_limit": 10
+    },
+    {
+      "used": 0,
+      "resource": "s3",
+      "hard_limit": 10
+    }
+  ]
+}

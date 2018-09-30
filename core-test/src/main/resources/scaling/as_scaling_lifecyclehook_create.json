@@ -1,0 +1,9 @@
+{ 
+    "lifecycle_hook_name": "test-hook1", 
+    "default_result": "ABANDON", 
+    "default_timeout": 3600, 
+    "notification_topic_urn": "urn:smn:regionId:b53e5554fad0494d96206fb84296510b:gsh", 
+    "notification_topic_name": "gsh", 
+    "lifecycle_hook_type": "INSTANCE_LAUNCHING", 
+    "notification_metadata": null 
+}

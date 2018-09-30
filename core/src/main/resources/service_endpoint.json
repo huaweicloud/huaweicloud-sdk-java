@@ -1,0 +1,89 @@
+{
+  "DNS": {
+    "public": "https://dns.%(region)s.%(domain)s/"
+  },
+  "COMPUTE": {
+    "public": "https://ecs.%(region)s.%(domain)s/v2/%(projectId)s"
+  },
+  "NETWORK": {
+    "public": "https://vpc.%(region)s.%(domain)s"
+  },
+  "IMAGE": {
+    "public": "https://ims.%(region)s.%(domain)s"
+  },
+  "BLOCK_STORAGE": {
+    "public": "https://evs.%(region)s.%(domain)s/v2/%(projectId)s"
+  },
+  "OBJECT_STORAGE": {
+    "public": "https://obs.%(region)s.%(domain)s"
+  },
+  "VOLUME_BACKUP":{
+  	"public": "https://vbs.%(region)s.%(domain)s/v2/%(projectId)s"
+  },
+  "AUTO_SCALING":{
+  	"public": "https://as.%(region)s.%(domain)s/autoscaling-api/v1/%(projectId)s"
+  },
+  "CLOUD_EYE":{
+  	"public": "https://ces.%(region)s.%(domain)s/V1.0/%(projectId)s"
+  },
+  "LOAD_BALANCER":{
+  	"public": "https://elb.%(region)s.%(domain)s/v1.0/%(projectId)s"
+  },
+  "MAP_REDUCE":{
+  	"public": "https://mrs.%(region)s.%(domain)s/v1.1/%(projectId)s"
+  },
+  "CLOUD_TRACE":{
+  	"public": "https://cts.%(region)s.%(domain)s/v1.0/%(projectId)s"
+  },
+  "KEY_MANAGEMENT":{
+    "public": "https://kms.%(region)s.%(domain)s/v1.0/%(projectId)s"
+  },
+  "ANTI_DDOS":{
+  	"public": "https://antiddos.%(region)s.%(domain)s/v1/%(projectId)s"
+  },
+  "Notification":{
+  	"public": "https://smn.%(region)s.%(domain)s/v2/%(projectId)s"
+  },
+  "MessageQueue":{
+  	"public": "https://dms.%(region)s.%(domain)s/v1.0/%(projectId)s"
+  },
+  "MAAS":{
+  	"public": "https://maas.%(region)s.%(domain)s/v1/%(projectId)s/objectstorage"
+  },
+  "ECS":{
+  	"public": "https://ecs.%(region)s.%(domain)s/v1/%(projectId)s"
+  },
+   "ECS1_1":{
+  	"public": "https://ecs.%(region)s.%(domain)s/v1.1/%(projectId)s"
+  },
+   "EVS":{
+  	"public": "https://evs.%(region)s.%(domain)s/v2/%(projectId)s"
+  },
+   "EVS2_1":{
+  	"public": "https://evs.%(region)s.%(domain)s/v2.1/%(projectId)s"
+  },
+   "VPC2":{
+  	"public": "https://vpc.%(region)s.%(domain)s/v2.0/%(projectId)s"
+  },
+   "IDENTITY":{
+  	"public": "https://iam.%(region)s.%(domain)s/v3"
+  },
+   "TAG_MANAGEMENT":{
+  	"public": "https://tms.%(domain)s/v1.0"
+  },
+   "VPC":{
+  	"public": "https://vpc.%(region)s.%(domain)s/v1/%(projectId)s"
+  },
+  "ORCHESTRATION":{
+  	"public": "https://rts.%(region)s.%(domain)s/v1/%(projectId)s"
+  },
+   "NAT":{
+  	"public": "https://nat.%(region)s.%(domain)s/v2.0"
+  },
+   "BMS":{
+  	"public": "https://bms.%(region)s.%(domain)s/v1/%(projectId)s"
+  },
+   "DEH":{
+  	"public": "https://deh.%(region)s.%(domain)s/v1.0/%(projectId)s"
+  }
+}

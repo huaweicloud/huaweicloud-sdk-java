@@ -1,0 +1,24 @@
+{ 
+    "lifecycle_hooks": [ 
+        { 
+            "lifecycle_hook_name": "test-hook1", 
+            "default_result": "ABANDON", 
+            "default_timeout": 3600, 
+            "notification_topic_urn": "urn:smn:regionId:b53e5554fad0494d96206fb84296510b:gsh", 
+            "notification_topic_name": "gsh", 
+            "lifecycle_hook_type": "INSTANCE_LAUNCHING", 
+            "notification_metadata": null, 
+            "create_time": "2016-11-18T04:01:34Z" 
+        }, 
+        { 
+            "lifecycle_hook_name": "test-hook2", 
+            "default_result": "CONTINUE", 
+            "default_timeout": 300, 
+            "notification_topic_urn": "urn:smn:regionId:a5b95554fad0494d94596fb84296510b:test", 
+            "notification_topic_name": "test", 
+            "lifecycle_hook_type": "INSTANCE_TERMINATING", 
+            "notification_metadata": null, 
+            "create_time": "2016-11-17T04:00:34Z" 
+        } 
+    ] 
+}

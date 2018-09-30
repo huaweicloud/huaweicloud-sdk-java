@@ -1,0 +1,14 @@
+{
+	"bandwidth": {
+		"id": "test1",
+		"name": "bandwidth-testname",
+		"size": 5,
+		"share_type": "WHOLE",
+		"publicip_info": [],
+		"tenant_id": "test2",
+		"bandwidth_type": "share",
+		"charge_mode": "bandwidth",
+		"billing_info": "CS18051915153G3I4:00301-194109-0--0:southchina:128a7bf965154373a7b73c89eb6b65aa",
+		"enterprise_project_id": "0"
+	}
+}

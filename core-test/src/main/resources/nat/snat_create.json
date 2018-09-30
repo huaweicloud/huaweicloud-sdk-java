@@ -1,0 +1,13 @@
+{
+    "snat_rule": {
+        "floating_ip_id": "bdc10a4c-d81a-41ec-adf7-de857f7c812a",
+        "status": "PENDING_CREATE",
+        "nat_gateway_id": "a78fb3eb-1654-4710-8742-3fc49d5f04f8",
+        "admin_state_up": true,
+        "network_id": "eaad9cd6-2372-4be1-9535-9bd37210ae7b",
+        "tenant_id": "27e25061336f4af590faeabeb7fcd9a3",
+        "created_at": "2017-11-18 07:54:21.665430",
+        "id": "5b95c675-69c2-4656-ba06-58ff72e1d338",
+        "floating_ip_address": "5.21.11.226"
+    }
+}

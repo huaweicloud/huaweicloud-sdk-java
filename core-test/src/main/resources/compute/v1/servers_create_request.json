@@ -1,0 +1,44 @@
+{
+  "server" : {
+    "name" : "name",
+    "imageRef" : "image-id",
+    "flavorRef" : "flavor-id",
+    "personality" : [ {
+      "path" : "/etc/xxx",
+      "contents" : "c29tZSBjb250ZW50"
+    } ],
+    "vpcid" : "vpc-id",
+    "nics" : [ {
+      "subnet_id" : "network-id"
+    } ],
+    "publicip" : {
+      "eip" : {
+        "iptype" : "5_bgp",
+        "bandwidth" : {
+          "size" : 10,
+          "sharetype" : "PER",
+          "chargemode" : "bandwidth"
+        }
+      }
+    },
+    "count" : 2,
+    "root_volume" : {
+      "volumetype" : "SSD",
+      "size" : 10
+    },
+    "data_volumes" : [ {
+      "volumetype" : "SAS",
+      "size" : 100,
+      "multiattach" : true,
+      "hw:passthrough" : true
+    } ],
+    "security_groups" : [ {
+      "id" : "securityGroupId"
+    } ],
+    "availability_zone" : "eu-de-01",
+    "metadata" : {
+      "mkey" : "mvalue"
+    },
+    "tags" : [ "key.value" ]
+  }
+}

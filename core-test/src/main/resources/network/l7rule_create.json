@@ -1,0 +1,7 @@
+{ 
+    "rule": { 
+        "compare_type": "EQUAL_TO",  
+        "type": "PATH",  
+        "value": "/bbb.html" 
+    } 
+}

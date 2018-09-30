@@ -1,0 +1,24 @@
+{ 
+    "rules": [ 
+        { 
+            "compare_type": "EQUAL_TO",  
+            "admin_state_up": true,  
+            "tenant_id": "a31d2bdcf7604c0faaddb058e1e08819",  
+            "invert": false,  
+            "value": "www.huawei.com",  
+            "key": null,  
+            "type": "HOST_NAME",  
+            "id": "67d8a8fa-b0dd-4bd4-a85b-671db19b2ef3" 
+        },  
+        { 
+            "compare_type": "EQUAL_TO",  
+            "admin_state_up": true,  
+            "tenant_id": "a31d2bdcf7604c0faaddb058e1e08819",  
+            "invert": false,  
+            "value": "/aaa.html",  
+            "key": null,  
+            "type": "PATH",  
+            "id": "f02b3bca-69d2-4335-a3fa-a8054e996213" 
+        } 
+    ] 
+}

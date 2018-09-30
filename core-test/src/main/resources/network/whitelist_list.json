@@ -1,0 +1,18 @@
+{ 
+    "whitelists": [ 
+        { 
+            "id": "eabfefa3fd1740a88a47ad98e132d238",  
+            "listener_id": "eabfefa3fd1740a88a47ad98e132d238",  
+            "tenant_id": "eabfefa3fd1740a88a47ad98e132d238",  
+            "enable_whitelist": true,  
+           "whitelist": "192.168.11.1,192.168.0.1/24,192.168.201.18/8,100.164.0.1/24"
+        },  
+        { 
+            "id": "eabfefa3fd1740a88a47ad98e132d326",  
+            "listener_id": "eabfefa3fd1740a88a47ad98e132d327",  
+            "tenant_id": "eabfefa3fd1740a88a47ad98e132d436",  
+            "enable_whitelist": true,  
+            "whitelist": "192.168.11.1,192.168.0.1/24,192.168.201.18/8,100.164.0.1/24"
+        } 
+    ] 
+}

@@ -1,0 +1,9 @@
+{ 
+    "l7policy": { 
+        "action": "REDIRECT_TO_POOL",  
+        "listener_id": "e1310063-00de-4867-ab55-ccac4d9db364",  
+        "redirect_pool_id": "59eebd7b-c68f-4f8a-aa7f-e062e84c0690",  
+        "name": "l7policy-garry-2-1",  
+        "admin_state_up": true 
+    } 
+}

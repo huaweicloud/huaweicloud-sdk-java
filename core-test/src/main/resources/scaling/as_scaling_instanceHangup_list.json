@@ -1,0 +1,13 @@
+{ 
+    "instance_hanging_info": [ 
+        { 
+            "instance_id": "b25c1589-c96c-465b-9fef-d06540d1945c", 
+            "scaling_group_id": "e5d27f5c-dd76-4a61-b4bc-a67c5686719a", 
+            "lifecycle_hook_name": "hook-test", 
+            "lifecycle_action_key": "6ebe6e72-4b09-4adb-ae4a-a91dc0560069", 
+            "default_result": "ABANDON", 
+            "timeout": "2016-11-15T06:43:41Z", 
+            "lifecycle_hook_status": "HANGING" 
+        } 
+    ] 
+}

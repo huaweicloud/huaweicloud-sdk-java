@@ -1,0 +1,22 @@
+{ 
+    "l7policy": { 
+        "redirect_pool_id": "431a03eb-81bb-408e-ae37-7ce19023692b",  
+        "description": "",  
+        "admin_state_up": true,  
+        "rules": [ 
+            { 
+                "id": "67d8a8fa-b0dd-4bd4-a85b-671db19b2ef3" 
+            },  
+            { 
+                "id": "f02b3bca-69d2-4335-a3fa-a8054e996213" 
+            } 
+        ],  
+        "tenant_id": "a31d2bdcf7604c0faaddb058e1e08819",  
+        "listener_id": "26058b64-6185-4e06-874e-4bd68b7633d0",  
+        "redirect_url": null,  
+        "action": "REDIRECT_TO_POOL",  
+        "position": 2,  
+        "id": "5ae0e1e7-5f0f-47a1-b39f-5d4c428a1586",  
+        "name": "test" 
+    } 
+}

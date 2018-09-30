@@ -1,0 +1,34 @@
+{ 
+    "tags": [ 
+        { 
+            "key": "ENV15", 
+            "values": [ 
+                "ENV15" 
+            ] 
+        }, 
+        { 
+            "key": "111", 
+            "values": [ 
+                "" 
+            ] 
+        }, 
+        { 
+            "key": "environment", 
+            "values": [ 
+                "DEV" 
+            ] 
+        }, 
+        { 
+            "key": "ENV151", 
+            "values": [ 
+                "ENV151" 
+            ] 
+        }, 
+        { 
+            "key": "ENV152", 
+            "values": [ 
+                "ENV152" 
+            ] 
+        } 
+     ] 
+ } 

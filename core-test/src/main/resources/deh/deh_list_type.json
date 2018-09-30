@@ -1,0 +1,18 @@
+{
+  "dedicated_host_types": [{
+    "host_type": "s3",
+    "host_type_name": "s3"
+  },
+    {
+      "host_type": "s2",
+      "host_type_name": "s2"
+    },
+    {
+      "host_type": "d1",
+      "host_type_name": "Disk intensive"
+    },
+    {
+      "host_type": "general",
+      "host_type_name": "General computing"
+    }]
+}

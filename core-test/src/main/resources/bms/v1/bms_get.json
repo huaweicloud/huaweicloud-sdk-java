@@ -1,0 +1,68 @@
+{
+	"server": {
+		"tenant_id": "bbf1946d374b44a0a2a95533562ba954",
+		"addresses": {
+			"5849fdf1-9d79-4589-80c2-fe557990c417": [{
+				"OS-EXT-IPS-MAC:mac_addr": "fa:16:3e:a1:5a:73",
+				"OS-EXT-IPS:type": "fixed",
+				"addr": "192.168.1.51",
+				"version": 4
+			}]
+		},
+		"metadata": {
+			"metering.order_id": "CS1807191532GMVEV",
+			"chargingMode": "1",
+			"agency_name": "CESAgentAutoConfigAgency",
+			"metering.product_id": "00301-112004-0--0",
+			"baremetalPortIDList": "[f2c87112-3fae-45cf-b362-047bc273dbb5]"
+		},
+		"OS-EXT-STS:task_state": null,
+		"OS-DCF:diskConfig": "MANUAL",
+		"OS-EXT-AZ:availability_zone": "kvmxen.dc1",
+		"links": [{
+			"rel": "self",
+			"href": "https://bms.dc1.domainname.com/v2.1/bbf1946d374b44a0a2a95533562ba954/servers/b8f2083c-cfda-4ee1-b114-ffd5040f454a"
+		},
+		{
+			"rel": "bookmark",
+			"href": "https://bms.dc1.domainname.com/bbf1946d374b44a0a2a95533562ba954/servers/b8f2083c-cfda-4ee1-b114-ffd5040f454a"
+		}],
+		"OS-EXT-STS:power_state": 1,
+		"id": "b8f2083c-cfda-4ee1-b114-ffd5040f454a",
+		"os-extended-volumes:volumes_attached": [],
+		"OS-EXT-SRV-ATTR:host": "bms.dc1",
+		"image": {
+			"links": [{
+				"rel": "bookmark",
+				"href": "https://bms.dc1.domainname.com/bbf1946d374b44a0a2a95533562ba954/images/b38efa81-30ab-4451-87b8-b098a9736431"
+			}],
+			"id": "b38efa81-30ab-4451-87b8-b098a9736431"
+		},
+		"OS-SRV-USG:terminated_at": null,
+		"accessIPv4": "",
+		"accessIPv6": "",
+		"created": "2018-07-19T07:34:09Z",
+		"hostId": "cd243addb5d2c64e89218180b7a3ed95abe6882e81c337cc563137df",
+		"OS-EXT-SRV-ATTR:hypervisor_hostname": "nova002@2",
+		"key_name": "KeyPair-csb",
+		"flavor": {
+			"links": [{
+				"rel": "bookmark",
+				"href": "https://bms.dc1.domainname.com/bbf1946d374b44a0a2a95533562ba954/flavors/physical.a1.199"
+			}],
+			"id": "physical.a1.199"
+		},
+		"security_groups": [{
+			"name": "default"
+		}],
+		"config_drive": "",
+		"OS-EXT-STS:vm_state": "active",
+		"OS-EXT-SRV-ATTR:instance_name": "instance-0011ef30",
+		"user_id": "3fc5ab2b0c544979abcaafd86edd80e6",
+		"name": "bms-8863_",
+		"progress": 0,
+		"OS-SRV-USG:launched_at": "2018-07-24T06:29:23.000000",
+		"updated": "2018-07-26T11:25:25Z",
+		"status": "ACTIVE"
+	}
+}

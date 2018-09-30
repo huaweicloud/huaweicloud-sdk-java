@@ -1,0 +1,7 @@
+{ 
+    "topic_urn": "urn:smn:regionId:b53e5554fad0494d96206fb84296510b:gsh", 
+    "topic_scene": [ 
+        "SCALING_UP","SCALING_UP_FAIL","SCALING_DOWN","SCALING_DOWN_FAIL","SCALING_GROUP_ABNORMAL" 
+     ], 
+    "topic_name": "gsh" 
+}

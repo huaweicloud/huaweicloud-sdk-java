@@ -1,0 +1,16 @@
+{ 
+   "marker" : "12", 
+   "total_count" : 13,
+    "tags" :[
+ {
+                 "key" : "ENV1", 
+                   "value" : "DEV1",
+                   "update_time" : "2017-04-12T14:22:34Z" 
+              }, 
+{ 
+                "key" : "ENV2", 
+                "value" : "DEV2", 
+                "update_time" : "2017-04-12T14:22:34Z"
+               }
+]
+  }

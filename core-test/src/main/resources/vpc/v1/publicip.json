@@ -1,0 +1,15 @@
+{
+	"publicip": {
+		"id": "test1",
+		"status": "DOWN",
+		"type": "5_bgp",
+		"public_ip_address": "10.154.199.133",
+		"tenant_id": "test",
+		"create_time": "2018-05-31 13:40:03",
+		"bandwidth_id": "test",
+		"bandwidth_name": "test",
+		"bandwidth_share_type": "PER",
+		"bandwidth_size": 10,
+		"enterprise_project_id": "0"
+	}
+}
