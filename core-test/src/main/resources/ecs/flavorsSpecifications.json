@@ -1,0 +1,21 @@
+{
+    "flavors": [
+        {
+            "id": "104",
+            "name": "m1.large",
+            "vcpus": "4",
+            "ram": 8192,
+            "disk": "0",
+            "swap": "",
+            "OS-FLV-EXT-DATA:ephemeral": 0,
+            "rxtx_factor": null,
+            "OS-FLV-DISABLED:disabled": null,
+            "rxtx_quota": null,
+            "rxtx_cap": null,
+            "os-flavor-access:is_public": null,
+            "os_extra_specs": {
+                "ecs:performancetype": "normal"
+            }
+        }
+    ]
+}

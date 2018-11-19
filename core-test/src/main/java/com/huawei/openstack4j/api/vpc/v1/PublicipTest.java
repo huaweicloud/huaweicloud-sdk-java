@@ -17,26 +17,34 @@ package com.huawei.openstack4j.api.vpc.v1;
 
 import static org.testng.Assert.assertNotNull;
 
+import org.testng.Assert;
 import org.testng.annotations.Test;
 
 import com.huawei.openstack4j.api.AbstractTest;
+import com.huawei.openstack4j.model.common.ActionResponse;
 import com.huawei.openstack4j.openstack.vpc.v1.domain.VirtualPublicIp;
 
 @Test(suiteName = "VPC/Publicip")
 public class PublicipTest  extends AbstractTest{
 
 	private static final String JSON_PUBLICIP = "/vpc/v1/publicip.json";
+	private String publicIp = "******";
 	@Override
 	protected Service service() {
 		return Service.VPC;
 	}
 	
-	
+	@Test
 	public void getPublicIpTest() throws Exception{
 		respondWith(JSON_PUBLICIP);
-		VirtualPublicIp resp = osv3().vpc().publicips().get("TestId");
+		VirtualPublicIp resp = osv3().vpc().publicips().get(publicIp);
 		assertNotNull(resp);
 	}
-
 	
+	@Test
+	public void deletePublicIpTest() throws Exception{
+		respondWith(200);
+		ActionResponse delete = osv3().vpc().publicips().delete(publicIp);
+		Assert.assertEquals(delete.getCode(), 200);
+	}
 }

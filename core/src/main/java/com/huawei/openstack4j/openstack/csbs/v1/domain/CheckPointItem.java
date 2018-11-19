@@ -15,15 +15,18 @@
  *******************************************************************************/
 package com.huawei.openstack4j.openstack.csbs.v1.domain;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonRootName;
-import com.huawei.openstack4j.model.ModelEntity;
+import java.util.List;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
+
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonRootName;
+import com.huawei.openstack4j.model.ModelEntity;
+import com.huawei.openstack4j.openstack.common.ListResult;
 
 @Getter
 @ToString
@@ -103,4 +106,22 @@ public class CheckPointItem implements ModelEntity{
 	 */
 	@JsonProperty("resource_type")
 	private String resourceType;
+	
+	public  static class CheckPointItems extends ListResult<CheckPointItem>{
+		
+		/**
+		 * 
+		 */
+		private static final long serialVersionUID = -7607242585768409486L;
+		
+		@JsonProperty("checkpoint_items")
+		private List<CheckPointItem> checkpointItems;
+		
+		@Override
+		protected List<CheckPointItem> value() {
+			return checkpointItems;
+		}
+		
+		
+	}
 }

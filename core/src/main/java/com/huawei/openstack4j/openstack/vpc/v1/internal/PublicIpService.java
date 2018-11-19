@@ -18,6 +18,8 @@ package com.huawei.openstack4j.openstack.vpc.v1.internal;
 import static com.google.common.base.Preconditions.checkArgument;
 
 import com.google.common.base.Strings;
+import com.huawei.openstack4j.model.common.ActionResponse;
+import com.huawei.openstack4j.openstack.compute.functions.ToActionResponseFunction;
 import com.huawei.openstack4j.openstack.vpc.v1.domain.VirtualPublicIpsResp;
 import com.huawei.openstack4j.openstack.vpc.v1.domain.VirtualPublicIps;
 import com.huawei.openstack4j.openstack.vpc.v1.domain.VirtualPublicIp;
@@ -45,5 +47,15 @@ public class PublicIpService extends BaseVirtualPrivateCloudService{
 		return get(VirtualPublicIp.class,"/publicips/"+publicipId).execute();
 	}
 	
+	/**
+	 * Delete public IP
+	 * @param publicipId
+	 * @return
+	 */
+	public ActionResponse delete(String publicIpId) {
+		checkArgument(!Strings.isNullOrEmpty(publicIpId),"parameter `publicipId` should not be empty");
+		return ToActionResponseFunction.INSTANCE.apply(
+				delete(Void.class, uri("/publicips/"+ publicIpId)).executeWithResponse());
+	}
 	
 }

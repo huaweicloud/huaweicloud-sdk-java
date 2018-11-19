@@ -30,7 +30,9 @@ import com.huawei.openstack4j.openstack.ecs.v1.contants.NetworkChargingMode;
 import com.huawei.openstack4j.openstack.ecs.v1.contants.ShareType;
 import com.huawei.openstack4j.openstack.ecs.v1.contants.VolumeType;
 import com.huawei.openstack4j.openstack.ecs.v1.domain.Bandwidth;
+import com.huawei.openstack4j.openstack.ecs.v1.domain.CloudAbsoluteLimit;
 import com.huawei.openstack4j.openstack.ecs.v1.domain.DataVolume;
+import com.huawei.openstack4j.openstack.ecs.v1.domain.Flavor;
 import com.huawei.openstack4j.openstack.ecs.v1.domain.FloatingIPCreate;
 import com.huawei.openstack4j.openstack.ecs.v1.domain.Personality;
 import com.huawei.openstack4j.openstack.ecs.v1.domain.RootVolume;
@@ -44,9 +46,11 @@ public class ServerTests extends AbstractTest {
 
 	@Override
 	protected Service service() {
-		return Service.COMPUTE;
+		return Service.ECS;
 	}
-
+	
+	private static final String ecs_limit = "/ecs/absoluteLimit.json";
+	private static final String ecs_specifications = "/ecs/flavorsSpecifications.json";
 	@Test
 	public void deleteServerTest() throws Exception {
 		respondWith(200, "{\"job_id\": \"this-is-a-job-id\"}");
@@ -135,7 +139,6 @@ public class ServerTests extends AbstractTest {
 				.addDataVolume(
 						DataVolume.builder().size(100).type(VolumeType.SAS).multiAttach(true).passthrough(true).build())
 				.addMetadata("mkey", "mvalue")
-				.addMetadata("mkey2", "mvalue2")
 				.count(2).build();
 		String jobId = osv3().ecs().servers().create(creation);
 
@@ -148,5 +151,19 @@ public class ServerTests extends AbstractTest {
 		String expectBody = this.getResource("/compute/v1/servers_create_request.json");
 		Assert.assertEquals(requestBody, expectBody);
 	}
+	
 
+	@Test
+	public void limitsTest() throws Exception {
+		respondWith(ecs_limit);
+		CloudAbsoluteLimit limit = osv3().ecs().servers().limits();
+		Assert.assertNotNull(limit);
+	}
+	
+	@Test
+	public void getSpecificationsTest() throws Exception {
+		respondWith(ecs_specifications);
+		List<Flavor> specifications = osv3().ecs().servers().getSpecifications(null);
+		Assert.assertTrue(!specifications.isEmpty());
+	}
 }

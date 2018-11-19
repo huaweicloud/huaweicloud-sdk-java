@@ -15,13 +15,19 @@
  *******************************************************************************/
 package com.huawei.openstack4j.openstack.ims.v2.internal;
 
+import static com.google.common.base.Preconditions.checkArgument;
+
+import java.util.List;
+import java.util.Map;
+
 import com.google.common.base.Strings;
 import com.huawei.openstack4j.openstack.common.AsyncJobEntity;
 import com.huawei.openstack4j.openstack.ims.v2.domain.DataImage;
+import com.huawei.openstack4j.openstack.ims.v2.domain.Image;
+import com.huawei.openstack4j.openstack.ims.v2.domain.Image.Images;
 import com.huawei.openstack4j.openstack.ims.v2.domain.ImageCreateByExternalImage;
 import com.huawei.openstack4j.openstack.ims.v2.domain.ImageCreateByInstance;
-
-import static com.google.common.base.Preconditions.checkArgument;
+import com.huawei.openstack4j.openstack.ims.v2.domain.ImageUpdate;
 
 /**
  * Created on 2018/8/29.
@@ -58,6 +64,38 @@ public class ImageService extends BaseImageManagementService{
         checkArgument(!(null==(imageCreateByExternalImage.getMinDisk())), "parameter `minDisk` should not be empty");
         return post(AsyncJobEntity.class, "/cloudimages/action").entity(imageCreateByExternalImage).execute().getId();
     }
-
-
+    
+    /**
+     * 根据不同条件查询镜像列表信息
+     * @param filteringParams
+     * @return
+     */
+    public List<Image> list(Map<String, String> filteringParams) {
+    	Invocation<Images> req = get(Images.class, uri("/cloudimages"));
+		if (filteringParams != null) {
+            for (Map.Entry<String, String> entry : filteringParams.entrySet()) {
+            	req = req.param(entry.getKey(), entry.getValue());
+            }
+        }
+		return req.execute().getList();
+    }
+    
+   /**
+    * 查询镜像列表信息
+    * @return
+    */
+    public List<Image> list() {
+		return get(Images.class, uri("/cloudimages")).execute().getList();
+    }
+    /**
+     * 更新镜像信息接口，主要用于镜像属性的修改。
+     * @param updateModel
+     * @param imageId
+     * @return
+     */
+    public Image update(List<ImageUpdate> updateModel, String imageId) {
+		checkArgument((!updateModel.isEmpty()),"parameter `updateModel` should not be null");
+		checkArgument(!Strings.isNullOrEmpty(imageId),"parameter `imageId` should not be empty");
+		return patch(Image.class, uri("/cloudimages/%s",imageId)).entity(updateModel).execute();
+	}
 }

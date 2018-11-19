@@ -94,6 +94,7 @@ import com.huawei.openstack4j.openstack.message.queue.internal.MessageQueueServi
 import com.huawei.openstack4j.openstack.tms.v1.internal.TagManagementService;
 import com.huawei.openstack4j.openstack.trove.internal.TroveService;
 import com.huawei.openstack4j.openstack.vpc.v2.internal.VirtualPrivateCloudService;
+import com.huawei.openstack4j.openstack.cdn.v1.internal.CdnServices;
 
 /**
  * A client which has been identified. Any calls spawned from this session will
@@ -362,9 +363,9 @@ public abstract class OSClientSession<R, T extends OSClient<T>> implements Endpo
 	/**
 	 * {@inheritDoc}
 	 */
-	/*public CdnServices cdn() {
+	public CdnServices cdn() {
 		return Apis.get(CdnServices.class);
-	}*/
+	}
 	
 	/**
 	 * {@inheritDoc}

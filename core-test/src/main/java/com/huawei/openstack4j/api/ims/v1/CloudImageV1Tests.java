@@ -17,11 +17,17 @@ package com.huawei.openstack4j.api.ims.v1;
 
 import static org.testng.AssertJUnit.assertNotNull;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.testng.annotations.Test;
 
 import com.huawei.openstack4j.api.AbstractTest;
 import com.huawei.openstack4j.openstack.ims.v1.domain.ImageCreateByBackup;
 import com.huawei.openstack4j.openstack.ims.v1.domain.ImageCreateByInstance;
+import com.huawei.openstack4j.openstack.ims.v1.domain.ImageCreateByOBS;
+import com.huawei.openstack4j.openstack.ims.v1.domain.RegistImage;
+import com.huawei.openstack4j.openstack.ims.v1.domain.ExportImage;
 @Test
 public class CloudImageV1Tests extends AbstractTest{
 
@@ -38,6 +44,48 @@ public class CloudImageV1Tests extends AbstractTest{
 		respondWith(200, "{\"job_id\": \"this-is-a-job-id\"}");
 		ImageCreateByBackup build = ImageCreateByBackup.builder().name("name").backupId("backupid").build();
 		String jobId = osv3().ims().images().create(build);
+		assertNotNull(jobId);
+	}
+	
+	@Test
+	public void testCreateByOBS(){
+		respondWith(200, "{\"job_id\": \"this-is-a-job-id\"}");
+		List<String> tags = new ArrayList<String>();
+		tags.add("aaa.111");
+		tags.add("bbb.222");
+		int minDisk = 40;
+		ImageCreateByOBS imageCreateByOBS = ImageCreateByOBS.builder()
+				.name("name")
+				.imageUrl("imageUrl")
+				.description("description")
+				.minDisk(minDisk)
+				.osType("osType")
+				.tags(tags)
+				.build();
+		String jobId = osv3().ims().images().create(imageCreateByOBS);
+		assertNotNull(jobId);
+	}
+	
+	@Test
+	public void testRegist(){
+		respondWith(200, "{\"job_id\": \"this-is-a-job-id\"}");
+		RegistImage registImage = RegistImage.builder()
+				.imageUrl("imageUrl")
+				.build();
+			String registImageId = "******";
+		String jobId = osv3().ims().images().regist(registImage, registImageId);
+		assertNotNull(jobId);
+	}
+	
+	@Test
+	public void testExport(){
+		respondWith(200, "{\"job_id\": \"this-is-a-job-id\"}");
+		ExportImage uploadImage = ExportImage.builder()
+				.fileFormat("fileFormat")
+				.bucketUrl("bucketUrl")
+				.build();
+			String imageId = "******";
+		String jobId = osv3().ims().images().export(uploadImage, imageId);
 		assertNotNull(jobId);
 	}
 	

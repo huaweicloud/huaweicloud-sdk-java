@@ -1,4 +1,4 @@
-package com.huawei.openstack.sample;
+package kms.v1;
 
 import java.util.List;
 
@@ -26,7 +26,7 @@ public class KeyManage {
 						"https://kms.example.com/v1.0/%(project_id)s");
 			Config config = Config.newConfig().withEndpointURLResolver(endpointResolver);
 
-			OSClientV3 osclient = OSFactory.builderV3()..withConfig(config).endpoint(authUrl)
+			OSClientV3 osclient = OSFactory.builderV3().withConfig(config).endpoint(authUrl)
 					.credentials(user, password, Identifier.byId(userDomainId))
 					.scopeToProject(Identifier.byId(projectId)).authenticate();
 			
@@ -52,6 +52,9 @@ public class KeyManage {
 			
 			//cancel-key-deletion
 			Key canceled = osclient.keyManagement().keys().cancelDeletion(keyId, null);
+			
+			//enable-key
+			osclient.keyManagement().keys().enable(keyId, null);
 			
 			//gen-random
 			Integer keyCreatedAmount = osclient.keyManagement().keys().getKeyCreatedAmount();

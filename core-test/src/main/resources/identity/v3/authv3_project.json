@@ -107,6 +107,34 @@
         "endpoints": [
           {
             "region_id": "RegionOne",
+            "url": "http://127.0.0.1:10023/v1/project-id",
+            "region": "RegionOne",
+            "interface": "public",
+            "id": "6e82c8912d3f49a09df51035681d564c"
+          },
+          {
+            "region_id": "RegionOne",
+            "url": "http://127.0.0.1:10023/v1/project-id",
+            "region": "RegionOne",
+            "interface": "admin",
+            "id": "7e44d321ae80457abc3728fa1e6feb32"
+          },
+          {
+            "region_id": "RegionOne",
+            "url": "http://127.0.0.1:10023/v1/project-id",
+            "region": "RegionOne",
+            "interface": "internal",
+            "id": "c9a090a4597040849c03bc13588167f6"
+          }
+        ],
+        "type": "CSBS",
+        "id": "0d56500210a24c38a3702b6825e24164",
+        "name": "CSBS"
+      },
+      {
+        "endpoints": [
+          {
+            "region_id": "RegionOne",
             "url": "http://127.0.0.1:9494",
             "region": "RegionOne",
             "interface": "admin",
@@ -928,6 +956,34 @@
         "type": "vpcv2.0",
         "id": "2241f6c6096a11e793ae92361f002671",
         "name": "VPCV2"
+      },
+      {
+        "endpoints": [
+          {
+            "region_id": "RegionOne",
+            "url": "http://127.0.0.1:10022/v1/project-id",
+            "region": "RegionOne",
+            "interface": "public",
+            "id": "2241f1ee096a11e793ae92361f002671"
+          },
+          {
+            "region_id": "RegionOne",
+            "url": "http://127.0.0.1:10022/v1/project-id",
+            "region": "RegionOne",
+            "interface": "admin",
+            "id": "2241f446096a11e793ae92361f002671"
+          },
+          {
+            "region_id": "RegionOne",
+            "url": "http://127.0.0.1:10022/v1/project-id",
+            "region": "RegionOne",
+            "interface": "internal",
+            "id": "2241f55e096a11e793ae92361f002671"
+          }
+        ],
+        "type": "ECS",
+        "id": "2241f6c6096a11e793ae92361f002671",
+        "name": "ECS"
       },
       {
         "endpoints": [

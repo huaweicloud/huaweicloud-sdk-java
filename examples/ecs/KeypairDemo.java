@@ -25,7 +25,7 @@ public class KeypairDemo {
 			.credentials(user, password, Identifier.byId(userDomainId))
 			.scopeToProject(Identifier.byId(projectId)).authenticate();
 		
-		String testPublicKey = "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQDdNdUHJHvVaz7ObMKKm4EfqtN8COmcbT7GrCsfrlxz95nUc8GlAK51VaQjqGU5RwIKPcOfrkJTcXst//pgx7PyzrWrmFlOIjaY8e9HxLQcz2IzrbrbM8TJhB+I3cApdpwsTqGwjW1xzcMgSrqB0BT7gU4mau0I7Z50RszAhYUVpwGk5OpZGxcXSBQSdSr/KKI6BuMNJYtugGn5dmr9Ddf99TLbIleLYjmqB0rMjNKHPUxEYMLtixKvXp0qNFfShu7bDp7e2TjhGY8wpda0kC2dDGQJKE187N+A3hp2XBZ2UjTcjAVa3C+dwHzHCZd6/yAfJoENe2fDRVnb8cMgm/UX Generated-by-Nova"; 
+		String testPublicKey = "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"; 
 
 		//create keypair
 		Keypair keypair = os.compute().keypairs().create("keypair-test", testPublicKey);

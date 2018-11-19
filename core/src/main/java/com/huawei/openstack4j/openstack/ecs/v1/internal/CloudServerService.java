@@ -29,8 +29,11 @@ import com.huawei.openstack4j.model.compute.RebootType;
 import com.huawei.openstack4j.model.compute.StopType;
 import com.huawei.openstack4j.openstack.common.AsyncJobEntity;
 import com.huawei.openstack4j.openstack.common.IdResourceEntity;
+import com.huawei.openstack4j.openstack.ecs.v1.domain.CloudAbsoluteLimit;
 import com.huawei.openstack4j.openstack.ecs.v1.domain.CloudServer;
 import com.huawei.openstack4j.openstack.ecs.v1.domain.CloudServer.CloudServers;
+import com.huawei.openstack4j.openstack.ecs.v1.domain.Flavor;
+import com.huawei.openstack4j.openstack.ecs.v1.domain.Flavor.Flavors;
 import com.huawei.openstack4j.openstack.ecs.v1.domain.ServerCreate;
 import com.huawei.openstack4j.openstack.ecs.v1.domain.ResizeServer;
 
@@ -152,6 +155,27 @@ public class CloudServerService extends BaseElasticComputeServices {
 	public CloudServer get(String serverId){
 		return get(CloudServer.class, uri("/cloudservers/")+serverId).execute();
 	}
+	
+	/**
+	 * Query the cloud server specification details 
+	 * and the specification extension information list.
+	 * @param availabilityZone
+	 * @return
+	 */
+	public List<Flavor> getSpecifications(String availabilityZone){
+		return get(Flavors.class, uri("/cloudservers/flavors")).param("availability_zone", availabilityZone).execute().getList();
+	}
+	
+	
+	/**
+	 * Query the quota information of 
+	 * all resources under the tenant, including the used quota.
+	 * @return
+	 */
+	public CloudAbsoluteLimit limits(){
+		return get(CloudAbsoluteLimit.class, uri("/cloudservers/limits")).execute();
+	}
+	
 	
 	public static class BatchAction implements ModelEntity {
 

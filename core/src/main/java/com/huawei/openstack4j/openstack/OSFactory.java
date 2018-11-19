@@ -19,12 +19,18 @@ import com.huawei.openstack4j.api.OSClient.OSClientV2;
 import com.huawei.openstack4j.api.OSClient.OSClientV3;
 import com.huawei.openstack4j.api.client.CloudProvider;
 import com.huawei.openstack4j.api.client.IOSClientBuilder;
+import com.huawei.openstack4j.api.exceptions.OS4JException;
 import com.huawei.openstack4j.api.types.Facing;
 import com.huawei.openstack4j.core.transport.Config;
 import com.huawei.openstack4j.core.transport.internal.HttpLoggingFilter;
+import com.huawei.openstack4j.model.common.Identifier;
 import com.huawei.openstack4j.model.identity.v2.Access;
 import com.huawei.openstack4j.model.identity.v3.Token;
 import com.huawei.openstack4j.openstack.client.OSClientBuilder;
+import com.huawei.openstack4j.openstack.identity.v3.domain.KeystoneAuth;
+import com.huawei.openstack4j.openstack.identity.v3.domain.KeystoneAuth.AuthScope;
+import com.huawei.openstack4j.openstack.internal.OSAuthenticator;
+import com.huawei.openstack4j.openstack.internal.OSClientSession;
 import com.huawei.openstack4j.openstack.internal.OSClientSession.OSClientSessionV2;
 import com.huawei.openstack4j.openstack.internal.OSClientSessionV3;
 
@@ -188,4 +194,20 @@ public abstract class OSFactory<T extends OSFactory<T>> {
     public static IOSClientBuilder.AKSK builderAKSK() {
         return new OSClientBuilder.ClientAKSK();
     }
+    /**
+	 * do refresh token by your self
+	 * 
+	 */
+	public static void refreshToken() {
+		OSClientSession<?, ?> session = OSClientSession.getCurrent();
+		if (null == session){
+			throw new OS4JException("client not initialized.");
+		}
+		if (session instanceof OSClientSessionV3) {
+			OSAuthenticator.reAuthenticate();
+		}else{
+			throw new  OS4JException("refresh token can only support token authenticate.");
+		}	
+		 
+	}
 }

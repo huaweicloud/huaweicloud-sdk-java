@@ -38,7 +38,10 @@ public class CloudFlavor implements ModelEntity{
 	private static final long serialVersionUID = 7232798451746859453L;
 	@JsonProperty("id")
 	private String id;
-	@JsonProperty("links")
-	private List<GenericLink> links;
-	
+//	@JsonProperty("links")
+//	private List<GenericLink> links;
+	private String name;
+	private String disk;
+	private String vcpus;
+	private String ram;
 }

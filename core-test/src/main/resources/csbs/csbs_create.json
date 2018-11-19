@@ -1,0 +1,21 @@
+{
+  "checkpoint" : {
+    "status" : "protecting",
+    "created_at" : "2016-12-06T21:20:29.898823",
+    "id" : "14626f11-b54a-44ea-8e69-7463e527506a",
+    "resource_graph" : null,
+    "project_id" : "b942cc8342734d15bcb246babb1953cf",
+    "protection_plan" : {
+      "id" : "6a6cda7e-7b89-4b14-8e5c-3b6821a97d2c",
+      "resources" : [ {
+        "type" : "OS::Nova::Server",
+        "id" : "1c960fe4-e679-421a-97cd-4f7463d2344b",
+        "name" : "server0",
+        "extra_info": {
+          "exclude_volumes": ["53dbb1f8-0b14-4850-9346-ef5067acbeb5"]       
+        }
+      } ],
+      "name" : "backup"
+    }
+  }
+}

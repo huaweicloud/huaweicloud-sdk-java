@@ -15,12 +15,15 @@
  *******************************************************************************/
 package com.huawei.openstack4j.openstack.ims.v1.internal;
 
+import static com.google.common.base.Preconditions.checkArgument;
+
 import com.google.common.base.Strings;
 import com.huawei.openstack4j.openstack.common.AsyncJobEntity;
 import com.huawei.openstack4j.openstack.ims.v1.domain.ImageCreateByBackup;
 import com.huawei.openstack4j.openstack.ims.v1.domain.ImageCreateByInstance;
-
-import static com.google.common.base.Preconditions.checkArgument;
+import com.huawei.openstack4j.openstack.ims.v1.domain.ImageCreateByOBS;
+import com.huawei.openstack4j.openstack.ims.v1.domain.RegistImage;
+import com.huawei.openstack4j.openstack.ims.v1.domain.ExportImage;
 
 /**
  * Created on 2018/8/29.
@@ -49,6 +52,41 @@ public class ImageService extends BaseImageManagementService {
         checkArgument(!Strings.isNullOrEmpty(imageCreateByBackup.getBackupId()), "parameter `backupId` should not be empty");
         return post(AsyncJobEntity.class, "/cloudimages/wholeimages/action").entity(imageCreateByBackup).execute().getId();
     }
-
-
+    
+    /**
+     * 使用上传至OBS桶中的外部数据卷镜像文件制作数据镜像
+     * @param ImageCreateByOBS
+     * @return
+     */
+    public String create(ImageCreateByOBS imageCreateByOBS){
+        checkArgument(!Strings.isNullOrEmpty(imageCreateByOBS.getName()), "parameter `name` should not be empty");
+        checkArgument(!Strings.isNullOrEmpty(imageCreateByOBS.getOsType()), "parameter `osType` should not be empty");
+        checkArgument(!Strings.isNullOrEmpty(imageCreateByOBS.getImageUrl()), "parameter `imageUrl` should not be empty");
+        checkArgument(null != imageCreateByOBS.getMinDisk(), "parameter `minDisk` should not be empty");
+        return post(AsyncJobEntity.class, "/cloudimages/dataimages/action").entity(imageCreateByOBS).execute().getId();
+    }
+    /**
+     * 将镜像文件注册为云平台未初始化的私有镜像
+     * @param image
+     * @param imageId
+     * @return
+     */
+    public String regist(RegistImage image, String imageId) {
+        checkArgument(!Strings.isNullOrEmpty(image.getImageUrl()), "parameter `imageUrl` should not be empty");
+		checkArgument(!Strings.isNullOrEmpty(imageId),"parameter `imageId` should not be empty");
+		 return put(AsyncJobEntity.class, uri("/cloudimages/%s/upload",imageId)).entity(image).execute().getId();
+	}
+    
+    /**
+     * 用于用户将自己的私有镜像导出到指定的OBS桶中
+     * @param image
+     * @param imageId
+     * @return
+     */
+    public String export(ExportImage image, String imageId) {
+        checkArgument(!Strings.isNullOrEmpty(image.getBucketUrl()), "parameter `bucketUrl` should not be empty");
+        checkArgument(!Strings.isNullOrEmpty(image.getFileFormat()), "parameter `fileFormat` should not be empty");
+        checkArgument(!Strings.isNullOrEmpty(imageId),"parameter `imageId` should not be empty");
+		 return post(AsyncJobEntity.class, uri("/cloudimages/%s/file",imageId)).entity(image).execute().getId();
+	}
 }

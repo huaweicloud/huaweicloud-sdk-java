@@ -31,11 +31,12 @@ import com.fasterxml.jackson.annotation.JsonValue;
  */
 public enum IpType {
 	
-	BGP("5_bgp"),		// 全动态BGP
-	SBGP("5_sbgp"),		// 静态BGP
-	Telcom("5_telcom"),	// 中国电信
-	Union("5_union");	// 中国联通
-
+	BGP("5_bgp"),			// 全动态BGP
+	SBGP("5_sbgp"),			// 静态BGP
+	Telcom("5_telcom"),		// 中国电信
+	Union("5_union"),		// 中国联通
+	Mobile("5_chinamobile");// 中国移动
+	
 	String value;
 
 	IpType(String value) {

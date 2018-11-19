@@ -81,7 +81,9 @@ public class NovaAddresses implements Addresses {
 		private String addr;
 		@JsonProperty("OS-EXT-IPS:type")
 		private String type;
-
+		@JsonProperty("OS-EXT-IPS:port_id")
+		private String portId;
+		
 		@Override
 		public String getMacAddr() {
 			return macAddr;
@@ -101,6 +103,11 @@ public class NovaAddresses implements Addresses {
 		public String getType() {
 			return type;
 		}
+		
+		@Override
+		public String getPortId() {
+			return portId;
+		}
 
 		/**
 		 * {@inheritDoc}
@@ -109,7 +116,7 @@ public class NovaAddresses implements Addresses {
 		public String toString() {
 			return MoreObjects.toStringHelper(this).omitNullValues()
 							.add("address", addr).add("type", type).add("version", version)
-							.add("macaddr", macAddr).addValue("\n")
+							.add("macaddr", macAddr).add("portId", portId).addValue("\n")
 							.toString();
 		}
 

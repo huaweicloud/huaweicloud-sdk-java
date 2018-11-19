@@ -1,0 +1,77 @@
+{
+  "checkpoint_items" : [ {
+    "status" : "available",
+    "backup_data" : {
+      "eip" : "",
+      "cloudservicetype" : "",
+      "ram" : 4096,
+      "vcpus" : 4,
+      "__openstack_region_name" : "",
+      "private_ip" : "",
+      "disk" : 0,
+      "imagetype" : ""
+    },
+    "name" : "backup_d32c",
+    "resource_id" : "f45c477a-57e5-465f-999f-d845083962db",
+    "created_at" : "2017-04-15T04:20:37.277880",
+    "checkpoint_id" : "f672a1bb-6912-446a-816c-72792c5263e0",
+    "updated_at" : "2017-04-15T04:25:38.680638",
+    "resource_type": "OS::Nova::Server",
+    "extend_info" : {
+      "auto_trigger" : false,
+      "space_saving_ratio" : 0,
+      "copy_status" : "na",
+      "fail_reason" : "",
+      "resource_az" : "az1.dc1",
+      "image_type" : "backup",
+      "finished_at" : "2017-04-15T04:25:38.675478",
+      "average_speed" : 0,
+      "copy_from" : "",
+      "supported_restore_mode": "backup",
+      "support_lld": False,
+      "os_images_data": [
+            {
+                "image_id": "fe84dd80-0229-4918-8d3d-cbb33154b565"
+            }
+       ],
+      "volume_backups" : [ {
+        "status" : "available",
+        "space_saving_ratio" : 0,
+        "name" : "manualbk_47222",
+        "bootable" : true,
+        "average_speed" : 0,
+        "source_volume_size" : 20,
+        "source_volume_id" : "ee27f809-6fb5-40ae-ac46-c932bb4ee8fe",
+        "incremental" : false,
+        "image_type" : "backup",
+        "source_volume_name" : "karbor_xj_02",
+        "id" : "70675cbc-d3a8-43a7-9f81-c8b6bc3f5d6d",
+        "size" : 0,
+        "snapshot_id": "36f520e1-d2ea-4907-956a-3d9cd53e2d38"
+      }, {
+        "status" : "available",
+        "space_saving_ratio" : 0,
+        "name" : "manualbk_47222",
+        "bootable" : true,
+        "average_speed" : 0,
+        "source_volume_size" : 20,
+        "source_volume_id" : "e7f48980-927c-48de-afd4-f0245d2e5100",
+        "incremental" : false,
+        "image_type" : "backup",
+        "source_volume_name" : "karbor_01",
+        "id" : "8eb98e91-8924-4d4b-b6d6-28fb7b751e9c",
+        "size" : 0,
+        "snapshot_id": "36f520e1-d2ea-4907-956a-3d9cd53e2d38"
+      } ],
+      "fail_code" : { },
+      "incremental" : false,
+      "taskid" : "e0a21692-2192-11e7-bf23-0242ac110007",
+      "hypervisor_type" : "QEMU",
+      "progress" : 100,
+      "fail_op" : "",
+      "resource_name" : "karbor_02",
+      "size" : 0
+    },
+    "id" : "90c1d5fa-1b9f-4aeb-b2f4-81c806e98190"
+  } ]
+}

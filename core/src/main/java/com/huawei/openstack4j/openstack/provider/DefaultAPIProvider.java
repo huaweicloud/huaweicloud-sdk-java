@@ -479,6 +479,9 @@ import com.huawei.openstack4j.openstack.workflow.internal.ActionDefinitionServic
 import com.huawei.openstack4j.openstack.workflow.internal.WorkbookDefinitionServiceImpl;
 import com.huawei.openstack4j.openstack.workflow.internal.WorkflowDefinitionServiceImpl;
 import com.huawei.openstack4j.openstack.workflow.internal.WorkflowServiceImpl;
+import com.huawei.openstack4j.openstack.cdn.v1.internal.CdnServices;
+import com.huawei.openstack4j.openstack.cdn.v1.internal.LogService;
+import com.huawei.openstack4j.openstack.cdn.v1.internal.StatisticService;
 
 /**
  * Simple API Provider which keeps internally Maps interface implementations as singletons
@@ -830,10 +833,10 @@ public class DefaultAPIProvider implements APIProvider {
 		bind(com.huawei.openstack4j.api.deh.QuotaSetService.class,com.huawei.openstack4j.openstack.deh.internal.QuotaSetServiceImpl.class);
 	
 		//cdn
-	/*	bind(CdnServices.class,CdnServices.class);
+		bind(CdnServices.class,CdnServices.class);
 		bind(com.huawei.openstack4j.openstack.cdn.v1.internal.DomainService.class,com.huawei.openstack4j.openstack.cdn.v1.internal.DomainService.class);
 		bind(StatisticService.class,StatisticService.class);
-		bind(LogService.class,LogService.class);*/
+		bind(LogService.class,LogService.class);
 	}
 
 	/**

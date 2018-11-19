@@ -84,7 +84,7 @@ public interface AbsoluteLimit extends ModelEntity {
 	 *
 	 * @return the totalVolumesUsed (-1 indicates no value)
 	 */
-	int getTotalVolumesUsed();
+//	int getTotalVolumesUsed();
 
 	/**
 	 * Gets the max security group rules.
@@ -112,7 +112,7 @@ public interface AbsoluteLimit extends ModelEntity {
 	 *
 	 * @return the maxTotalVolumes (-1 indicates no value)
 	 */
-	int getMaxTotalVolumes();
+//	int getMaxTotalVolumes();
 
 	/**
 	 * Gets the total ram used.
@@ -140,7 +140,7 @@ public interface AbsoluteLimit extends ModelEntity {
 	 *
 	 * @return the totalVolumeGigabytesUsed (-1 indicates no value)
 	 */
-	int getTotalVolumeGigabytesUsed();
+//	int getTotalVolumeGigabytesUsed();
 
 	/**
 	 * Gets the total security groups used.
@@ -161,49 +161,49 @@ public interface AbsoluteLimit extends ModelEntity {
 	 *
 	 * @return the totalKeyPairsUsed (-1 indicates no value)
 	 */
-	int getTotalKeyPairsUsed();
+//	int getTotalKeyPairsUsed();
 
 	/**
 	 * Gets the max total volume gigabytes.
 	 *
 	 * @return the maxTotalVolumeGigabytes (-1 indicates no value)
 	 */
-	int getMaxTotalVolumeGigabytes();
+//	int getMaxTotalVolumeGigabytes();
 
 	/**
 	 * Gets the server meta used.
 	 *
 	 * @return the serverMetaUsed (-1 indicates no value)
 	 */
-	int getServerMetaUsed();
+//	int getServerMetaUsed();
 
 	/**
 	 * Gets the personality used.
 	 *
 	 * @return the personalityUsed (-1 indicates no value)
 	 */
-	int getPersonalityUsed();
+//	int getPersonalityUsed();
 
 	/**
 	 * Gets the image meta used.
 	 *
 	 * @return the imageMetaUsed (-1 indicates no value)
 	 */
-	int getImageMetaUsed();
+//	int getImageMetaUsed();
 
 	/**
 	 * Gets the personality size used.
 	 *
 	 * @return the personalitySizeUsed (-1 indicates no value)
 	 */
-	int getPersonalitySizeUsed();
+//	int getPersonalitySizeUsed();
 
 	/**
 	 * Gets the security group rules used.
 	 *
 	 * @return the securityGroupRulesUsed (-1 indicates no value)
 	 */
-	int getSecurityGroupRulesUsed();
+//	int getSecurityGroupRulesUsed();
 
 	/**
 	 * Gets the total floating ips used.
@@ -225,4 +225,12 @@ public interface AbsoluteLimit extends ModelEntity {
 	 * @return the max server groups (-1 indicates no value)
 	 */
 	int getMaxServerGroups();
+	
+	
+	/**
+	 * Gets The number of Elastic Cloud Server groups that have been used
+	 * 
+	 * @return The number of Elastic Cloud Server groups that have been used (-1 indicates no value)
+	 */
+	int getTotalServerGroupsUsed();
 }

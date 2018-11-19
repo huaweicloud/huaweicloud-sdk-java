@@ -80,6 +80,7 @@ import com.huawei.openstack4j.openstack.message.queue.internal.MessageQueueServi
 import com.huawei.openstack4j.openstack.tms.v1.internal.TagManagementService;
 import com.huawei.openstack4j.openstack.trove.internal.TroveService;
 import com.huawei.openstack4j.openstack.vpc.v2.internal.VirtualPrivateCloudService;
+import com.huawei.openstack4j.openstack.cdn.v1.internal.CdnServices;
 
 /**
  * A client which has been identified. Any calls spawned from this session will
@@ -431,10 +432,10 @@ public interface OSClient<T extends OSClient<T>> {
 	  */
 //	 BareMetaService bms();
 	 /**
-		 * get the CDN service 
-		 * @return the OTC {@link CdnServices} instance
-		 */
-	//	CdnServices cdn();
+	  * get the CDN service
+	  * @return the OTC {@link CdnServices} instance
+	  */
+	 CdnServices cdn();
 	/**
 	 * OpenStack4j Client which authenticates against version AKSK
 	 */

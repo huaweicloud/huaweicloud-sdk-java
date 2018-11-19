@@ -96,7 +96,10 @@ public abstract class AbstractTest {
         BMS(10018),
         DEH(10019),
         IMS(10020),
-        IMSV2(10021)
+        IMSV2(10021),
+        ECS(10022),
+        CSBS(10023),
+        CDN(10024),
         ;
     	//@on
 

@@ -55,8 +55,8 @@ public class CloudServer implements ModelEntity{
 	public List<GenericLink> links;
 	public Object image;
 	public CloudFlavor flavor;
-//	public String accessIPv4;
-//	public String accessIPv6;
+	public String accessIPv4;
+	public String accessIPv6;
 	@JsonProperty("config_drive")
 	public String configDrive;
 	public Status status;
@@ -100,19 +100,19 @@ public class CloudServer implements ModelEntity{
 	private Date terminatedAt;
 	@JsonProperty("os-extended-volumes:volumes_attached")
 	private List<IdResourceEntity> osExtendedVolumesAttached;
-	@JsonProperty("OS-EXT-SERV-ATTR:hostname")
+	@JsonProperty("OS-EXT-SRV-ATTR:hostname")
 	private String hostname;
-	@JsonProperty("OS-EXT-SERV-ATTR:reservation_id")
+	@JsonProperty("OS-EXT-SRV-ATTR:reservation_id")
 	private String reservationId;
-	@JsonProperty("OS-EXT-SERV-ATTR:launch_index")
+	@JsonProperty("OS-EXT-SRV-ATTR:launch_index")
 	private String launchIndex;
-	@JsonProperty("OS-EXT-SERV-ATTR:kernel_id")
+	@JsonProperty("OS-EXT-SRV-ATTR:kernel_id")
 	private String kernelId;
-	@JsonProperty("OS-EXT-SERV-ATTR:ramdisk_id")
+	@JsonProperty("OS-EXT-SRV-ATTR:ramdisk_id")
 	private String ramdiskId;
-	@JsonProperty("OS-EXT-SERV-ATTR:root_device_name")
+	@JsonProperty("OS-EXT-SRV-ATTR:root_device_name")
 	private String rootDeviceName;
-	@JsonProperty("OS-EXT-SERV-ATTR:user_data")
+	@JsonProperty("OS-EXT-SRV-ATTR:user_data")
 	private String userdata;
 //	private String uuid;
 //	private String adminPass;
@@ -120,9 +120,12 @@ public class CloudServer implements ModelEntity{
 	private Boolean locked;
 	@JsonProperty("tags")
 	private List<String> tags;
-	@JsonProperty("os:scheduler_hints")
-	private SchedulerHints schedulerHints;
-	
+//	@JsonProperty("os:scheduler_hints")
+//	private SchedulerHints schedulerHints;
+	@JsonProperty("enterprise_project_id")
+	private String enterpriseProjectId;
+	@JsonProperty("sys_tags")
+	private List<SysTags> sysTags;
 	
 	public static class CloudServers extends ListResult<CloudServer> {
 

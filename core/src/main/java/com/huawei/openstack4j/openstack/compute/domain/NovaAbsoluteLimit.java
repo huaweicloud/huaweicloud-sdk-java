@@ -35,13 +35,13 @@ public class NovaAbsoluteLimit implements AbsoluteLimit {
 	private static final long serialVersionUID = 1L;
 
 	private Integer maxServerMeta;
-	private Integer serverMetaUsed;
+//	private Integer serverMetaUsed;
 	private Integer maxPersonality;
-	private Integer personalityUsed;
+//	private Integer personalityUsed;
 	private Integer maxImageMeta;
-	private Integer imageMetaUsed;
+//	private Integer imageMetaUsed;
 	private Integer maxPersonalitySize;
-	private Integer personalitySizeUsed;
+//	private Integer personalitySizeUsed;
 	private Integer maxTotalCores;
 	private Integer totalCoresUsed;
 	private Integer maxTotalInstances;
@@ -49,19 +49,20 @@ public class NovaAbsoluteLimit implements AbsoluteLimit {
 	private Integer maxTotalRAMSize;
 	private Integer totalRAMUsed;
 	private Integer maxSecurityGroupRules;
-	private Integer securityGroupRulesUsed;
+//	private Integer securityGroupRulesUsed;
 	private Integer maxTotalKeypairs;
-	private Integer totalKeyPairsUsed;
-	private Integer maxTotalVolumes;
-	private Integer totalVolumesUsed;
+//	private Integer totalKeyPairsUsed;
+//	private Integer maxTotalVolumes;
+//	private Integer totalVolumesUsed;
 	private Integer maxSecurityGroups;
 	private Integer totalSecurityGroupsUsed;
 	private Integer maxTotalFloatingIps;
 	private Integer totalFloatingIpsUsed;
-	private Integer maxTotalVolumeGigabytes;
-	private Integer totalVolumeGigabytesUsed;
+//	private Integer maxTotalVolumeGigabytes;
+//	private Integer totalVolumeGigabytesUsed;
 	private Integer maxServerGroups;
 	private Integer maxServerGroupMembers;
+	private Integer totalServerGroupsUsed;
 
 	/**
 	 * Gets the max server meta.
@@ -77,9 +78,9 @@ public class NovaAbsoluteLimit implements AbsoluteLimit {
 	 *
 	 * @return the server meta used
 	 */
-	public int getServerMetaUsed() {
-		return wrap(serverMetaUsed);
-	}
+//	public int getServerMetaUsed() {
+//		return wrap(serverMetaUsed);
+//	}
 
 	/**
 	 * Gets the max personality.
@@ -89,15 +90,24 @@ public class NovaAbsoluteLimit implements AbsoluteLimit {
 	public int getMaxPersonality() {
 		return wrap(maxPersonality);
 	}
+	
+	/**
+	 * Gets The number of Elastic Cloud Server groups that have been used
+	 *
+	 * @return the max personality
+	 */
+	public int getTotalServerGroupsUsed() {
+		return wrap(totalServerGroupsUsed);
+	}
 
 	/**
 	 * Gets the personality used.
 	 *
 	 * @return the personality used
 	 */
-	public int getPersonalityUsed() {
-		return wrap(personalityUsed);
-	}
+//	public int getPersonalityUsed() {
+//		return wrap(personalityUsed);
+//	}
 
 	/**
 	 * Gets the max image meta.
@@ -113,9 +123,9 @@ public class NovaAbsoluteLimit implements AbsoluteLimit {
 	 *
 	 * @return the image meta used
 	 */
-	public int getImageMetaUsed() {
-		return wrap(imageMetaUsed);
-	}
+//	public int getImageMetaUsed() {
+//		return wrap(imageMetaUsed);
+//	}
 
 	/**
 	 * Gets the max personality size.
@@ -131,9 +141,9 @@ public class NovaAbsoluteLimit implements AbsoluteLimit {
 	 *
 	 * @return the personality size used
 	 */
-	public int getPersonalitySizeUsed() {
-		return wrap(personalitySizeUsed);
-	}
+//	public int getPersonalitySizeUsed() {
+//		return wrap(personalitySizeUsed);
+//	}
 
 	/**
 	 * Gets the max total cores.
@@ -203,9 +213,9 @@ public class NovaAbsoluteLimit implements AbsoluteLimit {
 	 *
 	 * @return the security group rules used
 	 */
-	public int getSecurityGroupRulesUsed() {
-		return wrap(securityGroupRulesUsed);
-	}
+//	public int getSecurityGroupRulesUsed() {
+//		return wrap(securityGroupRulesUsed);
+//	}
 
 	/**
 	 * Gets the max total keypairs.
@@ -221,27 +231,27 @@ public class NovaAbsoluteLimit implements AbsoluteLimit {
 	 *
 	 * @return the total key pairs used
 	 */
-	public int getTotalKeyPairsUsed() {
-		return wrap(totalKeyPairsUsed);
-	}
+//	public int getTotalKeyPairsUsed() {
+//		return wrap(totalKeyPairsUsed);
+//	}
 
 	/**
 	 * Gets the max total volumes.
 	 *
 	 * @return the max total volumes
 	 */
-	public int getMaxTotalVolumes() {
-		return wrap(maxTotalVolumes);
-	}
+//	public int getMaxTotalVolumes() {
+//		return wrap(maxTotalVolumes);
+//	}
 
 	/**
 	 * Gets the total volumes used.
 	 *
 	 * @return the total volumes used
 	 */
-	public int getTotalVolumesUsed() {
-		return wrap(totalVolumesUsed);
-	}
+//	public int getTotalVolumesUsed() {
+//		return wrap(totalVolumesUsed);
+//	}
 
 	/**
 	 * Gets the max security groups.
@@ -284,18 +294,18 @@ public class NovaAbsoluteLimit implements AbsoluteLimit {
 	 *
 	 * @return the max total volume gigabytes
 	 */
-	public int getMaxTotalVolumeGigabytes() {
-		return wrap(maxTotalVolumeGigabytes);
-	}
+//	public int getMaxTotalVolumeGigabytes() {
+//		return wrap(maxTotalVolumeGigabytes);
+//	}
 
 	/**
 	 * Gets the total volume gigabytes used.
 	 *
 	 * @return the total volume gigabytes used
 	 */
-	public int getTotalVolumeGigabytesUsed() {
-		return wrap(totalVolumeGigabytesUsed);
-	}
+//	public int getTotalVolumeGigabytesUsed() {
+//		return wrap(totalVolumeGigabytesUsed);
+//	}
 
 	@Override
     public int getMaxServerGroupMembers() {
@@ -323,15 +333,14 @@ public class NovaAbsoluteLimit implements AbsoluteLimit {
 	@Override
 	public String toString() {
 		return MoreObjects.toStringHelper(this).omitNullValues()
-					  .add("maxServerMeta", maxServerMeta).add("serverMetaUsed", serverMetaUsed).add("maxPersonality", maxPersonality)
-					  .add("personalityUsed", personalityUsed).add("maxImageMeta", maxImageMeta).add("imageMetaUsed", imageMetaUsed)
-					  .add("maxPersonalitySize", maxPersonalitySize).add("personalitySizeUsed", personalitySizeUsed).add("maxTotalCores", maxTotalCores)
+					  .add("maxServerMeta", maxServerMeta).add("maxPersonality", maxPersonality)
+					  .add("maxImageMeta", maxImageMeta)
+					  .add("maxPersonalitySize", maxPersonalitySize).add("maxTotalCores", maxTotalCores)
 					  .add("totalCoresUsed", totalCoresUsed).add("maxTotalInstances", maxTotalInstances).add("totalInstancesUsed", totalInstancesUsed)
 					  .add("maxTotalRAMSize", maxTotalRAMSize).add("totalRAMUsed", totalRAMUsed).add("maxSecurityGroupRules", maxSecurityGroupRules)
-  				  .add("securityGroupRulesUsed", securityGroupRulesUsed).add("maxTotalKeypairs", maxTotalKeypairs).add("totalKeyPairsUsed", totalKeyPairsUsed)
-					  .add("maxTotalVolumes", maxTotalVolumes).add("totalVolumesUsed", totalVolumesUsed).add("maxSecurityGroups", maxSecurityGroups)
+					  .add("maxTotalKeypairs", maxTotalKeypairs)
+					  .add("maxSecurityGroups", maxSecurityGroups)
 					  .add("totalSecurityGroupsUsed", totalSecurityGroupsUsed).add("maxTotalFloatingIps", maxTotalFloatingIps).add("totalFloatingIpsUsed", totalFloatingIpsUsed)
-					  .add("maxTotalVolumeGigabytes", maxTotalVolumeGigabytes).add("totalVolumeGigabytesUsed", totalVolumeGigabytesUsed)
 					  .add("maxServerGroups", maxSecurityGroups).add("maxServerGroupMembers", maxServerGroupMembers)
 				    .toString();
 	}

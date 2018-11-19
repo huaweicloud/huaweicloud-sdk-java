@@ -44,4 +44,9 @@ public interface Address extends ModelEntity {
 	 */
 	String getType();
 	
+	/**
+	 * @return the portid of address
+	 */
+	String getPortId();
+	
 }
