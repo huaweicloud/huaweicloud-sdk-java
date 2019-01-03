@@ -1,0 +1,17 @@
+{
+  "restore" : {
+    "provider_id" : "fc4d5750-22e7-4798-8a46-f48f62c4c1da",
+    "checkpoint_id" : "a2b9fb53-2770-4fcd-9bad-6cadd56e6c09",
+    "parameters" : {
+      "checkpoint_item_id" : "504b7d59-c361-411f-9ed3-814f35d08e3d",
+      "power_on" : true,
+      "targets" : {
+        "server_id" : "f45c477a-57e5-465f-999f-d845083962db",
+        "volumes" : [ {
+          "backup_id" : "bc118c24-3234-4afd-8423-d66d3d677649",
+          "volume_id" : "ee27f809-6fb5-40ae-ac46-c932bb4ee8fe"
+        } ]
+      }
+    }
+  }
+}

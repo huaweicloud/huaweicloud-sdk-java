@@ -1,0 +1,14 @@
+{
+  "trigger_id": "191e425a-924a-45d9-b730-38b5ffe338ad",
+  "trigger_type_code": "OBS",
+  "event_type_code": "MessageCreated",
+  "trigger_status": "ACTIVE",
+  "event_data": {
+    "bucket": "yourBucketName",
+    "events": ["s3:ObjectCreated:Put"],
+    "prefix": "yourPrefix",
+    "suffix": "yourSuffix"
+  },
+  "last_updated_time": "2017-06-27 23:33:57 +0000 UTC",
+  "created_time": "2017-06-27 23:33:57 +0000 UTC"
+}

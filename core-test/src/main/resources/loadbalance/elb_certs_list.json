@@ -1,0 +1,15 @@
+{
+    "certificates": [
+        {
+            "name": "cert-bky",
+            "description": "certificate",
+            "domain": "xxxxxx",
+            "certificate": "xxxxxx",
+            "private_key": "xxxxxx",
+            "id": "5b8f908b5495452aa13beede0afc5d99",
+            "create_time": "2016-06-27 08:14:42",
+            "update_time": "2016-06-27 08:14:42"
+        }
+    ],
+    "instance_num": "1"
+}

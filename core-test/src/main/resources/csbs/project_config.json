@@ -1,0 +1,9 @@
+{
+  "protect_config" :{
+      "id": "589af222-f8a4-4dd2-a98f-3c0e30b4b45c",
+      "project_id": "490e121341fc481d95f946ef844cb06a",
+      "dec_enable": True,
+      "dec_capacity": 1000,
+      "dec_used_capacity": 5000
+  } 
+}

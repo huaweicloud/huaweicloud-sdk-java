@@ -1,0 +1,51 @@
+{
+  "policy" : {
+    "created_at" : "2017-03-07T09:31:08.265000",
+    "description" : "My plan",
+    "id" : "27b11f3f-578d-4464-89d1-7c6d5894f753",
+    "name" : "my-plan",
+    "parameters" : {
+      "common" : {
+      }
+    },
+    "project_id" : "tenant",
+    "provider_id" : "c714180d-ea34-4b13-9a5e-577c7c416eec",
+    "resources" : [ {
+      "id" : "45baf976-c20a-4894-a7c3-c94b7376bf55",
+      "name" : "resource1",
+      "type" : "OS::Nova::Server",
+      "extra_info" : {
+        "exclude_volumes": ["8a8ccde2-0b9a-4450-a5f3-150816635f46"]
+    }
+    }, {
+      "id" : "5aa119a8-d25b-45a7-8d1b-88e127885635",
+      "name" : "resource2",
+      "type" : "OS::Nova::Server", 
+      "extra_info" : {
+    }
+    } ],
+    "scheduled_operations" : [ {
+      "description" : "My backup policy",
+      "enabled" : true,
+      "id" : "3b2fdf8c-2cc2-4887-9605-a8443922f6f2",
+      "name" : "my-backup-policy",
+      "operation_definition" : {
+        "max_backups" : "20",
+        "plan_id" : "27b11f3f-578d-4464-89d1-7c6d5894f753",
+        "provider_id" : "c714180d-ea34-4b13-9a5e-577c7c416eec"
+      },
+      "operation_type" : "backup",
+      "trigger" : {
+        "id" : "f1246246-ec6a-4e9a-917e-d050dc2808c9",
+        "name" : "default",
+        "properties" : {
+          "pattern" : "BEGIN:VCALENDAR\r\nBEGIN:VEVENT\r\nRRULE:FREQ=WEEKLY;BYDAY=TH;BYHOUR=12;BYMINUTE=27\r\nEND:VEVENT\r\nEND:VCALENDAR\r\n",
+          "start_time" : "2017-03-07 09:31:08"
+        },
+        "type" : "time"
+      },
+      "trigger_id" : "f1246246-ec6a-4e9a-917e-d050dc2808c9"
+    } ],
+    "status" : "suspended"
+  }
+}

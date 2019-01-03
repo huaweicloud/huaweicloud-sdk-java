@@ -1,0 +1,22 @@
+{
+    "replication_records": [{
+        "status": "success",
+        "source_checkpoint_item_id": "45899f0e-1c07-49db-8bb9-03e0de2981123",
+        "destination_project_id": "45899f0e-1c07-49db-8bb9-03e0de2981123",
+	"destination_region": "region-2",
+	"id": "30b97bac-532c-4c51-96fa-4b3a32253c12",
+    "destination_checkpoint_id": "40129f0e-1c07-49db-8bb9-03e0de298152",
+	"extra_info": {
+            "auto_trigger": true,
+            "progress": 100,
+            "fail_reason": "",
+            "fail_code": ""},
+	"plan_id": "45899f0e-1c07-49db-8bb9-03e0de298152",
+	"created_at": "2018-6-14T11:14:48.946000",
+	"source_region": "region-1",
+	"source_project_id": "e0b97bac-532c-4c51-96fa-4b3a32253be4",
+	"destination_checkpoint_item_id": "411119f0e-1c07-49db-8bb9-03e0de298152",
+	"source_checkpoint_id": "45899f0e-1c07-49db-8bb9-03e0de298152"
+    }],
+    "count": 1
+}

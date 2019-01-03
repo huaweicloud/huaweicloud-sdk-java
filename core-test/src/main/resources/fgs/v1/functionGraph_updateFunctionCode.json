@@ -1,0 +1,26 @@
+{
+  "CodeFileName": "com.java",
+  "CodeSize": 272,
+  "CodeType": "inline",
+  "CodeUrl": "",
+  "Concurrency": 0,
+  "DependList": null,
+  "Dependencies": null,
+  "DependencyPkg": "",
+  "Digest": "56ea250008083af940a908e815b9e68d79a7d93f8cbb4dd881beefa667eb5647cf68881c9f8a7db4ac5856a642205bcb95db68da7bdbf66fa2953d90fb2ac5e5",
+  "FuncCode": {
+    "File": "",
+    "Link": ""
+  },
+  "FuncName": "TestZip",
+  "FuncUrn": "urn:fss:southchina:c3b2459a6d5e4b548e6777e57852692d:function:default:TestZip:latest",
+  "LastModified": "2018-12-14T16:32:50+08:00",
+  "Runtime": "Java8",
+  "StrategyConfig": {
+    "Concurrency": -1
+  },
+  "Subnet": "",
+  "SubnetId": "",
+  "Vpc": "",
+  "VpcId": ""
+}

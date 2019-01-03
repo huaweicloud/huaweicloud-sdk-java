@@ -1,0 +1,11 @@
+{
+  "replication" :{
+      "project_id": "4800fde9-66f8-4458-b805-4c01066b9568",
+      "provider_id": "fc4d5750-22e7-4798-8a46-f48f62c4c1da",
+      "checkpoint_item_id": "c4dfa74c-7e60-4361-86b9-9a3250115ed6",
+      "source_region": "cn-north-1",
+      "destination_region": "cn-east-2",
+      "destination_project_id": "e0b97bac-532c-4c51-96fa-4b3a32253be4",
+      "replication_record_id": "042cd047-a7c9-4905-a859-402950ac8440"
+  } 
+}

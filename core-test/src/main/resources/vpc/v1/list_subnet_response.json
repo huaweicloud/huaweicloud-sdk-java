@@ -1,0 +1,31 @@
+{
+	"subnets": [{
+		"id": "9596613f-5d79-4a6a-8be0-ff468f388a16",
+		"name": "subnet-f9c2",
+		"cidr": "192.168.0.0/24",
+		"dnsList": ["100.125.1.250", "114.114.114.114"],
+		"status": "ACTIVE",
+		"vpc_id": "b1ff6ee0-883f-47f9-8a59-6bb42dd01ff0",
+		"gateway_ip": "192.168.0.1",
+		"dhcp_enable": true,
+		"primary_dns": "100.125.1.250",
+		"secondary_dns": "114.114.114.114",
+		"availability_zone": "cn-north-1b",
+		"neutron_network_id": "9596613f-5d79-4a6a-8be0-ff468f388a16",
+		"neutron_subnet_id": "446a2e0e-250c-4cc8-bd65-e912389255b0"
+	}, {
+		"id": "9596613f-5d79-4a6b-8be0-ff468f388a17",
+		"name": "cjsnet",
+		"cidr": "192.168.99.0/24",
+		"dnsList": ["100.125.1.250", "114.114.114.114"],
+		"status": "ACTIVE",
+		"vpc_id": "b1ff6ee0-883f-47f9-8a59-6bb42dd01ff0",
+		"gateway_ip": "192.168.99.1",
+		"dhcp_enable": true,
+		"primary_dns": "100.125.1.250",
+		"secondary_dns": "114.114.114.114",
+		"availability_zone": "cn-north-1b",
+		"neutron_network_id": "9596613f-5d79-4a6a-8be0-ff468f388a16",
+		"neutron_subnet_id": "446a2e0e-250c-4cc8-bd66-e912389255b1"
+	}]
+}

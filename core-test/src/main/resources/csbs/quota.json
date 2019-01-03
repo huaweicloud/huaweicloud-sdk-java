@@ -1,0 +1,10 @@
+{
+  "quotas" : {
+    "resources" : [ {
+      "type" : "backup_capacity",
+      "unit" : "GB",
+      "quota" : 100,
+      "used" : 0
+    } ]
+  }
+}

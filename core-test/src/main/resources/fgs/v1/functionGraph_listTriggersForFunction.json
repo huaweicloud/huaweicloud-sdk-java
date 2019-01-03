@@ -1,0 +1,18 @@
+[
+  {
+    "trigger_id": "CNNNTN9RNSOQR17Q0000016267F1DCCF0406ACCA317B4246",
+    "trigger_type_code": "OBS",
+    "event_type_code": "MessageCreated",
+    "trigger_status": "ACTIVE",
+    "event_data": {
+      "bucket": "obs-384b",
+      "events": [
+        "s3:ObjectCreated:*"
+      ],
+      "prefix": "",
+      "suffix": ""
+    },
+    "last_updated_time": "2018-03-27T22:51:25+08:00",
+    "created_time": "2018-03-27T22:51:25+08:00"
+  }
+]

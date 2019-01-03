@@ -1,0 +1,15 @@
+{
+  "CodeFileName": "index.js",
+  "CodeSize": 272,
+  "CodeType": "inline",
+  "CodeUrl": "",
+  "DependencyPkg": "",
+  "Digest": "decbce6939297b0b5ec6d1a23bf9c725870f5e69fc338a89a6a4029264688dc26338f56d08b6535de47f15ad538e22ca66613b9a46f807d50b687bb53fded1c6",
+  "FuncCode": {
+    "File": "ZXhwb3J0cy5oYW5kbGVyID0gZnVuY3Rpb24gKGV2ZW50LCBjb250ZXh0LCBjYWxsYmFjaykgewogICAgZXZlbnQuZnVuY3Rpb25uYW1lID0gJ3Rlc3QnOwogICAgZXZlbnQucmVxdWVzdElkID0gY29udGV4dC5yZXF1ZXN0SWQ7CiAgICBldmVudC50aW1lc3RhbXAgPSAobmV3IERhdGUoKSkudG9TdHJpbmcoKTsKCiAgICBjb25zb2xlLmxvZygnZXZlbnQ6JywgSlNPTi5zdHJpbmdpZnkoZXZlbnQpKTsKICAgIGNhbGxiYWNrKG51bGwsIEpTT04uc3RyaW5naWZ5KGV2ZW50KSk7Cn0="
+  },
+  "FuncName": "test",
+  "FuncUrn": "urn:fss:cn-hk1:7aad83af3e8d42e99ac194e8419e2c9b:function:default:test:latest",
+  "LastModified": "2018-03-21T10:04:13+08:00",
+  "Runtime": "Node.js6.10"
+}

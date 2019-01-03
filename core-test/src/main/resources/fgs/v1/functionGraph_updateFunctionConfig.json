@@ -1,0 +1,34 @@
+{
+  "CodeFileName": "index.js",
+  "CodeSize": 173,
+  "CodeType": "inline",
+  "CodeUrl": "",
+  "Cpu": 300,
+  "DependencyPkg": "",
+  "Description": "",
+  "Digest": "fe3d5f53536af46985e59332ece1a2dca785309937af90502745a565cf0c9ba8ebec45d70d2f31a83bd13cbf618a0ffb4e60470389da494a214213e15e4049fb",
+  "FuncName": "HelloWorld",
+  "FuncUrn": "urn:fss:cn-hk1:284f722ca42d465397ada4d9381c5eac:function:default:HelloWorld:latest",
+  "Handler": "index.handler",
+  "ImageName": "latest-fhzsf",
+  "LastModified": "2018-08-23T14:17:17+08:00",
+  "MemorySize": 128,
+  "Namespace": "284f722ca42d465397ada4d9381c5eac",
+  "Package": "default",
+  "ProjectName": "cn-hk1",
+  "Runtime": "Node.js6.10",
+  "StrategyConfig": {
+    "Concurrency": 0
+  },
+  "Subnet": "",
+  "SubnetId": "",
+  "Timeout": 3,
+  "UserData": "",
+  "UserDomain": "ecmuseryy",
+  "Version": "latest",
+  "VersionDescription": "",
+  "Vpc": "",
+  "VpcId": "",
+  "Xrole": ""
+}
+

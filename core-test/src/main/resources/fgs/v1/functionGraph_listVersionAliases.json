@@ -1,0 +1,9 @@
+{
+  "AliasUrn": "urn:fss:cn-north-1:7aad83af3e8d42e99ac194e8419e2c9b:function:default:test:!testqq",
+  "Description": "",
+  "FuncId": "22c2bf6d-d082-4347-a476-4e298cf7b142",
+  "Id": "8ab8ba20-0c1c-4df5-99bd-2d20c6bf3cfd",
+  "LastModified": "2018-03-21T10:06:30+08:00",
+  "Name": "dev",
+  "Version": "latest"
+}

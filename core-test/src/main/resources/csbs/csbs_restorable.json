@@ -1,0 +1,9 @@
+{
+  "restorable" : [ {
+    "resource_id" : "6507cb66-90dc-4a12-a573-c9f3398f899d",
+    "resource_type" : "OS::Nova::Server",
+    "result" : true,
+    "error_msg" : "",
+    "error_code" : ""
+  } ]
+}

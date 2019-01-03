@@ -1,0 +1,21 @@
+{
+  "checkpoint" : {
+    "status" : "protecting",
+    "created_at" : "2017-04-18T01:21:52.701973",
+    "id" : "4468f4b8-7c78-4222-a2ca-346b5d557dd2",
+    "resource_graph" : null,
+    "project_id" : "b942cc8342734d15bcb246babb1953cf",
+    "protection_plan" : {
+      "id" : "fake_04f8ea0f-2000-4389-a5ce-93a3e20d0faf",
+      "resources" : [ {
+        "type" : "OS::Nova::Server",
+        "id" : "9506416d-db6c-406e-8bca-c0f43793d914",
+        "name" : "resource_9506416d-db6c-406e-8bca-c0f43793d914",
+        "extra_info" : {
+          "exclude_volumes": ["8a8ccde2-0b9a-4450-a5f3-150816635f46"]
+    }
+      } ],
+      "name" : "server protect plan for 9506416d-db6c-406e-8bca-c0f43793d914"
+    }
+  }
+}

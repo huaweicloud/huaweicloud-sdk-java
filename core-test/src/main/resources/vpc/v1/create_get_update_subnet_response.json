@@ -1,0 +1,20 @@
+{
+	"subnet": {
+		"id": "4779ab1c-7c1a-44b1-a02e-93dfc361b32d",
+		"name": "subnet",
+		"cidr": "192.168.20.0/24",
+		"dnsList": [
+			"114.114.114.114",
+			"114.114.115.115"
+		],
+		"status": "ACTIVE",
+		"vpc_id": "3ec3b33f-ac1c-4630-ad1c-7dba1ed79d85",
+		"gateway_ip": "192.168.20.1",
+		"dhcp_enable": true,
+		"primary_dns": "114.114.114.114",
+		"secondary_dns": "114.114.115.115",
+		"availability_zone": "aa-bb-cc",
+		"neutron_network_id": "4779ab1c-7c1a-44b1-a02e-93dfc361b32d",
+		"neutron_subnet_id": "213cb9d-3122-2ac1-1a29-91ffc1231a12"
+	}
+}

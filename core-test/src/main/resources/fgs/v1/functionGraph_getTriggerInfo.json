@@ -1,0 +1,12 @@
+{
+  "trigger_id": "191e425a-924a-45d9-b730-38b5ffe339ad",
+  "trigger_type_code": "SMN",
+  "event_type_code": "MessageCreated",
+  "trigger_status": "ACTIVE",
+  "event_data": {
+    "topic_urn": "abc",
+    "subscription_status": "Unconfirmed"
+  },
+  "last_updated_time": "2017-06-27 23:33:57 +0000 UTC",
+  "created_time": "2017-06-27 23:33:57 +0000 UTC"
+}

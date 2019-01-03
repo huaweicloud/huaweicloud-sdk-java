@@ -1,0 +1,6 @@
+{
+  "regions" : [ {
+    "name" : "cn-north-1",
+    "replication_destinations" : [ "cn-south-1", "cn-east-2"]
+  } ]
+}
