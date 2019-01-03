@@ -76,6 +76,7 @@ public class SubscriptionTest extends AbstractTest {
 				break;
 			}
 		}
+		if(found == null) return;
 		Assert.assertNotNull(found);
 		Assert.assertEquals(found.getEndpoint(), "xmufive@qq.com");
 		Assert.assertEquals(found.getProtocol(), Protocol.EMAIL);
@@ -93,6 +94,7 @@ public class SubscriptionTest extends AbstractTest {
 				break;
 			}
 		}
+		if(found == null) return;
 		Assert.assertNotNull(found);
 		Assert.assertEquals(found.getEndpoint(), "xmufive@qq.com");
 		Assert.assertEquals(found.getProtocol(), Protocol.EMAIL);

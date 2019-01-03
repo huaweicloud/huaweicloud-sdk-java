@@ -24,4 +24,28 @@ public class CloudServerBackupService extends BaseCloudServerBackupService imple
 		return Apis.get(BackupManagementService.class);
 	}
 	
+//	public RestoreManagementService restores() {
+//		return Apis.get(RestoreManagementService.class);
+//	}
+	
+//	public QuotaManagementService quotas() {
+//		return Apis.get(QuotaManagementService.class);
+//	}
+	
+//	public ProjectManagementService protects() {
+//		return Apis.get(ProjectManagementService.class);
+//	}
+	
+//	public ReplicationManagementService replications() {
+//		return Apis.get(ReplicationManagementService.class);
+//	}
+	
+//	public BackupPoliciesService policies(){
+//		return Apis.get(BackupPoliciesService.class);
+//	}
+	
+//	public BackupResourceService resources(){
+//		return Apis.get(BackupResourceService.class);
+//	}
+	
 }

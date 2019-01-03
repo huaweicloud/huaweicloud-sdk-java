@@ -31,9 +31,6 @@
  * *******************************************************************************/
 package com.huawei.openstack4j.api;
 
-import java.util.Map;
-import java.util.Set;
-
 import com.huawei.openstack4j.api.artifact.ArtifactService;
 import com.huawei.openstack4j.api.barbican.BarbicanService;
 import com.huawei.openstack4j.api.cloudeye.CloudEyeService;
@@ -64,23 +61,26 @@ import com.huawei.openstack4j.core.transport.Config;
 import com.huawei.openstack4j.model.common.Identifier;
 import com.huawei.openstack4j.model.identity.v2.Access;
 import com.huawei.openstack4j.model.identity.v3.Token;
-import com.huawei.openstack4j.openstack.kms.internal.KeyManagementService;
 import com.huawei.openstack4j.openstack.antiddos.internal.AntiDDoSServices;
 import com.huawei.openstack4j.openstack.bms.v1.internal.BareMetaService;
+import com.huawei.openstack4j.openstack.cdn.v1.internal.CdnServices;
 import com.huawei.openstack4j.openstack.cloud.trace.v1.internal.CloudTraceV1Service;
 import com.huawei.openstack4j.openstack.cloud.trace.v2.internal.CloudTraceV2Service;
 import com.huawei.openstack4j.openstack.csbs.v1.internal.CloudServerBackupService;
 import com.huawei.openstack4j.openstack.database.internal.DatabaseServices;
 import com.huawei.openstack4j.openstack.ecs.v1.internal.ElasticComputeService;
 import com.huawei.openstack4j.openstack.evs.v2.internal.ElasticVolumeService;
-import com.huawei.openstack4j.openstack.ims.v2.internal.ImageManagementService;
+import com.huawei.openstack4j.openstack.fgs.v1.internal.FunctionGraphService;
+import com.huawei.openstack4j.openstack.kms.internal.KeyManagementService;
 import com.huawei.openstack4j.openstack.maas.internal.MaaSService;
 import com.huawei.openstack4j.openstack.message.notification.internal.NotificationService;
 import com.huawei.openstack4j.openstack.message.queue.internal.MessageQueueService;
 import com.huawei.openstack4j.openstack.tms.v1.internal.TagManagementService;
 import com.huawei.openstack4j.openstack.trove.internal.TroveService;
 import com.huawei.openstack4j.openstack.vpc.v2.internal.VirtualPrivateCloudService;
-import com.huawei.openstack4j.openstack.cdn.v1.internal.CdnServices;
+
+import java.util.Map;
+import java.util.Set;
 
 /**
  * A client which has been identified. Any calls spawned from this session will
@@ -309,6 +309,12 @@ public interface OSClient<T extends OSClient<T>> {
 	WorkflowService workflow();
 
 	/**
+	 * Returns the functionGraph  Service API
+	 *
+	 * @return the functionGraph service
+	 */
+	FunctionGraphService functionGraph();
+	/**
 	 * Returns the Magnum Service API
 	 * 
 	 * @return the Magnum Service
@@ -430,7 +436,7 @@ public interface OSClient<T extends OSClient<T>> {
 	  * Returns the BareMetaService API
 	  * @return
 	  */
-//	 BareMetaService bms();
+	 BareMetaService bms();
 	 /**
 	  * get the CDN service
 	  * @return the OTC {@link CdnServices} instance
@@ -567,12 +573,12 @@ public interface OSClient<T extends OSClient<T>> {
 	 * get the nat service 
 	 * @return the OTC nat service instance
 	 */
-//	 NatService nat();
+	 NatService nat();
 	 /**
 	  * get the deh service 
 	  * @return the DehService
 	  */
-//	 DehService deh();
+	 DehService deh();
 
 	/**
 	 * Returns the ImageManagement Service API

@@ -37,7 +37,7 @@ public class VolumeAttachment implements ModelEntity{
 	 * 
 	 */
 	private static final long serialVersionUID = -584258758996551458L;
-	@JsonProperty("id")
+	@JsonProperty("volumeId")
 	private String id;
 	@JsonProperty("device")
 	private String device;

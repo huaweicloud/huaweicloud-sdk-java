@@ -291,4 +291,110 @@ public interface Image extends BasicResource, Buildable<ImageBuilder> {
      * fill in the ID of the backup, otherwise it is empty.
      */
     String getBackupId();
+    /**
+     * 
+     * @return Is it a deleted image
+     */
+    Boolean getDeleted();
+    /**
+     * 
+     * @return  Image description information
+     */
+    String getDescription();
+    /**
+     * 
+     * @return Mirror usage environment type
+     */
+    String getVirtualEnvType();
+    /**
+     * 
+     * @return Mirror backend storage type
+     */
+    String getImageSourceType();
+    /**
+     * 
+     * @return delete time
+     */
+    String getDeletedAt();
+    /**
+     * 
+     * @return Parent image ID
+     */
+    String getOriginalImageName();
+    /**
+     * 
+     * @return  Product ID of the market image
+     */
+    String getProductCode();
+    /**
+     * 
+     * @return ImageSize
+     */
+    String getImageSize();
+    /**
+     * 
+     * @return  Mirror source
+     */
+    String getDataOrigin();
+    /**
+     * 
+     * @return EnterpriseProjectId
+     */
+    String getEnterpriseProjectId();
+    /**
+     * 
+     * @return Is it a registered image
+     */
+    String getIsRegistered();
+    /**
+     * 
+     * @return ImageType
+     */
+    String getImageType();
+    /**
+     * 
+     * @return  Number of operating system bits
+     */
+    String getOsBit();
+    /**
+     * 
+     * @return Mirror platform classification
+     */
+    String getPlatForm();
+    /**
+     * 
+     * @return Operating system type
+     */
+    String getOsType();
+    /**
+     * 
+     * @return is it SupportKvm
+     */
+    String getSupportKvm();
+    /**
+     * 
+     * @return is it SupportXen
+     */
+    String getSupportXen();
+    /**
+     * 
+     * @return is it SupportDiskIntensive
+     */
+    String getSupportDiskIntensive();
+    /**
+     * 
+     * @return is it SupportHighPerformance
+     */
+    String getSupportHighPerformance();
+    /**
+     * 
+     * @return is it SupportXenGpuType
+     */
+    String getSupportXenGpuType();
+    /**
+     * 
+     * @return SequenceNum
+     */
+    String getSequenceNum();
+    
 }

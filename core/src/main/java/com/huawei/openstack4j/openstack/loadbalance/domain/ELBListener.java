@@ -113,4 +113,7 @@ public class ELBListener implements Listener {
 	@JsonProperty("update_time")
 	@JsonFormat(pattern = DateTimeUtils.FORMAT_YMDHMS)
 	private Date updateTime;
+	
+	@JsonProperty("client_ca_tls_container_ref")
+	private String clientCaTlsContainerRef;
 }

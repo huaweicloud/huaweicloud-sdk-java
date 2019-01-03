@@ -47,7 +47,6 @@ import com.huawei.openstack4j.model.image.v2.DiskFormat;
 import com.huawei.openstack4j.model.image.v2.Image;
 import com.huawei.openstack4j.model.image.v2.builder.ImageBuilder;
 import com.huawei.openstack4j.openstack.common.ListResult;
-
 import com.google.common.base.MoreObjects;
 import com.google.common.collect.Maps;
 import com.google.common.collect.Sets;
@@ -94,7 +93,37 @@ public class GlanceImage implements Image {
     private String id;
 
     private String name;
-
+    
+    @JsonProperty("deleted")
+    private Boolean deleted;
+    
+    @JsonProperty("__description")
+    private String description;
+    
+    @JsonProperty("virtual_env_type")
+    private String virtualEnvType;
+    
+    @JsonProperty("__image_source_type")
+    private String imageSourceType;
+    
+    @JsonProperty("deleted_at")
+    private String deletedAt;
+    
+    @JsonProperty("__originalimagename")
+    private String originalImageName;
+    
+    @JsonProperty("__productcode")
+    private String productCode;
+    
+    @JsonProperty("__image_size")
+    private String imageSize;
+    
+    @JsonProperty("__data_origin")
+    private String dataOrigin;
+    
+    @JsonProperty("enterprise_project_id")
+    private String enterpriseProjectId;
+    
     private List<String> tags;
 
     private ImageStatus status;
@@ -147,7 +176,7 @@ public class GlanceImage implements Image {
     @JsonProperty("kernel_id")
     private String kernelId;
 
-    @JsonProperty("os_version")
+    @JsonProperty("__os_version")
     private String osVersion;
 
     @JsonProperty("os_distro")
@@ -161,6 +190,63 @@ public class GlanceImage implements Image {
 
     @JsonProperty("__backup_id")
     private String backupId;
+    
+    @JsonProperty("__isregistered")
+    private String isRegistered;
+    
+    @JsonProperty("__imagetype")
+    private String imageType;
+    
+    @JsonProperty("__os_bit")
+    private String osBit;
+    
+    @JsonProperty("__platform")
+    private String platForm;
+    
+    @JsonProperty("marker")
+    private String marker;
+    
+    @JsonProperty("limit")
+    private String limit;
+    
+    @JsonProperty("sort_key")
+    private String sortKey;
+    
+    @JsonProperty("sort_dir")
+    private String sortDir;
+    
+    @JsonProperty("__os_type")
+    private String osType;
+    
+    @JsonProperty("tag")
+    private String tag;
+    
+    @JsonProperty("member_status")
+    private String memberStatus;
+    
+    @JsonProperty("__support_kvm")
+    private String supportKvm;
+    
+    @JsonProperty("__support_xen")
+    private String supportXen;
+    
+    @JsonProperty("__support_diskintensive")
+    private String supportDiskIntensive;
+    
+    @JsonProperty("__support_highperformance")
+    private String supportHighPerformance;
+    
+    @JsonProperty("__support_xen_gpu_type")
+    private String supportXenGpuType;
+    
+    @JsonProperty("__root_origin")
+    private String rootOrigin;
+    
+    @JsonProperty("__sequence_num")
+    private String sequenceNum;
+      
+    @JsonProperty("properties")
+    private String properties;
     
     private Map<String, String> additionalProperties = Maps.newHashMap();
 
@@ -466,6 +552,35 @@ public class GlanceImage implements Image {
                 .add("osDistro", osDistro)
                 .add("ramdiskId", ramdiskId)
                 .add("virtualSize", virtualSize)
+                .add("deleted", deleted)
+                .add("description", description)
+                .add("virtualEnvType", virtualEnvType)
+                .add("imageSourceType", imageSourceType)
+                .add("deletedAt", deletedAt)
+                .add("originalImageName", originalImageName)
+                .add("productCode", productCode)
+                .add("imageSize", imageSize)
+                .add("dataOrigin", dataOrigin)
+                .add("enterpriseProjectId", enterpriseProjectId)
+                .add("isRegistered", isRegistered)
+                .add("imageType", imageType)
+                .add("osBit", osBit)
+                .add("platForm", platForm)
+                .add("marker", marker)
+                .add("limit", limit)
+                .add("sortKey", sortKey)
+                .add("sortDir", sortDir)
+                .add("osType", osType)
+                .add("tag", tag)
+                .add("memberStatus", memberStatus)
+                .add("supportKvm", supportKvm)
+                .add("supportXen", supportXen)
+                .add("supportDiskIntensive", supportDiskIntensive)
+                .add("supportHighPerformance", supportHighPerformance)
+                .add("supportXenGpuType", supportXenGpuType)
+                .add("rootOrigin", rootOrigin)
+                .add("sequenceNum", sequenceNum)
+                .add("properties", properties)
                 .toString();
     }
 
@@ -475,6 +590,15 @@ public class GlanceImage implements Image {
         private static final long serialVersionUID = 1L;
         @JsonProperty("images")
         private List<GlanceImage> images;
+        
+        @JsonProperty("first")
+        private String first;
+        
+        @JsonProperty("next")
+        private String next;
+        
+        @JsonProperty("schema")
+        private String schema;
 
         @Override
         protected List<GlanceImage> value() {
@@ -645,5 +769,164 @@ public class GlanceImage implements Image {
         protected Image reference() {
             return m;
         }
+
+		@Override
+		public ImageBuilder isRegistered(String isRegistered) {
+			m.isRegistered = isRegistered;
+			return this;
+		}
+
+		@Override
+		public ImageBuilder imageType(String imageType) {
+			m.imageType = imageType;
+			return this;
+		}
+
+		@Override
+		public ImageBuilder virtualEnvType(String virtualEnvType) {
+			m.virtualEnvType = virtualEnvType;
+			return this;
+		}
+
+		@Override
+		public ImageBuilder imageSourceType(String imageSourceType) {
+			m.imageSourceType = imageSourceType;
+			return this;
+		}
+
+		@Override
+		public ImageBuilder imageSize(String imageSize) {
+			m.imageSize = imageSize;
+			return this;
+		}
+
+		@Override
+		public ImageBuilder osBit(String osBit) {
+			m.osBit = osBit;
+			return this;
+		}
+
+		@Override
+		public ImageBuilder platForm(String platForm) {
+			m.platForm = platForm;
+			return this;
+		}
+
+		@Override
+		public ImageBuilder osType(String osType) {
+			m.osType = osType;
+			return this;
+		}
+
+		@Override
+		public ImageBuilder properties(String properties) {
+			m.properties = properties;
+			return this;
+		}
     }
+
+	@Override
+	public Boolean getDeleted() {
+		return deleted;
+	}
+
+	@Override
+	public String getDescription() {
+		return description;
+	}
+
+	@Override
+	public String getVirtualEnvType() {
+		return virtualEnvType;
+	}
+
+	@Override
+	public String getImageSourceType() {
+		return imageSourceType;
+	}
+
+	@Override
+	public String getDeletedAt() {
+		return deletedAt;
+	}
+
+	@Override
+	public String getOriginalImageName() {
+		return originalImageName;
+	}
+
+	@Override
+	public String getProductCode() {
+		return productCode;
+	}
+
+	@Override
+	public String getImageSize() {
+		return imageSize;
+	}
+
+	@Override
+	public String getDataOrigin() {
+		return dataOrigin;
+	}
+
+	@Override
+	public String getEnterpriseProjectId() {
+		return enterpriseProjectId;
+	}
+
+	@Override
+	public String getIsRegistered() {
+		return isRegistered;
+	}
+
+	@Override
+	public String getImageType() {
+		return imageType;
+	}
+
+	@Override
+	public String getOsBit() {
+		return osBit;
+	}
+
+	@Override
+	public String getPlatForm() {
+		return platForm;
+	}
+
+	@Override
+	public String getOsType() {
+		return osType;
+	}
+
+	@Override
+	public String getSupportKvm() {
+		return supportKvm;
+	}
+
+	@Override
+	public String getSupportXen() {
+		return supportXen;
+	}
+
+	@Override
+	public String getSupportDiskIntensive() {
+		return supportDiskIntensive;
+	}
+
+	@Override
+	public String getSupportHighPerformance() {
+		return supportHighPerformance;
+	}
+
+	@Override
+	public String getSupportXenGpuType() {
+		return supportXenGpuType;
+	}
+
+	@Override
+	public String getSequenceNum() {
+		return sequenceNum;
+	}
 }

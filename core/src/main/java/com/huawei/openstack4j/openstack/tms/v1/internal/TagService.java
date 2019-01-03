@@ -78,9 +78,9 @@ public class TagService extends BaseTagManagementService {
 	 */
 	public ActionResponse modify(PredefineTagRequest oldTag, PredefineTagRequest newTag) {
 		checkArgument(!Strings.isNullOrEmpty(oldTag.getKey()), "parameter `oldTag.key` should not be empty");
-		checkArgument(!Strings.isNullOrEmpty(oldTag.getValue()), "parameter `oldTag.value` should not be empty");
+//		checkArgument(!Strings.isNullOrEmpty(oldTag.getValue()), "parameter `oldTag.value` should not be empty");
 		checkArgument(!Strings.isNullOrEmpty(newTag.getKey()), "parameter `newTag.key` should not be empty");
-		checkArgument(!Strings.isNullOrEmpty(newTag.getValue()), "parameter `newTag.value` should not be empty");
+//		checkArgument(!Strings.isNullOrEmpty(newTag.getValue()), "parameter `newTag.value` should not be empty");
 		Map<String, Object> entity = new HashMap<>();
 		entity.put("new_tag", newTag);
 		entity.put("old_tag", oldTag);

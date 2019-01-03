@@ -41,7 +41,9 @@ public class ELBCertificate implements Certificate {
 	private String id;
 
 	private String name;
-
+	
+	private String domain;
+	
 	private String description;
 
 	private String certificate;

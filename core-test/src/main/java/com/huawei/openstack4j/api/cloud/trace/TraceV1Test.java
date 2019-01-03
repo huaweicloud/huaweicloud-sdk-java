@@ -38,7 +38,7 @@ public class TraceV1Test extends AbstractTest {
 		respondWith("/cloud-trace/list_trace_v1_response.json");
 
 		Date now = new Date(1500113647674L);
-		TraceListOptions options = TraceListOptions.create().id("trace-id").user("zhangdong").serviceType("CTS")
+		TraceListOptions options = TraceListOptions.create().id("trace-id").user("******").serviceType("CTS")
 				.resourceId("resource-id").resourceType("resource-type").resourceName("resource-name")
 				.status(TraceStatus.Incident).from(now).to(now).marker("some-trace-id").limit(5);
 		List<Trace> list = osv3().cloudTraceV1().traces().list("system", options);
@@ -48,7 +48,7 @@ public class TraceV1Test extends AbstractTest {
 				"/v1.0/project-id/system/trace?trace_rating=incident&to=1500113647674"
 						+ "&limit=5&resource_id=resource-id&resource_name=resource-name&trace_id=trace-id"
 						+ "&service_type=CTS&resource_type=resource-type&next=some-trace-id"
-						+ "&from=1500113647674&user=zhangdong");
+						+ "&from=1500113647674&user=******");
 		Assert.assertEquals(request.getMethod(), "GET");
 
 		Assert.assertTrue(list.size() == 2);

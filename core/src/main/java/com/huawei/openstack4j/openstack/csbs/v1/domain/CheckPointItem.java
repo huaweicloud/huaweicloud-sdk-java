@@ -107,6 +107,18 @@ public class CheckPointItem implements ModelEntity{
 	@JsonProperty("resource_type")
 	private String resourceType;
 	
+	/**
+	 * 复制记录列表
+	 */
+	@JsonProperty("replication_records")
+	private ReplicationRecord replicationRecords;
+	
+	/**
+	 * 备份数据时间点
+	 */
+	@JsonProperty("protected_at")
+	private String protectedAt;
+	
 	public  static class CheckPointItems extends ListResult<CheckPointItem>{
 		
 		/**

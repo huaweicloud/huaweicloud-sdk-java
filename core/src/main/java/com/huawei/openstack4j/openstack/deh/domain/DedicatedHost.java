@@ -16,6 +16,7 @@
 package com.huawei.openstack4j.openstack.deh.domain;
 
 import java.util.List;
+import java.util.Map;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -78,7 +79,13 @@ public class DedicatedHost implements ModelEntity{
 	
 	@JsonProperty("instance_uuids")
 	private List<String> instanceUuids;
-	
+
+	private Map<String, String> tags;
+
+	@JsonProperty("sys_tags")
+	private Map<String, String> sysTags;
+
+	private Map<String, String> metadata;
 	
 	public  static class DedicatedHosts extends ListResult<DedicatedHost>{
 		

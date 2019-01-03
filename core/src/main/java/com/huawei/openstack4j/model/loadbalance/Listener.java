@@ -280,5 +280,36 @@ public interface Listener extends ModelEntity {
 	 * @return update time
 	 */
 	Date getUpdateTime();
+	
+	/**
+	 * @return client_ca_tls_container_ref
+	 */
+	String getClientCaTlsContainerRef();
+	
+	/**
+	 * @return member_number
+	 */
+	Integer getMemberNumber();
+	
+
+	/**
+	 * @return tcp_timeout
+	 */
+	Integer getTcpTimeout();
+	
+	/**
+	 * @return ssl_protocols
+	 */
+	SSLProtocols getSslProtocols();
+	
+	/**
+	 * @return ssl_ciphers
+	 */
+	SSLCiphers getSslCiphers();
+	
+	/**
+	 * @return udp_timeout
+	 */
+	Integer getUdpTimeout();
 
 }

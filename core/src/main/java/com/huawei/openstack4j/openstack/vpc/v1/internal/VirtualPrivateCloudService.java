@@ -27,4 +27,13 @@ public class VirtualPrivateCloudService extends BaseVirtualPrivateCloudService i
 	public BandWidthService bandwidths() {
 		return Apis.get(BandWidthService.class);
 	}
+	
+	/**
+	 * Service implementation which provides methods for manipulation of subnets
+	 *
+	 * @return {@link SubnetService} instance
+	 */
+	public SubnetService subnets(){
+		return Apis.get(SubnetService.class);
+	}
 }

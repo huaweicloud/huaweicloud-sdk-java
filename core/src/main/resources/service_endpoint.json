@@ -1,6 +1,6 @@
 {
   "DNS": {
-    "public": "https://dns.%(domain)s/"
+    "public": "https://dns.%(region)s.%(domain)s/"
   },
   "COMPUTE": {
     "public": "https://ecs.%(region)s.%(domain)s/v2/%(projectId)s"
@@ -86,7 +86,10 @@
    "DEH":{
   	"public": "https://deh.%(region)s.%(domain)s/v1.0/%(projectId)s"
   },
-   "CSBS":{
-  	"public": "https://csbs.%(region)s.%(domain)s/v1/%(projectId)s"
+  "CSBS": {
+    "public": "https://csbs.%(region)s.%(domain)s/v1/%(projectId)s"
+  },
+  "FGS": {
+    "public": "https://functiongraph.%(region)s.%(domain)s/v1.0/%(projectId)s"
   }
 }

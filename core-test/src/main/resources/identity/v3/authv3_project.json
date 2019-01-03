@@ -989,21 +989,21 @@
         "endpoints": [
           {
             "region_id": "RegionOne",
-            "url": "http://127.0.0.1:10015/v2.0/project-id",
+            "url": "http://127.0.0.1:10015/v1/project-id",
             "region": "RegionOne",
             "interface": "public",
             "id": "2241f1ee096a11e793ae92361f002671"
           },
           {
             "region_id": "RegionOne",
-            "url": "http://127.0.0.1:10015/v2.0/project-id",
+            "url": "http://127.0.0.1:10015/v1/project-id",
             "region": "RegionOne",
             "interface": "admin",
             "id": "2241f446096a11e793ae92361f002671"
           },
           {
             "region_id": "RegionOne",
-            "url": "http://127.0.0.1:10015/v2.0/project-id",
+            "url": "http://127.0.0.1:10015/v1/project-id",
             "region": "RegionOne",
             "interface": "internal",
             "id": "2241f55e096a11e793ae92361f002671"
@@ -1041,7 +1041,7 @@
         "id": "2241f6c6096a11e793ae92361f002671",
         "name": "TMS"
       },
-        {
+      {
         "endpoints": [
           {
             "region_id": "RegionOne",
@@ -1153,7 +1153,7 @@
         "id": "2241f6c6096a11e793ae92361f002671",
         "name": "IMSV2"
       },
-        {
+      {
         "endpoints": [
           {
             "region_id": "RegionOne",
@@ -1292,7 +1292,8 @@
         "type": "anti-ddos",
         "id": "2241f6c6096a11e793ae92361f002671",
         "name": "antiddos"
-      }, {
+      },
+      {
         "endpoints": [
           {
             "region_id": "RegionOne",
@@ -1319,7 +1320,8 @@
         "type": "MaaS",
         "id": "2241f6c6096a11e793ae92361f002671",
         "name": "MaaS"
-      }, {
+      },
+      {
         "endpoints": [
           {
             "region_id": "RegionOne",
@@ -1346,7 +1348,8 @@
         "type": "notification-message",
         "id": "2241f6c6096a11e793ae92361f002671",
         "name": "SMN"
-      }, {
+      },
+      {
         "endpoints": [
           {
             "region_id": "RegionOne",
@@ -1373,6 +1376,34 @@
         "type": "notification-message",
         "id": "2241f6c6096a11e793ae92361f002671",
         "name": "DMS"
+      },
+      {
+        "endpoints": [
+          {
+            "region_id": "RegionOne",
+            "url": "http://127.0.0.1:10025/v1.0/project-id",
+            "region": "RegionOne",
+            "interface": "public",
+            "id": "2241f1ee096a11e793ae92361f002671"
+          },
+          {
+            "region_id": "RegionOne",
+            "url": "http://127.0.0.1:10025/v1.0/project-id",
+            "region": "RegionOne",
+            "interface": "admin",
+            "id": "2241f446096a11e793ae92361f002671"
+          },
+          {
+            "region_id": "RegionOne",
+            "url": "http://127.0.0.1:10025/v1.0/project-id",
+            "region": "RegionOne",
+            "interface": "internal",
+            "id": "2241f55e096a11e793ae92361f002671"
+          }
+        ],
+        "type": "fgs",
+        "id": "2241f6c6096a11e793ae92361f002671",
+        "name": "fgs"
       }
     ],
     "extras": {},

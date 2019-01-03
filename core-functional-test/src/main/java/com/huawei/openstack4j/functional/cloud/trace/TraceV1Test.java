@@ -17,13 +17,12 @@
  *******************************************************************************/
 package com.huawei.openstack4j.functional.cloud.trace;
 
-import java.util.List;
-
-import org.testng.annotations.Test;
-
 import com.huawei.openstack4j.functional.AbstractTest;
 import com.huawei.openstack4j.openstack.cloud.trace.v1.domain.Trace;
 import com.huawei.openstack4j.openstack.cloud.trace.v1.options.TraceListOptions;
+import org.testng.annotations.Test;
+
+import java.util.List;
 
 @Test(suiteName = "CloudTrace/TraceV1/Test")
 public class TraceV1Test extends AbstractTest {
@@ -31,7 +30,7 @@ public class TraceV1Test extends AbstractTest {
 
 	@Test(priority = 1)
 	public void testListTrace() {
-		TraceListOptions options = TraceListOptions.create().limit(5).user("zhangdong").serviceType("CTS");
+		TraceListOptions options = TraceListOptions.create().limit(5).user("******").serviceType("CTS");
 		List<Trace> list = osclient.cloudTraceV1().traces().list("system", options);
 		
 		Trace trace = list.get(list.size() -1);

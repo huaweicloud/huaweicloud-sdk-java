@@ -15,6 +15,8 @@
  *******************************************************************************/
 package com.huawei.openstack4j.openstack.loadbalance.domain;
 
+import java.util.List;
+
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.huawei.openstack4j.model.loadbalance.Listener;
 import com.huawei.openstack4j.model.loadbalance.ListenerUpdate;
@@ -69,6 +71,11 @@ public class ELBListenerUpdate implements ListenerUpdate {
 
 	@JsonProperty("ssl_ciphers")
 	private SSLCiphers sslCiphers;
+	
+	@JsonProperty("certificate_id")
+	private String certificateId;
+	
+	private List<String> certificates;
 	
 	public static ELBListenerUpdate fromListener(Listener listener) {
 		return ELBListenerUpdate.builder()

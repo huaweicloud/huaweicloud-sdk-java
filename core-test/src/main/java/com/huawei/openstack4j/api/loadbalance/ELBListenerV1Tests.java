@@ -27,6 +27,10 @@ import com.huawei.openstack4j.model.loadbalance.Listener;
 import com.huawei.openstack4j.model.loadbalance.Listener.BackendProtocol;
 import com.huawei.openstack4j.model.loadbalance.Listener.LbAlgorithm;
 import com.huawei.openstack4j.model.loadbalance.Listener.Protocol;
+import com.huawei.openstack4j.model.loadbalance.Listener.SSLCiphers;
+import com.huawei.openstack4j.model.loadbalance.Listener.SSLProtocols;
+import com.huawei.openstack4j.model.loadbalance.Listener.Status;
+import com.huawei.openstack4j.model.loadbalance.Listener.StickySessionType;
 import com.huawei.openstack4j.model.loadbalance.ListenerCreate;
 import com.huawei.openstack4j.openstack.loadbalance.domain.ELBListenerCreate;
 import com.huawei.openstack4j.openstack.loadbalance.domain.ELBListenerUpdate;
@@ -41,7 +45,7 @@ public class ELBListenerV1Tests extends AbstractTest {
 	private static final String JSON_LISTENER_LIST = "/loadbalance/elb_listener_list.json";
 	private static final String JSON_LISTENER_LIST2 = "/loadbalance/elb_listener_list2.json";
 
-	public void testCreateListener() throws IOException {
+	public void createListenerTest() throws IOException {
 		respondWith(JSON_LISTENER_CREATE);
 		String loadBalancerId = "a650695bb9344a3fa24dec344116d261";
 		ListenerCreate listener = ELBListenerCreate.builder().name("SDK-test-listener").loadBalancerId(loadBalancerId)
@@ -51,14 +55,14 @@ public class ELBListenerV1Tests extends AbstractTest {
 		assertTrue("f5c566e27ebb4d5d8708fca77915a04b".equals(create.getId()));
 	}
 
-	public void testDeleteListener() {
+	public void deleteListenerTest() {
 		respondWith(204);
 		String listenerId = "f5c566e27ebb4d5d8708fca77915a04b";
 		ActionResponse resp = osv3().loadBalancer().listeners().delete(listenerId);
 		assertTrue(resp.isSuccess(), resp.getFault());
 	}
 
-	public void testUpdateListener() throws IOException {
+	public void updateListenerTest() throws IOException {
 		respondWith(JSON_LISTENER);
 		respondWith(JSON_LISTENER_UPDATE);
 		String listenerId = "f5c566e27ebb4d5d8708fca77915a04b";
@@ -72,14 +76,35 @@ public class ELBListenerV1Tests extends AbstractTest {
 		assertTrue(after.equals(afterUpdate.getName()));
 	}
 
-	public void testGetListener() throws IOException {
+	public void getListenerTest() throws IOException {
 		respondWith(JSON_LISTENER);
 		String listenerId = "f5c566e27ebb4d5d8708fca77915a04b";
 		Listener listener = osv3().loadBalancer().listeners().get(listenerId);
 		assertTrue(listener.getId().equals(listenerId));
+		assertEquals(listener.getBackendPort(), Integer.valueOf(54321));
+		assertEquals(listener.getBackendProtocol(), BackendProtocol.TCP);
+		assertEquals(listener.getStickySessionType(), StickySessionType.INSERT);
+		assertEquals(listener.getDescription(), "xxxxxx");
+		assertEquals(listener.getLoadBalancerId(), "a650695bb9344a3fa24dec344116d261");
+		assertEquals(listener.getStatus(), Status.ACTIVE);
+		assertEquals(listener.getProtocol(), Protocol.TCP);
+		assertEquals(listener.getPort(), Integer.valueOf(12345));
+		assertEquals(listener.getCookieTimeout(), Integer.valueOf(1));
+		assertEquals(listener.getClientCaTlsContainerRef(), "xxxxxx");
+		assertEquals(listener.getAdminStateUp(), Boolean.FALSE);
+		assertEquals(listener.getMemberNumber(), Integer.valueOf(1));
+		assertEquals(listener.getHealthCheckId(), "xxxxxx");
+		assertEquals(listener.getSessionSticky(), Boolean.FALSE);
+		assertEquals(listener.getLbAlgorithm(), LbAlgorithm.ROUND_ROBIN);
+		assertEquals(listener.getName(), "xxxxxx");
+		assertEquals(listener.getCertificateId(), "xxxxxx");
+		assertEquals(listener.getTcpTimeout(), Integer.valueOf(1));
+		assertEquals(listener.getUdpTimeout(), Integer.valueOf(1));
+		assertEquals(listener.getSslProtocols(), SSLProtocols.TLS_1_2);
+		assertEquals(listener.getSslCiphers(), SSLCiphers.DEFAULT);
 	}
 
-	public void testListListener() throws IOException {
+	public void listListenerTest() throws IOException {
 		respondWith(JSON_LISTENER_LIST);
 		respondWith(JSON_LISTENER_LIST2);
 		Listener[] all = osv3().loadBalancer().listeners().list();

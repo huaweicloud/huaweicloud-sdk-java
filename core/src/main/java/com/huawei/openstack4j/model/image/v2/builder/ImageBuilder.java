@@ -32,6 +32,52 @@ public interface ImageBuilder extends Buildable.Builder<ImageBuilder, Image> {
      * @see Image#getName()
      */
     ImageBuilder name(String name);
+    
+    /**
+     * @see Image#getIsRegistered()
+     */
+    ImageBuilder isRegistered(String isRegistered);
+    
+    
+    /**
+     * @see Image#getIsImageType()
+     */
+    ImageBuilder imageType(String imageType);
+    
+    /**
+     * @see Image#getVirtualEnvType()
+     */
+    ImageBuilder virtualEnvType(String virtualEnvType);
+    
+    /**
+     * @see Image#getImageSourceType()
+     */
+    ImageBuilder imageSourceType(String imageSourceType);
+    
+    /**
+     * @see Image#getImageSize()
+     */
+    ImageBuilder imageSize(String imageSize);
+    
+    /**
+     * @see Image#getOsBit()
+     */
+    ImageBuilder osBit(String osBit);
+    
+    /**
+     * @see Image#getPlatForm()
+     */
+    ImageBuilder platForm(String platForm);
+    
+    /**
+     * @see Image#getOsType()
+     */
+    ImageBuilder osType(String osType);
+    
+    /**
+     * @see Image#getProperties()
+     */
+    ImageBuilder properties(String properties);
 
     /**
      * @see Image#getId()

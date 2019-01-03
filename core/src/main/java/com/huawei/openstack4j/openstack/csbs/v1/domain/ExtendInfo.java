@@ -166,4 +166,16 @@ public class ExtendInfo implements ModelEntity{
 	@JsonProperty("retention_duration")
 	private Integer retentionDuration;
 	
+	/**
+	 * 备份副本是否是专属备份
+	 */
+	@JsonProperty("dec")
+	private Boolean dec;
+	
+	/**
+	 * 累计专属备份大小，单位是MB
+	 */
+	@JsonProperty("dec_size")
+	private String decSize;
+	
 }

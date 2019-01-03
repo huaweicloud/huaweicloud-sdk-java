@@ -130,6 +130,28 @@ public final class ClientConstants {
     public static final String MAGNUM_CLUSTERS = "/clusters";
     public static final String MAGNUM_CLUSTERTEMPLATES = "/clustertemplates";
     public static final String MAGNUM_PODS = "/pods";
-	
+
+    //FunctionGraph path
+    public static final String FGS_PATH = "/fss/functions";
+    public static final String FGS_CONFIG = "/config";
+    public static final String FGS_CODE = "/code";
+    public static final String FGS_VERSION = "/versions";
+    public static final String FGS_MARKER = "marker";
+    public static final String FGS_MAXITEMS = "maxitems";
+    public static final String FGS_ALIASES = "/aliases";
+    public static final String FGS_TRIGGERS = "/fss/triggers";
+    public static final String FGS_INVOCATIONS = "/invocations";
+    public static final String FGS_INVOCATIONS_ASYNC = "/invocations-async";
+
+    //FunctionGraph Runtime
+    public static final String FGS_RUNGTIME_NODEJS6 = "Node.js6.10";
+    public static final String FGS_RUNGTIME_NODEJS8 = "Node.js8.10";
+    public static final String FGS_RUNGTIME_PYTHON2 = "Python2.7";
+    public static final String FGS_RUNGTIME_PYTHON3 = "Python3.6";
+    public static final String FGS_RUNGTIME_JAVA8 = "Java8";
+    public static final String FGS_RUNGTIME_GO = "Go1.8";
+    public static final String FGS_RUNGTIME_CSHARP2 = "CSharp2.0";
+    public static final String FGS_RUNGTIME_CSHARP2_1 = "CSharp2.1";
+
 
 }

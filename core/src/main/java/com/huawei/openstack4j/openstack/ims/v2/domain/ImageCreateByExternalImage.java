@@ -17,9 +17,11 @@ package com.huawei.openstack4j.openstack.ims.v2.domain;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.huawei.openstack4j.model.ModelEntity;
+
 import lombok.*;
 
 import java.util.List;
+import java.util.Map;
 
 /**
  * Created on 2018/8/29.
@@ -84,6 +86,34 @@ public class ImageCreateByExternalImage implements ModelEntity {
      */
     @JsonProperty("tags")
     private List<String> tags;
-
-
+    
+    /**
+     * 新规范的镜像标签列表
+     */
+	@JsonProperty("image_tags")
+    private List<Map> image_tags;
+    
+    /**
+     * 镜像的类型。
+     */
+    @JsonProperty("type")
+    private String type;
+    
+    /**
+     * 表示当前镜像所属的企业项目。
+     */
+    @JsonProperty("enterprise_project_id")
+    private String enterpriseProjectId;
+    
+    /**
+     *表示镜像支持的最大内存，单位为MB。
+     */
+    @JsonProperty("max_ram")
+    private Integer maxRam;
+    
+    /**
+     *表示镜像要求的最小内存，单位为MB，默认为0，表示不受限制
+     */
+    @JsonProperty("min_ram")
+    private Integer minRam;
 }

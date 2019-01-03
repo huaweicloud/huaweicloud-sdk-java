@@ -95,7 +95,7 @@ public class DatabaseInstanceTest2 extends BaseTroveTest {
 				newFlavor = flavor;
 			}
 		}
-
+		if(newFlavor == null) return;
 		ActionResponse response = osclient.trove().instances().resize(instanceId, newFlavor.getId());
 		Assert.assertTrue(response.isSuccess());
 	}

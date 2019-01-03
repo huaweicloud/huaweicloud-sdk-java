@@ -27,6 +27,7 @@ import java.io.InputStream;
 import java.net.URI;
 import java.net.URISyntaxException;
 import java.nio.charset.StandardCharsets;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -41,8 +42,9 @@ import com.huawei.openstack4j.model.common.Payloads;
 import com.huawei.openstack4j.model.image.v2.ContainerFormat;
 import com.huawei.openstack4j.model.image.v2.DiskFormat;
 import com.huawei.openstack4j.model.image.v2.Image;
+import com.huawei.openstack4j.model.image.v2.Image.ImageStatus;
+import com.huawei.openstack4j.model.image.v2.Image.ImageVisibility;
 import com.huawei.openstack4j.model.image.v2.Member;
-import com.huawei.openstack4j.model.image.v2.Task;
 
 /**
  * @author emjburns
@@ -64,14 +66,14 @@ public class ImageV2Tests extends AbstractTest {
             "5fb9 e9a0 7f9f fa4c 645d 113c 0524 b380\n" +
             "acee 6344 1f45 b58b 1eb2 8776 3e9b 9aef";
 
-    public void testListImages() throws IOException {
+    public void listImagesTest() throws IOException {
         respondWith(IMAGES_JSON);
         List<? extends Image> list = osv3().imagesV2().list();
         assertEquals(list.size(), 2);
         assertEquals(list.get(0).getId(), "7541b8be-c62b-46c3-b5a5-5bb5ce43ce01");
     }
 
-    public void testListImagesFilter() throws IOException {
+    public void listImagesFilterTest() throws IOException {
         respondWith(IMAGES_JSON);
         Map<String, String> map = new HashMap<>();
         map.put("container_format", "bare");
@@ -79,16 +81,76 @@ public class ImageV2Tests extends AbstractTest {
         assertEquals(list.size(), 2);
     }
 
-    public void testGetImage() throws IOException {
+    public void getImageTest() throws IOException {
         respondWith(IMAGE_JSON);
         String id = "8a2ea42d-06b5-42c2-a54d-97105420f2bb";
+        String file = "/v2/images/8a2ea42d-06b5-42c2-a54d-97105420f2bb/file";
+        String owner = "48e3c436235547a68324c2891bea41ac";
+        String size = "566600704";
+        String self = "/v2/images/8a2ea42d-06b5-42c2-a54d-97105420f2bb";
+        String schema = "/v2/schemas/image";
+        String name = "amphora-x64-haproxy";
+        String checkSum = "896e5473caaafac8899c21c912a46c98";
+        String osbit = "32";
+        String osVersion = "v";
+        String description = "this is a test";
+        String regist = "true";
+        String platform = "Windows";
+        String osType = "Windows";
+        String envType = "FusionCompute";
+        String sourceType = "uds";
+        String originalImage = "987654321";
+        String bacupId = "48e3c436235547a68324c2891bea41ac";
+        String productCode = "48e3c436235547a68324c2891bea41ac";
+        String imageSize = "22";
+        String dataOrigin = "48e3c436235547a68324c2891bea41ac";
+        String global = "22";
+        
         Image image = osv3().imagesV2().get(id);
         assertNotNull(image);
         assertNotNull(image.getId());
         assertEquals(image.getId(),id);
+        assertEquals(image.getFile(), file);
+        assertEquals(image.getOwner(), owner);
+        assertEquals(image.getSize(), Long.valueOf(size));
+        assertEquals(image.getSelf(), self);
+        assertEquals(image.getSchema(), schema);
+        assertEquals(image.getStatus(), ImageStatus.ACTIVE);
+        assertEquals(image.getTags().isEmpty(), true);
+        assertEquals(image.getVisibility(), ImageVisibility.PUBLIC);
+        assertEquals(image.getName(), name);
+        assertEquals(image.getChecksum(), checkSum);
+        assertEquals(image.getDeleted(), Boolean.FALSE);
+        assertEquals(image.getIsProtected(), Boolean.FALSE);
+        assertEquals(image.getContainerFormat(), ContainerFormat.BARE);
+        assertEquals(image.getMinRam(), Long.valueOf(0));
+        assertEquals(image.getOsBit(), osbit);
+        assertEquals(image.getOsVersion(), osVersion);
+        assertEquals(image.getDescription(), description);
+        assertEquals(image.getDiskFormat(), DiskFormat.QCOW2);
+        assertEquals(image.getIsRegistered(), regist);
+        assertEquals(image.getPlatForm(), platform);
+        assertEquals(image.getOsType(), osType);
+        assertEquals(image.getMinDisk(), Long.valueOf(0));
+        assertEquals(image.getVirtualEnvType(), envType);
+        assertEquals(image.getImageSourceType(), sourceType);
+        assertEquals(image.getVirtualSize(), Long.valueOf(12));
+        assertEquals(image.getOriginalImageName(), originalImage);
+        assertEquals(image.getBackupId(), bacupId);
+        assertEquals(image.getProductCode(), productCode);
+        assertEquals(image.getImageSize(), imageSize);
+        assertEquals(image.getDataOrigin(), dataOrigin);
+        assertEquals(image.getSequenceNum(), global);
+        assertEquals(image.getSupportKvm(), global);
+        assertEquals(image.getSupportXen(), global);
+        assertEquals(image.getSupportDiskIntensive(), global);
+        assertEquals(image.getSupportHighPerformance(), global);
+        assertEquals(image.getSupportXenGpuType(), global);
+        
     }
 
-    public void testCreateImage() throws IOException {
+    @SuppressWarnings("unchecked")
+	public void createImageTest() throws IOException {
         respondWith(IMAGE_JSON);
         String id = "8a2ea42d-06b5-42c2-a54d-97105420f2bb";
         String name = "amphora-x64-haproxy";
@@ -111,6 +173,10 @@ public class ImageV2Tests extends AbstractTest {
                 .minDisk(mindisk)
                 .minRam(minram)
                 .visibility(vis)
+                .osVersion("******")
+                .visibility(ImageVisibility.PRIVATE)
+                .isProtected(true)
+                .tags(Collections.EMPTY_LIST)
                 .additionalProperty(key1, value1)
                 .additionalProperty(key2, value2)
                 .additionalProperty(key3, value3)
@@ -129,25 +195,25 @@ public class ImageV2Tests extends AbstractTest {
         assertNull(image.getAdditionalPropertyValue(key3));
     }
 
-    public void testDeleteImage() throws IOException {
+    public void deleteImageTest() throws IOException {
         respondWith(204);
         ActionResponse delete = osv3().imagesV2().delete("8a2ea42d-06b5-42c2-a54d-97105420f2bb");
         assertTrue(delete.isSuccess());
     }
 
-    public void testDeactivateImage() throws IOException {
+    public void deactivateImageTest() throws IOException {
         respondWith(204);
         ActionResponse deactivate = osv3().imagesV2().deactivate("8a2ea42d-06b5-42c2-a54d-97105420f2bb");
         assertTrue(deactivate.isSuccess());
     }
 
-    public void testReactivateImage() throws IOException {
+    public void reactivateImageTest() throws IOException {
         respondWith(204);
         ActionResponse reactivate = osv3().imagesV2().reactivate("8a2ea42d-06b5-42c2-a54d-97105420f2bb");
         assertTrue(reactivate.isSuccess());
     }
 
-    public void testCreateMember() throws IOException {
+    public void createMemberTest() throws IOException {
         respondWith(MEMBER_JSON);
         String imageId = "4b434528-032b-4467-946c-b5880ce15c06";
         String memberId = "66cabdfb14bd48d48402f7464bda7733";
@@ -158,7 +224,7 @@ public class ImageV2Tests extends AbstractTest {
 
     }
 
-    public void testGetMember() throws IOException {
+    public void getMemberTest() throws IOException {
         respondWith(MEMBER_JSON);
         String imageId = "4b434528-032b-4467-946c-b5880ce15c06";
         String memberId = "66cabdfb14bd48d48402f7464bda7733";
@@ -168,7 +234,7 @@ public class ImageV2Tests extends AbstractTest {
         assertEquals(member.getMemberId(), memberId);
     }
 
-    public void testListMembers() throws IOException {
+    public void listMembersTest() throws IOException {
         respondWith(MEMBERS_JSON);
         String imageId = "4b434528-032b-4467-946c-b5880ce15c06";
         List<? extends Member> members = osv3().imagesV2().listMembers(imageId);
@@ -179,7 +245,7 @@ public class ImageV2Tests extends AbstractTest {
         assertEquals(member.getMemberId(), "66cabdfb14bd48d48402f7464bda7733");
     }
 
-    public void testUpdateMember() throws IOException {
+    public void updateMemberTest() throws IOException {
         respondWith(MEMBER_UPDATE_JSON);
         String imageId = "4b434528-032b-4467-946c-b5880ce15c06";
         String memberId = "66cabdfb14bd48d48402f7464bda7733";
@@ -191,7 +257,7 @@ public class ImageV2Tests extends AbstractTest {
         assertEquals(member.getStatus(), ms);
     }
 
-    public void testDeleteMember() throws IOException {
+    public void deleteMemberTest() throws IOException {
         respondWith(204);
         String imageId = "4b434528-032b-4467-946c-b5880ce15c06";
         String memberId = "66cabdfb14bd48d48402f7464bda7733";
@@ -199,7 +265,7 @@ public class ImageV2Tests extends AbstractTest {
         assertTrue(deleteMember.isSuccess());
     }
 
-    public void testUpdateImageTag() throws IOException {
+    public void updateImageTagTest() throws IOException {
         respondWith(204);
         String tag = "tag1";
         String imageId = "8a2ea42d-06b5-42c2-a54d-97105420f2bb";
@@ -207,7 +273,7 @@ public class ImageV2Tests extends AbstractTest {
         assertTrue(ur.isSuccess());
     }
 
-    public void testDeleteImageTag() throws IOException {
+    public void deleteImageTagTest() throws IOException {
         respondWith(204);
         String tag = "tag1";
         String imageId = "8a2ea42d-06b5-42c2-a54d-97105420f2bb";
@@ -253,7 +319,7 @@ public class ImageV2Tests extends AbstractTest {
         assertEquals(list.get(0).getId(), id);
     }
 */
-    public void UploadImage() throws IOException {
+    public void uploadImageTest() throws IOException {
         respondWith(204);
         String imageId = "4b434528-032b-4467-946c-b5880ce15c06";
         InputStream s = new ByteArrayInputStream(BINARY_IMAGE_DATA.getBytes(StandardCharsets.UTF_8));
@@ -262,7 +328,7 @@ public class ImageV2Tests extends AbstractTest {
         assertTrue(upload.isSuccess());
     }
 
-     public void DownloadImage() throws IOException {
+     public void downloadImageTest() throws IOException {
          respondWith(200);
          String imageId = "4b434528-032b-4467-946c-b5880ce15c06";
          URI uri = null;
@@ -271,6 +337,7 @@ public class ImageV2Tests extends AbstractTest {
          }catch (URISyntaxException e) {
              e.printStackTrace();
          }
+         if(uri == null) return;
          File file = new File(uri);
          ActionResponse download = osv3().imagesV2().download(imageId, file);
          // Should fail to write to file

@@ -52,6 +52,7 @@ import com.huawei.openstack4j.api.senlin.SenlinService;
 import com.huawei.openstack4j.api.tacker.TackerService;
 import com.huawei.openstack4j.api.workflow.WorkflowService;
 import com.huawei.openstack4j.openstack.ecs.v1.internal.ElasticComputeService;
+import com.huawei.openstack4j.openstack.fgs.v1.internal.FunctionGraphService;
 import com.huawei.openstack4j.openstack.trove.internal.TroveService;
 
 /**
@@ -163,6 +164,15 @@ public class Apis {
 	 */
 	public static AppCatalogService getMuranoServices() {
 		return get(AppCatalogService.class);
+	}
+
+	/**
+	 * Gets the FunctionGraph Service API
+	 *
+	 * @return the FunctionGraph services
+	 */
+	public static FunctionGraphService getFunctionGraphServices() {
+		return get(FunctionGraphService.class);
 	}
 
 	/**

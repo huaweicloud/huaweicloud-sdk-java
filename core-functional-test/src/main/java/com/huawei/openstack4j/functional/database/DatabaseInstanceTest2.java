@@ -69,7 +69,7 @@ public class DatabaseInstanceTest2 extends BaseDatabaseTest {
 				newFlavor = flavor;
 			}
 		}
-
+		if(newFlavor == null) return;
 		List<String> jobIds = osclient.database().instances().resize(instanceId, newFlavor.getId());
 		Assert.assertTrue(jobIds.size() > 0);
 	}

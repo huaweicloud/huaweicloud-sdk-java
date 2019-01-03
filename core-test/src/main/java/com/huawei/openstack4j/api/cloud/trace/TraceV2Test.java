@@ -15,21 +15,19 @@
  *******************************************************************************/
 package com.huawei.openstack4j.api.cloud.trace;
 
-import java.io.IOException;
-import java.util.Date;
-import java.util.HashMap;
-import java.util.List;
-
-import org.testng.Assert;
-import org.testng.annotations.Test;
-
 import com.huawei.openstack4j.api.AbstractTest;
 import com.huawei.openstack4j.openstack.cloud.trace.constants.TraceStatus;
 import com.huawei.openstack4j.openstack.cloud.trace.constants.TraceType;
 import com.huawei.openstack4j.openstack.cloud.trace.v2.domain.Trace;
 import com.huawei.openstack4j.openstack.cloud.trace.v2.options.TraceListOptions;
-
 import okhttp3.mockwebserver.RecordedRequest;
+import org.testng.Assert;
+import org.testng.annotations.Test;
+
+import java.io.IOException;
+import java.util.Date;
+import java.util.HashMap;
+import java.util.List;
 
 @Test(suiteName = "CTSV2/Tracce", enabled = true)
 public class TraceV2Test extends AbstractTest {
@@ -39,7 +37,7 @@ public class TraceV2Test extends AbstractTest {
 		respondWith("/cloud-trace/list_trace_v2_response.json");
 
 		Date now = new Date(1500113647674L);
-		TraceListOptions options = TraceListOptions.create().id("trace-id").user("zhangdong").serviceType("CTS")
+		TraceListOptions options = TraceListOptions.create().id("trace-id").user("******").serviceType("CTS")
 				.resourceId("resource-id").resourceType("resource-type").resourceName("resource-name")
 				.status(TraceStatus.Incident).from(now).to(now).marker("some-trace-id").limit(5);
 		List<Trace> list = osv3().cloudTraceV2().traces().list("system", options);
@@ -50,7 +48,7 @@ public class TraceV2Test extends AbstractTest {
 				"/v2.0/project-id/system/trace?to=1500113647674&limit=5&resource_id=resource-id"
 						+ "&resource_name=resource-name&trace_id=trace-id&service_type=CTS"
 						+ "&resource_type=resource-type&next=some-trace-id&trace_status=incident"
-						+ "&from=1500113647674&user=zhangdong");
+						+ "&from=1500113647674&user=******");
 		Assert.assertEquals(request.getMethod(), "GET");
 
 		Assert.assertTrue(list.size() == 2);

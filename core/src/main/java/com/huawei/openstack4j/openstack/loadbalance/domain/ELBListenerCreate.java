@@ -16,6 +16,7 @@
 package com.huawei.openstack4j.openstack.loadbalance.domain;
 
 import java.util.Date;
+import java.util.List;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonInclude;
@@ -119,4 +120,6 @@ public class ELBListenerCreate implements ListenerCreate {
 	@JsonInclude(value = Include.NON_NULL)
 	@JsonFormat(pattern = DateTimeUtils.FORMAT_YMDHMS)
 	private Date updateTime;
+	
+	List<String>  certificates;
 }

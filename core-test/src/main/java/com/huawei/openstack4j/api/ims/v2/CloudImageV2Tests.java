@@ -19,6 +19,7 @@ import static org.testng.AssertJUnit.assertNotNull;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 import org.testng.annotations.Test;
@@ -32,32 +33,57 @@ import com.huawei.openstack4j.openstack.ims.v2.domain.ImageUpdate;
 public class CloudImageV2Tests extends AbstractTest{
 	private static final String IMS_LIST = "/image/v2/image_list.json";
 	private static final String IMS_UPDATE = "/image/v2/image_update.json";
+	@SuppressWarnings("unchecked")
 	@Test
-	public void testCreateByInstance(){
+	public void createByInstanceTest(){
 		respondWith(200, "{\"job_id\": \"this-is-a-job-id\"}");
-		ImageCreateByInstance build = ImageCreateByInstance.builder().name("name").instanceId("instanceId").build();
+		ImageCreateByInstance build = ImageCreateByInstance.builder()
+				.name("name")
+				.instanceId("instanceId")
+				.description("******")
+				.dataImages(Collections.EMPTY_LIST)
+				.tags(Collections.EMPTY_LIST)
+				.imageTags(Collections.EMPTY_LIST)
+				.maxRam(Integer.valueOf(1))
+				.minRam(Integer.valueOf(1))
+				.build();
 		String jobId = osv3().imsV2().images().create(build);
 		assertNotNull(jobId);
 	}
 	
+	@SuppressWarnings("unchecked")
 	@Test
-	public void testCreateByExternalImage(){
+	public void createByExternalImageTest(){
 		respondWith(200, "{\"job_id\": \"this-is-a-job-id\"}");
-		ImageCreateByExternalImage build = ImageCreateByExternalImage.builder().name("name").imageUrl("imageUrl").minDisk(40).build();
+		ImageCreateByExternalImage build = ImageCreateByExternalImage.builder()
+				.name("name")
+				.imageUrl("imageUrl")
+				.minDisk(40)
+				.description("******")
+				.osVersion("******")
+				.isConfig(false)
+				.cmkId("******")
+				.tags(Collections.EMPTY_LIST)
+				.image_tags(Collections.EMPTY_LIST)
+				.type("******")
+				.enterpriseProjectId("******")
+				.maxRam(Integer.valueOf(1))
+				.minRam(Integer.valueOf(1))
+				.build();
 		String jobId = osv3().imsV2().images().create(build);
 		assertNotNull(jobId);
 	}
 	
 
 	@Test
-	public void testList() throws IOException{
+	public void listTest() throws IOException{
 		respondWith(IMS_LIST);
 		List<Image> list = osv3().imsV2().images().list();
 		assertNotNull(list);
 	}
 	
 	@Test
-	public void testUpdate() throws IOException{
+	public void updateTest() throws IOException{
 		respondWith(IMS_UPDATE);
 		ImageUpdate imageUpdate = ImageUpdate.builder()
 				.op("replace")

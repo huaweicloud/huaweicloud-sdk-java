@@ -56,4 +56,22 @@ public class ImageCreateByBackup implements ModelEntity {
      */
     @JsonProperty("tags")
     private List<String> tags;
+    
+    /**
+     *表示当前镜像所属的企业项目
+     */
+    @JsonProperty("enterprise_project_id")
+    private String enterpriseProjectId;
+    
+    /**
+     *表示镜像支持的最大内存，单位为MB，默认不设置
+     */
+    @JsonProperty("max_ram")
+    private Integer maxRam;
+    
+    /**
+     *表示镜像支持的最小内存，单位为MB，默认为0，表示不受限制
+     */
+    @JsonProperty("min_ram")
+    private Integer minRam;
 }

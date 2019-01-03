@@ -86,6 +86,7 @@ import com.huawei.openstack4j.openstack.cloud.trace.v2.internal.CloudTraceV2Serv
 import com.huawei.openstack4j.openstack.csbs.v1.internal.CloudServerBackupService;
 import com.huawei.openstack4j.openstack.database.internal.DatabaseServices;
 import com.huawei.openstack4j.openstack.evs.v2.internal.ElasticVolumeService;
+import com.huawei.openstack4j.openstack.fgs.v1.internal.FunctionGraphService;
 import com.huawei.openstack4j.openstack.identity.internal.DefaultEndpointURLResolver;
 import com.huawei.openstack4j.openstack.kms.internal.KeyManagementService;
 import com.huawei.openstack4j.openstack.maas.internal.MaaSService;
@@ -325,12 +326,19 @@ public abstract class OSClientSession<R, T extends OSClient<T>> implements Endpo
 		return Apis.getSenlinServices();
 	}
 
-	/**
-	 * {@inheritDoc}
-	 */
-	public ObjectStorageService objectStorage() {
-		return Apis.get(ObjectStorageService.class);
-	}
+    /**
+     * {@inheritDoc}
+     */
+    public FunctionGraphService functionGraph() {
+        return Apis.getFunctionGraphServices();
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public ObjectStorageService objectStorage() {
+        return Apis.get(ObjectStorageService.class);
+    }
 
 	/**
 	 * {@inheritDoc}

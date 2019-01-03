@@ -100,8 +100,8 @@ public abstract class AbstractTest {
         ECS(10022),
         CSBS(10023),
         CDN(10024),
-        ;
-    	//@on
+        FGS(10025);
+        //@on
 
 		private final int port;
 

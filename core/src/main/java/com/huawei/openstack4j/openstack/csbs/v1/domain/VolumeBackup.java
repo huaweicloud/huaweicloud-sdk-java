@@ -35,44 +35,80 @@ public class VolumeBackup implements ModelEntity{
 	 * 
 	 */
 	private static final long serialVersionUID = 6218624660584730143L;
-
+	/**
+	 *平均速率
+	 */
 	@JsonProperty("average_speed")
 	private Integer averageSpeed;
-	
+	/**
+	 *是否系统盘 
+	 */
 	@JsonProperty("bootable")
 	private Boolean bootable;
-	
+	/**
+	 *cinder backup id 
+	 */
 	@JsonProperty("id")
 	private String id;
-	
+	/**
+	 *备份集类型，备份 
+	 */
 	@JsonProperty("image_type")
 	private String imageType;
-	
+	/**
+	 *是否增备 
+	 */
 	@JsonProperty("incremental")
 	private Boolean incremental;
-	
+	/**
+	 *卷备份名称 
+	 */
 	@JsonProperty("name")
 	private String name;
-	
+	/**
+	 *累计备份大小，单位是MB 
+	 */
 	@JsonProperty("size")
 	private Integer size;
-	
+	/**
+	 *源卷id 
+	 */
 	@JsonProperty("source_volume_id")
 	private String sourceVolumeId;
-	
+	/**
+	 *源卷大小（GB） 
+	 */
 	@JsonProperty("source_volume_size")
 	private Integer sourceVolumeSize;
-	
+	/**
+	 *空间节省率 
+	 */
 	@JsonProperty("space_saving_ratio")
 	private Integer spaceSavingRatio;
-	
+	/**
+	 *状态 
+	 */
 	@JsonProperty("status")
 	private String status;
-	
+	/**
+	 *源卷名称 
+	 */
 	@JsonProperty("source_volume_name")
 	private String sourceVolumeName;
-	
+	/**
+	 *生成备份的快照id 
+	 */
 	@JsonProperty("snapshot_id")
 	private String snapshotId;
+	/**
+	 * 源卷类型，当前支持EVS、DSS
+	 */
+	@JsonProperty("source_volume_service_type")
+	private String sourceVolumeType;
+	/**
+	 * 累计专属备份大小，单位是MB
+	 */
+	@JsonProperty("dec_size")
+	private String decSize;
 	
 }

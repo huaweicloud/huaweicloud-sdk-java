@@ -221,8 +221,7 @@ public class KeystoneAuthenticationTests extends AbstractTest {
                 .authenticate());
 
         String newTokenId = osv3.getToken().getId();
-
-        assertTrue(newTokenId != tokenId);
+        assertTrue(!newTokenId.equals(tokenId));
         assertEquals(osv3.getToken().getVersion(), AuthVersion.V3);
         assertEquals(osv3.getToken().getProject().getId(), PROJECT_ID);
     }
@@ -292,8 +291,7 @@ public class KeystoneAuthenticationTests extends AbstractTest {
 
         String tokenScopedId = osclient_scoped.getToken().getId();
 
-        assertTrue(tokenUnscopedId != tokenScopedId);
-
+        assertTrue(!tokenUnscopedId.equals(tokenScopedId));
     }
 
     /**

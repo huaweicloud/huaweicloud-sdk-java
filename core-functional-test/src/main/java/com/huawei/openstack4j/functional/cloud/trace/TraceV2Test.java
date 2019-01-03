@@ -17,13 +17,12 @@
  *******************************************************************************/
 package com.huawei.openstack4j.functional.cloud.trace;
 
-import java.util.List;
-
-import org.testng.annotations.Test;
-
 import com.huawei.openstack4j.functional.AbstractTest;
 import com.huawei.openstack4j.openstack.cloud.trace.v2.domain.Trace;
 import com.huawei.openstack4j.openstack.cloud.trace.v2.options.TraceListOptions;
+import org.testng.annotations.Test;
+
+import java.util.List;
 
 @Test(suiteName = "CloudTrace/TraceV2/Test")
 public class TraceV2Test extends AbstractTest {
@@ -32,7 +31,7 @@ public class TraceV2Test extends AbstractTest {
 	@Test(priority = 1)
 	public void testListTrace() {
 		// 德电环境似乎没有部署这个接口
-		TraceListOptions options = TraceListOptions.create().limit(5).user("zhangdong").serviceType("CTS");
+		TraceListOptions options = TraceListOptions.create().limit(5).user("******").serviceType("CTS");
 		List<Trace> list = osclient.cloudTraceV2().traces().list("system", options);
 		
 		if (list.size() > 0) {

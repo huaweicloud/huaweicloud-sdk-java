@@ -16,19 +16,21 @@
 package com.huawei.openstack4j.openstack.bms.v1.domain;
 
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonRootName;
+
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
-
 @Getter
 @ToString
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
+@JsonRootName("server")
 public class ServerRename {
 	@JsonProperty("name")
 	private String name;

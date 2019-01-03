@@ -273,7 +273,13 @@ import com.huawei.openstack4j.openstack.compute.internal.ext.InterfaceServiceImp
 import com.huawei.openstack4j.openstack.compute.internal.ext.MigrationServiceImpl;
 import com.huawei.openstack4j.openstack.compute.internal.ext.ZoneServiceImpl;
 import com.huawei.openstack4j.openstack.csbs.v1.internal.BackupManagementService;
+import com.huawei.openstack4j.openstack.csbs.v1.internal.BackupPoliciesService;
+import com.huawei.openstack4j.openstack.csbs.v1.internal.BackupResourceService;
 import com.huawei.openstack4j.openstack.csbs.v1.internal.CloudServerBackupService;
+import com.huawei.openstack4j.openstack.csbs.v1.internal.ProjectManagementService;
+import com.huawei.openstack4j.openstack.csbs.v1.internal.QuotaManagementService;
+import com.huawei.openstack4j.openstack.csbs.v1.internal.ReplicationManagementService;
+import com.huawei.openstack4j.openstack.csbs.v1.internal.RestoreManagementService;
 import com.huawei.openstack4j.openstack.database.internal.DatabaseBackupService;
 import com.huawei.openstack4j.openstack.database.internal.DatabaseInstanceFlavorService;
 import com.huawei.openstack4j.openstack.database.internal.DatabaseInstanceService;
@@ -482,6 +488,10 @@ import com.huawei.openstack4j.openstack.workflow.internal.WorkflowServiceImpl;
 import com.huawei.openstack4j.openstack.cdn.v1.internal.CdnServices;
 import com.huawei.openstack4j.openstack.cdn.v1.internal.LogService;
 import com.huawei.openstack4j.openstack.cdn.v1.internal.StatisticService;
+import com.huawei.openstack4j.openstack.fgs.v1.internal.FunctionGraphService;
+import com.huawei.openstack4j.openstack.fgs.v1.internal.FunctionService;
+import com.huawei.openstack4j.openstack.fgs.v1.internal.TriggerService;
+import com.huawei.openstack4j.openstack.fgs.v1.internal.VersionsService;
 
 /**
  * Simple API Provider which keeps internally Maps interface implementations as singletons
@@ -528,12 +538,6 @@ public class DefaultAPIProvider implements APIProvider {
 		bind(TagService.class, TagService.class);
 		// new ecs v1
 		bind(ElasticComputeService.class, ElasticComputeService.class);
-		bind(VirtualPrivateCloudService.class, VirtualPrivateCloudService.class);
-		bind(com.huawei.openstack4j.openstack.vpc.v1.internal.VirtualPrivateCloudService.class, com.huawei.openstack4j.openstack.vpc.v1.internal.VirtualPrivateCloudService.class);
-		bind(com.huawei.openstack4j.openstack.vpc.v1.internal.PublicIpService.class, com.huawei.openstack4j.openstack.vpc.v1.internal.PublicIpService.class);
-		bind(com.huawei.openstack4j.openstack.vpc.v1.internal.BandWidthService.class, com.huawei.openstack4j.openstack.vpc.v1.internal.BandWidthService.class);
-		bind(PublicIpService.class, PublicIpService.class);
-		bind(BandWidthService.class, BandWidthService.class);
 		bind(com.huawei.openstack4j.openstack.ecs.v1.internal.JobService.class, com.huawei.openstack4j.openstack.ecs.v1.internal.JobService.class);
 		bind(com.huawei.openstack4j.openstack.ecs.v1_1.internal.ElasticComputeService.class, com.huawei.openstack4j.openstack.ecs.v1_1.internal.ElasticComputeService.class);
 		bind(com.huawei.openstack4j.openstack.evs.v2.internal.ElasticVolumeService.class, com.huawei.openstack4j.openstack.evs.v2.internal.ElasticVolumeService.class);
@@ -555,7 +559,13 @@ public class DefaultAPIProvider implements APIProvider {
 
 		//csbs
 		bind(BackupManagementService.class, BackupManagementService.class);
+		bind(BackupPoliciesService.class, BackupPoliciesService.class);
+		bind(BackupResourceService.class, BackupResourceService.class);
 		bind(CloudServerBackupService.class, CloudServerBackupService.class);
+		bind(QuotaManagementService.class, QuotaManagementService.class);
+		bind(RestoreManagementService.class, RestoreManagementService.class);
+		bind(ProjectManagementService.class, ProjectManagementService.class);
+		bind(ReplicationManagementService.class, ReplicationManagementService.class);
 		
 		bind(QuotaSetService.class, QuotaSetServiceImpl.class);
 		bind(HostService.class, HostServiceImpl.class);
@@ -837,6 +847,22 @@ public class DefaultAPIProvider implements APIProvider {
 		bind(com.huawei.openstack4j.openstack.cdn.v1.internal.DomainService.class,com.huawei.openstack4j.openstack.cdn.v1.internal.DomainService.class);
 		bind(StatisticService.class,StatisticService.class);
 		bind(LogService.class,LogService.class);
+		
+		//vpc
+		bind(VirtualPrivateCloudService.class, VirtualPrivateCloudService.class);
+		bind(com.huawei.openstack4j.openstack.vpc.v1.internal.VirtualPrivateCloudService.class, com.huawei.openstack4j.openstack.vpc.v1.internal.VirtualPrivateCloudService.class);
+		bind(com.huawei.openstack4j.openstack.vpc.v1.internal.PublicIpService.class, com.huawei.openstack4j.openstack.vpc.v1.internal.PublicIpService.class);
+		bind(com.huawei.openstack4j.openstack.vpc.v1.internal.BandWidthService.class, com.huawei.openstack4j.openstack.vpc.v1.internal.BandWidthService.class);
+		bind(com.huawei.openstack4j.openstack.vpc.v1.internal.SubnetService.class, com.huawei.openstack4j.openstack.vpc.v1.internal.SubnetService.class);
+		bind(PublicIpService.class, PublicIpService.class);
+		bind(BandWidthService.class, BandWidthService.class);
+		
+		 //fgs
+        bind(FunctionGraphService.class, FunctionGraphService.class);
+        bind(FunctionService.class, FunctionService.class);
+        bind(TriggerService.class, TriggerService.class);
+        bind(VersionsService.class, VersionsService.class);
+		
 	}
 
 	/**

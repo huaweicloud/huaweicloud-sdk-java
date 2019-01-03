@@ -153,4 +153,41 @@ public class BackupManagementService extends BaseCloudServerBackupService {
 		}
 		return req.execute().getList();
 	}
+	/**
+	 * 选择备份策略执行复制，为备份策略生成的未进行过复制的备份创建复制。
+	 * @param replication
+	 * @param providerId
+	 * @return
+	 */
+//	public Replication create(Replication replication, String providerId) {
+//		checkArgument(!Strings.isNullOrEmpty(providerId),
+//				"parameter `providerId` should not be empty");
+//		checkArgument(!Strings.isNullOrEmpty(replication.getPolicyId()),
+//				"parameter `policyId` should not be empty");
+//		checkArgument(null != replication.getDestinationRegion(),
+//				"parameter `destinationRegion` should not be empty");
+//		checkArgument(null != replication.getDestinationProjectId(),
+//				"parameter `destinationProjectId` should not be empty");
+//		return post(Replication.class,
+//				uri("/providers/%s/checkpoints/replicate", providerId)).entity(replication).execute();
+//	}
+	/**
+	 *选择单个备份进行复制，如果该备份在目标区域正在生成或者已经生成复制，则无法再次复制 
+	 * @param replication
+	 * @param providerId
+	 * @param checkpointItemId
+	 * @return
+	 */
+//	public Replication create(Replication replication, String providerId,String checkpointItemId) {
+//		checkArgument(!Strings.isNullOrEmpty(providerId),
+//				"parameter `providerId` should not be empty");
+//		checkArgument(!Strings.isNullOrEmpty(checkpointItemId),
+//				"parameter `checkpointItemId` should not be empty");
+//		checkArgument(null != replication.getDestinationRegion(),
+//				"parameter `destinationRegion` should not be empty");
+//		checkArgument(null != replication.getDestinationProjectId(),
+//				"parameter `destinationProjectId` should not be empty");
+//		return post(Replication.class,
+//				uri("/providers/%s/checkpoint_items/%s/replicate", providerId,checkpointItemId)).entity(replication).execute();
+//	}
 }

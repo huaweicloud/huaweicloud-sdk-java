@@ -38,7 +38,7 @@ public class ServerService extends BaseBareMetaService{
 		checkArgument(!Strings.isNullOrEmpty(creation.getImageRef()), "parameter `imageRef` should not be empty");
 		checkArgument(!Strings.isNullOrEmpty(creation.getFlavorRef()), "parameter `flavorRef` should not be empty");
 		checkArgument(!Strings.isNullOrEmpty(creation.getName()), "parameter `name` should not be empty");
-		checkArgument(!Strings.isNullOrEmpty(creation.getVpcId()), "parameter `vpcid` should not be empty");
+		checkArgument(!Strings.isNullOrEmpty(creation.getVpcId()), "parameter `vpcId` should not be empty");
 		checkArgument(!Strings.isNullOrEmpty(creation.getAvailabilityZone()), "parameter `availability_zone` should not be empty");
 		checkArgument(creation.getNetworks() != null && creation.getNetworks().size() > 0,
 				"parameter `networks` should not be empty");

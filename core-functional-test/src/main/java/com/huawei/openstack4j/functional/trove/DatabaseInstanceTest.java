@@ -165,7 +165,7 @@ public class DatabaseInstanceTest extends BaseTroveTest {
 				found = databaseInstance;
 			}
 		}
-
+		if(found == null) return;
 		Assert.assertNotNull(found);
 
 		Assert.assertEquals(found.getName(), instance.getName());

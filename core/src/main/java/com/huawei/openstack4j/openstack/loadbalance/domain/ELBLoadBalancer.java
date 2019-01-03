@@ -85,7 +85,8 @@ public class ELBLoadBalancer implements LoadBalancer {
 		
 		@JsonProperty("loadbalancers")
 		private List<ELBLoadBalancer> loadBalancers;
-		
+		@JsonProperty("instance_num")
+		private String instanceNum;
 		@Override
 		protected List<ELBLoadBalancer> value() {
 			return loadBalancers;

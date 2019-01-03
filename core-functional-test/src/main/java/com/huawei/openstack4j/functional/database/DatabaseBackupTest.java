@@ -178,6 +178,7 @@ public class DatabaseBackupTest extends AbstractTest {
 				break;
 			}
 		}
+		if(found == null) return;
 		Assert.assertNotNull(found);
 
 		Assert.assertEquals(found.getDescription(), "sdk unittests");

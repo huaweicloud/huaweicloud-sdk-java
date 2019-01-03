@@ -78,6 +78,7 @@ public enum ServiceType {
 	DEH("DEH","deh"),
 	CSBS("csbs","data-protect"),
 	CDN("cdn","cdn"),
+	FGS("fgs","fgs"),
 	UNKNOWN("NA", "NA")
 	;
 	//@on
