@@ -20,7 +20,7 @@ interactions:
             "password" : {
               "user" : {
                 "id" : "71a7dcb0d60a43088a6c8e9b69a39e69",
-                "password" : "devstack"
+                "password" : "******"
               }
             },
             "methods" : [ "password" ]
@@ -73,7 +73,7 @@ interactions:
         "user" : {
           "name" : "PolicyCrudUser",
           "email" : "user@policyCRUDtest.com",
-          "password" : "secret",
+          "password" : "******",
           "enabled" : true,
           "domain_id" : "default"
         }

@@ -1,0 +1,17 @@
+{
+  "peerings": [
+    {
+      "request_vpc_info": {
+        "vpc_id": "9daeac7c-a98f-430f-8e38-67f9c044e299",
+        "tenant_id":"f65e9ebc-ed5d-418b-a931-9a723718ba4e"
+      },
+      "accept_vpc_info": {
+        "vpc_id": "f583c072-0bb8-4e19-afb2-afb7c1693be5",
+        "tenant_id": "f65e9ebc-ed5d-418b-a931-9a723718ba4e"
+      },
+      "name": "test",
+      "id": "b147a74b-39bb-4c7a-aed5-19cac4c2df13",
+      "status": "ACTIVE"
+    }
+  ]
+}

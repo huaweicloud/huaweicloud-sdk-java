@@ -199,7 +199,7 @@ public class DatabaseInstanceTest extends AbstractTest {
 
 		DatabaseInstanceCreate instanceCreate = DatabaseInstanceCreate.builder().name("sdk-test").datastore(datastore)
 				.flavorRef("flavor-id").volume(volume).region("eu-de").availabilityZone("eu-de-01").vpcId("vpc-id")
-				.nic(nic).securityGroup(new IdResourceEntity("sg-id")).rootPassword("1qaz@WSX")
+				.nic(nic).securityGroup(new IdResourceEntity("sg-id")).rootPassword("******")
 				.backupStrategy(backupStrategy).ha(ha).build();
 
 		DatabaseInstance instance = osv3().database().instances().create(instanceCreate);

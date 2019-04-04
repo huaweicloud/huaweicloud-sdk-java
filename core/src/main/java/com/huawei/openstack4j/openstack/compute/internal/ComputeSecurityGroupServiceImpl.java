@@ -76,7 +76,7 @@ public class ComputeSecurityGroupServiceImpl extends BaseComputeServices impleme
 	 */
 	@Override
 	public SecGroupExtension create(String name, String description) {
-		checkNotNull(name);
+//		checkNotNull(name);
 		return post(NovaSecGroupExtension.class, uri("/os-security-groups"))
 				     .entity(NovaSecGroupExtension.create(name, description))
 				     .execute();

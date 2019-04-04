@@ -15,47 +15,89 @@
  *******************************************************************************/
 package com.huawei.openstack4j.openstack.vpc.v1.internal;
 
-import static com.google.common.base.Preconditions.checkArgument;
+ import static com.google.common.base.Preconditions.checkArgument;
 
+import java.util.List;
+import java.util.Map;
+
+import com.google.common.base.Preconditions;
 import com.google.common.base.Strings;
 import com.huawei.openstack4j.model.common.ActionResponse;
-import com.huawei.openstack4j.openstack.compute.functions.ToActionResponseFunction;
-import com.huawei.openstack4j.openstack.vpc.v1.domain.VirtualPublicIpsResp;
-import com.huawei.openstack4j.openstack.vpc.v1.domain.VirtualPublicIps;
+import com.huawei.openstack4j.openstack.vpc.v1.domain.PublicIp;
+import com.huawei.openstack4j.openstack.vpc.v1.domain.PublicIp.Publicips;
+import com.huawei.openstack4j.openstack.vpc.v1.domain.PublicIpUpdate;
 import com.huawei.openstack4j.openstack.vpc.v1.domain.VirtualPublicIp;
+import com.huawei.openstack4j.openstack.vpc.v1.domain.VirtualPublicIps;
+import com.huawei.openstack4j.openstack.vpc.v1.domain.VirtualPublicIpsResp;
 
-public class PublicIpService extends BaseVirtualPrivateCloudService{
+ public class PublicIpService extends BaseVirtualPrivateCloudService{
 
 	/**
-	 * Apply for flexible public network IP
-	 * @param virtualPublicIps
+	 * Querying Elastic IP Addresses
 	 * @return
 	 */
-	public VirtualPublicIpsResp apply(VirtualPublicIps virtualPublicIps){
-		checkArgument(!(null == (virtualPublicIps.getVirtualPublicIp().getType())), "parameter `type` should not be empty");
-		checkArgument(!(null == (virtualPublicIps.getVirtualBandwidth().getShareType())), "parameter `share_type` should not be empty");
-		return post(VirtualPublicIpsResp.class, "/publicips").entity(virtualPublicIps).execute();
+	public List<? extends PublicIp> list(){
+		return list(null);
 	}
-	
+
 	/**
-	 * list publicip
-	 * @param publicipId
+	 * Querying Elastic IP Addresses with filter
+	 * @param filteringParams
 	 * @return
 	 */
-	public VirtualPublicIp get(String publicipId){
-		checkArgument(!Strings.isNullOrEmpty(publicipId), "parameter `publicipId` should not be empty");
-		return get(VirtualPublicIp.class,"/publicips/"+publicipId).execute();
+	public List<? extends PublicIp> list(Map<String, String> filteringParams) {
+		Invocation<Publicips> flavorInvocation = get(Publicips.class, uri("/publicips"));
+		if (filteringParams != null) {
+			for (Map.Entry<String, String> entry : filteringParams.entrySet()) {
+				flavorInvocation = flavorInvocation.param(entry.getKey(), entry.getValue());
+			}
+		}
+
+		return flavorInvocation.execute().getList();
 	}
-	
+
+	 /**
+	  * Apply for flexible public network IP
+	  * @param virtualPublicIps
+	  * @return
+	  */
+	 public VirtualPublicIpsResp apply(VirtualPublicIps virtualPublicIps){
+		 Preconditions.checkNotNull(virtualPublicIps, "parameter `virtualPublicIps` should not be null");
+		 Preconditions.checkNotNull(virtualPublicIps.getVirtualPublicIp(), "parameter `publicip` should not be null");
+		 Preconditions.checkNotNull(virtualPublicIps.getVirtualBandwidth(), "parameter `bandwidth` should not be null");
+		 checkArgument(!(null == (virtualPublicIps.getVirtualPublicIp().getType())), "parameter `type` should not be empty");
+		 checkArgument(!(null == (virtualPublicIps.getVirtualBandwidth().getShareType())), "parameter `share_type` should not be empty");
+		 return post(VirtualPublicIpsResp.class, "/publicips").entity(virtualPublicIps).execute();
+	 }
+
+	 /**
+	  * list publicip
+	  * @param publicipId
+	  * @return
+	  */
+	 public VirtualPublicIp get(String publicipId){
+		 checkArgument(!Strings.isNullOrEmpty(publicipId), "parameter `publicipId` should not be empty");
+		 return get(VirtualPublicIp.class,"/publicips/"+publicipId).execute();
+	 }
+
 	/**
-	 * Delete public IP
-	 * @param publicipId
+	 * Updating(Binding/unbinding) Elastic IP Address Information
+	 * @param publicIpId
 	 * @return
 	 */
-	public ActionResponse delete(String publicIpId) {
-		checkArgument(!Strings.isNullOrEmpty(publicIpId),"parameter `publicipId` should not be empty");
-		return ToActionResponseFunction.INSTANCE.apply(
-				delete(Void.class, uri("/publicips/"+ publicIpId)).executeWithResponse());
+	public PublicIp update(String publicIpId, PublicIpUpdate publicIpUpdate){
+		Preconditions.checkNotNull(publicIpUpdate, "parameter `publicIpUpdate` should not be null");
+		Preconditions.checkNotNull(publicIpId, "parameter `publicIpId` should not be null");
+		return put(PublicIp.class, uri("/publicips/%s",publicIpId)).entity(publicIpUpdate).execute();
 	}
-	
+
+	 /**
+	  * Delete public IP
+	  * @param publicIpId
+	  * @return
+	  */
+	 public ActionResponse delete(String publicIpId) {
+		 checkArgument(!Strings.isNullOrEmpty(publicIpId),"parameter `publicipId` should not be empty");
+		 return deleteWithResponse(uri("/publicips/%s", publicIpId)).execute();
+	 }
 }

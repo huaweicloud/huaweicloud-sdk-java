@@ -46,6 +46,10 @@ public class VirtualPublicIp implements ModelEntity{
 	private String type;
 	@JsonProperty("public_ip_address")
 	private String publicIpAddress;
+	@JsonProperty("public_ipv6_address")
+	private String publicIpv6Address;
+	@JsonProperty("ip_version")
+	private Integer ipVersion;
 	@JsonProperty("private_ip_address")
 	private String privateIpAddress;
 	@JsonProperty("port_id")
@@ -57,7 +61,7 @@ public class VirtualPublicIp implements ModelEntity{
 	@JsonProperty("bandwidth_id")
 	private String bandwidthId;
 	@JsonProperty("bandwidth_size")
-	private String bandwidthSize;
+	private Integer bandwidthSize;
 	@JsonProperty("bandwidth_share_type")
 	private String bandwidthShareType;
 	@JsonProperty("bandwidth_name")

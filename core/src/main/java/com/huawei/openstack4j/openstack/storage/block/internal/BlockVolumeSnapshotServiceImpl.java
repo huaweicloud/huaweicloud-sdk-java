@@ -93,6 +93,93 @@ public class BlockVolumeSnapshotServiceImpl extends BaseBlockStorageServices imp
 		return post(CinderVolumeSnapshot.class, uri("/snapshots")).entity(snapshot).execute();
 	}
 
+//	/**
+//	 * {@inheritDoc}
+//	 */
+//	@Override
+//	public SnapshotDetail update(String snapshotId, SnapshotUpdate snapshot) {
+//		checkArgument(!Strings.isNullOrEmpty(snapshotId), "`snapshotId` should not be empty");
+//		checkNotNull(snapshot, "`snapshot` is required");
+//		return put(SnapshotDetail.class, uri("/snapshots/%s", snapshotId)).entity(snapshot).execute();
+//	}
+//
+//	/**
+//	 * {@inheritDoc}
+//	 */
+//	@Override
+//	public List<? extends SnapshotDetail> listDetail() {
+//		return get(SnapshotDetail.SnapshotDetails.class, "/snapshots/detail").execute().getList();
+//	}
+//
+//	/**
+//	 * {@inheritDoc}
+//	 */
+//	@Override
+//	public List<? extends SnapshotDetail> listDetail(SnapshotListOptions options) {
+//		checkNotNull(options, "`options` is required");
+//		return get(SnapshotDetail.SnapshotDetails.class, "/snapshots/detail").params(options.getOptions()).execute().getList();
+//	}
+//
+//	/**
+//	 * {@inheritDoc}
+//	 */
+//	@Override
+//	public SnapshotMetadata createMetadata(String snapshotId, SnapshotMetadata metadata) {
+//		checkArgument(!Strings.isNullOrEmpty(snapshotId), "`snapshotId` should not be empty");
+//		checkNotNull(metadata, "`metadata` is required");
+//		return post(SnapshotMetadata.class, uri("/snapshots/%s/metadata", snapshotId)).entity(metadata).execute();
+//	}
+//
+//	/**
+//	 * {@inheritDoc}
+//	 */
+//	@Override
+//	public SnapshotMetadata getMetadata(String snapshotId) {
+//		checkArgument(!Strings.isNullOrEmpty(snapshotId), "`snapshotId` should not be empty");
+//		return get(SnapshotMetadata.class, uri("/snapshots/%s/metadata", snapshotId)).execute();
+//	}
+//
+//	/**
+//	 * {@inheritDoc}
+//	 */
+//	@Override
+//	public SnapshotMetadata updateMetadata(String snapshotId, SnapshotMetadata metadata) {
+//		checkArgument(!Strings.isNullOrEmpty(snapshotId), "`snapshotId` should not be empty");
+//		checkNotNull(metadata, "`metadata` is required");
+//		return put(SnapshotMetadata.class, uri("/snapshots/%s/metadata", snapshotId)).entity(metadata).execute();
+//	}
+//
+//	/**
+//	 * {@inheritDoc}
+//	 */
+//	@Override
+//	public ActionResponse deleteMeta(String snapshotId, String key) {
+//		checkArgument(!Strings.isNullOrEmpty(snapshotId), "`snapshotId` should not be empty");
+//		checkArgument(!Strings.isNullOrEmpty(key), "`key` should not be empty");
+//		return deleteWithResponse(uri("/snapshots/%s/metadata/%s", snapshotId, key)).execute();
+//	}
+//
+//	/**
+//	 * {@inheritDoc}
+//	 */
+//	@Override
+//	public SnapshotMeta getMeta(String snapshotId, String key) {
+//		checkArgument(!Strings.isNullOrEmpty(snapshotId), "`snapshotId` should not be empty");
+//		checkArgument(!Strings.isNullOrEmpty(key), "`key` should not be empty");
+//		return get(SnapshotMeta.class, uri("/snapshots/%s/metadata/%s", snapshotId, key)).execute();
+//	}
+//
+//	/**
+//	 * {@inheritDoc}
+//	 */
+//	@Override
+//	public SnapshotMeta updateMeta(String snapshotId, String key, SnapshotMeta metadata) {
+//		checkArgument(!Strings.isNullOrEmpty(snapshotId), "`snapshotId` should not be empty");
+//		checkArgument(!Strings.isNullOrEmpty(key), "`key` should not be empty");
+//		checkNotNull(metadata, "`metadata` is required");
+//		return put(SnapshotMeta.class, uri("/snapshots/%s/metadata/%s", snapshotId, key)).entity(metadata).execute();
+//	}
+
 	private Invocation<VolumeSnapshots> buildInvocation(Map<String, String> filteringParams) {
 		Invocation<VolumeSnapshots> volumeInvocation = get(VolumeSnapshots.class, "/snapshots");
 		if (filteringParams == null) {

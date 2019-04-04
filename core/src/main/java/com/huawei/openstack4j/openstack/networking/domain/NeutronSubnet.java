@@ -52,7 +52,7 @@ public class NeutronSubnet implements Subnet {
 	private String id;
 	private String name;
 	@JsonProperty("enable_dhcp")
-	private boolean enableDHCP;
+	private Boolean enableDHCP;
 	@JsonProperty("network_id")
 	private String networkId;
 	@JsonProperty("tenant_id")
@@ -76,7 +76,7 @@ public class NeutronSubnet implements Subnet {
     public NeutronSubnet() {
     }
 
-    public NeutronSubnet(String id, String name, boolean enableDHCP, String networkId, String tenantId, List<String> dnsNames,
+    public NeutronSubnet(String id, String name, Boolean enableDHCP, String networkId, String tenantId, List<String> dnsNames,
                          List<NeutronPool> pools, List<NeutronHostRoute> hostRoutes, IPVersionType ipVersion,
                          String gateway, String cidr, Ipv6AddressMode ipv6AddressMode, Ipv6RaMode ipv6RaMode) {
         this.id = id;
@@ -148,7 +148,7 @@ public class NeutronSubnet implements Subnet {
 	 */
 	@Override
 	@JsonIgnore
-	public boolean isDHCPEnabled() {
+	public Boolean isDHCPEnabled() {
 		return enableDHCP;
 	}
 
@@ -367,7 +367,7 @@ public class NeutronSubnet implements Subnet {
 		}
 
 		@Override
-		public SubnetBuilder enableDHCP(boolean enable) {
+		public SubnetBuilder enableDHCP(Boolean enable) {
 		  m.enableDHCP = enable;
 		  return this;
 		}

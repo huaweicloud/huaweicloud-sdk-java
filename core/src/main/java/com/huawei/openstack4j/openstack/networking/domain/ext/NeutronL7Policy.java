@@ -49,7 +49,7 @@ public class NeutronL7Policy implements ModelEntity {
 	
 	@JsonProperty("admin_state_up")
 	@Builder.Default
-	private  boolean adminStateUp = true;
+	private boolean adminStateUp = true;
 	
 	@JsonProperty("description")
 	private String description;
@@ -58,10 +58,13 @@ public class NeutronL7Policy implements ModelEntity {
 	private String listenerId;
 	
 	@JsonProperty("action")
-	private  String action;
+	private String action;
 	
 	@JsonProperty("redirect_pool_id")
 	private String redirectPoolId;
+
+	@JsonProperty("redirect_listener_id")
+	private String redirectListenerId;
 	
 	@JsonProperty("redirect_url")
 	private String redirectUrl;

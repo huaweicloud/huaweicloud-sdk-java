@@ -37,4 +37,8 @@ public class ElasticComputeService extends BaseElasticComputeServices implements
 	public JobService jobs() {
 		return Apis.get(JobService.class);
 	}
+	
+	public CloudServerV2Service serversV2() {
+		return Apis.get(CloudServerV2Service.class);
+	}
 }

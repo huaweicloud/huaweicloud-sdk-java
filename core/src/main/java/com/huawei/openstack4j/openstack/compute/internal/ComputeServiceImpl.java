@@ -23,17 +23,10 @@ import com.huawei.openstack4j.api.compute.ComputeImageService;
 import com.huawei.openstack4j.api.compute.ComputeSecurityGroupService;
 import com.huawei.openstack4j.api.compute.ComputeService;
 import com.huawei.openstack4j.api.compute.FlavorService;
-import com.huawei.openstack4j.api.compute.HostAggregateService;
-import com.huawei.openstack4j.api.compute.HostService;
 import com.huawei.openstack4j.api.compute.KeypairService;
 import com.huawei.openstack4j.api.compute.QuotaSetService;
 import com.huawei.openstack4j.api.compute.ServerGroupService;
 import com.huawei.openstack4j.api.compute.ServerService;
-import com.huawei.openstack4j.api.compute.ServerTagService;
-import com.huawei.openstack4j.api.compute.ext.FloatingIPDNSService;
-import com.huawei.openstack4j.api.compute.ext.HypervisorService;
-import com.huawei.openstack4j.api.compute.ext.MigrationService;
-import com.huawei.openstack4j.api.compute.ext.ServicesService;
 import com.huawei.openstack4j.api.compute.ext.ZoneService;
 import com.huawei.openstack4j.model.common.Extension;
 import com.huawei.openstack4j.openstack.common.ExtensionValue.Extensions;
@@ -153,18 +146,16 @@ public class ComputeServiceImpl extends BaseComputeServices implements ComputeSe
 
 	@Override
 	public HostAggregateService hostAggregates() {
-		
 		return Apis.get(HostAggregateService.class);
 	}
+	*/
 
-	@Override
-	public ServerTagService serverTags() {
-		return Apis.get(ServerTagService.class);
-	}*/
-	
+//	@Override
+//	public ServerTagService serverTags() {
+//		return Apis.get(ServerTagService.class);
+//	}
    /* @Override
     public ServicesService services() {
         return Apis.get(ServicesService.class);
     }*/
-    
 }

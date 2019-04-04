@@ -1,0 +1,26 @@
+{
+  "flavors": [{
+    "name": "c1.large",
+    "links": [{
+      "href": "https://compute-ext.localdomain.com:8880/v1/d47580aac1dd4cecad04f695f216d1f7/flavors/c1.large",
+      "rel": "self"
+    },
+      {
+        "href": "https://compute-ext.localdomain.com:8880/d47580aac1dd4cecad04f695f216d1f7/flavors/c1.large",
+        "rel": "bookmark"
+      }],
+    "ram": 2048,
+    "OS-FLV-DISABLED:disabled": false,
+    "vcpus": 2,
+    "extra_specs": {
+      "ecs:performancetype": "cpuv1",
+      "resource_type": "normal"
+    },
+    "swap": "",
+    "os-flavor-access:is_public": false,
+    "rxtx_factor": 1.0,
+    "OS-FLV-EXT-DATA:ephemeral": 0,
+    "disk": 30,
+    "id": "c1.large"
+  }]
+}

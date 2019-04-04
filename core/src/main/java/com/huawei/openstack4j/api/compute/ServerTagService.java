@@ -23,7 +23,7 @@ public interface ServerTagService extends RestService {
 	
 	NovaServerTag list(String serverId);
 	
-	NovaServerTag replace(String serverId, NovaServerTag tag);
+	NovaServerTag addTags(String serverId, NovaServerTag tag);
 	
 	ActionResponse deleteAll(String serverId);
 	

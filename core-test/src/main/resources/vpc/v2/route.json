@@ -1,0 +1,10 @@
+{
+  "route": {
+    "type": "peering",
+    "nexthop": "60c809cb-6731-45d0-ace8-3bf5626421a9",
+    "destination": "192.168.200.0/24",
+    "vpc_id": "ab78be2d-782f-42a5-aa72-35879f6890ff",
+    "tenant_id": "6fbe9263116a4b68818cf1edce16bc4f",
+    "id": "3d42a0d4-a980-4613-ae76-a2cddecff054"
+  }
+}

@@ -204,4 +204,14 @@ public interface Volume extends ModelEntity, Buildable<VolumeBuilder> {
 	 * @return current back-end of the volume.
      */
 	String host();
+
+	/**
+	 * @return whether the volume is shareable
+	 */
+	boolean multiattach();
+
+	/**
+	 * @return the backup identifier
+	 */
+	String getBackupId();
 }

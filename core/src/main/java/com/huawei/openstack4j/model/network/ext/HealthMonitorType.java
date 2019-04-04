@@ -39,7 +39,7 @@ import com.fasterxml.jackson.annotation.JsonCreator;
  *
  */
 public enum HealthMonitorType {
-	TCP, HTTP, HTTPS;
+	TCP, HTTP, UDP_CONNECT, HTTPS;
 	
     @JsonCreator
     public static HealthMonitorType forValue(String value) {

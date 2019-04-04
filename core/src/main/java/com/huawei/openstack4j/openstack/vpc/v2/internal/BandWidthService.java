@@ -32,4 +32,73 @@ public class BandWidthService extends BaseVirtualPrivateCloudService {
 		checkArgument(!(null == (bandWidth.getBandwidth())), "parameter `bandwidth` should not be empty");
 		return put(AsyncBandWidthRespEntity.class, "/bandwidths/"+bandwidthId).entity(bandWidth).execute();
 	}
+
+	/**
+	 * 创建共享带宽
+	 * @param bandwidthCreate
+	 * @return
+	 */
+//	public BandwidthResp create(BandwidthCreate bandwidthCreate){
+//		checkArgument(null != bandwidthCreate, "parameter `bandwidthCreate` should not be empty");
+//		checkArgument(!Strings.isNullOrEmpty(bandwidthCreate.getName()),"parameter `bandwidthCreate.name` should not be empty");
+//		checkArgument(null != bandwidthCreate.getSize(),"parameter `bandwidthCreate.size` should not be empty");
+//		return post(BandwidthResp.class, uri("/bandwidths")).entity(bandwidthCreate).execute();
+//	}
+
+	/**
+	 * 批量创建共享带宽
+	 * @param bandwidthBatchCreate
+	 * @return
+	 */
+//	public List<BandwidthResp> batchCreate(BandwidthBatchCreate bandwidthBatchCreate){
+//		checkArgument(null != bandwidthBatchCreate, "parameter `bandwidthBatchCreate` should not be empty");
+//		checkArgument(!Strings.isNullOrEmpty(bandwidthBatchCreate.getName()),"parameter `bandwidthBatchCreate.name` should not be empty");
+//		checkArgument(null != bandwidthBatchCreate.getSize(),"parameter `bandwidthBatchCreate.size` should not be empty");
+//		checkArgument(null != bandwidthBatchCreate.getCount(),"parameter `bandwidthBatchCreate.count` should not be empty");
+//		return post(BandwidthResp.BandwidthResps.class, uri("/batch-bandwidths")).entity(bandwidthBatchCreate).execute().getList();
+//	}
+
+	/**
+	 * 删除共享带宽
+	 * @param bandwidthId
+	 * @return
+	 */
+//	public ActionResponse delete(String bandwidthId){
+//		checkArgument(!Strings.isNullOrEmpty(bandwidthId),"parameter `bandwidthId` should not be empty");
+//		return ToActionResponseFunction.INSTANCE.apply(delete(Void.class,
+//				uri("/bandwidths/%s",bandwidthId)).executeWithResponse());
+//	}
+
+	/**
+	 * 共享带宽插入弹性公网IP
+	 * @param bandwidthId
+	 * @param bandwidthInsert
+	 * @return
+	 */
+//	public BandwidthResp insert(String bandwidthId, BandwidthInsert bandwidthInsert){
+//		checkArgument(!Strings.isNullOrEmpty(bandwidthId),"parameter `bandwidthId` should not be empty");
+//		checkArgument(null != bandwidthInsert, "parameter `bandwidthBatchCreate` should not be empty");
+//		for(PublicIpInfo publicIpInfo : bandwidthInsert.getPublicipInfo()){
+//			checkArgument(!Strings.isNullOrEmpty(publicIpInfo.getPublicipId()),"parameter `publicIpInfo.publicipId` should not be empty");
+//		}
+//		return post(BandwidthResp.class, uri("/bandwidths/%s/insert", bandwidthId)).entity(bandwidthInsert).execute();
+//	}
+
+	/**
+	 * 共享带宽移除弹性公网IP
+	 * @param bandwidthId
+	 * @param bandwidthRemove
+	 * @return
+	 */
+//	public ActionResponse remove(String bandwidthId, BandwidthRemove bandwidthRemove){
+//		checkArgument(!Strings.isNullOrEmpty(bandwidthId),"parameter `bandwidthId` should not be empty");
+//		checkArgument(null != bandwidthRemove, "parameter `bandwidthRemove` should not be empty");
+//		checkArgument(null != bandwidthRemove.getSize(), "parameter `bandwidthRemove.size` should not be empty");
+//		checkArgument(null != bandwidthRemove.getChargeMode(), "parameter `bandwidthRemove.chargeMode` should not be empty");
+//		checkArgument(null != bandwidthRemove.getPublicipInfo(), "parameter `bandwidthRemove.publicipInfo` should not be empty");
+//		for(PublicIpInfo publicIpInfo : bandwidthRemove.getPublicipInfo()){
+//			checkArgument(!Strings.isNullOrEmpty(publicIpInfo.getPublicipId()),"parameter `publicIpInfo.publicipId` should not be empty");
+//		}
+//		return ToActionResponseFunction.INSTANCE.apply(post(Void.class, uri("/bandwidths/%s/remove", bandwidthId)).entity(bandwidthRemove).executeWithResponse());
+//	}
 }

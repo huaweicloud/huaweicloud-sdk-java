@@ -31,6 +31,9 @@
  * *******************************************************************************/
 package com.huawei.openstack4j.api;
 
+import java.util.Map;
+import java.util.Set;
+
 import com.huawei.openstack4j.api.artifact.ArtifactService;
 import com.huawei.openstack4j.api.barbican.BarbicanService;
 import com.huawei.openstack4j.api.cloudeye.CloudEyeService;
@@ -68,19 +71,18 @@ import com.huawei.openstack4j.openstack.cloud.trace.v1.internal.CloudTraceV1Serv
 import com.huawei.openstack4j.openstack.cloud.trace.v2.internal.CloudTraceV2Service;
 import com.huawei.openstack4j.openstack.csbs.v1.internal.CloudServerBackupService;
 import com.huawei.openstack4j.openstack.database.internal.DatabaseServices;
+import com.huawei.openstack4j.openstack.dss.v1.internal.DssService;
 import com.huawei.openstack4j.openstack.ecs.v1.internal.ElasticComputeService;
 import com.huawei.openstack4j.openstack.evs.v2.internal.ElasticVolumeService;
 import com.huawei.openstack4j.openstack.fgs.v1.internal.FunctionGraphService;
 import com.huawei.openstack4j.openstack.kms.internal.KeyManagementService;
 import com.huawei.openstack4j.openstack.maas.internal.MaaSService;
 import com.huawei.openstack4j.openstack.message.notification.internal.NotificationService;
+import com.huawei.openstack4j.openstack.message.queue.internal.MessageQueueAsyncService;
 import com.huawei.openstack4j.openstack.message.queue.internal.MessageQueueService;
 import com.huawei.openstack4j.openstack.tms.v1.internal.TagManagementService;
 import com.huawei.openstack4j.openstack.trove.internal.TroveService;
 import com.huawei.openstack4j.openstack.vpc.v2.internal.VirtualPrivateCloudService;
-
-import java.util.Map;
-import java.util.Set;
 
 /**
  * A client which has been identified. Any calls spawned from this session will
@@ -454,10 +456,33 @@ public interface OSClient<T extends OSClient<T>> {
 		 * @param secretKey					Secret key
 		 * @param region					region 
 		 * @param projectId					user project id
-		 * @param serviceDomainName			cloud service domain, example: myhwclouds.com
+		 * @param cloudDomainName			cloud service domain, example: ***.com
 		 * @return
 		 */
-		public OSClientAKSK credentials(String accessKey, String secretKey, String region, String projectId, String serviceDomainName);
+		public OSClientAKSK credentials(String accessKey, String secretKey, String region, String projectId, String cloudDomainName);
+
+		/**
+		 * create a AKSK OSClient with required credentials
+		 *
+		 * @param accessKey					Access key
+		 * @param secretKey					Secret key
+		 * @param region					region
+		 * @param domainId					user domain id
+		 * @param cloudDomainName			cloud service domain, example: ***.com
+		 * @return
+		 */
+		public OSClientAKSK credentials(String accessKey, String secretKey, String region, String projectId, String domainId, String cloudDomainName);
+
+		/**
+		 * create a AKSK OSClient with required credentials
+		 *
+		 * @param accessKey					Access key
+		 * @param secretKey					Secret key
+		 * @param region					region
+		 * @param cloudDomainName			cloud service domain, example: ***.com
+		 * @return
+		 */
+		public OSClientAKSK credentials(String accessKey, String secretKey, String region, String cloudDomainName);
 
 		/**
 		 * @param config
@@ -550,7 +575,13 @@ public interface OSClient<T extends OSClient<T>> {
 	  * @return the ElasticVolume service
 	  */
 	 ElasticVolumeService evs();
-	 
+
+	/**
+	 * Returns the Dss Service API
+	 * @return the Dss service
+	 */
+	 DssService dss();
+
 	 /**
 	  * Returns the ElasticVolume Service API
 	  * @return the ElasticVolume service
@@ -597,4 +628,10 @@ public interface OSClient<T extends OSClient<T>> {
 	 * @return
 	 */
 	CloudServerBackupService csbs();
+
+	/**
+	 * Returns the Async messageQueue Service API
+	 * @return
+	 */
+	MessageQueueAsyncService messageQueueAsync();
 }

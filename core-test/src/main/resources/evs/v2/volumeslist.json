@@ -1,0 +1,180 @@
+{
+  "count": 3,
+  "volumes": [
+    {
+      "id": "de3108dd-860c-43bc-a572-42a47f561582",
+      "links": [
+        {
+          "href": "https://volume.region.dc1.domainname.com/v2/000efdc5f9064584b718b181df137bd7/os-vendor-volumes/de3108dd-860c-43bc-a572-42a47f561582",
+          "rel": "self"
+        },
+        {
+          "href": "https://volume.region.dc1.domainname.com/000efdc5f9064584b718b181df137bd7/os-vendor-volumes/de3108dd-860c-43bc-a572-42a47f561582",
+          "rel": "bookmark"
+        }
+      ],
+      "name": "volume-from-image",
+      "status": "in-use",
+      "attachments": [
+        {
+          "attachment_id": "20b73502-0098-4351-a953-348f9328ca61",
+          "volume_id": "de3108dd-860c-43bc-a572-42a47f561582",
+          "device": "/dev/vdb",
+          "server_id": "43608a25-7e0a-40be-a86b-13166e24c161",
+          "host_name": null,
+          "attached_at": "2019-01-10T02:07:25.343363",
+          "id": "de3108dd-860c-43bc-a572-42a47f561582"
+        }
+      ],
+      "shareable": "false",
+      "multiattach": false,
+      "size": 12,
+      "metadata": {
+        "readonly": "False",
+        "mapping_uuid": "de3108dd-860c-43bc-a572-42a47f561582",
+        "__system__volume_name": "volume-from-image",
+        "attached_mode": "rw",
+        "__openstack_region_name": "az21.dc1",
+        "policy": "41204014-377d-4ed8-8dbe-18e37f6d3693"
+      },
+      "bootable": "true",
+      "encrypted": false,
+      "tags": {},
+      "availability_zone": "kvmxen.dc1",
+      "os-vol-host-attr:host": "az21.dc1#0",
+      "created_at": "2019-01-10T02:03:24.234019",
+      "volume_type": "SAS",
+      "os-vol-tenant-attr:tenant_id": "000efdc5f9064584b718b181df137bd7",
+      "os-volume-replication:extended_status": null,
+      "volume_image_metadata": {
+        "__data_origin": "volume,f27f4308-4213-46fe-919c-ae69a58762bc",
+        "__os_type": "Linux",
+        "__imagetype": "private",
+        "_sys_enterprise_project_id": "0",
+        "min_disk": "12",
+        "virtual_env_type": "DataImage",
+        "__image_location": "192.144.42.100:5443:pcsims000efdc5f9064584b718b181df137bd7:5a8e290d-bd60-4ee7-88db-80486877a126",
+        "__originalimagename": "null",
+        "__image_source_type": "uds",
+        "container_format": "bare",
+        "__image_size": "1105920",
+        "image_name": "image-data",
+        "size": "18",
+        "checksum": "bcd7dd7dab80ca42e125a389f986404e",
+        "disk_format": "zvhd2",
+        "image_id": "5a8e290d-bd60-4ee7-88db-80486877a126",
+        "__isregistered": "true",
+        "__sequence_num": "1001",
+        "min_ram": "0",
+        "__lazyloading": "True"
+      },
+      "updated_at": "2019-01-10T02:07:25.386281",
+      "replication_status": "disabled",
+      "os-vol-mig-status-attr:name_id": null,
+      "os-vol-mig-status-attr:migstat": null,
+      "user_id": "d2e6e8d7c08841ba9d2ebe0d5dbd7a0c",
+      "service_type": "DSS",
+      "dedicated_storage_id": "517eb026-2cdc-45da-9ebc-0c6ececb1236",
+      "dedicated_storage_name": "dss_yq",
+      "enterprise_project_id": "0",
+      "sys_tags": {
+        "_sys_enterprise_project_id": "0"
+      }
+    },
+    {
+      "id": "5e59eac3-b9c8-4156-934f-e085f350b007",
+      "links": [
+        {
+          "href": "https://volume.region.dc1.domainname.com/v2/000efdc5f9064584b718b181df137bd7/os-vendor-volumes/5e59eac3-b9c8-4156-934f-e085f350b007",
+          "rel": "self"
+        },
+        {
+          "href": "https://volume.region.dc1.domainname.com/000efdc5f9064584b718b181df137bd7/os-vendor-volumes/5e59eac3-b9c8-4156-934f-e085f350b007",
+          "rel": "bookmark"
+        }
+      ],
+      "name": "volume-from-snap",
+      "status": "available",
+      "attachments": [],
+      "shareable": "false",
+      "multiattach": false,
+      "size": 10,
+      "metadata": {
+        "full_clone": "0",
+        "mapping_uuid": "5e59eac3-b9c8-4156-934f-e085f350b007",
+        "__system__volume_name": "volume-from-snap",
+        "__openstack_region_name": "bms.dc1",
+        "policy": "41204014-377d-4ed8-8dbe-18e37f6d3693"
+      },
+      "bootable": "false",
+      "encrypted": false,
+      "tags": {},
+      "availability_zone": "kvmxen.dc1",
+      "os-vol-host-attr:host": "bms.dc1#0",
+      "snapshot_id": "b02b4013-3cf8-4a08-ba93-62c3741edaa6",
+      "created_at": "2019-01-10T02:02:14.270109",
+      "volume_type": "SAS",
+      "os-vol-tenant-attr:tenant_id": "000efdc5f9064584b718b181df137bd7",
+      "os-volume-replication:extended_status": null,
+      "updated_at": "2019-01-10T02:02:19.479977",
+      "replication_status": "disabled",
+      "os-vol-mig-status-attr:name_id": null,
+      "os-vol-mig-status-attr:migstat": null,
+      "user_id": "d2e6e8d7c08841ba9d2ebe0d5dbd7a0c",
+      "service_type": "DSS",
+      "dedicated_storage_id": "517eb026-2cdc-45da-9ebc-0c6ececb1236",
+      "dedicated_storage_name": "dss_yq",
+      "enterprise_project_id": "0",
+      "sys_tags": {
+        "_sys_enterprise_project_id": "0"
+      }
+    },
+    {
+      "id": "f4a3ea08-db3b-4cbc-94fe-abe5be3fa8e1",
+      "links": [
+        {
+          "href": "https://volume.region.dc1.domainname.com/v2/000efdc5f9064584b718b181df137bd7/os-vendor-volumes/f4a3ea08-db3b-4cbc-94fe-abe5be3fa8e1",
+          "rel": "self"
+        },
+        {
+          "href": "https://volume.region.dc1.domainname.com/000efdc5f9064584b718b181df137bd7/os-vendor-volumes/f4a3ea08-db3b-4cbc-94fe-abe5be3fa8e1",
+          "rel": "bookmark"
+        }
+      ],
+      "name": "volume-from-backup",
+      "status": "available",
+      "attachments": [],
+      "shareable": "false",
+      "multiattach": false,
+      "size": 10,
+      "metadata": {
+        "mapping_uuid": "f4a3ea08-db3b-4cbc-94fe-abe5be3fa8e1",
+        "hw:passthrough": "false",
+        "__system__volume_name": "volume-from-backup",
+        "__openstack_region_name": "dpdk.dc1",
+        "policy": "41204014-377d-4ed8-8dbe-18e37f6d3693"
+      },
+      "bootable": "false",
+      "encrypted": false,
+      "tags": {},
+      "availability_zone": "kvmxen.dc1",
+      "os-vol-host-attr:host": "dpdk.dc1#0",
+      "created_at": "2019-01-10T01:58:17.029281",
+      "volume_type": "SAS",
+      "os-vol-tenant-attr:tenant_id": "000efdc5f9064584b718b181df137bd7",
+      "os-volume-replication:extended_status": null,
+      "backup_id": "933db55a-5ab3-4f45-a0e7-ec92ad005826",
+      "updated_at": "2019-01-10T01:59:28.032094",
+      "replication_status": "disabled",
+      "os-vol-mig-status-attr:name_id": null,
+      "os-vol-mig-status-attr:migstat": null,
+      "user_id": "d2e6e8d7c08841ba9d2ebe0d5dbd7a0c",
+      "service_type": "DSS",
+      "dedicated_storage_id": "517eb026-2cdc-45da-9ebc-0c6ececb1236",
+      "dedicated_storage_name": "dss_yq",
+      "enterprise_project_id": "0",
+      "sys_tags": {
+        "_sys_enterprise_project_id": "0"
+      }
+    }]
+}

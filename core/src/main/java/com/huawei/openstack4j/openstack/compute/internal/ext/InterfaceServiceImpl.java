@@ -24,6 +24,7 @@ import com.huawei.openstack4j.model.common.ActionResponse;
 import com.huawei.openstack4j.model.compute.InterfaceAttachment;
 import com.huawei.openstack4j.openstack.compute.domain.NovaInterfaceAttachment;
 import com.huawei.openstack4j.openstack.compute.domain.NovaInterfaceAttachment.NovaInterfaceAttachments;
+import com.huawei.openstack4j.openstack.compute.domain.NovaInterfaceAttachmentCreate;
 import com.huawei.openstack4j.openstack.compute.internal.BaseComputeServices;
 
 /**
@@ -40,6 +41,14 @@ public class InterfaceServiceImpl extends BaseComputeServices  implements Interf
         return post(NovaInterfaceAttachment.class, uri("/servers/%s/os-interface", serverId))
                  .entity(new NovaInterfaceAttachment(portId))
                  .execute();
+    }
+
+    @Override
+    public InterfaceAttachment create(String serverId, NovaInterfaceAttachmentCreate interfaceAttachmentCreate) {
+        checkNotNull(serverId, "serverId");
+        return post(NovaInterfaceAttachment.class, uri("/servers/%s/os-interface", serverId))
+                .entity(interfaceAttachmentCreate)
+                .execute();
     }
 
     @Override

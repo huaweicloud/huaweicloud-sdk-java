@@ -51,4 +51,16 @@ public class Metadata{
 	 */
 	@JsonProperty("hw:passthrough")
 	private Boolean hwPassthrough;
+
+	/**
+	 * metadata中的备份策略ID字段。
+	 */
+	@JsonProperty("policy")
+	private String policy;
+
+	/**
+	 * 从快照创建云硬盘时，如需使用link克隆方式，请指定该字段的值为0。
+	 */
+	@JsonProperty("full_clone")
+	private String fullClone;
 }

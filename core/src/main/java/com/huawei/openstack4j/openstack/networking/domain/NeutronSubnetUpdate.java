@@ -45,7 +45,7 @@ public class NeutronSubnetUpdate implements ModelEntity {
     @JsonProperty("gateway_ip")
     private String gateway;
     @JsonProperty("enable_dhcp")
-    private boolean enabledhcp;
+    private Boolean enabledhcp;
     
     @SuppressWarnings("unchecked")
     public static NeutronSubnetUpdate createFromSubnet(Subnet in) {

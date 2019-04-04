@@ -15,6 +15,9 @@
  *******************************************************************************/
 package com.huawei.openstack4j.api.networking.ext;
 
+import java.util.List;
+import java.util.Map;
+
 import com.huawei.openstack4j.common.RestService;
 import com.huawei.openstack4j.model.common.ActionResponse;
 import com.huawei.openstack4j.openstack.networking.domain.ext.NeutronRule;
@@ -28,7 +31,13 @@ public interface LbRuleV2Service extends RestService {
 	 * @return
 	 */
 	NeutronRules list(String l7policyId);
-	
+
+	/**
+	 * 查询转发规则
+	 * @return
+	 */
+	List<? extends NeutronRule> list(String l7policyId, Map<String, String> filteringParams);
+
 	/**
 	 * 查询转发规则详情。
 	 * @param ruleId

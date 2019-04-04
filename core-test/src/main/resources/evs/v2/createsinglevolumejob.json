@@ -1,0 +1,15 @@
+{
+  "job_id": "ff808081690a667101692e1724c4166c",
+  "job_type": "createVolume",
+  "begin_time": "2019-02-27T08:34:22.531Z",
+  "end_time": "2019-02-27T08:34:30.581Z",
+  "status": "SUCCESS",
+  "error_code": null,
+  "fail_reason": null,
+  "entities": {
+    "volume_type": "SATA",
+    "size": 100,
+    "volume_id": "00392cdc-9755-4329-ae71-d8d93ce5ee67",
+    "name": "dsfghgj"
+  }
+}

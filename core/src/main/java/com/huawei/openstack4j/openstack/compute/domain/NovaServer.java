@@ -1,33 +1,33 @@
 /*******************************************************************************
- * 	Copyright 2016 ContainX and OpenStack4j                                          
- * 	                                                                                 
- * 	Licensed under the Apache License, Version 2.0 (the "License"); you may not      
- * 	use this file except in compliance with the License. You may obtain a copy of    
- * 	the License at                                                                   
- * 	                                                                                 
- * 	    http://www.apache.org/licenses/LICENSE-2.0                                   
- * 	                                                                                 
- * 	Unless required by applicable law or agreed to in writing, software              
- * 	distributed under the License is distributed on an "AS IS" BASIS, WITHOUT        
- * 	WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the         
- * 	License for the specific language governing permissions and limitations under    
- * 	the License.                                                                     
+ * 	Copyright 2016 ContainX and OpenStack4j
+ *
+ * 	Licensed under the Apache License, Version 2.0 (the "License"); you may not
+ * 	use this file except in compliance with the License. You may obtain a copy of
+ * 	the License at
+ *
+ * 	    http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * 	Unless required by applicable law or agreed to in writing, software
+ * 	distributed under the License is distributed on an "AS IS" BASIS, WITHOUT
+ * 	WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the
+ * 	License for the specific language governing permissions and limitations under
+ * 	the License.
  *******************************************************************************/
-/******************************************************************************* 	                                                                                 
+/*******************************************************************************
  *  Huawei has modified this source file.
- * 	Copyright 2018 Huawei Technologies Co.,Ltd.                                         
- * 	                                                                                 
- * 	Licensed under the Apache License, Version 2.0 (the "License"); you may not      
- * 	use this file except in compliance with the License. You may obtain a copy of    
- * 	the License at                                                                   
- * 	                                                                                 
- * 	    http://www.apache.org/licenses/LICENSE-2.0                                   
- * 	                                                                                 
- * 	Unless required by applicable law or agreed to in writing, software              
- * 	distributed under the License is distributed on an "AS IS" BASIS, WITHOUT        
- * 	WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the         
- * 	License for the specific language governing permissions and limitations under    
- * 	the License.                             
+ * 	Copyright 2018 Huawei Technologies Co.,Ltd.
+ *
+ * 	Licensed under the Apache License, Version 2.0 (the "License"); you may not
+ * 	use this file except in compliance with the License. You may obtain a copy of
+ * 	the License at
+ *
+ * 	    http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * 	Unless required by applicable law or agreed to in writing, software
+ * 	distributed under the License is distributed on an "AS IS" BASIS, WITHOUT
+ * 	WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the
+ * 	License for the specific language governing permissions and limitations under
+ * 	the License.
  * *******************************************************************************/
 package com.huawei.openstack4j.openstack.compute.domain;
 
@@ -110,9 +110,45 @@ public class NovaServer implements Server {
 	private Date terminatedAt;
 	@JsonProperty("os-extended-volumes:volumes_attached")
 	private List<IdResourceEntity> osExtendedVolumesAttached;
+
+	private String description;
+
+	@JsonProperty("host_status")
+	private HostStatus hostStatus;
+
+	@JsonProperty("OS-EXT-SRV-ATTR:hostname")
+	private String hostname;
+
+	@JsonProperty("OS-EXT-SRV-ATTR:reservation_id")
+	private String reservationId;
+
+	@JsonProperty("OS-EXT-SRV-ATTR:launch_index")
+	private Integer launchIndex;
+
+	@JsonProperty("OS-EXT-SRV-ATTR:kernel_id")
+	private String kernelId;
+
+	@JsonProperty("OS-EXT-SRV-ATTR:ramdisk_id")
+	private String ramdiskId;
+
+	@JsonProperty("OS-EXT-SRV-ATTR:root_device_name")
+	private String rootDeviceName;
+
+	@JsonProperty("OS-EXT-SRV-ATTR:user_data")
+	private String userData;
+
+	@JsonProperty("locked")
+	private Boolean locked;
+
+	@JsonProperty("tags")
+	private List<String> tags;
+
+	@JsonProperty("os:scheduler_hints")
+	private Map<String, String> schedulerHints;
+
 	private String uuid;
 	private String adminPass;
-	
+
 	@JsonProperty("max_count")
 	private Integer maxCount;
 	@JsonProperty("min_count")
@@ -243,10 +279,10 @@ public class NovaServer implements Server {
 		return metadata;
 	}
 
-    @Override
-    public List<? extends NovaSecurityGroup> getSecurityGroups() {
-        return securityGroups;
-    }
+	@Override
+	public List<? extends NovaSecurityGroup> getSecurityGroups() {
+		return securityGroups;
+	}
 
 	@Override
 	public String getTaskState() {
@@ -299,12 +335,12 @@ public class NovaServer implements Server {
 	}
 
 	@SuppressWarnings("unchecked")
-    @JsonIgnore
+	@JsonIgnore
 	@Override
 	public List<String> getOsExtendedVolumesAttached() {
 		return (List<String>) ((osExtendedVolumesAttached == null)
-		                      ? Collections.emptyList()
-		                      : Lists.transform(osExtendedVolumesAttached, IdEntityToString.INSTANCE));
+				? Collections.emptyList()
+				: Lists.transform(osExtendedVolumesAttached, IdEntityToString.INSTANCE));
 	}
 
 	@Override
@@ -316,9 +352,9 @@ public class NovaServer implements Server {
 	public String getAdminPass() {
 		return adminPass;
 	}
-	
 
-	/* 
+
+	/*
 	 * {@inheritDoc}
 	 */
 	@Override
@@ -326,7 +362,7 @@ public class NovaServer implements Server {
 		return this.maxCount;
 	}
 
-	/* 
+	/*
 	 * {@inheritDoc}
 	 */
 	@Override
@@ -334,17 +370,113 @@ public class NovaServer implements Server {
 		return minCount;
 	}
 
+	/*
+	 * {@inheritDoc}
+	 */
+	@Override
+	public String getDescription() {
+		return description;
+	}
+
+	/*
+	 * {@inheritDoc}
+	 */
+	@Override
+	public HostStatus getHostStatus() {
+		return hostStatus;
+	}
+
+	/*
+	 * {@inheritDoc}
+	 */
+	@Override
+	public String getHostname() {
+		return hostname;
+	}
+
+	/*
+	 * {@inheritDoc}
+	 */
+	@Override
+	public String getReservationId() {
+		return reservationId;
+	}
+
+	/*
+	 * {@inheritDoc}
+	 */
+	@Override
+	public Integer getLaunchIndex() {
+		return launchIndex;
+	}
+
+	/*
+	 * {@inheritDoc}
+	 */
+	@Override
+	public String getKernelId() {
+		return kernelId;
+	}
+
+	/*
+	 * {@inheritDoc}
+	 */
+	@Override
+	public String getRamdiskId() {
+		return ramdiskId;
+	}
+
+	/*
+	 * {@inheritDoc}
+	 */
+	@Override
+	public String getRootDeviceName() {
+		return rootDeviceName;
+	}
+
+	/*
+	 * {@inheritDoc}
+	 */
+	@Override
+	public String getUserData() {
+		return userData;
+	}
+
+	/*
+	 * {@inheritDoc}
+	 */
+	@Override
+	public Boolean getLocked() {
+		return locked;
+	}
+
+	/*
+	 * {@inheritDoc}
+	 */
+	@Override
+	public List<String> getTags() {
+		return tags;
+	}
+
+	/*
+	 * {@inheritDoc}
+	 */
+	@Override
+	public Map<String, String> getSchedulerHints() {
+		return schedulerHints;
+	}
+
 	@Override
 	public String toString() {
 		return MoreObjects.toStringHelper(this).omitNullValues()
-				   .add("id",id).add("name", name).add("image", image).add("flavor", flavor)
-				   .add("status", status).add("diskconfig", diskConfig).add("userId", userId)
-				   .add("admin-pass", adminPass).add("created", created).add("updated", updated)
-				   .add("launched at", launchedAt).add("tenantId", tenantId).add("hostId", hostId)
-				   .add("addresses", addresses).add("hypervisor host", hypervisorHostname)
-				   .add("uuid", uuid).add("powerstate", powerState).add("fault", fault).add("instanceName", instanceName)
-				   .add("vmState", vmState).add("metadata", metadata)
-				   .toString();
+				.add("id",id).add("name", name).add("image", image).add("flavor", flavor)
+				.add("status", status).add("diskconfig", diskConfig).add("userId", userId)
+				.add("admin-pass", adminPass).add("created", created).add("updated", updated)
+				.add("launched at", launchedAt).add("tenantId", tenantId).add("hostId", hostId)
+				.add("addresses", addresses).add("hypervisor host", hypervisorHostname)
+				.add("uuid", uuid).add("powerstate", powerState).add("fault", fault).add("instanceName", instanceName)
+				.add("vmState", vmState).add("metadata", metadata).add("rootDeviceName", rootDeviceName).add("reservationId", reservationId)
+				.toString();
 	}
 
 	public static class Servers extends ListResult<NovaServer> {
@@ -355,7 +487,7 @@ public class NovaServer implements Server {
 		private List<NovaServer> servers;
 
 		@Override
-        public List<NovaServer> value() {
+		public List<NovaServer> value() {
 			return servers;
 		}
 	}

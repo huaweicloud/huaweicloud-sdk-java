@@ -1,0 +1,97 @@
+{
+  "count": 1,
+  "servers": [
+    {
+      "fault": null,
+      "id": "7397eff2-1416-4edd-b990-3c7f080369eb",
+      "name": "Linux-test-sdk-1",
+      "addresses": {
+        "b7ff7a9b-cc95-4dd0-b76a-f586c88e6556": [
+          {
+            "version": "4",
+            "addr": "192.168.0.166",
+            "OS-EXT-IPS-MAC:mac_addr": "fa:16:3e:3f:3f:f8",
+            "OS-EXT-IPS:port_id": "276e5dbf-4517-430f-8753-97bfe3d8a358",
+            "OS-EXT-IPS:type": "fixed"
+          }
+        ]
+      },
+      "flavor": {
+        "disk": "0",
+        "vcpus": "2",
+        "ram": "4096",
+        "id": "c3.large.2",
+        "name": "c3.large.2"
+      },
+      "accessIPv4": "",
+      "accessIPv6": "",
+      "status": "SHUTOFF",
+      "progress": null,
+      "hostId": "a7caf4151899ecf38b17713e781926656a95fae89dfcf32f7188a1ba",
+      "updated": "2019-03-29T03:17:52Z",
+      "created": "2019-03-29T01:33:09Z",
+      "metadata": {
+        "metering.image_id": "82372460-4f18-46a6-9315-25b8a606f847",
+        "metering.imagetype": "gold",
+        "metering.resourcespeccode": "c3.large.2.linux",
+        "image_name": "HEC_Public_Cloudinit_CentOS_7.2_64bit",
+        "metering.resourcetype": "1",
+        "os_bit": "64",
+        "vpc_id": "b7ff7a9b-cc95-4dd0-b76a-f586c88e6556",
+        "os_type": "Linux",
+        "charging_mode": "0",
+        "cascaded.instance_extrainfo": ""
+      },
+      "tags": [],
+      "description": "Linux-test-sdk",
+      "locked": false,
+      "image": {
+        "id": null,
+        "links": null
+      },
+      "config_drive": "",
+      "tenant_id": "52f34411904440598d98158da2029a82",
+      "user_id": "a7b3135b8d774af4a553af66e327276d",
+      "key_name": null,
+      "os-extended-volumes:volumes_attached": [
+        {
+          "device": "/dev/vda",
+          "bootIndex": "0",
+          "id": "f6e21c2c-d403-46eb-ac7d-6f601ce3963f",
+          "delete_on_termination": "false"
+        }
+      ],
+      "OS-EXT-STS:task_state": null,
+      "OS-EXT-STS:power_state": 4,
+      "OS-EXT-STS:vm_state": "stopped",
+      "OS-EXT-SRV-ATTR:host": "dpdk.dc1",
+      "OS-EXT-SRV-ATTR:instance_name": "instance-0023dc0d",
+      "OS-EXT-SRV-ATTR:hypervisor_hostname": "nova006@6",
+      "OS-DCF:diskConfig": "MANUAL",
+      "OS-EXT-AZ:availability_zone": "kvmxen.dc1",
+      "os:scheduler_hints": {},
+      "OS-EXT-SRV-ATTR:root_device_name": "/dev/vda",
+      "OS-EXT-SRV-ATTR:ramdisk_id": "",
+      "enterprise_project_id": "0",
+      "OS-EXT-SRV-ATTR:user_data": null,
+      "OS-SRV-USG:launched_at": "2019-03-29T01:39:20.000000",
+      "OS-EXT-SRV-ATTR:kernel_id": "",
+      "OS-EXT-SRV-ATTR:launch_index": 0,
+      "host_status": "UP",
+      "OS-EXT-SRV-ATTR:reservation_id": "r-ee0926kn",
+      "OS-EXT-SRV-ATTR:hostname": "linux-test-sdk-1",
+      "OS-SRV-USG:terminated_at": null,
+      "sys_tags": [
+        {
+          "key": "_sys_enterprise_project_id",
+          "value": "0"
+        }
+      ],
+      "security_groups": [
+        {
+          "name": "default"
+        }
+      ]
+    }
+  ]
+}

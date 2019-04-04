@@ -20,6 +20,7 @@ import java.util.List;
 import com.huawei.openstack4j.common.RestService;
 import com.huawei.openstack4j.model.common.ActionResponse;
 import com.huawei.openstack4j.model.compute.InterfaceAttachment;
+import com.huawei.openstack4j.openstack.compute.domain.NovaInterfaceAttachmentCreate;
 
 /**
  * API to Create, list, get details for, and delete port interfaces on a Server Instance
@@ -36,6 +37,15 @@ public interface InterfaceService extends RestService {
      * @return the attached interface
      */
     InterfaceAttachment create(String serverId, String portId);
+
+    /**
+     * Creates and uses a port interface to attach the port to a server instance.
+     *
+     * @param serverId the server id
+     * @param novaInterfaceAttachmentCreate the interface info to attach
+     * @return the attached interface
+     */
+    InterfaceAttachment create(String serverId, NovaInterfaceAttachmentCreate novaInterfaceAttachmentCreate);
     
     /**
      * List the port interfaces for the specified {@code serverId}

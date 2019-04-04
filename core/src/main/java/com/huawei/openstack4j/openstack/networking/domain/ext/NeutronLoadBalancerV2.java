@@ -15,18 +15,17 @@
  *******************************************************************************/
 package com.huawei.openstack4j.openstack.networking.domain.ext;
 
+import java.util.List;
+
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonRootName;
+import com.google.common.base.MoreObjects;
 import com.huawei.openstack4j.model.network.ext.LbOperatingStatus;
 import com.huawei.openstack4j.model.network.ext.LbProvisioningStatus;
 import com.huawei.openstack4j.model.network.ext.LoadBalancerV2;
 import com.huawei.openstack4j.model.network.ext.builder.LoadBalancerV2Builder;
 import com.huawei.openstack4j.openstack.common.ListResult;
-
-import com.google.common.base.MoreObjects;
-
-import java.util.List;
 
 /**
  * lbaas v2 loadbalancer
@@ -58,7 +57,7 @@ public class NeutronLoadBalancerV2 implements LoadBalancerV2 {
     private String vipAddress;
 
     @JsonProperty("admin_state_up")
-    private boolean adminStateUp = true;
+    private Boolean adminStateUp = true;
 
     @JsonProperty("provisioning_status")
     private LbProvisioningStatus provisioningStatus;
@@ -126,7 +125,7 @@ public class NeutronLoadBalancerV2 implements LoadBalancerV2 {
      * {@inheritDoc}
      */
     @Override
-    public boolean isAdminStateUp(){
+    public Boolean isAdminStateUp(){
         return adminStateUp;
     }
 
@@ -291,7 +290,7 @@ public class NeutronLoadBalancerV2 implements LoadBalancerV2 {
          * {@inheritDoc}
          */
         @Override
-        public LoadBalancerV2Builder adminStateUp(boolean adminStateUp){
+        public LoadBalancerV2Builder adminStateUp(Boolean adminStateUp){
             m.adminStateUp = adminStateUp;
             return this;
         }

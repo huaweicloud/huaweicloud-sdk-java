@@ -15,13 +15,13 @@
  *******************************************************************************/
 package com.huawei.openstack4j.openstack.networking.domain.ext;
 
-import java.util.List;
-
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
+
+import java.util.List;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -47,7 +47,7 @@ public class NeutronRule implements ModelEntity  {
 	
 	@JsonProperty("admin_state_up")
 	@Builder.Default
-	private boolean adminStateUp = true;
+	private Boolean adminStateUp = true;
 	
 	@JsonProperty("type")
 	private Type type;
@@ -57,7 +57,7 @@ public class NeutronRule implements ModelEntity  {
 	
 	@JsonProperty("invert")
 	@Builder.Default
-	private	  boolean invert = false;
+	private	 Boolean invert = false;
 	
 	@JsonProperty("key")
 	private String key;

@@ -1,0 +1,19 @@
+{
+  "network_ip_availability": {
+    "used_ips": 4,
+    "subnet_ip_availability": [
+      {
+        "used_ips": 4,
+        "subnet_id": "98e343d1-3cb8-4f69-9cd1-00569819480f",
+        "subnet_name": "",
+        "ip_version": 4,
+        "cidr": "10.0.0.0/8",
+        "total_ips": 300
+      }
+    ],
+    "network_id": "6b50d967-779c-40c9-a157-de1df3c17043",
+    "tenant_id": "7c4b23cb125d481c95cbe4f91b2c11cd",
+    "total_ips": 300,
+    "network_name": "pch_test_003"
+  }
+}

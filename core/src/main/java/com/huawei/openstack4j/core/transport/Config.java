@@ -31,9 +31,16 @@
  * *******************************************************************************/
 package com.huawei.openstack4j.core.transport;
 
+import java.util.HashMap;
+import java.util.Iterator;
+import java.util.Map;
+
+import java.util.concurrent.ExecutorService;
+
 import javax.net.ssl.HostnameVerifier;
 import javax.net.ssl.SSLContext;
 
+import com.google.common.base.Strings;
 import com.huawei.openstack4j.api.identity.EndpointURLResolver;
 import com.huawei.openstack4j.model.common.resolvers.ServiceVersionResolver;
 
@@ -59,6 +66,9 @@ public final class Config {
 	private ProxyHost proxy;
 	private ServiceVersionResolver resolver;
 	private EndpointURLResolver endpointURLResolver;
+	private ExecutorService executorService;
+
+	private Map<String, Double> microversions = new HashMap<>();
 
 	private Config() {
 	}
@@ -215,7 +225,59 @@ public final class Config {
 		this.ignoreSSLVerification = Boolean.TRUE;
 		return this;
 	}
-	
+
+	/**
+	 * Setting up a thread pool
+	 * @param executorService
+	 * @return
+	 */
+	public Config withExecutor(ExecutorService executorService){
+		this.executorService = executorService;
+		return this;
+	}
+
+	/**
+	 * Sets the microversions to use for some particular OpenStack services, "compute" for example
+	 * @param serviceType
+	 * @param microversion
+	 * @return
+	 */
+	public Config setMicroversion(String serviceType, Double microversion) {
+		microversions.put(serviceType,microversion);
+		return this;
+	}
+
+	/**
+	 *Get microversions
+	 * @return
+	 */
+	public Map<String, Double> getMicroversions() {
+		return microversions;
+	}
+
+	/**
+	 *remove microversions
+	 * @return
+	 */
+	public Config unsetMicroversion(String serviceType){
+		if (Strings.isNullOrEmpty(serviceType)) return this;
+		for(Iterator<Map.Entry<String,Double>> it = microversions.entrySet().iterator();it.hasNext();){
+			Map.Entry<String, Double> item = it.next();
+			if(serviceType.equalsIgnoreCase(item.getKey())){
+				it.remove();
+			}
+		}
+		return this;
+	}
+
+	/**
+	 *clear microversions
+	 * @return
+	 */
+	public Config clearMicroversions(){
+		microversions.clear();
+		return this;
+	}
 
 	public String getLanguage() {
 		return language;
@@ -271,6 +333,10 @@ public final class Config {
 
 	public ProxyHost getProxy() {
 		return proxy;
+	}
+
+	public ExecutorService getExecutor(){
+		return executorService;
 	}
 
 	@Override

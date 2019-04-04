@@ -50,7 +50,7 @@ public interface RouterBuilder extends Builder<RouterBuilder, Router> {
 	/**
 	 * @see Router#isAdminStateUp()()
 	 */
-	RouterBuilder adminStateUp(boolean isAdminStateUp);
+	RouterBuilder adminStateUp(Boolean isAdminStateUp);
 	
 	/**
 	 * @see Router#getExternalGatewayInfo()
@@ -66,21 +66,21 @@ public interface RouterBuilder extends Builder<RouterBuilder, Router> {
 	 * @see Router#getExternalGatewayInfo()
 	 */
 	RouterBuilder externalGateway(ExternalGateway externalGateway);
-	
-	/**
-	 * Removes the external gateway from the router during an update operation
-	 */
-	RouterBuilder clearExternalGateway();
 
-	/**
-	 * @see Router#getRoutes()
-	 */
-	RouterBuilder route(String destination, String nexthop);
+    /**
+     * Removes the external gateway from the router during an update operation
+     */
+    RouterBuilder clearExternalGateway();
 
-	/**
-	 * Removes the static routes from the router during an update operation
-	 */
-	RouterBuilder noRoutes();
+    /**
+     * @see Router#getRoutes()
+     */
+    RouterBuilder route(String destination, String nexthop);
+
+    /**
+     * Removes the static routes from the router during an update operation
+     */
+    RouterBuilder noRoutes();
 	
 	/**
 	 * 

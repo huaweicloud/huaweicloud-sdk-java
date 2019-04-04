@@ -21,17 +21,14 @@ import java.util.List;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonRootName;
+import com.google.common.base.MoreObjects;
 import com.huawei.openstack4j.api.Apis;
 import com.huawei.openstack4j.model.network.Network;
 import com.huawei.openstack4j.model.network.NetworkType;
 import com.huawei.openstack4j.model.network.State;
 import com.huawei.openstack4j.model.network.Subnet;
 import com.huawei.openstack4j.model.network.builder.NetworkBuilder;
-import com.huawei.openstack4j.model.network.builder.PortBuilder;
 import com.huawei.openstack4j.openstack.common.ListResult;
-
-import com.google.common.base.MoreObjects;
-import com.google.common.collect.Sets;
 
 /**
  * An OpenStack (Neutron) network
@@ -162,8 +159,8 @@ public class NeutronNetwork implements Network {
      * {@inheritDoc}
      */
     @Override
-    public boolean isAdminStateUp() {
-        return adminStateUp != null && adminStateUp;
+    public Boolean isAdminStateUp() {
+        return adminStateUp;
     }
 
     /**
@@ -203,8 +200,8 @@ public class NeutronNetwork implements Network {
      * {@inheritDoc}
      */
     @Override
-    public boolean isShared() {
-        return shared != null && shared;
+    public Boolean isShared() {
+        return shared;
     }
 
     /**

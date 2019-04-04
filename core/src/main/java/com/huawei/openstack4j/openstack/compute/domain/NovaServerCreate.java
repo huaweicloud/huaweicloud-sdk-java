@@ -64,7 +64,6 @@ public class NovaServerCreate implements ServerCreate {
 	private String accessIPv4;
 	private String accessIPv6;
 	
-	// http://support.huaweicloud.com/api-ecs/zh-cn_topic_0068473331.html
 	@JsonProperty("min_count")
 	private Integer min;
 	

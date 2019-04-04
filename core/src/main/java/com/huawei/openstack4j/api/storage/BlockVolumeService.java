@@ -40,6 +40,7 @@ import com.huawei.openstack4j.model.storage.block.Volume;
 import com.huawei.openstack4j.model.storage.block.VolumeType;
 import com.huawei.openstack4j.model.storage.block.VolumeUploadImage;
 import com.huawei.openstack4j.model.storage.block.options.UploadImageData;
+import com.huawei.openstack4j.openstack.storage.block.domain.CinderVolumeUpdate;
 
 /**
  * Manages Volumes and Volume Type based operations against Block Storage (Cinder)
@@ -165,6 +166,15 @@ public interface BlockVolumeService extends RestService {
 	ActionResponse update(String volumeId, String name, String description);
 
 	/**
+	 * OpenStack only allows name or description or metadata to be updated. This call enforces that based on the API docs.
+	 *
+	 * @param volumeId the volume id
+	 * @param volume the volume info to update
+	 * @return the volume info
+	 */
+	Volume update(String volumeId, CinderVolumeUpdate volume);
+
+	/**
 	 * migrate a volume to another host and service
 	 *
 	 * @param volumeId the volume id
@@ -214,4 +224,113 @@ public interface BlockVolumeService extends RestService {
 	 * @return
 	 */
 	ActionResponse forceDetach(String volumeId, String initiator,String attachmentId  );
+
+//	/**
+//	 * Configuring Bootable for an EVS Disk
+//	 *
+//	 * @param volumeId
+//	 * @param bootable
+//	 * @return
+//	 */
+//	ActionResponse setBootable(String volumeId, boolean bootable);
+//
+//	/**
+//	 * Querying API Versions
+//	 *
+//	 * @return
+//	 */
+//	List<? extends Version> versions();
+//
+//	/**
+//	 * Querying API Versions (v2)
+//	 *
+//	 * @return
+//	 */
+//	List<? extends Version> versionsV2();
+//
+//	/**
+//	 * Querying block store disks.
+//	 *
+//	 * @return List of Volumes.
+//	 */
+//    List<? extends Volume> listVolumes();
+//
+//    /**
+//     * Querying block store disks filtered by parameters.
+//     *
+//     * @param filteringParams map (name, value) of filtering parameters.
+//     * @return List of Volumes.
+//     */
+//    List<? extends Volume> listVolumes(Map<String, String> filteringParams);
+//
+//	/**
+//	 * Querying details about a disk type.
+//	 *
+//	 * @param typeId The id of disk's type.
+//	 * @return A VolumeType.
+//	 */
+//	VolumeType getVolumeType(String typeId);
+//
+//	/**
+//	 * Adding or Updating Metadata of an EVS Disk
+//	 *
+//	 * @param volumeId
+//	 * @return
+//	 */
+//	VolumeMetadata createMetadata(String volumeId, VolumeMetadata metadata);
+//
+//	/**
+//	 * Querying Metadata of an EVS Disk
+//	 *
+//	 * @param volumeId
+//	 * @return
+//	 */
+//	VolumeMetadata getMetadata(String volumeId);
+//
+//	/**
+//	 * Querying One Piece of EVS Disk Metadata
+//	 *
+//	 * @param volumeId
+//	 * @param key
+//	 * @return
+//	 */
+//	VolumeMeta getMeta(String volumeId, String key);
+//
+//	/**
+//	 * Updating Metadata of an EVS Disk
+//	 *
+//	 * @param volumeId
+//	 * @param metadata
+//	 * @return
+//	 */
+//	VolumeMetadata updateMetadata(String volumeId, VolumeMetadata metadata);
+//
+//	/**
+//	 * Updating One Piece of EVS Disk Metadata
+//	 *
+//	 * @param volumeId
+//	 * @param key
+//	 *            Specifies the key of the metadata that requires the update
+//	 * @param metadata
+//	 *            Specifies the piece of the disk metadata, which is made up of a
+//	 *            key-value pair
+//	 * @return
+//	 */
+//	VolumeMeta updateMeta(String volumeId, String key, VolumeMeta metadata);
+//
+//	/**
+//	 * Deleting One Piece of EVS Disk Metadata
+//	 *
+//	 * @param volumeId
+//	 * @param key
+//	 * @return
+//	 */
+//	ActionResponse deleteMetadata(String volumeId, String key);
+//
+//	/**
+//	 * Querying API Extensions
+//	 *
+//	 * @return
+//	 */
+//	List<? extends Extension> listExtensions();
 }

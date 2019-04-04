@@ -1,0 +1,29 @@
+{
+	"quotas": {
+		"resources": [{
+				"type": "vpc",
+				"used": 4,
+				"quota": 150,
+				"min": 0
+			},
+			{
+				"type": "subnet",
+				"used": 5,
+				"quota": 400,
+				"min": 0
+			},
+			{
+				"type": "securityGroup",
+				"used": 1,
+				"quota": 100,
+				"min": 0
+			},
+			{
+				"type": "securityGroupRule",
+				"used": 6,
+				"quota": 5000,
+				"min": 0
+			}
+		]
+	}
+}

@@ -40,7 +40,7 @@ public interface Router extends Resource, Buildable<RouterBuilder> {
 	 *
 	 * @return true, if the administrative state is up
 	 */
-	boolean isAdminStateUp();
+	Boolean isAdminStateUp();
 	
 	/**
 	 * Indicates whether a router is currently operational or not

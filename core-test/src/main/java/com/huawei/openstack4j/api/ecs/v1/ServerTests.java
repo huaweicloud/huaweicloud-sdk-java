@@ -15,31 +15,36 @@
  *******************************************************************************/
 package com.huawei.openstack4j.api.ecs.v1;
 
-import static org.testng.Assert.*;
+import okhttp3.mockwebserver.RecordedRequest;
 
+import static org.testng.Assert.assertEquals;
+
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.testng.Assert;
 import org.testng.annotations.Test;
 import org.testng.collections.Lists;
 
+import com.google.common.collect.Maps;
 import com.huawei.openstack4j.api.AbstractTest;
 import com.huawei.openstack4j.model.compute.RebootType;
 import com.huawei.openstack4j.model.compute.StopType;
+import com.huawei.openstack4j.openstack.ecs.v1.contants.IpType;
 import com.huawei.openstack4j.openstack.ecs.v1.contants.NetworkChargingMode;
 import com.huawei.openstack4j.openstack.ecs.v1.contants.ShareType;
 import com.huawei.openstack4j.openstack.ecs.v1.contants.VolumeType;
 import com.huawei.openstack4j.openstack.ecs.v1.domain.Bandwidth;
 import com.huawei.openstack4j.openstack.ecs.v1.domain.CloudAbsoluteLimit;
+import com.huawei.openstack4j.openstack.ecs.v1.domain.CloudServer.CloudServers;
 import com.huawei.openstack4j.openstack.ecs.v1.domain.DataVolume;
 import com.huawei.openstack4j.openstack.ecs.v1.domain.Flavor;
 import com.huawei.openstack4j.openstack.ecs.v1.domain.FloatingIPCreate;
 import com.huawei.openstack4j.openstack.ecs.v1.domain.Personality;
 import com.huawei.openstack4j.openstack.ecs.v1.domain.RootVolume;
+import com.huawei.openstack4j.openstack.ecs.v1.domain.ServerChangeOS;
 import com.huawei.openstack4j.openstack.ecs.v1.domain.ServerCreate;
-import com.huawei.openstack4j.openstack.ecs.v1.contants.IpType;
-
-import okhttp3.mockwebserver.RecordedRequest;
 
 @Test(suiteName = "ECS/Servers")
 public class ServerTests extends AbstractTest {
@@ -51,6 +56,11 @@ public class ServerTests extends AbstractTest {
 	
 	private static final String ecs_limit = "/ecs/absoluteLimit.json";
 	private static final String ecs_specifications = "/ecs/flavorsSpecifications.json";
+	private static final String ecs_autorecovery = "/ecs/autorecovery.json";
+	private static final String ecs_flavors = "/ecs/flavors.json";
+	private static final String ecs_list_with_count = "/ecs/serverListWithCount.json";
+	private static final String ecs_list_with_count_by_filter = "/ecs/serverListWithCountByFilter.json";
+
 	@Test
 	public void deleteServerTest() throws Exception {
 		respondWith(200, "{\"job_id\": \"this-is-a-job-id\"}");
@@ -166,4 +176,88 @@ public class ServerTests extends AbstractTest {
 		List<Flavor> specifications = osv3().ecs().servers().getSpecifications(null);
 		Assert.assertTrue(!specifications.isEmpty());
 	}
+	
+	@Test
+	public void changeOSTest() throws Exception {
+		respondWith(200, "{\"job_id\": \"this-is-a-job-id\"}");
+
+		String serverId = "server-id";
+		Map<String, Object> metadata = Maps.newHashMap();
+		metadata.put("BYOL", "false");
+		
+		ServerChangeOS change = ServerChangeOS.builder().keyName("KeyPair-350b").userId("7e25b1da389f4697a79df3a0e5bd494e").imageId("e215580f-73ad-429d-b6f2-5433947433b0").metadata(metadata).build();
+		String jobId = osv3().ecs().serversV2().changeOS(change, serverId);
+		RecordedRequest request = server.takeRequest();
+		assertEquals(request.getPath(), "/v2/project-id/cloudservers/server-id/changeos");
+		assertEquals(request.getMethod(), "POST");
+		assertEquals(jobId, "this-is-a-job-id");
+
+		String requestBody = request.getBody().readUtf8();
+		String expectBody = this.getResource("/ecs/server_changeos_request.json");
+		Assert.assertEquals(requestBody, expectBody);
+	}
+
+//	@Test
+//	public void reinstallOSTest() throws Exception{
+//		respondWith(200, "{\"job_id\": \"this-is-a-job-id\"}");
+//		String serverId = "server-id";
+//		OSReinstall reinstall = OSReinstall.builder().adminPass("Test@123").build();
+//		AsyncJobEntity asyncJobEntity = osv3().ecs().serversV2().reinstallOS(reinstall, serverId);
+//		Assert.assertEquals(asyncJobEntity.getJobId(), "this-is-a-job-id");
+//	}
+//
+//	@Test
+//	public void getAutoRecoveryTest() throws Exception{
+//		respondWith(ecs_autorecovery);
+//		String serverId = "server-id";
+//		SupportAutoRecovery autoRecovery = osv3().ecs().servers().getAutoRecovery(serverId);
+//		Assert.assertEquals(autoRecovery.getSupportAutoRecovery().toString(), "true");
+//	}
+//
+//	@Test
+//	public void manageAutoRecoveryTest() throws Exception{
+//		respondWith(200);
+//		String serverId = "server-id";
+//		SupportAutoRecovery autoRecovery = SupportAutoRecovery.builder().supportAutoRecovery("true").build();
+//		ActionResponse actionResponse = osv3().ecs().servers().manageAutoRecovery(serverId, autoRecovery);
+//		Assert.assertEquals(actionResponse.getCode(), 200);
+//	}
+
+	@Test
+	public void listWithCountTest() throws Exception {
+		respondWith(ecs_list_with_count);
+		CloudServers cloudServer = osv3().ecs().servers().listWithCount();
+		assertEquals("4", cloudServer.getCount().toString());
+		assertEquals(0, cloudServer.getServers().size());
+	}
+
+	@Test
+	public void listWithCountByFilterTest() throws Exception {
+		respondWith(ecs_list_with_count_by_filter);
+		Map<String, String> filter = new HashMap<String, String>();
+		filter.put("offset", "0");
+		filter.put("status", "SHUTOFF");
+		CloudServers cloudServer = osv3().ecs().servers().listWithCount(filter);
+		assertEquals("1", cloudServer.getCount().toString());
+		assertEquals(1, cloudServer.getServers().size());
+	}
+
+//	@Test
+//	public void getChangeSpecificationsTest() throws Exception{
+//		respondWith(ecs_flavors);
+//		List<? extends Flavor> changeSpecifications = osv3().ecs().servers().getChangeSpecifications();
+//		Assert.assertEquals(changeSpecifications.size(), 1);
+//		Assert.assertEquals(changeSpecifications.get(0).getName(), "c1.large");
+//		Assert.assertEquals(changeSpecifications.get(0).getRam().toString(), "2048");
+//		Assert.assertEquals(changeSpecifications.get(0).getVcpus().toLowerCase(), "2");
+//		Assert.assertEquals(changeSpecifications.get(0).getId(), "c1.large");
+//	}
+
+//	@Test
+//	public void addServerMonitorTest() throws Exception{
+//		respondWith(200);
+//		ActionResponse actionResponse = osv3().ecs().servers().addServerMonitor("server-id", MonitorMetrics.builder().monitorMetrics("test").build());
+//		Assert.assertEquals(actionResponse.getCode(), 200);
+//	}
+
 }

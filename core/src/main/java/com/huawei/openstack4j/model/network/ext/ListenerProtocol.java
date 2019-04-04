@@ -25,6 +25,7 @@ public enum ListenerProtocol {
     HTTP,
     HTTPS,
     TERMINATED_HTTPS,
+    UDP,
     TCP;
 
     @JsonCreator

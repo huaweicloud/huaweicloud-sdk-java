@@ -48,7 +48,7 @@
   	"public": "https://dms.%(region)s.%(domain)s/v1.0/%(projectId)s"
   },
   "MAAS":{
-  	"public": "https://maas.%(region)s.%(domain)s/v1/%(projectId)s/objectstorage"
+  	"public": "https://maas.%(region)s.%(domain)s/v1/%(projectId)s"
   },
   "ECS":{
   	"public": "https://ecs.%(region)s.%(domain)s/v1/%(projectId)s"
@@ -58,6 +58,9 @@
   },
    "EVS":{
   	"public": "https://evs.%(region)s.%(domain)s/v2/%(projectId)s"
+  },
+  "DSS":{
+    "public": "https://dss.%(region)s.%(domain)s/v1/%(projectId)s"
   },
    "EVS2_1":{
   	"public": "https://evs.%(region)s.%(domain)s/v2.1/%(projectId)s"

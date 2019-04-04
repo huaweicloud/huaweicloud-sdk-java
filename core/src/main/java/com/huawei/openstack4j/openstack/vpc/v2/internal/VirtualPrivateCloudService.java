@@ -27,4 +27,16 @@ public class VirtualPrivateCloudService extends BaseVirtualPrivateCloudService i
 	public BandWidthService bandwidths() {
 		return Apis.get(BandWidthService.class);
 	}
+
+//	public PeeringService peerings(){
+//		return Apis.get(PeeringService.class);
+//	}
+
+//	public RouteService routes(){
+//		return Apis.get(RouteService.class);
+//	}
+
+//	public NetworkIpService networkips(){
+//		return Apis.get(NetworkIpService.class);
+//	}
 }

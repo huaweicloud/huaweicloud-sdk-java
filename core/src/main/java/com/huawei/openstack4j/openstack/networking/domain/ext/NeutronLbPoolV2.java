@@ -32,18 +32,19 @@
 
 package com.huawei.openstack4j.openstack.networking.domain.ext;
 
+import java.util.List;
+
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonRootName;
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import com.google.common.base.MoreObjects;
 import com.huawei.openstack4j.model.network.ext.LbMethod;
 import com.huawei.openstack4j.model.network.ext.LbPoolV2;
 import com.huawei.openstack4j.model.network.ext.Protocol;
 import com.huawei.openstack4j.model.network.ext.SessionPersistence;
 import com.huawei.openstack4j.model.network.ext.builder.LbPoolV2Builder;
 import com.huawei.openstack4j.openstack.common.ListResult;
-import com.google.common.base.MoreObjects;
-
-import java.util.List;
 
 /**
  * Lbaas V2 load balancer pool
@@ -76,6 +77,7 @@ public class NeutronLbPoolV2 implements LbPoolV2 {
     private LbMethod lbMethod;
 
     @JsonProperty("session_persistence")
+    @JsonDeserialize(as = NeutronSessionPersistence.class)
     private SessionPersistence sessionPersistence;
 
     @JsonProperty("admin_state_up")

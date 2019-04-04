@@ -135,8 +135,8 @@ public class NeutronRouter implements Router {
      */
     @JsonIgnore
     @Override
-    public boolean isAdminStateUp() {
-        return (adminStateUp != null) ? adminStateUp : false;
+    public Boolean isAdminStateUp() {
+        return adminStateUp;
     }
 
     /**
@@ -235,7 +235,7 @@ public class NeutronRouter implements Router {
          * {@inheritDoc}
          */
         @Override
-        public RouterBuilder adminStateUp(boolean isAdminStateUp) {
+        public RouterBuilder adminStateUp(Boolean isAdminStateUp) {
             m.adminStateUp = isAdminStateUp;
             return this;
         }

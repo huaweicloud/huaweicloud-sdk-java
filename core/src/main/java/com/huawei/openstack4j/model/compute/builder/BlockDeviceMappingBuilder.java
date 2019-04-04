@@ -18,6 +18,7 @@ package com.huawei.openstack4j.model.compute.builder;
 import com.huawei.openstack4j.common.Buildable;
 import com.huawei.openstack4j.model.compute.BDMDestType;
 import com.huawei.openstack4j.model.compute.BDMSourceType;
+import com.huawei.openstack4j.model.compute.BDMVolumeType;
 import com.huawei.openstack4j.model.compute.BlockDeviceMappingCreate;
 
 /**
@@ -124,4 +125,11 @@ public interface BlockDeviceMappingBuilder extends Buildable.Builder<BlockDevice
      */
     BlockDeviceMappingBuilder deviceType(String deviceType);
 
+
+	/**
+	 * The volume type is used when source is image and dest is volume.
+	 * @param volumeType
+	 * @return
+	 */
+	BlockDeviceMappingBuilder volumeType(BDMVolumeType volumeType);
 }

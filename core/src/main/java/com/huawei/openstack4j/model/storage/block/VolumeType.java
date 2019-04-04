@@ -44,6 +44,21 @@ public interface VolumeType extends ModelEntity, Buildable<VolumeTypeBuilder> {
 	 * @return the extra specifications (meta-data) associated with the volume type
 	 */
 	Map<String, String> getExtraSpecs();
+
+	/**
+	 * @return the description of the volume type
+	 */
+	String getDescription();
+
+	/**
+	 * @return the qos_specs_id of the volume type
+	 */
+	String getQosSpecsId();
+
+	/**
+	 * @return is the volume type public
+	 */
+	Boolean isPublic();
 	
 	
 }

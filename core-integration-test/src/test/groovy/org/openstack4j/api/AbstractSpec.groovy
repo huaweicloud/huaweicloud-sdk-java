@@ -23,7 +23,7 @@ abstract class AbstractSpec extends Specification {
     def static String USER_NAME = System.getenv('OS_USERNAME') ?: 'admin'
     def static String USER_DOMAIN_ID = System.getenv('OS_USER_DOMAIN_ID') ?: DOMAIN_ID
     def static String AUTH_URL = System.getenv('OS_AUTH_URL') ?: 'http://devstack.openstack.stack:5000/v3'
-    def static String PASSWORD = System.getenv('OS_PASSWORD') ?: 'devstack'
+    def static String PASSWORD = System.getenv('OS_PASSWORD') ?: '******'
     def static String PROJECT_ID = System.getenv('OS_PROJECT_ID') ?: '194dfdddb6bc43e09701035b52edb0d9'
     def static String PROJECT_NAME = System.getenv('OS_PROJECT_NAME') ?: 'admin'
     def static String PROJECT_DOMAIN_ID = System.getenv('OS_PROJECT_DOMAIN_ID') ?: DOMAIN_ID

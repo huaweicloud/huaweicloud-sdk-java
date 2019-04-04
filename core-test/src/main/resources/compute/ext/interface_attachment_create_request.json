@@ -1,0 +1,8 @@
+{
+  "interfaceAttachment" : {
+    "fixed_ips" : [ {
+      "ip_address" : "ip-address"
+    } ],
+    "net_id" : "net-id"
+  }
+}

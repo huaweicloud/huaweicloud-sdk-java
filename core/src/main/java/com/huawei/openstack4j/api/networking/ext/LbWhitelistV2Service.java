@@ -15,6 +15,9 @@
  *******************************************************************************/
 package com.huawei.openstack4j.api.networking.ext;
 
+import java.util.List;
+import java.util.Map;
+
 import com.huawei.openstack4j.common.RestService;
 import com.huawei.openstack4j.model.common.ActionResponse;
 import com.huawei.openstack4j.openstack.networking.domain.ext.NeutronWhitelist;
@@ -35,7 +38,13 @@ public interface LbWhitelistV2Service extends RestService{
 	 * @return
 	 */
 	NeutronWhitelists	list();
-	
+
+	/**
+	 * 查询whitelist
+	 * @return
+	 */
+	List<? extends NeutronWhitelist> list(Map<String, String> filteringParams);
+
 	/**
 	 * 创建whitelist
 	 * @param model

@@ -1,5 +1,9 @@
 package com.huawei.openstack4j.openstack.identity.signer;
 
+import lombok.Builder;
+import lombok.Getter;
+import lombok.Setter;
+
 import java.io.UnsupportedEncodingException;
 import java.net.MalformedURLException;
 import java.net.URL;
@@ -19,18 +23,13 @@ import java.util.TreeMap;
 import javax.crypto.Mac;
 import javax.crypto.spec.SecretKeySpec;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
 import com.google.common.base.Joiner;
 import com.google.common.base.Strings;
 import com.google.common.collect.Lists;
-
-import com.fasterxml.jackson.core.JsonProcessingException;
 import com.huawei.openstack4j.core.transport.HttpRequest;
 import com.huawei.openstack4j.core.transport.ObjectMapperSingleton;
 import com.huawei.openstack4j.utils.BinaryUtils;
-
-import lombok.Builder;
-import lombok.Getter;
-import lombok.Setter;
 
 /**
  *
@@ -296,7 +295,14 @@ public class AKSK {
 				String key = pair.getKey();
 				List<Object> values = pair.getValue();
 				for (Object value : values) {
-					sorted.put(urlEncode(key), urlEncode(value.toString()));
+					String valueString = value.toString();
+					if("tags".equals(key)||"metadata".equals(key)){
+						if(valueString.contains("%7B")||valueString.contains("%7D")||valueString.contains("%7b")||valueString.contains("%7d")){
+							valueString = valueString.replace("%7B","{").replace("%7b","{")
+									.replace("%7D","}").replace("%7d","}");
+						}
+					}
+					sorted.put(urlEncode(key), urlEncode(valueString));
 				}
 			}
 		}

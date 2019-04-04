@@ -132,5 +132,5 @@ public interface HealthMonitorV2Builder extends Buildable.Builder<HealthMonitorV
      *            (UP) or false (DOWN). Default is true
      * @return HealthMonitorV2Builder
      */
-    HealthMonitorV2Builder adminStateUp(boolean adminStateUp);
+    HealthMonitorV2Builder adminStateUp(Boolean adminStateUp);
 }

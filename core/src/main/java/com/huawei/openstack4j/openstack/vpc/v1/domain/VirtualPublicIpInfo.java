@@ -41,5 +41,9 @@ public class VirtualPublicIpInfo implements ModelEntity{
 	private String type;
 	@JsonProperty("publicip_address")
 	private String publicIpAddress;
-	
+	@JsonProperty("publicipv6_address")
+	private String publicipv6Address;
+	@JsonProperty("ip_version")
+	private Integer ipVersion;
+
 }

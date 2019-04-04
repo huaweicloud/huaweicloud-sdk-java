@@ -67,7 +67,9 @@ public class AKSKEndpointURLResolver extends AbstractEndpointURLResolver {
 		// filter placeholder parameters
 		endpoint = endpoint.replace("%(domain)s", p.domain);
 		endpoint = endpoint.replace("%(region)s", p.region);
-		endpoint = endpoint.replace("%(projectId)s", p.projectId);
+		if(p.projectId!=null){
+			endpoint = endpoint.replace("%(projectId)s", p.projectId);
+		}
 		return endpoint;
 	}
 	

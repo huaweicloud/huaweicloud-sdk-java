@@ -2,6 +2,7 @@ package sample;
 
 import java.util.List;
 
+import com.google.common.collect.Lists;
 import com.huawei.openstack4j.api.Builders;
 import com.huawei.openstack4j.api.OSClient.OSClientV3;
 import com.huawei.openstack4j.model.common.ActionResponse;
@@ -10,8 +11,10 @@ import com.huawei.openstack4j.model.network.Network;
 import com.huawei.openstack4j.model.network.Port;
 import com.huawei.openstack4j.model.network.Subnet;
 import com.huawei.openstack4j.openstack.OSFactory;
+import com.huawei.openstack4j.openstack.compute.domain.FixedIp;
 
 import com.huawei.openstack4j.model.compute.InterfaceAttachment;
+import com.huawei.openstack4j.openstack.compute.domain.NovaInterfaceAttachmentCreate;
 
 public class InterfaceDemo {
 	public static void main(String[] args) {
@@ -57,7 +60,7 @@ public class InterfaceDemo {
 				.build());
 		portId = port.getId();
 		
-		//create interface
+		//create interface with port_id
 		InterfaceAttachment newAttach = os.compute().servers().interfaces().create(serId, portId);
 		if (null != newAttach) {
 			attachmentId = newAttach.getPortId();
@@ -65,6 +68,18 @@ public class InterfaceDemo {
 		} else {
 			System.out.println("create InterfaceAttachment failed");
 		}
+
+		//create interface with net_id and fixed_ips
+		String ipAddress = "192.168.1.100";
+		FixedIp fixedIp = FixedIp.builder().ipAddress(ipAddress).build();
+		List<FixedIp> fixedIps = Lists.newArrayList();
+		fixedIps.add(fixedIp);
+		NovaInterfaceAttachmentCreate build = NovaInterfaceAttachmentCreate.builder()
+				.netId(network.getId())
+				.fixedIps(fixedIps)
+				.build();
+		InterfaceAttachment created = os.compute().servers().interfaces().create(serId, build);
+		System.out.println("created interfaceAttachment is : " + created);
 		
 		//get list of interface
 		List<? extends InterfaceAttachment> list = os.compute().servers().interfaces().list(serId);

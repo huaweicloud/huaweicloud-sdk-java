@@ -48,6 +48,10 @@ public class SecurityGroupDemo {
 			System.out.println("create rule failed");
 		}
 
+		//update securityGroups
+		SecGroupExtension updSecurityGroup = os.compute().securityGroups().update(secGroup.getId(), "test", "testDesc");
+		System.out.println("updated securityGroup is: " + updSecurityGroup);
+
 		//get securityGroups
 		SecGroupExtension sgInfo = os.compute().securityGroups().get(secGroup.getId());
 		if (null != sgInfo) {

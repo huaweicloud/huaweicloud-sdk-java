@@ -17,10 +17,6 @@ package com.huawei.openstack4j.api.compute;
 
 import java.util.List;
 
-import com.huawei.openstack4j.api.compute.ext.FloatingIPDNSService;
-import com.huawei.openstack4j.api.compute.ext.HypervisorService;
-import com.huawei.openstack4j.api.compute.ext.MigrationService;
-import com.huawei.openstack4j.api.compute.ext.ServicesService;
 import com.huawei.openstack4j.api.compute.ext.ZoneService;
 import com.huawei.openstack4j.common.RestService;
 import com.huawei.openstack4j.model.common.Extension;
@@ -136,7 +132,7 @@ public interface ComputeService extends RestService {
 	 * Server Tag Management Service
 	 * @return ServerTag Service
 	 */
-	//ServerTagService serverTags();
+//	ServerTagService serverTags();
 	
     /**
      *  Compute services service

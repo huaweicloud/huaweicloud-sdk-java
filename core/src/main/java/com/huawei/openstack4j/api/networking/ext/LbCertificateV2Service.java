@@ -15,6 +15,9 @@
  *******************************************************************************/
 package com.huawei.openstack4j.api.networking.ext;
 
+import java.util.List;
+import java.util.Map;
+
 import com.huawei.openstack4j.common.RestService;
 import com.huawei.openstack4j.model.common.ActionResponse;
 import com.huawei.openstack4j.openstack.networking.domain.ext.NeutronCertificate;
@@ -35,6 +38,12 @@ public interface LbCertificateV2Service extends RestService {
 	 * @return
 	 */
 	NeutronCertificates	list();
+
+	/**
+	 * 查询SSL证书。
+	 * @return
+	 */
+	List<? extends NeutronCertificate> list(Map<String, String> filteringParams);
 	
 	/**
 	 * 创建SSL证书。

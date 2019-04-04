@@ -126,7 +126,7 @@ public class CloudServer implements ModelEntity{
 	private String enterpriseProjectId;
 	@JsonProperty("sys_tags")
 	private List<SysTags> sysTags;
-	
+	@Getter
 	public static class CloudServers extends ListResult<CloudServer> {
 
 		
@@ -137,6 +137,8 @@ public class CloudServer implements ModelEntity{
 		
 		@JsonProperty("servers")
 		private List<CloudServer> servers;
+
+		private Integer count;
 
 		@Override
 		protected List<CloudServer> value() {

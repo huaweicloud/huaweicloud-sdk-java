@@ -38,8 +38,9 @@ public class OSClientSessionAKSK extends OSClientSession<OSClientSessionAKSK, OS
 
 	private String accessKey;
 	private String secretKey;
-	private String serviceDomain;
+	private String cloudDomainName;
 	private String projectId;
+	private String domainId;
 
 	CloudProvider provider = CloudProvider.HUAWEI;
 
@@ -61,7 +62,7 @@ public class OSClientSessionAKSK extends OSClientSession<OSClientSessionAKSK, OS
 		/*final EndpointURLResolver endpointResolver = (config != null && config.getEndpointURLResolver() != null)
 				? config.getEndpointURLResolver() : defaultEndpointURLResolver;		*/
 		URLResolverParams params = URLResolverParams.create(service).perspective(perspective).region(region)
-				.domain(serviceDomain).projectId(projectId);
+				.domain(cloudDomainName).projectId(projectId);
 		//如果有重写就先去重写匹配，重写匹配不到就去配置文件匹配
 		String url = null;
 		try{
@@ -116,18 +117,56 @@ public class OSClientSessionAKSK extends OSClientSession<OSClientSessionAKSK, OS
 	 */
 	@Override
 	public com.huawei.openstack4j.api.OSClient.OSClientAKSK credentials(String accessKey, String secretKey, String region,
-			String projectId, String serviceDomain) {
-
+																		String projectId, String cloudDomainName) {
 		checkArgument(!Strings.isNullOrEmpty(accessKey),"parameter `accessKey` should not be empty");
 		checkArgument(!Strings.isNullOrEmpty(secretKey),"parameter `secretKey` should not be empty");
 		checkArgument(!Strings.isNullOrEmpty(region),"parameter `region` should not be empty");
 		checkArgument(!Strings.isNullOrEmpty(projectId),"parameter `projectId` should not be empty");
-		checkArgument(!Strings.isNullOrEmpty(serviceDomain),"parameter `domain` should not be empty");
-		
+		checkArgument(!Strings.isNullOrEmpty(cloudDomainName),"parameter `cloudDomainName` should not be empty");
 		this.accessKey = accessKey;
 		this.secretKey = secretKey;
-		this.serviceDomain = serviceDomain;
+		this.cloudDomainName = cloudDomainName;
 		this.projectId = projectId;
+		this.useRegion(region);
+		sessions.set(this);
+		return this;
+	}
+
+
+	@Override
+	public com.huawei.openstack4j.api.OSClient.OSClientAKSK credentials(String accessKey, String secretKey, String region,
+																		String projectId, String domainId, String cloudDomainName) {
+
+		checkArgument(!Strings.isNullOrEmpty(accessKey),"parameter `accessKey` should not be empty");
+		checkArgument(!Strings.isNullOrEmpty(secretKey),"parameter `secretKey` should not be empty");
+		checkArgument(!Strings.isNullOrEmpty(region),"parameter `region` should not be empty");
+		checkArgument(!Strings.isNullOrEmpty(domainId),"parameter `domainId` should not be empty");
+		checkArgument(!Strings.isNullOrEmpty(cloudDomainName),"parameter `domain` should not be empty");
+
+		this.accessKey = accessKey;
+		this.secretKey = secretKey;
+		this.cloudDomainName = cloudDomainName;
+		this.domainId = domainId;
+		this.useRegion(region);
+		sessions.set(this);
+		return this;
+	}
+
+	/*
+	 * {@inheritDoc}
+	 */
+	@Override
+	public com.huawei.openstack4j.api.OSClient.OSClientAKSK credentials(String accessKey, String secretKey, String region,
+																		String cloudDomainName) {
+
+		checkArgument(!Strings.isNullOrEmpty(accessKey),"parameter `accessKey` should not be empty");
+		checkArgument(!Strings.isNullOrEmpty(secretKey),"parameter `secretKey` should not be empty");
+		checkArgument(!Strings.isNullOrEmpty(region),"parameter `region` should not be empty");
+		checkArgument(!Strings.isNullOrEmpty(cloudDomainName),"parameter `domain` should not be empty");
+
+		this.accessKey = accessKey;
+		this.secretKey = secretKey;
+		this.cloudDomainName = cloudDomainName;
 		this.useRegion(region);
 		sessions.set(this);
 		return this;
@@ -141,14 +180,16 @@ public class OSClientSessionAKSK extends OSClientSession<OSClientSessionAKSK, OS
 		return secretKey;
 	}
 
-	public String getServiceDomain() {
-		return serviceDomain;
+	public String getCloudDomain() {
+		return cloudDomainName;
 	}
 
 	public String getProjectId() {
 		return projectId;
 	}
-	
+	public String getDomainId() {
+		return domainId;
+	}
 	
 	public String getRegion() {
 		return region;

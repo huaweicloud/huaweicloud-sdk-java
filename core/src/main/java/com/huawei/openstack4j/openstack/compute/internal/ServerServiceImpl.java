@@ -31,7 +31,7 @@
  * *******************************************************************************/
 package com.huawei.openstack4j.openstack.compute.internal;
 
-import static com.google.common.base.Preconditions.*;
+import static com.google.common.base.Preconditions.checkNotNull;
 
 import java.util.HashMap;
 import java.util.List;
@@ -56,6 +56,7 @@ import com.huawei.openstack4j.model.compute.Server.Status;
 import com.huawei.openstack4j.model.compute.ServerCreate;
 import com.huawei.openstack4j.model.compute.ServerPassword;
 import com.huawei.openstack4j.model.compute.ServerUpdateOptions;
+import com.huawei.openstack4j.model.compute.StopType;
 import com.huawei.openstack4j.model.compute.VNCConsole;
 import com.huawei.openstack4j.model.compute.VNCConsole.Type;
 import com.huawei.openstack4j.model.compute.VolumeAttachment;
@@ -83,6 +84,7 @@ import com.huawei.openstack4j.openstack.compute.domain.actions.BasicActions.Migr
 import com.huawei.openstack4j.openstack.compute.domain.actions.BasicActions.Reboot;
 import com.huawei.openstack4j.openstack.compute.domain.actions.BasicActions.Resize;
 import com.huawei.openstack4j.openstack.compute.domain.actions.BasicActions.RevertResize;
+import com.huawei.openstack4j.openstack.compute.domain.actions.BasicActions.StopWithType;
 import com.huawei.openstack4j.openstack.compute.domain.actions.CreateSnapshotAction;
 import com.huawei.openstack4j.openstack.compute.domain.actions.EvacuateAction;
 import com.huawei.openstack4j.openstack.compute.domain.actions.LiveMigrationAction;
@@ -126,13 +128,13 @@ public class ServerServiceImpl extends BaseComputeServices implements ServerServ
 		return list(detail, Boolean.FALSE , filteringParams);
 	}
 
-	/**
-	 * {@inheritDoc}
-	 */
-	@Override
-	public List<? extends Server> listAll(boolean detail) {
-		return list(detail, Boolean.TRUE);
-	}
+//	/**
+//	 * {@inheritDoc}
+//	 */
+//	@Override
+//	public List<? extends Server> listAll(boolean detail) {
+//		return list(detail, Boolean.TRUE);
+//	}
 
 	private List<? extends Server> list(boolean detail, boolean allTenants) {
 		Invocation<Servers> req = get(Servers.class, uri("/servers" + ((detail) ? "/detail" : "")));
@@ -265,6 +267,15 @@ public class ServerServiceImpl extends BaseComputeServices implements ServerServ
 		response.getEntity(Void.class);
 		return id;
 	}
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public ActionResponse stop(String serverId, StopType type) {
+        checkNotNull(serverId);
+        return invokeAction(serverId, new StopWithType(type));
+    }
 
 	/**
 	 * {@inheritDoc}
@@ -492,6 +503,29 @@ public class ServerServiceImpl extends BaseComputeServices implements ServerServ
 				.execute();
 	}
 
+//	/**
+//	 * {@inheritDoc}
+//	 */
+//	@Override
+//	public Map<String, String> getMetadataItem(String serverId, String key) {
+//		checkNotNull(serverId);
+//		checkNotNull(key);
+//		return get(MetadataItem.class, uri("/servers/%s/metadata/%s", serverId,key)).execute();
+//	}
+//
+//	/**
+//	 * {@inheritDoc}
+//	 */
+//	@Override
+//	public Map<String, String> setMetadataItem(String serverId, String key, String value) {
+//		checkNotNull(serverId);
+//		checkNotNull(value);
+//		HashMap<String,String> metadataMap = new HashMap<String,String>();
+//		metadataMap.put(key, value);
+//		return put(MetadataItem.class, uri("/servers/%s/metadata/%s", serverId, key)).entity(MetadataItem.toMetadataItem(metadataMap))
+//				.execute();
+//	}
+
 	/**
 	 * {@inheritDoc}
 	 */
@@ -550,4 +584,22 @@ public class ServerServiceImpl extends BaseComputeServices implements ServerServ
 		return post(AdminPass.class, uri("/servers/%s/action", serverId)).entity(EvacuateAction.create(options))
 				.execute();
 	}
+//	/**
+//	 * {@inheritDoc}
+//	 */
+//	@Override
+//	public VolumeAttachment getAttachVolume(String serverId, String volumeId) {
+//		return get(NovaVolumeAttachment.class, uri("/servers/%s/os-volume_attachments/%s", serverId,volumeId))
+//				.execute();
+//	}
+//
+//	/**
+//	 * {@inheritDoc}
+//	 */
+//	@Override
+//	public List<? extends VolumeAttachment> listAttachedVolumes(String serverId) {
+//		Invocation<NovaVolumeAttachment.NovaVolumeAttachments> volumeAttachmentInvocation = get(NovaVolumeAttachment.NovaVolumeAttachments.class, uri("/servers/%s/os-volume_attachments", serverId));
+//		return volumeAttachmentInvocation.execute().getList();
+//	}
+
 }

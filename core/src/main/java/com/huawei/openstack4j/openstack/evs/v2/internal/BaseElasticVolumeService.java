@@ -15,6 +15,9 @@
  *******************************************************************************/
 package com.huawei.openstack4j.openstack.evs.v2.internal;
 
+import java.util.List;
+import java.util.Map;
+
 import com.google.common.base.Function;
 import com.huawei.openstack4j.api.types.ServiceType;
 import com.huawei.openstack4j.openstack.common.functions.ReplaceVersionOfURL;
@@ -29,4 +32,34 @@ public class BaseElasticVolumeService extends BaseOpenStackService{
 		public BaseElasticVolumeService(ServiceType serviceType, Function<String, String> endpointFunc) {
 			super(serviceType, endpointFunc);
 		}
+
+	/**
+	 * check and transform type to string if filterValue is list
+	 * @param filteringParams
+	 * @param filterKey
+	 */
+	protected void processListParams(Map<String,Object> filteringParams, String filterKey){
+		if (filteringParams.containsKey(filterKey)){
+			if (filteringParams.get(filterKey) instanceof List && !((List)(filteringParams.get(filterKey))).isEmpty()){
+				filteringParams.put(filterKey,parseListToString((List)filteringParams.get(filterKey)));
+			} else {
+				throw new IllegalArgumentException(String.format("parameter %s is invalid",filterKey));
+			}
+		}
+	}
+
+	/**
+	 * transform list to string(without space in string)
+	 * @param list
+	 * @return string
+	 */
+	private static String parseListToString(List<String> list){
+		StringBuffer stringBuffer = new StringBuffer();
+		stringBuffer.append("[");
+		for (String index : list)
+		{
+			stringBuffer.append("\"").append(index).append("\",");
+		}
+		return stringBuffer.substring(0, stringBuffer.length()-1) + "]";
+	}
 }

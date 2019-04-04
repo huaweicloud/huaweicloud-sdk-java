@@ -17,6 +17,9 @@ package com.huawei.openstack4j.openstack.networking.internal.ext;
 
 import static com.google.common.base.Preconditions.checkArgument;
 
+import java.util.List;
+import java.util.Map;
+
 import com.google.common.base.Strings;
 import com.huawei.openstack4j.api.networking.ext.LbRuleV2Service;
 import com.huawei.openstack4j.model.common.ActionResponse;
@@ -33,6 +36,20 @@ public class LbRuleV2ServiceImpl extends  BaseNetworkingServices implements LbRu
 	@Override
 	public NeutronRules list(String l7policyId) {
 		return get(NeutronRules.class, uri(API_PATH+"/%s/rules",l7policyId)).execute();
+	}
+
+	/**
+	 * {@inheritDoc}
+	 */
+	@Override
+	public List<? extends NeutronRule> list(String l7policyId, Map<String, String> filteringParams) {
+		Invocation<NeutronRules> serverInvocation = get(NeutronRules.class, uri(API_PATH+"/%s/rules",l7policyId));
+		if (filteringParams != null) {
+			for (Map.Entry<String, String> entry : filteringParams.entrySet()) {
+				serverInvocation = serverInvocation.param(entry.getKey(), entry.getValue());
+			}
+		}
+		return serverInvocation.execute().getList();
 	}
 
 	@Override

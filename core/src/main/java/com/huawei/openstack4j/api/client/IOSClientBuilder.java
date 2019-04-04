@@ -246,17 +246,39 @@ public interface IOSClientBuilder<R, T extends IOSClientBuilder<R, T>> {
     public interface AKSK extends IOSClientBuilder<OSClientAKSK, AKSK> {
 
     	/**
-    	 * build method for {@link OSClientV4#credentials(String, String, String, String, String)}
+    	 * build method for {@link #credentials(String, String, String, String, String)}
     	 * 
     	 * @param accessKey
     	 * @param secretKey
     	 * @param region
     	 * @param projectId
-    	 * @param serviceDomainName
+    	 * @param cloudDomainName
     	 * @return
     	 */
-    	AKSK credentials(String accessKey, String secretKey, String region, String projectId, String serviceDomainName);
+    	AKSK credentials(String accessKey, String secretKey, String region, String projectId, String cloudDomainName);
 
+
+        /**
+         * build method for {@link #credentials(String, String, String, String, String)}
+         *
+         * @param accessKey
+         * @param secretKey
+         * @param region
+         * @param cloudDomainName
+         * @return
+         */
+    	AKSK credentials(String accessKey, String secretKey, String region, String projectId, String domainId, String cloudDomainName);
+
+        /**
+         * build method for {@link #credentials(String, String, String, String)}
+         *
+         * @param accessKey
+         * @param secretKey
+         * @param region
+         * @param cloudDomainName
+         * @return
+         */
+        AKSK credentials(String accessKey, String secretKey, String region, String cloudDomainName);
     }
 
 }

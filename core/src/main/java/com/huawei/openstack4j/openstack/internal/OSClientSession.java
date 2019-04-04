@@ -78,24 +78,26 @@ import com.huawei.openstack4j.model.identity.AuthVersion;
 import com.huawei.openstack4j.model.identity.URLResolverParams;
 import com.huawei.openstack4j.model.identity.v2.Access;
 import com.huawei.openstack4j.model.identity.v3.Token;
-import com.huawei.openstack4j.openstack.ecs.v1.internal.ElasticComputeService;
 import com.huawei.openstack4j.openstack.antiddos.internal.AntiDDoSServices;
 import com.huawei.openstack4j.openstack.bms.v1.internal.BareMetaService;
+import com.huawei.openstack4j.openstack.cdn.v1.internal.CdnServices;
 import com.huawei.openstack4j.openstack.cloud.trace.v1.internal.CloudTraceV1Service;
 import com.huawei.openstack4j.openstack.cloud.trace.v2.internal.CloudTraceV2Service;
 import com.huawei.openstack4j.openstack.csbs.v1.internal.CloudServerBackupService;
 import com.huawei.openstack4j.openstack.database.internal.DatabaseServices;
+import com.huawei.openstack4j.openstack.dss.v1.internal.DssService;
+import com.huawei.openstack4j.openstack.ecs.v1.internal.ElasticComputeService;
 import com.huawei.openstack4j.openstack.evs.v2.internal.ElasticVolumeService;
 import com.huawei.openstack4j.openstack.fgs.v1.internal.FunctionGraphService;
 import com.huawei.openstack4j.openstack.identity.internal.DefaultEndpointURLResolver;
 import com.huawei.openstack4j.openstack.kms.internal.KeyManagementService;
 import com.huawei.openstack4j.openstack.maas.internal.MaaSService;
 import com.huawei.openstack4j.openstack.message.notification.internal.NotificationService;
+import com.huawei.openstack4j.openstack.message.queue.internal.MessageQueueAsyncService;
 import com.huawei.openstack4j.openstack.message.queue.internal.MessageQueueService;
 import com.huawei.openstack4j.openstack.tms.v1.internal.TagManagementService;
 import com.huawei.openstack4j.openstack.trove.internal.TroveService;
 import com.huawei.openstack4j.openstack.vpc.v2.internal.VirtualPrivateCloudService;
-import com.huawei.openstack4j.openstack.cdn.v1.internal.CdnServices;
 
 /**
  * A client which has been identified. Any calls spawned from this session will
@@ -123,7 +125,11 @@ public abstract class OSClientSession<R, T extends OSClient<T>> implements Endpo
 	public static OSClientSession getCurrent() {
 		return sessions.get();
 	}
-	
+
+	public static void setCurrent(OSClientSession session) {
+		sessions.set(session);
+	}
+
 	public Token getToken(){
 		return token;
 	}
@@ -385,6 +391,13 @@ public abstract class OSClientSession<R, T extends OSClient<T>> implements Endpo
 	/**
 	 * {@inheritDoc}
 	 */
+	public MessageQueueAsyncService messageQueueAsync() {
+		return Apis.get(MessageQueueAsyncService.class);
+	}
+
+	/**
+	 * {@inheritDoc}
+	 */
 	@SuppressWarnings("unchecked")
 	public T perspective(Facing perspective) {
 		this.perspective = perspective;
@@ -574,7 +587,16 @@ public abstract class OSClientSession<R, T extends OSClient<T>> implements Endpo
 	 public ElasticVolumeService evs() {
 		return Apis.get(ElasticVolumeService.class);
 	}
-	 
+
+	/**
+	 *
+	 * @return
+	 */
+	 public DssService dss()
+	{
+		return Apis.get(DssService.class);
+	}
+
 	 /**
 	 *
 	 * @return

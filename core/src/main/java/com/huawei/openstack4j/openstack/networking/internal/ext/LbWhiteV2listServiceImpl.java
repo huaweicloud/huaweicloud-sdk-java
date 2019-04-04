@@ -17,6 +17,9 @@ package com.huawei.openstack4j.openstack.networking.internal.ext;
 
 import static com.google.common.base.Preconditions.checkArgument;
 
+import java.util.List;
+import java.util.Map;
+
 import com.google.common.base.Strings;
 import com.huawei.openstack4j.api.networking.ext.LbWhitelistV2Service;
 import com.huawei.openstack4j.model.common.ActionResponse;
@@ -39,6 +42,20 @@ public class LbWhiteV2listServiceImpl extends  BaseNetworkingServices implements
 	@Override
 	public NeutronWhitelists list() {
 		return get(NeutronWhitelists.class, uri(API_PATH)).execute();
+	}
+
+	/**
+	 * {@inheritDoc}
+	 */
+	@Override
+	public List<? extends NeutronWhitelist> list(Map<String, String> filteringParams) {
+		Invocation<NeutronWhitelists> serverInvocation = get(NeutronWhitelists.class, uri(API_PATH));
+		if (filteringParams != null) {
+			for (Map.Entry<String, String> entry : filteringParams.entrySet()) {
+				serverInvocation = serverInvocation.param(entry.getKey(), entry.getValue());
+			}
+		}
+		return serverInvocation.execute().getList();
 	}
 
 	@Override

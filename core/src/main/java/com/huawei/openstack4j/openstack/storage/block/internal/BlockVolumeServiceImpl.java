@@ -31,14 +31,13 @@
  * *******************************************************************************/
 package com.huawei.openstack4j.openstack.storage.block.internal;
 
-import static com.google.common.base.Preconditions.*;
+import static com.google.common.base.Preconditions.checkNotNull;
 
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 import com.google.common.collect.Maps;
-
 import com.huawei.openstack4j.api.Apis;
 import com.huawei.openstack4j.api.Builders;
 import com.huawei.openstack4j.api.storage.BlockVolumeService;
@@ -55,6 +54,7 @@ import com.huawei.openstack4j.openstack.storage.block.domain.CinderVolume.Volume
 import com.huawei.openstack4j.openstack.storage.block.domain.CinderVolumeMigration;
 import com.huawei.openstack4j.openstack.storage.block.domain.CinderVolumeType;
 import com.huawei.openstack4j.openstack.storage.block.domain.CinderVolumeType.VolumeTypes;
+import com.huawei.openstack4j.openstack.storage.block.domain.CinderVolumeUpdate;
 import com.huawei.openstack4j.openstack.storage.block.domain.CinderVolumeUploadImage;
 import com.huawei.openstack4j.openstack.storage.block.domain.ExtendAction;
 import com.huawei.openstack4j.openstack.storage.block.domain.ForceDeleteAction;
@@ -187,6 +187,16 @@ public class BlockVolumeServiceImpl extends BaseBlockStorageServices implements 
 	 * {@inheritDoc}
 	 */
 	@Override
+	public Volume update(String volumeId, CinderVolumeUpdate volume) {
+		checkNotNull(volumeId);
+		return put(CinderVolume.class, uri("/volumes/%s", volumeId))
+				.entity(volume).execute();
+	}
+
+	/**
+	 * {@inheritDoc}
+	 */
+	@Override
 	public void deleteVolumeType(String volumeTypeId) {
 		checkNotNull(volumeTypeId);
 		delete(Void.class, uri("/types/%s", volumeTypeId)).execute();
@@ -286,4 +296,131 @@ public class BlockVolumeServiceImpl extends BaseBlockStorageServices implements 
 		ForceDetachAction detach = new ForceDetachAction(attachmentId, connector);
 		return post(ActionResponse.class, uri("/volumes/%s/action", volumeId)).entity(detach).execute();
 	}
+
+//	/**
+//	 * {@inheritDoc}
+//	 */
+//	@Override
+//	public ActionResponse setBootable(String volumeId, boolean bootable) {
+//		Map<String, Boolean> map = Maps.newHashMap();
+//		map.put("bootable", bootable);
+//		Map<String, Object> param = Maps.newHashMap();
+//		param.put("os-set_bootable", map);
+//		return postWithResponse(uri("/volumes/%s/action", volumeId)).entity(param).execute();
+//	}
+//
+//	/**
+//	 * {@inheritDoc}
+//	 */
+//	@Override
+//	public List<? extends Version> versions() {
+//		return get(Version.Versions.class, "/").execute().getList();
+//	}
+//
+//	/**
+//	 * {@inheritDoc}
+//	 */
+//	@Override
+//	public List<? extends Version> versionsV2() {
+//		return get(Version.Versions.class, "/v2").execute().getList();
+//	}
+//
+//		/**
+//	 * {@inheritDoc}
+//	 */
+//	@Override
+//	public List<? extends Volume> listVolumes() {
+//		return get(Volumes.class, "/volumes").execute().getList();
+//	}
+//
+//	/**
+//	 * {@inheritDoc}
+//	 */
+//	@Override
+//	public List<? extends Volume> listVolumes(Map<String, String> filteringParams) {
+//		Invocation<Volumes> volumeInvocation = get(Volumes.class, "/volumes");
+//		if (filteringParams != null) {
+//			for (Map.Entry<String, String> entry : filteringParams.entrySet()) {
+//				volumeInvocation = volumeInvocation.param(entry.getKey(), entry.getValue());
+//			}
+//		}
+//		return volumeInvocation.execute().getList();
+//	}
+//
+//	/**
+//	 * {@inheritDoc}
+//	 */
+//	@Override
+//	public VolumeType getVolumeType(String typeId) {
+//		checkArgument(!Strings.isNullOrEmpty(typeId), "`typeId` should not be empty");
+//		return get(CinderVolumeType.class, uri("/types/%s", typeId)).execute();
+//	}
+//
+//	/**
+//	 * {@inheritDoc}
+//	 */
+//	@Override
+//	public VolumeMetadata createMetadata(String volumeId, VolumeMetadata metadata) {
+//		checkArgument(!Strings.isNullOrEmpty(volumeId), "`volumeId` should not be empty");
+//		checkArgument(metadata != null, "`metadata` is required");
+//		return post(VolumeMetadata.class, uri("/volumes/%s/metadata", volumeId)).entity(metadata).execute();
+//	}
+//
+//	/**
+//	 * {@inheritDoc}
+//	 */
+//	@Override
+//	public VolumeMetadata getMetadata(String volumeId) {
+//		checkArgument(!Strings.isNullOrEmpty(volumeId), "`volumeId` should not be empty");
+//		return get(VolumeMetadata.class, uri("/volumes/%s/metadata", volumeId)).execute();
+//	}
+//
+//	/**
+//	 * {@inheritDoc}
+//	 */
+//	@Override
+//	public VolumeMeta getMeta(String volumeId, String key) {
+//		checkArgument(!Strings.isNullOrEmpty(volumeId), "`volumeId` should not be empty");
+//		checkArgument(!Strings.isNullOrEmpty(key), "`key` should not be empty");
+//		return get(VolumeMeta.class, uri("/volumes/%s/metadata/%s", volumeId, key)).execute();
+//	}
+//
+//	/**
+//	 * {@inheritDoc}
+//	 */
+//	@Override
+//	public VolumeMetadata updateMetadata(String volumeId, VolumeMetadata metadata) {
+//		checkArgument(!Strings.isNullOrEmpty(volumeId), "`volumeId` should not be empty");
+//		checkArgument(metadata != null, "`metadata` is required");
+//		return put(VolumeMetadata.class, uri("/volumes/%s/metadata", volumeId)).entity(metadata).execute();
+//	}
+//
+//	/**
+//	 * {@inheritDoc}
+//	 */
+//	@Override
+//	public VolumeMeta updateMeta(String volumeId, String key, VolumeMeta metadata) {
+//		checkArgument(!Strings.isNullOrEmpty(volumeId), "`volumeId` should not be empty");
+//		checkArgument(!Strings.isNullOrEmpty(key), "`key` should not be empty");
+//		checkArgument(metadata != null, "`metadata` is required");
+//		return put(VolumeMeta.class, uri("/volumes/%s/metadata/%s", volumeId, key)).entity(metadata).execute();
+//	}
+//
+//	/**
+//	 * {@inheritDoc}
+//	 */
+//	@Override
+//	public ActionResponse deleteMetadata(String volumeId, String key) {
+//		checkArgument(!Strings.isNullOrEmpty(volumeId), "`volumeId` should not be empty");
+//		checkArgument(!Strings.isNullOrEmpty(key), "`key` should not be empty");
+//		return deleteWithResponse(uri("/volumes/%s/metadata/%s", volumeId, key)).execute();
+//	}
+//
+//	/**
+//	 * {@inheritDoc}
+//	 */
+//	@Override
+//	public List<? extends Extension> listExtensions() {
+//		return get(Extensions.class, "/extensions").execute().getList();
+//	}
 }

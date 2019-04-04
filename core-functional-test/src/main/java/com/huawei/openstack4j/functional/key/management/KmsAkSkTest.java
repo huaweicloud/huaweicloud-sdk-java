@@ -56,8 +56,8 @@ public class KmsAkSkTest {
 		// add override endpoint
 		 
 		
-		String region = "replace-with-your-region,just like southchina";
-		String domain = "replace-with-your-domain,just like myhuaweicloud.com";
+		String region = "replace-with-your-region";
+		String domain = "replace-with-your-domain";
 		String projectId = "replace-with-your-projectid";
 		String ak = "replace-with-your-ak";
 		String sk = "replace-with-your-sk";

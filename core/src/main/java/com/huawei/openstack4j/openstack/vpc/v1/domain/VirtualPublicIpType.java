@@ -48,5 +48,6 @@ public class VirtualPublicIpType implements ModelEntity{
 	private IpType type;
 	@JsonProperty("ip_address")
 	private String ipAddress;
-	
+	@JsonProperty("ip_version")
+	private Integer ipVersion;
 }

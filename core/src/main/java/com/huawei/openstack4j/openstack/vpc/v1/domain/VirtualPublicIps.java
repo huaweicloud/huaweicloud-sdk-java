@@ -34,5 +34,7 @@ public class VirtualPublicIps {
 	private VirtualPublicIpType virtualPublicIp;
 	@JsonProperty("bandwidth")
 	private VirtualBandWidth virtualBandwidth;
+	@JsonProperty("enterprise_project_id")
+	private String enterpriseProjectId;
 	
 }

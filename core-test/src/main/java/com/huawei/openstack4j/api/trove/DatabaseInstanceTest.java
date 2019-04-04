@@ -225,7 +225,7 @@ public class DatabaseInstanceTest extends AbstractTest {
 		// get flavor
 		Volume volume = Volume.builder().type(VolumeType.COMMON).size(100).build();
 		NIC nic = NIC.builder().networkId("network-id").securityGroupId("sg-id").build();
-		DatabaseUser user = DatabaseUser.builder().username("root").password("Demo@234").build();
+		DatabaseUser user = DatabaseUser.builder().username("root").password("******").build();
 
 		DatabaseInstanceCreate instanceCreate = DatabaseInstanceCreate.builder().name("name").datastore(datastore)
 				.flavorRef("flavor-id").users(Lists.newArrayList(user)).volume(volume)

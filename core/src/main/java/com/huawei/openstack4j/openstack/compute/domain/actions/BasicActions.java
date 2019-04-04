@@ -21,6 +21,7 @@ import com.fasterxml.jackson.annotation.JsonRootName;
 import com.huawei.openstack4j.model.compute.Action;
 import com.huawei.openstack4j.model.compute.RebootType;
 
+import com.huawei.openstack4j.model.compute.StopType;
 import org.slf4j.LoggerFactory;
 
 /**
@@ -48,6 +49,18 @@ public final class BasicActions {
 
     @JsonRootName("os-stop")
     public static class Stop implements ServerAction { }
+
+    @JsonRootName("os-stop")
+    public static class StopWithType implements ServerAction {
+        @JsonProperty("type")
+        public String type;
+
+        public StopWithType(StopType type) {
+            if(type != null) {
+                this.type = type.name();
+            }
+        }
+    }
 
     @JsonRootName("resume")
     public static class Resume implements ServerAction { }

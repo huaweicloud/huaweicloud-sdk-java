@@ -49,7 +49,7 @@ public interface LbPoolV2 extends ModelEntity, Buildable<LbPoolV2Builder> {
     String getDescription();
 
     /**
-     * @return The protocol of the pool, which is TCP, HTTP, or HTTPS.
+     * @return The protocol of the pool, which is TCP, HTTP, or UDP.
      */
     Protocol getProtocol();
 

@@ -100,9 +100,10 @@ public class RouterServiceImpl extends BaseNetworkingServices implements RouterS
 		  for (HostRoute route : routes) {
 			rb.route(route.getDestination(), route.getNexthop());
 		  }
-		} else {
-			rb.noRoutes();
 		}
+//		else {
+//			rb.noRoutes();
+//		}
 		
 		return put(NeutronRouter.class, uri("/routers/%s", router.getId()))
 				     .entity(rb.build())

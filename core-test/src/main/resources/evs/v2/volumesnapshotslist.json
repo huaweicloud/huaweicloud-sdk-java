@@ -1,0 +1,42 @@
+{
+  "count": 2,
+  "snapshots": [
+    {
+      "status": "available",
+      "description": null,
+      "availability_zone": "kvmxen.dc1",
+      "dedicated_storage_id": "517eb026-2cdc-45da-9ebc-0c6ececb1236",
+      "updated_at": "2019-01-10T03:58:54.423862",
+      "volume_id": "e51d7a63-c267-4389-a23a-0fc8db41efc3",
+      "id": "e3566114-3d2e-45f8-9f54-b5abd0995878",
+      "size": 10,
+      "os-extended-snapshot-attributes:progress": "100%",
+      "name": "snapshot-b728",
+      "created_at": "2019-01-10T03:58:50.935544",
+      "volume_type": "SAS",
+      "dedicated_storage_name": "dss_yq",
+      "service_type": "DSS",
+      "os-extended-snapshot-attributes:project_id": "000efdc5f9064584b718b181df137bd7",
+      "metadata": {}
+    },
+    {
+      "status": "available",
+      "description": "",
+      "availability_zone": "kvmxen.dc1",
+      "dedicated_storage_id": null,
+      "updated_at": "2019-01-09T16:17:25.244433",
+      "volume_id": "f8da929c-8949-49e4-8ef4-36b06e23dd55",
+      "id": "7fca3791-58c7-47a1-a175-ac2ac7b5af04",
+      "size": 100,
+      "os-extended-snapshot-attributes:progress": "100%",
+      "name": "autobk_snapshot_csbs_1547049645069",
+      "created_at": "2019-01-09T16:14:56.793371",
+      "volume_type": "SAS",
+      "dedicated_storage_name": null,
+      "service_type": "EVS",
+      "os-extended-snapshot-attributes:project_id": "000efdc5f9064584b718b181df137bd7",
+      "metadata": {
+        "__system__enableActive": "true"
+      }
+    }]
+}

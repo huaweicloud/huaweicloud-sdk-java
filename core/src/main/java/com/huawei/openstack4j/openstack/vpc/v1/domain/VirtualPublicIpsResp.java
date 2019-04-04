@@ -60,11 +60,16 @@ public class VirtualPublicIpsResp implements ModelEntity{
 	private String type;
 	@JsonProperty("public_ip_address")
 	private String publicIpAddress;
+	@JsonProperty("public_ipv6_address")
+	private String publicIpv6Address;
+	@JsonProperty("ip_version")
+	private Integer ipVersion;
 	@JsonProperty("tenant_id")
 	private String tenantId;
 	@JsonProperty("create_time")
 	private String createTime;
 	@JsonProperty("bandwidth_size")
 	private Integer bandwidthSize;
-	
+	@JsonProperty("enterprise_project_id")
+	private String enterpriseProjectId;
 }

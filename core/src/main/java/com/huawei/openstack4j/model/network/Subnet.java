@@ -31,7 +31,7 @@ public interface Subnet extends Resource, Buildable<SubnetBuilder> {
 	/**
 	 * @return true if DHCP is enabled for this subnet, false if not.
 	 */
-	boolean isDHCPEnabled();
+	Boolean isDHCPEnabled();
 
 	/**
 	 * @return the id of the network this subnet is associated with

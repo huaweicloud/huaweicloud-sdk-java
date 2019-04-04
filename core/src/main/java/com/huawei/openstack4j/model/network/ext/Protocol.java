@@ -22,8 +22,8 @@ import com.fasterxml.jackson.annotation.JsonCreator;
  */
 public enum Protocol {
     HTTP,
-    HTTPS,
-    TCP;
+    TCP,
+    UDP;
 
     @JsonCreator
     public static Protocol forValue(String value) {

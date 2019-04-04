@@ -23,9 +23,12 @@ public class L7policy {
 	
 			
 		String lsnr_id = "******";
-		String pool_id = "******";
+		String l7p_action = "REDIRECT_TO_POOL"; //Chose from REDIRECT_TO_POOL and REDIRECT_TO_LISTENER
+		String red_pool_id = "******";//if action is REDIRECT_TO_POOL
+		String red_listener_id = "******";//if action is REDIRECT_TO_LISTENER
+
 //Create a Layer 7 Redirect Policy 
-		NeutronL7Policy l7p = NeutronL7Policy.builder().adminStateUp(true).name("l7p").redirectPoolId(pool_id).listenerId(lsnr_id).build();
+		NeutronL7Policy l7p = NeutronL7Policy.builder().adminStateUp(true).name("l7p").action(l7p_action).redirectPoolId(red_pool_id).listenerId(lsnr_id).build();
 		osclient.networking().lbaasV2().lbPolicy().create(l7p);
 //List all Layer 7 Redirect Policy
 		osclient.networking().lbaasV2().lbPolicy().list();

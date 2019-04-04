@@ -23,6 +23,7 @@ import lombok.NoArgsConstructor;
 import lombok.ToString;
 
 import com.fasterxml.jackson.annotation.JsonRootName;
+import com.huawei.openstack4j.openstack.evs.v2_1.contants.ChargingMode;
 
 @Getter
 @ToString
@@ -40,7 +41,14 @@ public class BssParamExtend {
 		true：立即支付，从帐户余额中自动扣费
 	 */
 	private Boolean isAutoPay;
-	
-	
+
+	/**
+	 * 功能说明：计费模式。默认值为postPaid。
+	 * 取值范围
+	 * −	prePaid：包年/包月
+	 * −	postPaid：按需计费
+	 * 若是扩容包周期云硬盘，必须填prePaid，而扩容按需云硬盘，必须填postPaid或使用默认值。
+	 */
+	private ChargingMode chargingMode;
 	
 }

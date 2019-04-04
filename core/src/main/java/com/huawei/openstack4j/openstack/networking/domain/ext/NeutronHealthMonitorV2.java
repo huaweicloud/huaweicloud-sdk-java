@@ -32,19 +32,18 @@
 
 package com.huawei.openstack4j.openstack.networking.domain.ext;
 
+import java.util.List;
+
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonRootName;
 import com.fasterxml.jackson.annotation.JsonValue;
+import com.google.common.base.MoreObjects;
 import com.huawei.openstack4j.model.network.ext.HealthMonitorType;
 import com.huawei.openstack4j.model.network.ext.HealthMonitorV2;
 import com.huawei.openstack4j.model.network.ext.builder.HealthMonitorV2Builder;
 import com.huawei.openstack4j.openstack.common.ListResult;
-import com.huawei.openstack4j.openstack.networking.domain.VpnEndpoint.EndpointType;
-import com.google.common.base.MoreObjects;
-
-import java.util.List;
 
 /**
  * A lbaas v2 health monitor entity
@@ -96,7 +95,7 @@ public class NeutronHealthMonitorV2 implements HealthMonitorV2 {
      * The administrative state of the health monitor, which is up (true) or down (false)
      */
     @JsonProperty("admin_state_up")
-    private boolean adminStateUp = true;
+    private Boolean adminStateUp = true;
 
     private List<ListItem> pools;
 
@@ -149,7 +148,7 @@ public class NeutronHealthMonitorV2 implements HealthMonitorV2 {
     }
 
     @Override
-    public boolean isAdminStateUp(){
+    public Boolean isAdminStateUp(){
         return adminStateUp;
     }
 
@@ -310,7 +309,7 @@ public class NeutronHealthMonitorV2 implements HealthMonitorV2 {
          * {@inheritDoc}
          */
         @Override
-        public HealthMonitorV2Builder adminStateUp(boolean adminStateUp) {
+        public HealthMonitorV2Builder adminStateUp(Boolean adminStateUp) {
             m.adminStateUp = adminStateUp;
             return this;
         }

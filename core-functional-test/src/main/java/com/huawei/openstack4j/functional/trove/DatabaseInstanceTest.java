@@ -99,7 +99,7 @@ public class DatabaseInstanceTest extends BaseTroveTest {
 
 		NIC nic = NIC.builder().networkId(networkId).securityGroupId(sgId).build();
 
-		DatabaseUser user = DatabaseUser.builder().username("root").password("Demo@234").build();
+		DatabaseUser user = DatabaseUser.builder().username("root").password("******").build();
 
 		DatabaseInstanceCreate instanceCreate = DatabaseInstanceCreate.builder().name(name).datastore(datastore)
 				.flavorRef(flavor.getId()).users(Lists.newArrayList(user)).volume(volume)

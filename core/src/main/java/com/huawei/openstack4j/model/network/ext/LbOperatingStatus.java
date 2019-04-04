@@ -22,7 +22,10 @@ import com.fasterxml.jackson.annotation.JsonCreator;
  */
 public enum LbOperatingStatus {
     ONLINE,
-    OFFLINE;
+    OFFLINE,
+    DEGRADED,
+    DISABLED,
+    NO_MONITOR;
 
     @JsonCreator
     public static LbOperatingStatus forValue(String value) {

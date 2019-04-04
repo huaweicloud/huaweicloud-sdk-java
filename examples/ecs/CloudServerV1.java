@@ -21,6 +21,7 @@ import com.huawei.openstack4j.openstack.ecs.v1.contants.ShareType;
 import com.huawei.openstack4j.openstack.ecs.v1.contants.VolumeType;
 import com.huawei.openstack4j.openstack.ecs.v1.domain.Bandwidth;
 import com.huawei.openstack4j.openstack.ecs.v1.domain.CloudServer;
+import com.huawei.openstack4j.openstack.ecs.v1.domain.CloudServer.CloudServers;
 import com.huawei.openstack4j.openstack.ecs.v1.domain.DataVolume;
 import com.huawei.openstack4j.openstack.ecs.v1.domain.FloatingIPCreate;
 import com.huawei.openstack4j.openstack.ecs.v1.domain.Personality;
@@ -28,6 +29,7 @@ import com.huawei.openstack4j.openstack.ecs.v1.domain.ResizeServer;
 import com.huawei.openstack4j.openstack.ecs.v1.domain.RootVolume;
 import com.huawei.openstack4j.openstack.ecs.v1.domain.ServerCreate;
 import com.huawei.openstack4j.openstack.ecs.v1.domain.ServerExtendParam;
+import sun.misc.BASE64Encoder;
 
 public class CloudServerV1 {
 	public static void main(String[] args) throws InterruptedException {
@@ -156,5 +158,18 @@ public class CloudServerV1 {
 		} else {
 			System.out.println("resize server failed");
 		}
+
+		//get count and list of server
+		CloudServers cloudServer = os.ecs().servers().listWithCount();
+		System.out.println("server count: " + cloudServer.getCount());
+		System.out.println("server list: " + cloudServer.getServers());
+
+		//get count and list of server with parameters
+		Map<String, String> filter = new HashMap<String, String>();
+		filter.put("offset", "0");
+		filter.put("status", "ACTIVE");
+		CloudServers serverObjects = os.ecs().servers().listWithCount(filter);
+		System.out.println("server count: " + serverObjects.getCount());
+		System.out.println("server list: " + serverObjects.getServers());
 	}
 }

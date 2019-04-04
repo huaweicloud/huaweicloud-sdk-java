@@ -1,0 +1,13 @@
+{
+  "bandwidth": {
+    "id": "3fa5b383-5a73-4dcb-a314-c6128546d855",
+    "name": "bandwidth123",
+    "size": 10,
+    "share_type": "WHOLE",
+    "publicip_info": [],
+    "tenant_id": "8b7e35ad379141fc9df3e178bd64f55c",
+    "bandwidth_type": "share",
+    "charge_mode": "bandwidth",
+    "billing_info": "CS1712121146TSQOJ:0616e2a5dc9f4985ba52ea8c0c7e273c:southchina:35f2b308f5d64441a6fa7999fbcd4321"
+  }
+}

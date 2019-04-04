@@ -95,6 +95,11 @@ public class CinderVolume implements Volume {
 	private Boolean encrypted;
 	@JsonProperty("os-vol-host-attr:host")
 	private String host;
+	@JsonProperty("backup_id")
+	private String backupId;
+	@JsonProperty("multiattach")
+	private Boolean multiattach;
+
 	/**
 	 * {@inheritDoc}
 	 */
@@ -187,7 +192,7 @@ public class CinderVolume implements Volume {
 	 */
 	@Override
 	public MigrationStatus getMigrateStatus() {
-		return migrateStatus != null ? migrateStatus : MigrationStatus.NONE;
+		return migrateStatus;
 	}
 
 	@Override
@@ -270,6 +275,24 @@ public class CinderVolume implements Volume {
 	 * {@inheritDoc}
 	 */
 	@Override
+	public boolean multiattach()
+	{
+		return multiattach;
+	}
+
+	/**
+	 * {@inheritDoc}
+	 */
+	@Override
+	public String getBackupId()
+	{
+		return backupId;
+	}
+
+	/**
+	 * {@inheritDoc}
+	 */
+	@Override
 	public String toString() {
 		return MoreObjects.toStringHelper(this).omitNullValues()
 				     .add("id", id).add("name", name).add("description", description)
@@ -277,6 +300,7 @@ public class CinderVolume implements Volume {
 				     .add("volumeType", volumeType).add("imageRef", getImageRef())
 				     .add("sourceVolid", sourceVolid).add("snapshotId", snapshotId).add("metadata", metadata)
 				     .add("bootable", bootable).add("imageMetadata", imageMetadata)
+				     .add("backupId",backupId).add("multiattach",multiattach)
 				     .toString();
 	}
 
@@ -381,5 +405,19 @@ public class CinderVolume implements Volume {
             m.zone = zone;
             return this;
         }
+
+		@Override
+		public VolumeBuilder multiattach(Boolean multiattach)
+		{
+			m.multiattach = multiattach;
+			return this;
+		}
+
+		@Override
+		public VolumeBuilder backupId(String backupId)
+		{
+			m.backupId = backupId;
+			return this;
+		}
 	}
 }

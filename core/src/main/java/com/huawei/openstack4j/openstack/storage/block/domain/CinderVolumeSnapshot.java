@@ -56,6 +56,12 @@ public class CinderVolumeSnapshot implements VolumeSnapshot {
 	private Boolean force;
 	@JsonProperty("metadata")
 	private Map<String, String> metadata;
+	@JsonProperty("updated_at")
+	private String updatedAt;
+	@JsonProperty("os-extended-snapshot-attributes:project_id")
+	private String projectId;
+	@JsonProperty("os-extended-snapshot-attributes:progress")
+	private String progress;
 
 	/**
 	 * {@inheritDoc}
@@ -137,6 +143,20 @@ public class CinderVolumeSnapshot implements VolumeSnapshot {
 	    return metadata;
 	}
 
+	public String getUpdatedAt()
+	{
+		return updatedAt;
+	}
+
+	public String getProjectId()
+	{
+		return projectId;
+	}
+
+	public String getProgress()
+	{
+		return progress;
+	}
 	/**
 	 * {@inheritDoc}
 	 */
@@ -145,7 +165,8 @@ public class CinderVolumeSnapshot implements VolumeSnapshot {
 		return MoreObjects.toStringHelper(this).omitNullValues()
 				     .add("id", id).add("name", name).add("description", description).add("volumeId", volumeId)
 				     .add("status", status).add("created", created).add("force", force).add("size", size).add("metadata", metadata)
-				     .toString();
+					 .add("projectId",projectId).add("progress",progress).add("updatedAt",updatedAt)
+					 .toString();
 	}
 
 	public static class VolumeSnapshots extends ListResult<CinderVolumeSnapshot> {

@@ -8,7 +8,7 @@
     "flavorRef" : "flavor-id",
     "users" : [ {
       "name" : "root",
-      "password" : "Demo@234"
+      "password" : "******"
     } ],
     "volume" : {
       "type" : "COMMON",

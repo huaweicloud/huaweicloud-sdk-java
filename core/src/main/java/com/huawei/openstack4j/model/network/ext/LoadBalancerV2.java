@@ -67,7 +67,7 @@ public interface LoadBalancerV2  extends ModelEntity, Buildable<LoadBalancerV2Bu
      * @return The administrative state of the loadbalancer, which is up (true) or
      *         down (false).
      */
-    boolean isAdminStateUp();
+    Boolean isAdminStateUp();
 
     /**
      * @return The listeners of the loadbalancer.

@@ -1,0 +1,37 @@
+{
+    "security_groups": [{
+        "id": "16b6e77a-08fa-42c7-aa8b-106c048884e6",
+        "name": "qq",
+        "description": "qq",
+        "vpc_id": "3ec3b33f-ac1c-4630-ad1c-7dba1ed79d85",
+        "security_group_rules": [{
+            "direction": "egress",
+            "ethertype": "IPv4",
+            "id": "369e6499-b2cb-4126-972a-97e589692c62",
+            "security_group_id": "16b6e77a-08fa-42c7-aa8b-106c048884e6"
+        }, {
+            "direction": "ingress",
+            "ethertype": "IPv4",
+            "id": "0222556c-6556-40ad-8aac-9fd5d3c06171",
+            "remote_group_id": "16b6e77a-08fa-42c7-aa8b-106c048884e6",
+            "security_group_id": "16b6e77a-08fa-42c7-aa8b-106c048884e6"
+        }]
+    }, {
+        "id": "9c0f56be-a9ac-438c-8c57-fce62de19419",
+        "name": "default",
+        "description": "qq",
+        "vpc_id": "3ec3b33f-ac1c-4630-ad1c-7dba1ed79d85",
+        "security_group_rules": [{
+            "direction": "egress",
+            "ethertype": "IPv4",
+            "id": "95479e0a-e312-4844-b53d-a5e4541b783f",
+            "security_group_id": "9c0f56be-a9ac-438c-8c57-fce62de19419"
+        }, {
+            "direction": "ingress",
+            "ethertype": "IPv4",
+            "id": "0c4a2336-b036-4fa2-bc3c-1a291ed4c431",
+            "remote_group_id": "9c0f56be-a9ac-438c-8c57-fce62de19419",
+            "security_group_id": "9c0f56be-a9ac-438c-8c57-fce62de19419"
+        }]
+    }]
+}

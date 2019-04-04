@@ -15,14 +15,14 @@
  *******************************************************************************/
 package com.huawei.openstack4j.model.network.ext;
 
+import java.util.List;
+
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.huawei.openstack4j.common.Buildable;
 import com.huawei.openstack4j.model.ModelEntity;
 import com.huawei.openstack4j.model.network.ext.builder.ListenerV2Builder;
 import com.huawei.openstack4j.openstack.networking.domain.ext.ListItem;
 import com.huawei.openstack4j.openstack.networking.domain.ext.NeutronListenerV2;
-
-import java.util.List;
 
 /**
  * A listener for v2 loadbalancer
@@ -87,7 +87,7 @@ public interface ListenerV2 extends ModelEntity, Buildable<ListenerV2Builder> {
      * @return The administrative state of the listener, which is up (true) or
      *         down (false).
      */
-    boolean isAdminStateUp();
+    Boolean isAdminStateUp();
 
     /**
      * @return The loadbalancers of the listener.

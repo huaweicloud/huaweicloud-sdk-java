@@ -46,7 +46,7 @@ public interface Network extends Resource, Buildable<NetworkBuilder> {
 	/**
 	 * @return true if the administrative state is up
 	 */
-	boolean isAdminStateUp();
+	Boolean isAdminStateUp();
 
 	/**
 	 * @return the network type
@@ -61,7 +61,7 @@ public interface Network extends Resource, Buildable<NetworkBuilder> {
 	/**
 	 * @return true if the network is shared
 	 */
-	boolean isShared();
+	Boolean isShared();
 
 	/**
 	 * @return the provider segmentation identifier

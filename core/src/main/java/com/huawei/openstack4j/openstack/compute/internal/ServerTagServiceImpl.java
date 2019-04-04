@@ -36,7 +36,7 @@ public class ServerTagServiceImpl extends BaseComputeServices implements ServerT
 	}
 
 	@Override
-	public NovaServerTag replace(String serverId, NovaServerTag tags) {
+	public NovaServerTag addTags(String serverId, NovaServerTag tags) {
 		checkNotNull(serverId);
 		checkNotNull(tags);
 		return this.put(NovaServerTag.class, this.uri("/servers/%s/tags", serverId)).entity(tags).execute();

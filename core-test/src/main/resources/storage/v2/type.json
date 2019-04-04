@@ -1,0 +1,15 @@
+{
+  "volume_type": {
+    "extra_specs": {
+      "volume_backend_name": "SATA",
+      "availability-zone": "az1.dc1",
+      "RESKEY:availability_zone": "az1.dc1,az2.dc2",
+      "os-vendor-extended:sold_out_availability_zones": "az2.dc2"
+    },
+    "name": "SATA",
+    "qos_specs_id": null,
+    "is_public": true,
+    "id": "ea6e3c13-aac5-46e0-b280-745ed272e662",
+    "description": null
+  }
+}

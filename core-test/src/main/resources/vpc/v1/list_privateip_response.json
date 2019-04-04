@@ -1,0 +1,20 @@
+{
+    "privateips": [
+        {
+            "status": "DOWN",
+            "id": "d600542a-b231-45ed-af05-e9930cb14f78",
+            "subnet_id": "531dec0f-3116-411b-a21b-e612e42349fd",
+            "tenant_id": "8b7e35ad379141fc9df3e178bd64f55c",
+            "device_owner": "",
+            "ip_address": "192.168.1.11"
+        },
+{
+            "status": "DOWN",
+            "id": "d600542a-b231-45ed-af05-e9930cb14f79",
+            "subnet_id": "531dec0f-3116-411b-a21b-e612e42349fd",
+            "tenant_id": "8b7e35ad379141fc9df3e178bd64f55c",
+            "device_owner": "",
+            "ip_address": "192.168.1.12"
+        }
+    ]
+}

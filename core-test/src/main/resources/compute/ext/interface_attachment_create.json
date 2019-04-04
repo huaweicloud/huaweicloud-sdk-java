@@ -1,0 +1,14 @@
+{
+  "interfaceAttachment": {
+    "port_state": "ACTIVE",
+    "fixed_ips": [
+      {
+        "subnet_id": "subnet-id",
+        "ip_address": "ip-address"
+      }
+    ],
+    "port_id": "port-id",
+    "net_id": "net-id",
+    "mac_addr": "mac-addr"
+  }
+}

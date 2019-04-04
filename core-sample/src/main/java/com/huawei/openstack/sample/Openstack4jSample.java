@@ -63,7 +63,7 @@ public class Openstack4jSample {
 		 endpointResolver.addOverrideEndpoint(ServiceType.MessageQueue,
 		 "https://dms.example.com/v1.0/%(project_id)s");
 		 endpointResolver.addOverrideEndpoint(ServiceType.MAAS,
-		 "https://maas.example.com/v1/%(project_id)s/objectstorage");
+		 "https://maas.example.com/v1/%(project_id)s");
 		 endpointResolver.addOverrideEndpoint(ServiceType.DATABASE, "https://rds.example.com");
 		 */
 

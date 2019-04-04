@@ -1,0 +1,30 @@
+{
+    "port": {
+        "id": "d00f9c13-412f-4855-8af3-de5d8c24cd60",
+        "name": "test",
+        "status": "DOWN",
+        "admin_state_up": "true",
+        "fixed_ips": [{
+            "subnet_id": "70f2e74b-e660-410a-b754-0ca46744348a",
+            "ip_address": "10.128.1.10"
+        }],
+        "dns_assignment": [
+            {
+                "hostname": "ip-10-128-1-10",
+                "ip_address": "10-128-1-10",
+                "fqdn": "ip-10-128-1-10.xxx.compute.internal."
+            }
+        ],
+        "mac_address": "fa:16:3e:d7:f2:6c",
+        "network_id": "5b808927-13c9-4e60-a4f4-ed6ffe225167",
+        "tenant_id": "43f2d1cca56a40729dcb17212482f34d",
+        "device_id": "",
+        "device_owner": "",
+        "security_groups": [
+            "02b4e8ee-74fa-4a31-802e-5490df11245e"
+        ],
+        "extra_dhcp_opts": [],
+        "allowed_address_pairs": [],
+        "binding:vnic_type": "normal"
+    }
+}

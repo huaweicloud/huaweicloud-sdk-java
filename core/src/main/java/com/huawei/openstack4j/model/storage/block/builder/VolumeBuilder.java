@@ -118,7 +118,7 @@ public interface VolumeBuilder extends Builder<VolumeBuilder, Volume> {
 	/**
 	 * One or more metadata key and value pairs to associate with the volume. <b>Optional</b>
 	 * 
-	 * @param metadata metadata to set
+	 * @param imageMetadata metadata to set
 	 * @return VolumeBuilder
 	 */
 	VolumeBuilder imageMetadata(Map<String, Object> imageMetadata);
@@ -130,5 +130,23 @@ public interface VolumeBuilder extends Builder<VolumeBuilder, Volume> {
      * @return VolumeBuilder
      */
     VolumeBuilder zone(String zone);
-	
+
+	/**
+	 * Specifies the shared disk information. <b>Optional</b>
+	 *
+	 * @param multiattach Specifies the shared disk information.
+	 * @return VolumeBuilder
+	 */
+	VolumeBuilder multiattach(Boolean multiattach);
+
+	/**
+	 * Specifies the ID of the Volume Backup Service (VBS) backup that can be used to create a disk.
+	 * This parameter is mandatory when you use a backup to create a disk. <b>Optional</b>
+	 *
+	 * @param backupId Specifies the ID of the Volume Backup Service (VBS) backup that can be used to create a disk.
+	 *                    This parameter is mandatory when you use a backup to create a disk.
+	 * @return VolumeBuilder
+	 */
+	VolumeBuilder backupId(String backupId);
+
 }

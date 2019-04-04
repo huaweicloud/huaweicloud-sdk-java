@@ -15,6 +15,8 @@
  *******************************************************************************/
 package com.huawei.openstack4j.api.cdn.v1;
 
+import okhttp3.mockwebserver.RecordedRequest;
+
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -42,8 +44,6 @@ import com.huawei.openstack4j.openstack.cdn.v1.domain.Source.Origin;
 import com.huawei.openstack4j.openstack.cdn.v1.domain.Task.Tasks;
 import com.huawei.openstack4j.openstack.cdn.v1.domain.TaskDetail;
 import com.huawei.openstack4j.openstack.cdn.v1.exception.ServerCdnErrorResponseException;
-
-import okhttp3.mockwebserver.RecordedRequest;
 
 @Test(suiteName = "Cdn/Domain", enabled = true)
 public class DomainServiceTest extends AbstractTest {
@@ -76,12 +76,12 @@ public class DomainServiceTest extends AbstractTest {
 		Source source = Source.builder().ipOrDomain("1.2.3.4").originType("ipaddr").activeStandby(1).build();
 		List<Source> sources = new ArrayList<Source>();
 		sources.add(source);
-		DomainCreate creation = DomainCreate.builder().domainName("cdn-9b234.cn-north-1.myhwclouds.com")
+		DomainCreate creation = DomainCreate.builder().domainName("cdn-9b234.xxx.yyy.com")
 				.businessType("web").sources(sources).build();
 
 		Domain domain = osv3().cdn().domains().create(creation);
 
-		Assert.assertEquals(domain.getDomainName(), "cdn-9b234.cn-north-1.myhwclouds.com");
+		Assert.assertEquals(domain.getDomainName(), "cdn-9b234.xxx.yyy.com");
 		Assert.assertEquals(domain.getSources().get(0).getIpOrDomain(), "1.2.3.4");
 		Assert.assertEquals(domain.getDomainOriginHost().getCustomizeDomain(), "test961.donyd.com");
 	}
@@ -94,7 +94,7 @@ public class DomainServiceTest extends AbstractTest {
 		Assert.assertEquals(request.getPath(), "/v1.0/cdn/domains/ff80808260454e2601604eece675107b");
 		Assert.assertEquals(request.getMethod(), "DELETE");
 
-		Assert.assertEquals(domain.getDomainName(), "cdn-9b234.cn-north-1.myhwclouds.com");
+		Assert.assertEquals(domain.getDomainName(), "cdn-9b234.xxx.yyy.com");
 		Assert.assertEquals(domain.getSources().get(0).getIpOrDomain(), "1.2.3.4");
 		Assert.assertEquals(domain.getDomainOriginHost().getCustomizeDomain(), "test961.donyd.com");
 	}
@@ -125,7 +125,7 @@ public class DomainServiceTest extends AbstractTest {
 		Assert.assertEquals(request.getPath(), "/v1.0/cdn/domains/ff80808260454e2601604eece675107b/detail");
 		Assert.assertEquals(request.getMethod(), "GET");
 
-		Assert.assertEquals(domain.getDomainName(), "cdn-9b234.cn-north-1.myhwclouds.com");
+		Assert.assertEquals(domain.getDomainName(), "cdn-9b234.xxx.yyy.com");
 		Assert.assertEquals(domain.getSources().get(0).getIpOrDomain(), "1.2.3.4");
 		Assert.assertEquals(domain.getDomainOriginHost().getCustomizeDomain(), "test961.donyd.com");
 	}
@@ -161,7 +161,7 @@ public class DomainServiceTest extends AbstractTest {
 	@Test
 	public void testSetOriginHost() throws IOException, InterruptedException {
 		respondWith("/cdn/get_origin_host_response.json");
-		OriginHost newOriginHost = OriginHost.builder().customizeDomain("cdn-9b234.cn-north-1.myhwclouds.com")
+		OriginHost newOriginHost = OriginHost.builder().customizeDomain("cdn-9b234.xxx.yyy.com")
 				.originHostType("customize").build();
 		OriginHost originHost = osv3().cdn().domains().setOriginHost("ff80808260454e2601604eece675107b", newOriginHost, null);
 		RecordedRequest request = server.takeRequest();

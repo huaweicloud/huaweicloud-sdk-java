@@ -15,17 +15,16 @@
  *******************************************************************************/
 package com.huawei.openstack4j.openstack.networking.domain.ext;
 
+import java.util.List;
+
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonRootName;
+import com.google.common.base.MoreObjects;
 import com.huawei.openstack4j.model.network.ext.ListenerProtocol;
 import com.huawei.openstack4j.model.network.ext.ListenerV2;
 import com.huawei.openstack4j.model.network.ext.builder.ListenerV2Builder;
 import com.huawei.openstack4j.openstack.common.ListResult;
-
-import com.google.common.base.MoreObjects;
-
-import java.util.List;
 
 /**
  * lbaas v2 listener
@@ -72,7 +71,7 @@ public class NeutronListenerV2 implements ListenerV2 {
     private List<ListItem> loadbalancers;
 
     @JsonProperty("admin_state_up")
-    private boolean adminStateUp = true;
+    private Boolean adminStateUp = true;
 
     @JsonProperty("default_tls_container_ref")
     private String defaultTlsContainerRef;
@@ -92,7 +91,7 @@ public class NeutronListenerV2 implements ListenerV2 {
      * {@inheritDoc}
      */
     @Override
-    public boolean isAdminStateUp(){
+    public Boolean isAdminStateUp(){
         return adminStateUp;
     }
 
@@ -253,7 +252,7 @@ public class NeutronListenerV2 implements ListenerV2 {
          * {@inheritDoc}
          */
         @Override
-        public ListenerV2Builder adminStateUp(boolean adminStateUp){
+        public ListenerV2Builder adminStateUp(Boolean adminStateUp){
             m.adminStateUp = adminStateUp;
             return this;
         }

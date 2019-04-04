@@ -1,0 +1,52 @@
+{
+  "volumes": [
+    {
+      "id": "6b604cef-9bd8-4f5a-ae56-45839e6e1f0a",
+      "links": [
+        {
+          "href": "https://volume.localdomain.com:8776/v2/dd14c6ac581f40059e27f5320b60bf2f/volumes/6b604cef-9bd8-4f5a-ae56-45839e6e1f0a",
+          "rel": "self"
+        },
+        {
+          "href": "https://volume.localdomain.com:8776/dd14c6ac581f40059e27f5320b60bf2f/volumes/6b604cef-9bd8-4f5a-ae56-45839e6e1f0a",
+          "rel": "bookmark"
+        }
+      ],
+      "name": "zjb_u25_test"
+    },
+    {
+      "id": "2bce4552-9a7d-48fa-8484-abbbf64b206e",
+      "links": [
+        {
+          "href": "https://volume.localdomain.com:8776/v2/dd14c6ac581f40059e27f5320b60bf2f/volumes/2bce4552-9a7d-48fa-8484-abbbf64b206e",
+          "rel": "self"
+        },
+        {
+          "href": "https://volume.localdomain.com:8776/dd14c6ac581f40059e27f5320b60bf2f/volumes/2bce4552-9a7d-48fa-8484-abbbf64b206e",
+          "rel": "bookmark"
+        }
+      ],
+      "name": "zjb_u25_test"
+    },
+    {
+      "id": "3f1b98ec-a8b5-4e92-a727-88def62d5ad3",
+      "links": [
+        {
+          "href": "https://volume.localdomain.com:8776/v2/dd14c6ac581f40059e27f5320b60bf2f/volumes/3f1b98ec-a8b5-4e92-a727-88def62d5ad3",
+          "rel": "self"
+        },
+        {
+          "href": "https://volume.localdomain.com:8776/dd14c6ac581f40059e27f5320b60bf2f/volumes/3f1b98ec-a8b5-4e92-a727-88def62d5ad3",
+          "rel": "bookmark"
+        }
+      ],
+      "name": "zjb_u25_test"
+    }
+  ],
+  "volumes_links": [
+    {
+      "href": "https://volume.localdomain.com:8776/v2/dd14c6ac581f40059e27f5320b60bf2f/volumes?limit=3&marker=3f1b98ec-a8b5-4e92-a727-88def62d5ad3",
+      "rel": "next"
+    }
+  ]
+}

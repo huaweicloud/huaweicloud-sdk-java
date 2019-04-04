@@ -86,9 +86,17 @@ public class ServerDemo {
 		ActionResponse repStop = os.compute().servers().action(server.getId(), Action.STOP);
 		os.compute().servers().waitForServerStatus(server.getId(), Status.SHUTOFF, 10, TimeUnit.MINUTES);
 		if (repStop.isSuccess()) {
-			System.out.println("Stop the server failed");
+			System.out.println("Stop the server success");
 		} else {
 			System.out.println("Stop the server failed");
+		}
+
+		//stop server with type
+		ActionResponse repStopWithType = os.compute().servers().stop(serverId, StopType.HARD);
+		if (repStopWithType.isSuccess()) {
+			System.out.println("hard stop server success");
+		} else {
+			System.out.println("hard stop server failed");
 		}
 		
 		//start server
@@ -125,6 +133,14 @@ public class ServerDemo {
 		} else {
 			System.out.println("VolumeAttachment failed");
 		}
+
+		//get server attached volume by volumeId
+		VolumeAttachment attachVolume = os.compute().servers().getAttachVolume(server.getId(), volId);
+		System.out.println("attached volume is: " + attachVolume);
+
+		//get server attached volume list
+		List<? extends VolumeAttachment> list = os.compute().servers().listAttachedVolumes(server.getId());
+		System.out.println("server attached volume list is: " + list);
 		
 		//detach Volume
 		ActionResponse repDetach = os.compute().servers().detachVolume(server.getId(), volId);
@@ -160,6 +176,7 @@ public class ServerDemo {
 		
 		//get server with parameter
 		Map<String,String> filteringParams = new HashMap<String, String>();
+		filteringParams.put("name", "test");
 		filteringParams.put("status", "ACTIVE");
 		List<? extends Server> filterList = os.compute().servers().list(filteringParams);
 		if (filterList.size() > 0) {

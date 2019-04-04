@@ -60,7 +60,7 @@ public interface ListenerV2Builder extends Buildable.Builder<ListenerV2Builder, 
      *            (UP) or false (DOWN). Default is true
      * @return ListenerV2Builder
      */
-    ListenerV2Builder adminStateUp(boolean adminStateUp);
+    ListenerV2Builder adminStateUp(Boolean adminStateUp);
 
     /**
      *  Optional

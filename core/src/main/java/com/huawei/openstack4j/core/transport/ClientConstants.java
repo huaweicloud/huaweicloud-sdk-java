@@ -153,5 +153,7 @@ public final class ClientConstants {
     public static final String FGS_RUNGTIME_CSHARP2 = "CSharp2.0";
     public static final String FGS_RUNGTIME_CSHARP2_1 = "CSharp2.1";
 
-
+    //micro version
+    public static final String HEADER_X_OPENSTACK_NOVA_API_VERSION= "X-OpenStack-Nova-API-Version";
+    public static final String HEADER_OPENSTACK_API_VERSION= "OpenStack-API-Version";
 }

@@ -354,7 +354,11 @@ public class HttpRequest<R> {
 		public RequestBuilder<R> queryParam(String key, Object value) {
 		    if (value == null)
 		        return this;
-		    
+
+			if(value.toString().contains("{") && value.toString().contains("}")){
+				value = value.toString().replace("{","%7B").replace("}","%7D");
+			}
+
 			if (request.queryParams == null)
 				request.queryParams = Maps.newHashMap();
 
@@ -433,7 +437,7 @@ public class HttpRequest<R> {
 				request.endpoint = provider.getEndpoint(service);
 				if (provider.getTokenId() != null)
 				    request.getHeaders().put(ClientConstants.HEADER_X_AUTH_TOKEN, provider.getTokenId());
-			
+
 				// (AK/SK) authentication
 				OSClientSession<?, ?> session = OSClientSession.getCurrent();
 				if (session instanceof OSClientSessionAKSK) {
@@ -442,13 +446,40 @@ public class HttpRequest<R> {
 					Credential credential = Credential.builder().ak(aksk.getAccessKey()).sk(aksk.getSecretKey()).build();
 					HashMap<String, String> headers = AKSK.sign(request, credential);
 					request.getHeaders().putAll(headers);
-					request.getHeaders().put(ClientConstants.HEADER_X_PROJECT_ID, aksk.getProjectId());
+					String projectId = ((OSClientSessionAKSK) session).getProjectId();
+					String domainId = ((OSClientSessionAKSK) session).getDomainId();
+					//Determine if it is a global service
+					if (projectId != null && !"".equals(projectId)){
+						request.getHeaders().put(ClientConstants.HEADER_X_PROJECT_ID, aksk.getProjectId());
+					}else if(domainId != null && !"".equals(domainId) ){
+						request.getHeaders().put(ClientConstants.HEADER_X_DOMAIN_ID, aksk.getDomainId());
+					}
 				}
 				
+				//Add micro version
+				Config config = request.getConfig();
+				if(config != null && config.getMicroversions() != null && config.getMicroversions().size()>0){
+					Map<String,String> microversions = new HashMap<String,String>();
+					for (Map.Entry<String, Double> entry : config.getMicroversions().entrySet()) {
+						if(!"compute".equalsIgnoreCase(entry.getKey())){
+							throw new IllegalArgumentException("Micro version only supports compute");
+						}
+						if(service.getType().equalsIgnoreCase(entry.getKey())){
+							String servicesStr = entry.getKey() + " " + entry.getValue();
+							Double version  = entry.getValue();
+							if(version > 2.26){
+								microversions.put(ClientConstants.HEADER_OPENSTACK_API_VERSION, servicesStr);
+							}else{
+								microversions.put(ClientConstants.HEADER_X_OPENSTACK_NOVA_API_VERSION, version.toString());
+							}
+							this.headers(microversions);
+						}
+					}
+				}
 			}
-			
 			
 			return request;
 		}
+
 	}
 }

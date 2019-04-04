@@ -13,8 +13,30 @@
  * 	License for the specific language governing permissions and limitations under    
  * 	the License.                                                                     
  *******************************************************************************/
-package com.huawei.openstack4j.api.evs.v2;
+package com.huawei.openstack4j.openstack.dss.v1.internal;
+import com.google.common.base.Strings;
+import com.huawei.openstack4j.openstack.dss.v1.domain.Pool;
+import static com.google.common.base.Preconditions.checkArgument;
 
-public class VolumnTests {
+ public class PoolService extends BaseDssService
+ {
 
-}
+     /**
+      * get pool
+      * @param poolId
+      * @return Pool
+      */
+     public Pool get(String poolId){
+         return get(poolId,false);
+     }
+
+     /**
+      * get pool
+      * @param poolId
+      * @return Pool
+      */
+     public Pool get(String poolId, Boolean usage){
+         checkArgument(!Strings.isNullOrEmpty(poolId), "parameter poolId should not be empty");
+         return get(Pool.class, uri("/pools/%s", poolId)).param("usage",usage).execute();
+     }
+ }

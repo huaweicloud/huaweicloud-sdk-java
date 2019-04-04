@@ -17,11 +17,12 @@ package com.huawei.openstack4j.openstack.compute.domain;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import com.huawei.openstack4j.model.compute.BDMDestType;
 import com.huawei.openstack4j.model.compute.BDMSourceType;
+import com.huawei.openstack4j.model.compute.BDMVolumeType;
 import com.huawei.openstack4j.model.compute.BlockDeviceMappingCreate;
 import com.huawei.openstack4j.model.compute.builder.BlockDeviceMappingBuilder;
-import com.fasterxml.jackson.annotation.JsonProperty;
 
 /**
  *
@@ -50,6 +51,10 @@ public class NovaBlockDeviceMappingCreate implements BlockDeviceMappingCreate {
     @JsonInclude(Include.NON_NULL)
     @JsonProperty("device_type")
     public String deviceType;
+
+	@JsonProperty("volume_type")
+    public BDMVolumeType volumeType;
+
 
 	public static NovaBlockDeviceMappingBuilder builder() {
 		return new NovaBlockDeviceMappingBuilder(new NovaBlockDeviceMappingCreate());
@@ -134,6 +139,12 @@ public class NovaBlockDeviceMappingCreate implements BlockDeviceMappingCreate {
             create.deviceType = deviceType;
             return this;
         }
+
+		@Override
+		public BlockDeviceMappingBuilder volumeType(BDMVolumeType volumeType) {
+			create.volumeType = volumeType;
+			return this;
+		}
 
 		@Override
 		public BlockDeviceMappingCreate build() {

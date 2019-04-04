@@ -15,11 +15,12 @@
  *******************************************************************************/
 package com.huawei.openstack4j.openstack.vpc.v1.internal;
 
-import static com.google.common.base.Preconditions.checkArgument;
+ import static com.google.common.base.Preconditions.checkArgument;
 
 import java.util.List;
 import java.util.Map;
 
+import com.google.common.base.Strings;
 import com.huawei.openstack4j.openstack.vpc.v1.domain.VirtualBandWidthUpdate;
 import com.huawei.openstack4j.openstack.vpc.v1.domain.VirtualBandWidths;
 import com.huawei.openstack4j.openstack.vpc.v1.domain.VirtualBandWidths.VirtualBandWidthResps;
@@ -28,19 +29,8 @@ import com.huawei.openstack4j.openstack.vpc.v1.domain.VirtualBandWidths.VirtualB
 public class BandWidthService extends BaseVirtualPrivateCloudService {
 
 	/**
-	 * Update bandwidth
-	 * @param bandWidth
-	 * @param bandwidthId
-	 * @return
-	 */
-	public VirtualBandWidths update(VirtualBandWidthUpdate bandWidtUpdate,String bandwidthId){
-		checkArgument(!(null == bandWidtUpdate), "parameter `bandwidth` should not be empty");
-		return put(VirtualBandWidths.class, "/bandwidths/"+bandwidthId).entity(bandWidtUpdate).execute();
-	}
-	/**
 	 * 查询带宽列表
-	 * @param limit
-	 * @param marker
+	 * @param filteringParams
 	 * @return
 	 */
 	public List<VirtualBandWidths> list(Map<String, String> filteringParams){
@@ -55,8 +45,6 @@ public class BandWidthService extends BaseVirtualPrivateCloudService {
 	
 	/**
 	 * 查询带宽列表
-	 * @param limit
-	 * @param marker
 	 * @return
 	 */
 	public List<VirtualBandWidths> list(){
@@ -69,7 +57,19 @@ public class BandWidthService extends BaseVirtualPrivateCloudService {
 	 * @return
 	 */
 	public VirtualBandWidths get(String bandwidthId){
+		checkArgument(!Strings.isNullOrEmpty(bandwidthId), "parameter `bandwidthId` should not be empty");
 		return get(VirtualBandWidths.class,"/bandwidths/"+bandwidthId).execute();
 	}
-	
+
+	/**
+	 * Update bandwidth
+	 * @param bandWidtUpdate
+	 * @param bandwidthId
+	 * @return
+	 */
+	public VirtualBandWidths update(VirtualBandWidthUpdate bandWidtUpdate, String bandwidthId){
+		checkArgument(!(null == bandWidtUpdate), "parameter `bandWidtUpdate` should not be empty");
+		checkArgument(!Strings.isNullOrEmpty(bandwidthId), "parameter `bandwidthId` should not be empty");
+		return put(VirtualBandWidths.class, "/bandwidths/"+bandwidthId).entity(bandWidtUpdate).execute();
+	}
 }

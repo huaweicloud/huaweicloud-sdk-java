@@ -78,7 +78,7 @@ public class DatabaseInstanceTest extends BaseDatabaseTest {
 
 		DatabaseInstanceCreate instanceCreate = DatabaseInstanceCreate.builder().name(name).datastore(datastore)
 				.flavorRef(flavor.getId()).volume(volume).region("eu-de").availabilityZone("eu-de-01").vpcId(vpcId)
-				.nic(nic).securityGroup(new IdResourceEntity(sgId)).rootPassword("1qaz@WSX")
+				.nic(nic).securityGroup(new IdResourceEntity(sgId)).rootPassword("******")
 				.backupStrategy(backupStrategy).ha(ha).build();
 
 		instance = osclient.database().instances().create(instanceCreate);

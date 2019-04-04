@@ -17,11 +17,18 @@ package com.huawei.openstack4j.openstack.evs.v2.internal;
 
 import com.huawei.openstack4j.api.Apis;
 import com.huawei.openstack4j.common.RestService;
-import com.huawei.openstack4j.openstack.ecs.v1.internal.BaseElasticComputeServices;
 
 public class ElasticVolumeService extends BaseElasticVolumeService implements RestService{
 	
 	public VolumeService volumes() {
 		return Apis.get(VolumeService.class);
 	}
+
+	public VolumeSnapshotService snapshots() {
+		return Apis.get(VolumeSnapshotService.class);
+	}
+
+	 public JobService jobs() {
+		 return Apis.get(JobService.class);
+	 }
 }

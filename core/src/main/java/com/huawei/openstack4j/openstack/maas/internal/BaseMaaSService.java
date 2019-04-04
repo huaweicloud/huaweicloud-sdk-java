@@ -18,13 +18,14 @@ package com.huawei.openstack4j.openstack.maas.internal;
 import com.huawei.openstack4j.api.types.ServiceType;
 import com.huawei.openstack4j.core.transport.HttpMethod;
 import com.huawei.openstack4j.openstack.internal.BaseOpenStackService;
+import com.huawei.openstack4j.openstack.maas.domain.AddObjectStorageOfURL;
 
 public class BaseMaaSService extends BaseOpenStackService {
 	
 	public static String CONTENT_JSON = "application/json;charset=utf-8";
 
 	protected BaseMaaSService() {
-		super(ServiceType.MAAS);
+		super(ServiceType.MAAS, AddObjectStorageOfURL.instance());
 	}
 	
 	/**

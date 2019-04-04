@@ -45,6 +45,7 @@ import com.huawei.openstack4j.model.compute.Server.Status;
 import com.huawei.openstack4j.model.compute.ServerCreate;
 import com.huawei.openstack4j.model.compute.ServerPassword;
 import com.huawei.openstack4j.model.compute.ServerUpdateOptions;
+import com.huawei.openstack4j.model.compute.StopType;
 import com.huawei.openstack4j.model.compute.VNCConsole;
 import com.huawei.openstack4j.model.compute.VNCConsole.Type;
 import com.huawei.openstack4j.model.compute.VolumeAttachment;
@@ -99,7 +100,7 @@ public interface ServerService {
      * @param detail if true all attributes will be populated, false (brief) will be ID, Name and Links
      * @return list of all servers
      */
-    List<? extends Server> listAll(boolean detail);
+//    List<? extends Server> listAll(boolean detail);
 
     /**
      * Get the specified server by ID
@@ -151,6 +152,15 @@ public interface ServerService {
      * @return the action response
      */
     ActionResponse action(String serverId, Action action);
+
+    /**
+     * Stop a server by SOFT (software-level) or HARD (hardware power cycle)
+     *
+     * @param serverId the server id
+     * @param type the type of stop
+     * @return the action response
+     */
+    ActionResponse stop(String serverId, StopType type);
 
     /**
      * Reboot a server by SOFT (software-level) or HARD (hardware power cycle)
@@ -400,4 +410,37 @@ public interface ServerService {
      * @return an administrative password to access the evacuated or rebuilt instance.
      */
     ServerPassword evacuate(String serverId, EvacuateOptions options);
+
+//    /**
+//     * get volumeAttachment by serverId and volumeId
+//     *
+//     * @param serverId the server identifier
+//     * @param volumeId the volume identifier
+//     * @return volumeAttachment or null if not applicable
+//     */
+//    VolumeAttachment getAttachVolume(String serverId, String volumeId);
+//
+//    /**
+//     * Show Attached Volumes
+//     *
+//     * @param serverId the server identifier
+//     * @return list of all volumeAttachments
+//     */
+//    List<? extends VolumeAttachment> listAttachedVolumes(String serverId);
+//
+//    /**
+//     * Get metadata item via the specified {@code key} and {@code serverId}
+//     *
+//     * @param serverId the server identifier
+//     * @return Map of metadata of key and value
+//     */
+//    Map<String, String> getMetadataItem(String serverId,String key);
+//
+//    /**
+//     * Get metadata item via the specified {@code key} and {@code serverId}
+//     *
+//     * @param serverId the server identifier
+//     * @return Map of metadata of key and value
+//     */
+//    Map<String, String> setMetadataItem(String serverId,String key, String value);
 }

@@ -17,9 +17,12 @@ package com.huawei.openstack4j.openstack.evs.v2.internal;
 
 import static com.google.common.base.Preconditions.checkArgument;
 
+import java.util.Map;
+
 import com.google.common.base.Strings;
 import com.huawei.openstack4j.openstack.common.AsyncJobEntity;
 import com.huawei.openstack4j.openstack.evs.v2.domain.CloudVolumes;
+import com.huawei.openstack4j.openstack.evs.v2.domain.CloudVolumesResponse;
 import com.huawei.openstack4j.openstack.evs.v2.domain.Extend;
 
 public class VolumeService extends BaseElasticVolumeService{
@@ -44,5 +47,36 @@ public class VolumeService extends BaseElasticVolumeService{
 	public String extend(Extend extend,String volumeId){
 		checkArgument(! (null == (extend.getOsExtend().getNewSize())), "parameter `newSize` should not be empty");
 		return post(AsyncJobEntity.class, "/cloudvolumes/"+volumeId+"/action").entity(extend).execute().getId();
+	}
+
+	/**
+	 * List Cloud Volume
+	 * @return CloudVolumes
+	 */
+	public CloudVolumesResponse list(){
+		return get(CloudVolumesResponse.class, uri("/cloudvolumes/detail")).execute();
+	}
+
+	/**
+	 * List Cloud Volume By Filter
+	 * @return CloudVolumes
+	 */
+	public CloudVolumesResponse list(Map<String,Object> filteringParams){
+		processListParams(filteringParams, "ids");
+		processListParams(filteringParams, "enterprise_project_ids");
+		Invocation<CloudVolumesResponse> volumeInvocation = buildInvocation(filteringParams);
+		return volumeInvocation.execute();
+	}
+
+	private Invocation<CloudVolumesResponse> buildInvocation(Map<String, Object> filteringParams) {
+		Invocation<CloudVolumesResponse> volumeInvocation = get(CloudVolumesResponse.class, "/cloudvolumes/detail");
+		if (filteringParams == null) {
+			return volumeInvocation;
+		} else {
+			for (Map.Entry<String, Object> entry : filteringParams.entrySet()) {
+				volumeInvocation = volumeInvocation.param(entry.getKey(), entry.getValue());
+			}
+		}
+		return volumeInvocation;
 	}
 }

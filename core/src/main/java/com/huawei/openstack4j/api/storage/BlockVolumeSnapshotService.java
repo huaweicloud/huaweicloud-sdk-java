@@ -79,5 +79,82 @@ public interface BlockVolumeSnapshotService extends RestService {
 	 * @return the newly created snapshot
 	 */
 	VolumeSnapshot create(VolumeSnapshot snapshot);
-	
+
+//	/**
+//	 * Updating an EVS Snapshot
+//	 *
+//	 * @param snapshotId
+//	 * @param snapshot
+//	 * @return
+//	 */
+//	SnapshotDetail update(String snapshotId, SnapshotUpdate snapshot);
+//
+//	/**
+//	 * Querying Details About EVS Snapshots
+//	 *
+//	 * @return
+//	 */
+//	List<? extends SnapshotDetail> listDetail();
+//
+//	/**
+//	 * Querying Details About EVS Snapshots
+//	 *
+//	 * @param options
+//	 * @return
+//	 */
+//	List<? extends SnapshotDetail> listDetail(SnapshotListOptions options);
+//
+//	/**
+//	 * Adding Metadata of an EVS Snapshot
+//	 *
+//	 * @param snapshotId
+//	 * @param metadata
+//	 * @return
+//	 */
+//	SnapshotMetadata createMetadata(String snapshotId, SnapshotMetadata metadata);
+//
+//	/**
+//	 * Querying Metadata of an EVS Snapshot
+//	 *
+//	 * @param snapshotId
+//	 * @return
+//	 */
+//	SnapshotMetadata getMetadata(String snapshotId);
+//
+//	/**
+//	 * Updating Metadata of an EVS Snapshot
+//	 *
+//	 * @param snapshotId
+//	 * @param metadata
+//	 * @return
+//	 */
+//	SnapshotMetadata updateMetadata(String snapshotId, SnapshotMetadata metadata);
+//
+//	/**
+//	 * Deleting One Piece of EVS Snapshot Metadata
+//	 *
+//	 * @param snapshotId
+//	 * @param key
+//	 * @return
+//	 */
+//	ActionResponse deleteMeta(String snapshotId, String key);
+//
+//	/**
+//	 * Querying One Piece of EVS Snapshot Metadata
+//	 *
+//	 * @param snapshotId
+//	 * @param key
+//	 * @return
+//	 */
+//	SnapshotMeta getMeta(String snapshotId, String key);
+//
+//	/**
+//	 * Updating One Piece of EVS Snapshot Metadata
+//	 *
+//	 * @param snapshotId
+//	 * @param key
+//	 * @param metadata
+//	 * @return
+//	 */
+//	SnapshotMeta updateMeta(String snapshotId, String key, SnapshotMeta metadata);
 }

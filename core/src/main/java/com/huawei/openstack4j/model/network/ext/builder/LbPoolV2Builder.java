@@ -72,9 +72,7 @@ public interface LbPoolV2Builder extends Buildable.Builder<LbPoolV2Builder, LbPo
     
 
     /**
-     * Optional
-     *
-     * @param description
+     * @param loadbalancerId
      *            Description for the pool.
      * @return LbPoolV2Builder
      */
@@ -83,7 +81,7 @@ public interface LbPoolV2Builder extends Buildable.Builder<LbPoolV2Builder, LbPo
     /**
      * @param protocol
      *            The protocol of the VIP address. A valid value is TCP, HTTP,
-     *            or HTTPS.
+     *            or UDP.
      * @return LbPoolV2Builder
      */
     LbPoolV2Builder protocol(Protocol protocol);

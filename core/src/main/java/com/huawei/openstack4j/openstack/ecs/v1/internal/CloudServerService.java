@@ -15,15 +15,15 @@
  *******************************************************************************/
 package com.huawei.openstack4j.openstack.ecs.v1.internal;
 
-import static com.google.common.base.Preconditions.*;
+import static com.google.common.base.Preconditions.checkArgument;
 
 import java.util.List;
 import java.util.Map;
 
-import com.google.common.base.Strings;
-import com.google.common.collect.Lists;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonRootName;
+import com.google.common.base.Strings;
+import com.google.common.collect.Lists;
 import com.huawei.openstack4j.model.ModelEntity;
 import com.huawei.openstack4j.model.compute.RebootType;
 import com.huawei.openstack4j.model.compute.StopType;
@@ -34,8 +34,8 @@ import com.huawei.openstack4j.openstack.ecs.v1.domain.CloudServer;
 import com.huawei.openstack4j.openstack.ecs.v1.domain.CloudServer.CloudServers;
 import com.huawei.openstack4j.openstack.ecs.v1.domain.Flavor;
 import com.huawei.openstack4j.openstack.ecs.v1.domain.Flavor.Flavors;
-import com.huawei.openstack4j.openstack.ecs.v1.domain.ServerCreate;
 import com.huawei.openstack4j.openstack.ecs.v1.domain.ResizeServer;
+import com.huawei.openstack4j.openstack.ecs.v1.domain.ServerCreate;
 
 public class CloudServerService extends BaseElasticComputeServices {
 
@@ -147,6 +147,29 @@ public class CloudServerService extends BaseElasticComputeServices {
 		}
 		return serverInvocation.execute().getList();
 	}
+
+	/**
+	 * Query cloud server details list with count
+	 * @return
+	 */
+	public CloudServers listWithCount(){
+		return get(CloudServers.class, uri("/cloudservers/detail")).execute();
+	}
+
+	/**
+	 * Query cloud server details list with count by filteringParams
+	 * @return
+	 */
+	public CloudServers listWithCount(Map<String, String> filteringParams) {
+		Invocation<CloudServers> serverInvocation = get(CloudServers.class, "/cloudservers/detail");
+		if (filteringParams != null) {
+			for (Map.Entry<String, String> entry : filteringParams.entrySet()) {
+				serverInvocation = serverInvocation.param(entry.getKey(), entry.getValue());
+			}
+		}
+		return serverInvocation.execute();
+	}
+
 	/**
 	 * Query cloud server details
 	 * @param serverId
@@ -175,8 +198,64 @@ public class CloudServerService extends BaseElasticComputeServices {
 	public CloudAbsoluteLimit limits(){
 		return get(CloudAbsoluteLimit.class, uri("/cloudservers/limits")).execute();
 	}
-	
-	
+
+	 /**
+	  * Check whether the cloud server is configured with automatic recovery actions.
+	  * @return
+	  * */
+//	public SupportAutoRecovery getAutoRecovery(String serverId){
+//		checkArgument(!Strings.isNullOrEmpty(serverId), "parameter `serverId` should not be empty");
+//		return get(SupportAutoRecovery.class, uri("/cloudservers/"+serverId+"/autorecovery")).execute();
+//	}
+//
+//	 /**
+//	  * Manage cloud server automatic recovery action
+//	  * @param serverId
+//	  * @param supportAutoRecovery
+//	  * @return
+//	  */
+//	public ActionResponse manageAutoRecovery(String serverId, SupportAutoRecovery supportAutoRecovery){
+//		checkArgument(!Strings.isNullOrEmpty(serverId), "parameter `serverId` should not be empty");
+//		checkArgument(!(supportAutoRecovery == null), "parameter `supportAutoRecovery` should not be empty");
+//		return put(ActionResponse.class, uri("/cloudservers/"+serverId+"/autorecovery")).entity(supportAutoRecovery).execute();
+//	}
+
+//	/**
+//	 *Query cloud server specification change support list
+//	 * @return
+//	 */
+//	public List<? extends Flavor> getChangeSpecifications(){
+//		 return getChangeSpecifications(null);
+//	 }
+
+//	 /**
+//	  *Query cloud server specification change support list
+//	  * @param filteringParams
+//	  * @return
+//	  */
+//	 public List<? extends Flavor> getChangeSpecifications(Map<String, String> filteringParams){
+//		 Invocation<Flavor.Flavors> serverInvocation = get(Flavor.Flavors.class, "/resize_flavors");
+//		 if (filteringParams != null) {
+//			 for (Map.Entry<String, String> entry : filteringParams.entrySet()) {
+//				 serverInvocation = serverInvocation.param(entry.getKey(), entry.getValue());
+//			 }
+//		 }
+//		 return serverInvocation.execute().getList();
+//	 }
+
+//	/**
+//	 * Registered cloud server monitoring
+//	 * @param serverId
+//	 * @param monitorMetrics
+//	 * @return
+//	 */
+//	public ActionResponse addServerMonitor(String serverId, MonitorMetrics monitorMetrics){
+//		checkArgument(!Strings.isNullOrEmpty(serverId), "parameter `serverId` should not be empty");
+//		checkArgument(monitorMetrics != null, "parameter `monitorMetrics` should not be null");
+//		checkArgument(!Strings.isNullOrEmpty(monitorMetrics.getMonitorMetrics()), "parameter `monitorMetrics.monitorMetrics` should not be empty");
+//		return post(ActionResponse.class, uri("/servers/"+serverId+"/action")).entity(monitorMetrics).execute();
+//	}
+
 	public static class BatchAction implements ModelEntity {
 
 		private static final long serialVersionUID = -3993352728410832732L;
