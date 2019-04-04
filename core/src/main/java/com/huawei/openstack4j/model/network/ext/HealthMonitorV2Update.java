@@ -93,5 +93,5 @@ public interface HealthMonitorV2Update extends ModelEntity, Buildable<HealthMoni
      * @return adminstateup The administrative state of the health monitor,
      *         which is up (true) or down (false).
      */
-    boolean isAdminStateUp();
+    Boolean isAdminStateUp();
 }

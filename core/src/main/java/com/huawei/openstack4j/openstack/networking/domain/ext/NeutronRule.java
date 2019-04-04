@@ -88,7 +88,7 @@ public class NeutronRule implements ModelEntity  {
 		    public static Type value(String v)
 		    {
 		        try {
-		            return valueOf(v.toLowerCase());
+		            return valueOf(v);
 		        } catch (IllegalArgumentException e) {
 		            return null;
 		        }

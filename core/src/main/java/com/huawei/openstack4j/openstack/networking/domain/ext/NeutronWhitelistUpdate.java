@@ -33,7 +33,7 @@ import com.fasterxml.jackson.annotation.JsonRootName;
 public class NeutronWhitelistUpdate {
 	
 	@JsonProperty("enable_whitelist")
-	private boolean enableWhitelist;
+	private Boolean enableWhitelist;
 	
 	@JsonProperty("whitelist")
 	private String whitelist;

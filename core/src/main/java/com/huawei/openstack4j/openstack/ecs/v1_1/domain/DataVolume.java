@@ -77,5 +77,10 @@ public class DataVolume implements ModelEntity {
 	 */
 	@JsonProperty("hw:passthrough")
 	Boolean passthrough;
-	
+
+	/**
+	 * 磁盘的产品信息。
+	 */
+	@JsonProperty("extendparam")
+	VolumeExtendParam extendParam;
 }

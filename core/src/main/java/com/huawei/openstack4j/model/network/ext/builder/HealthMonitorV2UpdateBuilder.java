@@ -95,7 +95,7 @@ public interface HealthMonitorV2UpdateBuilder extends Builder<HealthMonitorV2Upd
      *            (UP) or false (DOWN).
      * @return HealthMonitorV2UpdateBuilder
      */
-    HealthMonitorV2UpdateBuilder adminStateUp(boolean adminStateUp);
+    HealthMonitorV2UpdateBuilder adminStateUp(Boolean adminStateUp);
 
     /**
      *

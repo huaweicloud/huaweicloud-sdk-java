@@ -58,7 +58,7 @@ public interface LbPoolV2UpdateBuilder extends Buildable.Builder<LbPoolV2UpdateB
      *            down (false).
      * @return LbPoolV2UpdateBuilder
      */
-    public LbPoolV2UpdateBuilder  adminStateUp(boolean adminStateUp);
+    public LbPoolV2UpdateBuilder  adminStateUp(Boolean adminStateUp);
 
     /**
      * Optional

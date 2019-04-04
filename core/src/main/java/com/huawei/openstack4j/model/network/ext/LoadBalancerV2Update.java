@@ -40,5 +40,5 @@ public interface LoadBalancerV2Update extends ModelEntity, Buildable<LoadBalance
      * Optional
      * @see LoadBalancerV2#isAdminStateUp()
      */
-    public boolean isAdminStateUp();
+    public Boolean isAdminStateUp();
 }

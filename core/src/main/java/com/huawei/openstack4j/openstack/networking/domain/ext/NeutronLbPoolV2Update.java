@@ -38,7 +38,7 @@ public class NeutronLbPoolV2Update implements LbPoolV2Update {
     private String description;
 
     @JsonProperty("admin_state_up")
-    private boolean adminStateUp = true;
+    private Boolean adminStateUp;
 
     @JsonProperty("lb_algorithm")
     private LbMethod lbMethod;
@@ -69,7 +69,7 @@ public class NeutronLbPoolV2Update implements LbPoolV2Update {
     }
     
     @Override
-    public boolean isAdminStateUp(){
+    public Boolean isAdminStateUp(){
         return adminStateUp;
     }
 
@@ -154,7 +154,7 @@ public class NeutronLbPoolV2Update implements LbPoolV2Update {
         }
 
         @Override
-        public LbPoolV2UpdateContreteBuilder adminStateUp(boolean adminStateUp) {
+        public LbPoolV2UpdateContreteBuilder adminStateUp(Boolean adminStateUp) {
             m.adminStateUp = adminStateUp;
             return this;
         }

@@ -43,7 +43,7 @@ public interface LbPoolV2Update extends ModelEntity, Buildable<LbPoolV2UpdateBui
      * @return The administrative state of the lb pool, which is up (true) or
      *         down (false).
      */
-    public boolean isAdminStateUp();
+    public Boolean isAdminStateUp();
 
     /**
      *

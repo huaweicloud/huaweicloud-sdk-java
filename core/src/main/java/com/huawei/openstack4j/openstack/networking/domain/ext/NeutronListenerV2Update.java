@@ -54,7 +54,7 @@ public class NeutronListenerV2Update implements ListenerV2Update {
     private String description;
 
     @JsonProperty("admin_state_up")
-    private boolean adminStateUp = true;
+    private Boolean adminStateUp;
 
     /**
      * The maximum number of connections allowed for the listener. Default is -1, meaning no limit.
@@ -81,7 +81,7 @@ public class NeutronListenerV2Update implements ListenerV2Update {
      * {@inheritDoc}
      */
     @Override
-    public boolean isAdminStateUp(){
+    public Boolean isAdminStateUp(){
         return adminStateUp;
     }
 
@@ -179,7 +179,7 @@ public class NeutronListenerV2Update implements ListenerV2Update {
          * {@inheritDoc}
          */
         @Override
-        public ListenerV2UpdateBuilder adminStateUp(boolean adminStateUp){
+        public ListenerV2UpdateBuilder adminStateUp(Boolean adminStateUp){
             m.adminStateUp = adminStateUp;
             return this;
         }

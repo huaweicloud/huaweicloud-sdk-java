@@ -48,8 +48,7 @@ public class NeutronL7Policy implements ModelEntity {
 	private String name;
 	
 	@JsonProperty("admin_state_up")
-	@Builder.Default
-	private boolean adminStateUp = true;
+	private Boolean adminStateUp;
 	
 	@JsonProperty("description")
 	private String description;

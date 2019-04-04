@@ -68,6 +68,7 @@ public class NeutronListenerV2 implements ListenerV2 {
     @JsonProperty("loadbalancer_id")
     private String loadbalancerId;
 
+    @JsonProperty("loadbalancers")
     private List<ListItem> loadbalancers;
 
     @JsonProperty("admin_state_up")

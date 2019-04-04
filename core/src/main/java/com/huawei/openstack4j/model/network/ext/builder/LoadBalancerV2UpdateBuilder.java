@@ -45,6 +45,6 @@ public interface LoadBalancerV2UpdateBuilder extends Buildable.Builder<LoadBalan
      *            (UP) or false (DOWN).
      * @return LoadBalancerV2UpdateBuilder
      */
-    public LoadBalancerV2UpdateBuilder adminStateUp(boolean adminStateUp);
+    public LoadBalancerV2UpdateBuilder adminStateUp(Boolean adminStateUp);
 
 }

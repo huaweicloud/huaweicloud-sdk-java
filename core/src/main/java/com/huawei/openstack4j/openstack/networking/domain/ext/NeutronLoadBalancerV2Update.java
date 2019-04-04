@@ -36,7 +36,7 @@ public class NeutronLoadBalancerV2Update implements LoadBalancerV2Update {
     private String description;
 
     @JsonProperty("admin_state_up")
-    private boolean adminStateUp = true;
+    private Boolean adminStateUp;
 
     /**
      * {@inheritDoc}
@@ -58,7 +58,7 @@ public class NeutronLoadBalancerV2Update implements LoadBalancerV2Update {
      * {@inheritDoc}
      */
     @Override
-    public boolean isAdminStateUp(){
+    public Boolean isAdminStateUp(){
         return adminStateUp;
     }
 
@@ -122,7 +122,7 @@ public class NeutronLoadBalancerV2Update implements LoadBalancerV2Update {
          * {@inheritDoc}
          */
         @Override
-        public LoadBalancerV2UpdateBuilder adminStateUp(boolean adminStateUp){
+        public LoadBalancerV2UpdateBuilder adminStateUp(Boolean adminStateUp){
             m.adminStateUp = adminStateUp;
             return this;
         }

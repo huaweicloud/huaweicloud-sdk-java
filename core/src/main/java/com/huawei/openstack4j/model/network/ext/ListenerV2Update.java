@@ -44,7 +44,7 @@ public interface ListenerV2Update extends ModelEntity, Buildable<ListenerV2Updat
      * Optional
      * @see ListenerV2#isAdminStateUp()
      */
-    public boolean isAdminStateUp();
+    public Boolean isAdminStateUp();
 
     /**
      * Optional

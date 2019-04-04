@@ -83,7 +83,7 @@ public class NeutronHealthMonitorV2Update implements HealthMonitorV2Update {
      * The administrative state of the health monitor, which is up (true) or down (false)
      */
     @JsonProperty("admin_state_up")
-    private boolean adminStateUp = true;
+    private Boolean adminStateUp;
 
     /**
      * {@inheritDoc}
@@ -137,7 +137,7 @@ public class NeutronHealthMonitorV2Update implements HealthMonitorV2Update {
      * {@inheritDoc}
      */
     @Override
-    public boolean isAdminStateUp(){
+    public Boolean isAdminStateUp(){
         return adminStateUp;
     }
 
@@ -243,7 +243,7 @@ public class NeutronHealthMonitorV2Update implements HealthMonitorV2Update {
          * {@inheritDoc}
          */
         @Override
-        public HealthMonitorV2UpdateBuilder adminStateUp(boolean adminStateUp){
+        public HealthMonitorV2UpdateBuilder adminStateUp(Boolean adminStateUp){
             m.adminStateUp = adminStateUp;
             return this;
         }
