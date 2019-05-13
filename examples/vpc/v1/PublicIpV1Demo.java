@@ -47,7 +47,7 @@ public class PublicIpV1Demo {
 
         VirtualPublicIps virtualPublicIVirtualPublicIpsResp = VirtualPublicIps.builder()
                 .virtualPublicIp(virtualPublicIpType)
-                .virtualBandwidth(VirtualBandWidth.builder().shareType(ShareType.PER).build())
+                .virtualBandwidth(VirtualBandWidth.builder().shareType(ShareType.PER).size(10).name("test").build())
                 .build();
 
         VirtualPublicIpsResp createResp = osclient.vpc().publicips().apply(virtualPublicIVirtualPublicIpsResp);

@@ -24,6 +24,7 @@ import static org.testng.Assert.assertNull;
 import static org.testng.Assert.assertTrue;
 
 import java.util.List;
+//import java.util.Map;
 
 import org.testng.Assert;
 import org.testng.annotations.Test;
@@ -38,6 +39,7 @@ import com.huawei.openstack4j.model.compute.Server.Status;
 import com.huawei.openstack4j.model.compute.ServerCreate;
 import com.huawei.openstack4j.model.compute.ServerPassword;
 import com.huawei.openstack4j.model.compute.StopType;
+//import com.huawei.openstack4j.model.compute.VolumeAttachment;
 import com.huawei.openstack4j.model.compute.actions.EvacuateOptions;
 
 /**

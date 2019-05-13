@@ -65,7 +65,7 @@ public final class ClientConstants {
     
     public static final String X_OPENSTACK_REQUEST_ID = "x-openstack-request-id";
     public static final String X_COMPUTE_REQUEST_ID = "X-Compute-Request-Id";
-
+    public static final String X_SECURITY_TOKEN = "X-Security-Token";
 
     // Paths
     public static final String URI_SEP = "/";

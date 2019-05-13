@@ -15,7 +15,7 @@
  *******************************************************************************/
 /******************************************************************************* 	                                                                                 
  *  Huawei has modified this source file.
- * 	Copyright 2018 Huawei Technologies Co.,Ltd.                                         
+ * 	Copyright 2019 Huawei Technologies Co.,Ltd.
  * 	                                                                                 
  * 	Licensed under the Apache License, Version 2.0 (the "License"); you may not      
  * 	use this file except in compliance with the License. You may obtain a copy of    
@@ -31,12 +31,14 @@
  * *******************************************************************************/
 package com.huawei.openstack4j.openstack.storage.block.internal;
 
+import static com.google.common.base.Preconditions.checkArgument;
 import static com.google.common.base.Preconditions.checkNotNull;
 
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import com.google.common.base.Strings;
 import com.google.common.collect.Maps;
 import com.huawei.openstack4j.api.Apis;
 import com.huawei.openstack4j.api.Builders;
@@ -56,12 +58,17 @@ import com.huawei.openstack4j.openstack.storage.block.domain.CinderVolumeType;
 import com.huawei.openstack4j.openstack.storage.block.domain.CinderVolumeType.VolumeTypes;
 import com.huawei.openstack4j.openstack.storage.block.domain.CinderVolumeUpdate;
 import com.huawei.openstack4j.openstack.storage.block.domain.CinderVolumeUploadImage;
+import com.huawei.openstack4j.openstack.storage.block.domain.CinderVolumesResponse;
 import com.huawei.openstack4j.openstack.storage.block.domain.ExtendAction;
+import com.huawei.openstack4j.openstack.storage.block.domain.Extension;
 import com.huawei.openstack4j.openstack.storage.block.domain.ForceDeleteAction;
 import com.huawei.openstack4j.openstack.storage.block.domain.ForceDetachAction;
 import com.huawei.openstack4j.openstack.storage.block.domain.ForceDetachConnector;
 import com.huawei.openstack4j.openstack.storage.block.domain.ResetStatusAction;
 import com.huawei.openstack4j.openstack.storage.block.domain.UpdateReadOnlyFlagAction;
+import com.huawei.openstack4j.openstack.storage.block.domain.Version;
+import com.huawei.openstack4j.openstack.storage.block.domain.VolumeMeta;
+import com.huawei.openstack4j.openstack.storage.block.domain.VolumeMetadata;
 
 /**
  * Manages Volumes and Volume Type based operations against Block Storage (Cinder)
@@ -112,6 +119,17 @@ public class BlockVolumeServiceImpl extends BaseBlockStorageServices implements 
 		checkNotNull(volumeId);
 		return deleteWithResponse(uri("/volumes/%s", volumeId)).execute();
 	}
+
+//	/**
+//	 * {@inheritDoc}
+//	 */
+//	@Override
+//	public ActionResponse forceDelete(String volumeId, Boolean cascade) {
+//		checkNotNull(volumeId);
+//		Map<String, Object> params = new HashMap<>();
+//		params.put("cascade",cascade);
+//		return deleteWithResponse(uri("/volumes/%s", volumeId)).params(params).execute();
+//	}
 
 	/**
 	 * {@inheritDoc}
@@ -313,38 +331,22 @@ public class BlockVolumeServiceImpl extends BaseBlockStorageServices implements 
 //	 * {@inheritDoc}
 //	 */
 //	@Override
-//	public List<? extends Version> versions() {
-//		return get(Version.Versions.class, "/").execute().getList();
+//	public CinderVolumesResponse listVolumes() {
+//		return get(CinderVolumesResponse.class, "/volumes").execute();
 //	}
 //
 //	/**
 //	 * {@inheritDoc}
 //	 */
 //	@Override
-//	public List<? extends Version> versionsV2() {
-//		return get(Version.Versions.class, "/v2").execute().getList();
-//	}
-//
-//		/**
-//	 * {@inheritDoc}
-//	 */
-//	@Override
-//	public List<? extends Volume> listVolumes() {
-//		return get(Volumes.class, "/volumes").execute().getList();
-//	}
-//
-//	/**
-//	 * {@inheritDoc}
-//	 */
-//	@Override
-//	public List<? extends Volume> listVolumes(Map<String, String> filteringParams) {
-//		Invocation<Volumes> volumeInvocation = get(Volumes.class, "/volumes");
+//	public CinderVolumesResponse listVolumes(Map<String, String> filteringParams) {
+//		Invocation<CinderVolumesResponse> volumeInvocation = get(CinderVolumesResponse.class, "/volumes");
 //		if (filteringParams != null) {
 //			for (Map.Entry<String, String> entry : filteringParams.entrySet()) {
 //				volumeInvocation = volumeInvocation.param(entry.getKey(), entry.getValue());
 //			}
 //		}
-//		return volumeInvocation.execute().getList();
+//		return volumeInvocation.execute();
 //	}
 //
 //	/**
@@ -421,6 +423,6 @@ public class BlockVolumeServiceImpl extends BaseBlockStorageServices implements 
 //	 */
 //	@Override
 //	public List<? extends Extension> listExtensions() {
-//		return get(Extensions.class, "/extensions").execute().getList();
+//		return get(Extension.Extensions.class, "/extensions").execute().getList();
 //	}
 }

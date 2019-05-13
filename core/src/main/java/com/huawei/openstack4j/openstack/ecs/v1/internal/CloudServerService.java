@@ -15,29 +15,31 @@
  *******************************************************************************/
 package com.huawei.openstack4j.openstack.ecs.v1.internal;
 
-import static com.google.common.base.Preconditions.checkArgument;
+ import static com.google.common.base.Preconditions.checkArgument;
 
-import java.util.List;
-import java.util.Map;
+ import java.util.List;
+ import java.util.Map;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonRootName;
-import com.google.common.base.Strings;
-import com.google.common.collect.Lists;
-import com.huawei.openstack4j.model.ModelEntity;
-import com.huawei.openstack4j.model.compute.RebootType;
-import com.huawei.openstack4j.model.compute.StopType;
-import com.huawei.openstack4j.openstack.common.AsyncJobEntity;
-import com.huawei.openstack4j.openstack.common.IdResourceEntity;
-import com.huawei.openstack4j.openstack.ecs.v1.domain.CloudAbsoluteLimit;
-import com.huawei.openstack4j.openstack.ecs.v1.domain.CloudServer;
-import com.huawei.openstack4j.openstack.ecs.v1.domain.CloudServer.CloudServers;
-import com.huawei.openstack4j.openstack.ecs.v1.domain.Flavor;
-import com.huawei.openstack4j.openstack.ecs.v1.domain.Flavor.Flavors;
-import com.huawei.openstack4j.openstack.ecs.v1.domain.ResizeServer;
-import com.huawei.openstack4j.openstack.ecs.v1.domain.ServerCreate;
+ import com.fasterxml.jackson.annotation.JsonProperty;
+ import com.fasterxml.jackson.annotation.JsonRootName;
+ import com.google.common.base.Strings;
+ import com.google.common.collect.Lists;
+ import com.huawei.openstack4j.model.ModelEntity;
+// import com.huawei.openstack4j.model.common.ActionResponse;
+ import com.huawei.openstack4j.model.compute.RebootType;
+ import com.huawei.openstack4j.model.compute.StopType;
+ import com.huawei.openstack4j.openstack.common.AsyncJobEntity;
+ import com.huawei.openstack4j.openstack.common.IdResourceEntity;
+ import com.huawei.openstack4j.openstack.ecs.v1.domain.CloudAbsoluteLimit;
+ import com.huawei.openstack4j.openstack.ecs.v1.domain.CloudServer;
+ import com.huawei.openstack4j.openstack.ecs.v1.domain.CloudServer.CloudServers;
+ import com.huawei.openstack4j.openstack.ecs.v1.domain.Flavor;
+ import com.huawei.openstack4j.openstack.ecs.v1.domain.Flavor.Flavors;
+ import com.huawei.openstack4j.openstack.ecs.v1.domain.ResizeServer;
+ import com.huawei.openstack4j.openstack.ecs.v1.domain.ServerCreate;
+// import com.huawei.openstack4j.openstack.ecs.v1.domain.SupportAutoRecovery;
 
-public class CloudServerService extends BaseElasticComputeServices {
+ public class CloudServerService extends BaseElasticComputeServices {
 
 	/**
 	 * create one or multiple server
@@ -199,10 +201,10 @@ public class CloudServerService extends BaseElasticComputeServices {
 		return get(CloudAbsoluteLimit.class, uri("/cloudservers/limits")).execute();
 	}
 
-	 /**
-	  * Check whether the cloud server is configured with automatic recovery actions.
-	  * @return
-	  * */
+//	 /**
+//	  * Check whether the cloud server is configured with automatic recovery actions.
+//	  * @return
+//	  * */
 //	public SupportAutoRecovery getAutoRecovery(String serverId){
 //		checkArgument(!Strings.isNullOrEmpty(serverId), "parameter `serverId` should not be empty");
 //		return get(SupportAutoRecovery.class, uri("/cloudservers/"+serverId+"/autorecovery")).execute();

@@ -36,10 +36,10 @@ public class SecurityGroupRuleDemo {
 
         //Create a SecurityGroupRule
         String securityGroupId = "******";
-        String direction = "direction";
+        String direction = "egress";
         String protocol = "tcp";
         String remoteIpPrefix = "10.10.0.0/24";
-        SecurityGroupRule securityGroupRule = NeutronSecurityGroupRule.builder().id(securityGroupId).direction(direction).remoteIpPrefix(remoteIpPrefix)
+        SecurityGroupRule securityGroupRule = NeutronSecurityGroupRule.builder().securityGroupId(securityGroupId).direction(direction).remoteIpPrefix(remoteIpPrefix)
                 .protocol(protocol).build();
         SecurityGroupRule createResp = osclient.networking().securityrule().create(securityGroupRule);
         if (null != createResp) {
@@ -50,7 +50,12 @@ public class SecurityGroupRuleDemo {
 
         //Delete a SecurityGroupRule
         String securityGroupsRulesId = "******";
-        osclient.networking().securityrule().delete(securityGroupsRulesId);
+        ActionResponse resp = osclient.networking().securityrule().delete(securityGroupsRulesId);
+        if (resp.isSuccess()) {
+            System.out.println("Delete a SecurityGroupRule success");
+        } else {
+            System.out.println("Delete a SecurityGroupRule failed");
+        }
 
         //Get a SecurityGroupRule
         SecurityGroupRule getResp = osclient.networking().securityrule().get(securityGroupsRulesId);

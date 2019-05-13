@@ -323,6 +323,8 @@ import com.huawei.openstack4j.openstack.heat.internal.ResourcesServiceImpl;
 import com.huawei.openstack4j.openstack.heat.internal.SoftwareConfigServiceImpl;
 import com.huawei.openstack4j.openstack.heat.internal.StackServiceImpl;
 import com.huawei.openstack4j.openstack.heat.internal.TemplateServiceImpl;
+import com.huawei.openstack4j.openstack.iam.internal.IamService;
+import com.huawei.openstack4j.openstack.iam.internal.SecuritytokenService;
 import com.huawei.openstack4j.openstack.identity.v2.internal.ServiceManagerServiceImpl;
 import com.huawei.openstack4j.openstack.identity.v2.internal.TenantServiceImpl;
 import com.huawei.openstack4j.openstack.identity.v3.internal.CredentialServiceImpl;
@@ -335,6 +337,7 @@ import com.huawei.openstack4j.openstack.identity.v3.internal.RoleServiceImpl;
 import com.huawei.openstack4j.openstack.identity.v3.internal.ServiceEndpointServiceImpl;
 import com.huawei.openstack4j.openstack.identity.v3.internal.TokenServiceImpl;
 import com.huawei.openstack4j.openstack.identity.v3.internal.UserServiceImpl;
+import com.huawei.openstack4j.openstack.identity.v3.internal.VersionServiceImpl;
 import com.huawei.openstack4j.openstack.image.internal.ImageServiceImpl;
 import com.huawei.openstack4j.openstack.image.v2.internal.TaskServiceImpl;
 import com.huawei.openstack4j.openstack.kms.internal.CryptoService;
@@ -537,6 +540,9 @@ public class DefaultAPIProvider implements APIProvider {
 		bind(FlavorService.class, FlavorServiceImpl.class);
 		bind(ComputeImageService.class, ComputeImageServiceImpl.class);
 		bind(ServerService.class, ServerServiceImpl.class);
+		bind(com.huawei.openstack4j.api.identity.v3.VersionService.class, VersionServiceImpl.class);
+		bind(IamService.class, IamService.class);
+		bind(SecuritytokenService.class, SecuritytokenService.class);
 
 		// tms
 		bind(TagManagementService.class, TagManagementService.class);
@@ -554,6 +560,7 @@ public class DefaultAPIProvider implements APIProvider {
 		bind(com.huawei.openstack4j.openstack.evs.v2.internal.VolumeService.class, com.huawei.openstack4j.openstack.evs.v2.internal.VolumeService.class);
 		bind(com.huawei.openstack4j.openstack.evs.v2.internal.VolumeSnapshotService.class, com.huawei.openstack4j.openstack.evs.v2.internal.VolumeSnapshotService.class);
         bind(com.huawei.openstack4j.openstack.evs.v2.internal.JobService.class, com.huawei.openstack4j.openstack.evs.v2.internal.JobService.class);
+        bind(com.huawei.openstack4j.openstack.evs.v2.internal.VersionService.class, com.huawei.openstack4j.openstack.evs.v2.internal.VersionService.class);
 		bind(com.huawei.openstack4j.openstack.evs.v2_1.internal.ElasticVolumeService.class, com.huawei.openstack4j.openstack.evs.v2_1.internal.ElasticVolumeService.class);
 		bind(com.huawei.openstack4j.openstack.evs.v2_1.internal.VolumeService.class, com.huawei.openstack4j.openstack.evs.v2_1.internal.VolumeService.class);
 

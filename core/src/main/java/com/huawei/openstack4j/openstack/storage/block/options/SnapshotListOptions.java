@@ -64,4 +64,8 @@ public class SnapshotListOptions {
 	public SnapshotListOptions volumeId(String volumeId) {
 		return add("volume_id", volumeId);
 	}
+
+	public SnapshotListOptions availabilityZone(String availabilityZone) {
+		return add("availability_zone", availabilityZone);
+	}
 }

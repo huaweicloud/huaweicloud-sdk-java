@@ -75,6 +75,7 @@ import com.huawei.openstack4j.openstack.dss.v1.internal.DssService;
 import com.huawei.openstack4j.openstack.ecs.v1.internal.ElasticComputeService;
 import com.huawei.openstack4j.openstack.evs.v2.internal.ElasticVolumeService;
 import com.huawei.openstack4j.openstack.fgs.v1.internal.FunctionGraphService;
+import com.huawei.openstack4j.openstack.iam.internal.IamService;
 import com.huawei.openstack4j.openstack.kms.internal.KeyManagementService;
 import com.huawei.openstack4j.openstack.maas.internal.MaaSService;
 import com.huawei.openstack4j.openstack.message.notification.internal.NotificationService;
@@ -499,6 +500,62 @@ public interface OSClient<T extends OSClient<T>> {
 		
 	}
 
+	/**
+	 * OpenStack4j Client which authenticates against version TempAKSK
+	 */
+	public interface OSClientTempAKSK extends OSClient<OSClient.OSClientTempAKSK> {
+
+		/**
+		 * create a AKSK OSClient with required credentials
+		 *
+		 * @param accessKey					Access key
+		 * @param secretKey					Secret key
+		 * @param region					region
+		 * @param projectId					user project id
+		 * @param cloudDomainName			cloud service domain, example: ***.com
+		 * @param securityToken				securityToken
+		 * @return
+		 */
+		public OSClientTempAKSK credentials(String accessKey, String secretKey, String region, String projectId, String cloudDomainName, String securityToken);
+
+		/**
+		 * create a AKSK OSClient with required credentials
+		 *
+		 * @param accessKey					Access key
+		 * @param secretKey					Secret key
+		 * @param region					region
+		 * @param domainId					user domain id
+		 * @param cloudDomainName			cloud service domain, example: ***.com
+		 * @param securityToken				securityToken
+		 * @return
+		 */
+		public OSClientTempAKSK credentials(String accessKey, String secretKey, String region, String projectId, String domainId, String cloudDomainName, String securityToken);
+
+		/**
+		 * create a AKSK OSClient with required credentials
+		 *
+		 * @param accessKey					Access key
+		 * @param secretKey					Secret key
+		 * @param region					region
+		 * @param cloudDomainName			cloud service domain, example: ***.com
+		 * @param securityToken				securityToken
+		 * @return
+		 */
+		public OSClientTempAKSK credentials(String accessKey, String secretKey, String region, String cloudDomainName, String securityToken);
+
+		/**
+		 * @param config
+		 */
+		public OSClientTempAKSK useConfig(Config config);
+
+		/**
+		 * Returns the Identity Service API V3
+		 *
+		 * @return the identity service version 3
+		 */
+		com.huawei.openstack4j.api.identity.v3.IdentityService identity();
+
+	}
 	
 	
 	/**
@@ -634,4 +691,10 @@ public interface OSClient<T extends OSClient<T>> {
 	 * @return
 	 */
 	MessageQueueAsyncService messageQueueAsync();
+
+	/**
+	 * Returns the Iam Service API
+	 * @return
+	 */
+	IamService iam();
 }

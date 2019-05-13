@@ -80,6 +80,7 @@ public enum ServiceType {
 	CSBS("csbs","data-protect"),
 	CDN("cdn","cdn"),
 	FGS("fgs","fgs"),
+	IAM("IAM", "iam"),
 	UNKNOWN("NA", "NA")
 	;
 	//@on

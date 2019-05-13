@@ -102,17 +102,17 @@ public class RootVolume implements ModelEntity {
 		RootVolumeBuilder() {
 		}
 
-		public RootVolumeBuilder type(VolumeType type) {
+		public RootVolume.RootVolumeBuilder type(VolumeType type) {
 			this.type = type;
 			return this;
 		}
 
-		public RootVolumeBuilder size(Integer size) {
+		public RootVolume.RootVolumeBuilder size(Integer size) {
 			this.size = size;
 			return this;
 		}
 
-		public RootVolumeBuilder extendParam(VolumeExtendParam extendParam) {
+		public RootVolume.RootVolumeBuilder extendParam(VolumeExtendParam extendParam) {
 			this.extendParam = extendParam;
 			return this;
 		}

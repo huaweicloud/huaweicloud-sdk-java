@@ -147,6 +147,7 @@ public class OSClientSessionAKSK extends OSClientSession<OSClientSessionAKSK, OS
 		this.secretKey = secretKey;
 		this.cloudDomainName = cloudDomainName;
 		this.domainId = domainId;
+		this.projectId = projectId;
 		this.useRegion(region);
 		sessions.set(this);
 		return this;

@@ -26,10 +26,10 @@ import com.huawei.openstack4j.model.compute.QuotaSetUpdate;
 import com.huawei.openstack4j.model.compute.SimpleTenantUsage;
 import com.huawei.openstack4j.openstack.compute.domain.NovaLimits;
 import com.huawei.openstack4j.openstack.compute.domain.NovaQuotaSet;
-import com.huawei.openstack4j.openstack.compute.domain.NovaSimpleTenantUsage;
 import com.huawei.openstack4j.openstack.compute.domain.NovaQuotaSet.NovaQuotaSetClass;
 import com.huawei.openstack4j.openstack.compute.domain.NovaQuotaSetUpdate.NovaQuotaSetUpdateClass;
 import com.huawei.openstack4j.openstack.compute.domain.NovaQuotaSetUpdate.NovaQuotaSetUpdateTenant;
+import com.huawei.openstack4j.openstack.compute.domain.NovaSimpleTenantUsage;
 import com.huawei.openstack4j.openstack.compute.domain.NovaSimpleTenantUsage.NovaSimpleTenantUsages;
 
 /**
@@ -53,8 +53,15 @@ public class QuotaSetServiceImpl extends BaseComputeServices implements QuotaSet
     @Override
     public QuotaSet get(String tenantId, String userId) {
         checkNotNull(tenantId);
-        String uri = (userId != null) ? uri("/os-quota-sets/%s?user_id=%s", tenantId, userId) : uri("/os-quota-sets/%s", tenantId);
-        return get(NovaQuotaSet.class, uri).execute();
+//        String uri = (userId != null) ? uri("/os-quota-sets/%s?user_id=%s", tenantId, userId) : uri("/os-quota-sets/%s", tenantId);
+        String uri = uri("/os-quota-sets/%s", tenantId);
+        Invocation<NovaQuotaSet> req = null;
+        if((userId != null)){
+            req = get(NovaQuotaSet.class, uri).param("user_id",userId);
+        }else{
+            req = get(NovaQuotaSet.class, uri);
+        }
+        return req.execute();
     }
 
     /**

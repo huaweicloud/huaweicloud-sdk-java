@@ -39,16 +39,12 @@ public class PublicIpDemoV2 {
                 .scopeToProject(Identifier.byId(projectId)).authenticate();
 
         //Create a publicIp
-        VirtualPublicIps virtualPublicIps = null;
-        VirtualPublicIpType virtualPublicIpType = null;
-        VirtualBandWidth virtualBandWidth = null;
-
-        virtualBandWidth.builder().name("bandwidthDemo").size(10).shareType(ShareType.PER).build();
-        virtualPublicIpType.builder().type(IpType.BGP);
-        virtualPublicIps.builder().virtualPublicIp(virtualPublicIpType).virtualBandwidth(virtualBandWidth).build();
+        VirtualBandWidth virtualBandWidth = VirtualBandWidth.builder().name("bandwidthDemo").size(10).shareType(ShareType.PER).build();
+        VirtualPublicIpType virtualPublicIpType = VirtualPublicIpType.builder().type(IpType.BGP).build();
+        VirtualPublicIps virtualPublicIps =  VirtualPublicIps.builder().virtualPublicIp(virtualPublicIpType).virtualBandwidth(virtualBandWidth).build();
         AsyncPublicipRespEntity createResp = osclient.vpcV2().publicips().apply(virtualPublicIps);
         if (null != createResp) {
-            System.out.println("Create a publicIp success, id = " + createResp.getOrderId());
+            System.out.println("Create a publicIp success, id = " + createResp.getVirtualPublicIp().getId());
         } else {
             System.out.println("Create a publicIp failed");
         }

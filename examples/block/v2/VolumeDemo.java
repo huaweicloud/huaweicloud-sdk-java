@@ -13,7 +13,10 @@ import com.huawei.openstack4j.model.storage.block.VolumeType;
 import com.huawei.openstack4j.model.storage.block.VolumeUploadImage;
 import com.huawei.openstack4j.model.storage.block.options.UploadImageData;
 import com.huawei.openstack4j.openstack.OSFactory;
+import com.huawei.openstack4j.openstack.storage.block.domain.CinderBlockQuotaSetResponse;
+import com.huawei.openstack4j.openstack.storage.block.domain.CinderVolume;
 import com.huawei.openstack4j.openstack.storage.block.domain.CinderVolumeUpdate;
+import com.huawei.openstack4j.openstack.storage.block.domain.CinderVolumesResponse;
 
 public class VolumeDemo {
 	public static void main(String[] args) throws InterruptedException
@@ -121,6 +124,9 @@ public class VolumeDemo {
 
 		//delete volume
 		ActionResponse deleteVolumeResponse = os.blockStorage().volumes().delete(volumeId);
+//		//delete volume with snapshots
+//		ActionResponse deleteVolumeCascadeResponse = os.blockStorage().volumes().forceDelete(volumeId, true);
+
 		//wait until volume deleted
 		int queryDeletedVolumeCount = 1;
 		boolean queryDeletedVolumeFlag = false;
@@ -164,6 +170,32 @@ public class VolumeDemo {
 		}
 		Volume volumeDetail2 = volumeList2.get(0);
 
+//		//get list of volume detail
+//		CinderVolumesResponse volumeList3 = os.blockStorage().volumes().listVolumes();
+//		if (null != volumeList3 && volumeList3.getVolumeList().size() >= 0)
+//		{
+//			System.out.println("get volumeList success, count = " + volumeList3.getVolumeList().size());
+//		}
+//		else
+//		{
+//			System.out.println("get volumeList failed");
+//		}
+//		CinderVolume volumeDetail3 = volumeList3.getVolumeList().get(0);
+//
+//		//get list of volume detail by filter
+//		Map<String, String> filteringParams = new HashMap<>();
+//		filteringParams.put("name", "volumeName");
+//		CinderVolumesResponse volumeList4 = os.blockStorage().volumes().listVolumes(filteringParams);
+//		if (null != volumeList4 && volumeList4.getVolumeList().size() >= 0)
+//		{
+//			System.out.println("get volumeList success, count = " + volumeList4.getVolumeList().size());
+//		}
+//		else
+//		{
+//			System.out.println("get volumeList failed");
+//		}
+//		CinderVolume volumeDetail4 = volumeList4.getVolumeList().get(0);
+
 		// get list of volume types
 		List<? extends VolumeType> volumeTypes = os.blockStorage().volumes().listVolumeTypes();
 		for (VolumeType type: volumeTypes)
@@ -195,5 +227,12 @@ public class VolumeDemo {
 		{
 			System.out.println("readonly mode update failed");
 		}
+
+//		// get tenant quota
+//		CinderBlockQuotaSetResponse quotaSetResponse = os.blockStorage().quotaSets().quotaForTenant("tenantId");
+//		Map<String, Object> quotaSet = quotaSetResponse.getQuotaSet();
+//		System.out.println((String)quotaSet.get("id"));
+//		Map<String, Integer> volumes = (Map<String, Integer>)quotaSet.get("volumes");
+//		System.out.println(volumes.get("reserved"));
 	}
 }

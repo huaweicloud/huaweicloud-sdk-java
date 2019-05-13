@@ -36,6 +36,7 @@ import java.net.URISyntaxException;
 import java.util.Map;
 import java.util.Set;
 
+import com.huawei.openstack4j.openstack.iam.internal.IamService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -641,6 +642,13 @@ public abstract class OSClientSession<R, T extends OSClient<T>> implements Endpo
 	public CloudServerBackupService csbs(){
 		return Apis.get(CloudServerBackupService.class);
 	}
+
+	/**
+	 * Returns the Iam Service API
+	 * @return
+	 */
+	public IamService iam() { return Apis.get(IamService.class); }
+
 	public static class OSClientSessionV2 extends OSClientSession<OSClientSessionV2, OSClientV2> implements OSClientV2 {
 
 		Access access;

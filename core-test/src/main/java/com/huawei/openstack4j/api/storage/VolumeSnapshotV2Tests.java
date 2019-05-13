@@ -1,55 +1,55 @@
-///*******************************************************************************
-// * 	Copyright 2019 Huawei Technologies Co., Ltd.
-// *
-// * 	Licensed under the Apache License, Version 2.0 (the "License"); you may not
-// * 	use this file except in compliance with the License. You may obtain a copy of
-// * 	the License at
-// *
-// * 	    http://www.apache.org/licenses/LICENSE-2.0
-// *
-// * 	Unless required by applicable law or agreed to in writing, software
-// * 	distributed under the License is distributed on an "AS IS" BASIS, WITHOUT
-// * 	WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the
-// * 	License for the specific language governing permissions and limitations under
-// * 	the License.
-// *******************************************************************************/
-//package com.huawei.openstack4j.api.storage;
-//
-//import static org.testng.Assert.assertTrue;
-//
-//import java.io.IOException;
-//import java.util.List;
-//import java.util.Map;
-//
-//import org.testng.annotations.Test;
-//
-//import com.google.common.collect.Maps;
-//import com.huawei.openstack4j.api.AbstractTest;
-//import com.huawei.openstack4j.model.common.ActionResponse;
-//import com.huawei.openstack4j.openstack.storage.block.domain.SnapshotDetail;
-//import com.huawei.openstack4j.openstack.storage.block.domain.SnapshotMeta;
-//import com.huawei.openstack4j.openstack.storage.block.domain.SnapshotMetadata;
-//import com.huawei.openstack4j.openstack.storage.block.domain.SnapshotUpdate;
-//import com.huawei.openstack4j.openstack.storage.block.options.SnapshotListOptions;
-//
-//@Test(suiteName = "EVS/Snapshots", enabled = true)
-//public class VolumeSnapshotV2Tests extends AbstractTest {
-//
-//	private static final String JSON_SNAPSHOTS = "/storage/v2/snapshots.json";
-//	private static final String JSON_SNAPSHOT_UPDATE = "/storage/v2/snapshot_update.json";
-//	private static final String JSON_SNAPSHOT_METADATA_CREATE = "/storage/v2/snapshot_metadata_create.json";
-//	private static final String JSON_SNAPSHOT_METADATAS = "/storage/v2/snapshot_metadatas.json";
-//	private static final String JSON_SNAPSHOT_METADATA_UPDATE = "/storage/v2/snapshot_metadata_update.json";
-//	private static final String JSON_SNAPSHOT_METADATA = "/storage/v2/snapshot_metadata.json";
-//
+/*******************************************************************************
+ * 	Copyright 2019 Huawei Technologies Co., Ltd.
+ *
+ * 	Licensed under the Apache License, Version 2.0 (the "License"); you may not
+ * 	use this file except in compliance with the License. You may obtain a copy of
+ * 	the License at
+ *
+ * 	    http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * 	Unless required by applicable law or agreed to in writing, software
+ * 	distributed under the License is distributed on an "AS IS" BASIS, WITHOUT
+ * 	WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the
+ * 	License for the specific language governing permissions and limitations under
+ * 	the License.
+ *******************************************************************************/
+package com.huawei.openstack4j.api.storage;
+
+import static org.testng.Assert.assertTrue;
+
+import java.io.IOException;
+import java.util.Map;
+
+import org.testng.annotations.Test;
+
+import com.google.common.collect.Maps;
+import com.huawei.openstack4j.api.AbstractTest;
+import com.huawei.openstack4j.model.common.ActionResponse;
+import com.huawei.openstack4j.openstack.storage.block.domain.CinderVolumeSnapshotsResponse;
+import com.huawei.openstack4j.openstack.storage.block.domain.SnapshotDetail;
+import com.huawei.openstack4j.openstack.storage.block.domain.SnapshotMeta;
+import com.huawei.openstack4j.openstack.storage.block.domain.SnapshotMetadata;
+import com.huawei.openstack4j.openstack.storage.block.domain.SnapshotUpdate;
+import com.huawei.openstack4j.openstack.storage.block.options.SnapshotListOptions;
+
+@Test(suiteName = "EVS/Snapshots", enabled = true)
+public class VolumeSnapshotV2Tests extends AbstractTest {
+
+	private static final String JSON_SNAPSHOTS = "/storage/v2/snapshots.json";
+	private static final String JSON_SNAPSHOT_UPDATE = "/storage/v2/snapshot_update.json";
+	private static final String JSON_SNAPSHOT_METADATA_CREATE = "/storage/v2/snapshot_metadata_create.json";
+	private static final String JSON_SNAPSHOT_METADATAS = "/storage/v2/snapshot_metadatas.json";
+	private static final String JSON_SNAPSHOT_METADATA_UPDATE = "/storage/v2/snapshot_metadata_update.json";
+	private static final String JSON_SNAPSHOT_METADATA = "/storage/v2/snapshot_metadata.json";
+
 //	@Test
 //	public void listDetailTest() throws IOException {
 //		respondWith(JSON_SNAPSHOTS);
 //
-//		List<? extends SnapshotDetail> snapshots = osv3().blockStorage().snapshots().listDetail();
+//		CinderVolumeSnapshotsResponse snapshots = osv3().blockStorage().snapshots().listDetail();
 //
-//		assertTrue(snapshots.size() > 0);
-//		assertTrue("b836dc3d-4e10-4ea4-a34c-8f6b0460a583".equals(snapshots.get(0).getId()));
+//		assertTrue(snapshots.getSnapshotList().size() > 0);
+//		assertTrue("b836dc3d-4e10-4ea4-a34c-8f6b0460a583".equals(snapshots.getSnapshotList().get(0).getId()));
 //	}
 //
 //	@Test
@@ -57,10 +57,10 @@
 //		respondWith(JSON_SNAPSHOTS);
 //
 //		SnapshotListOptions options = SnapshotListOptions.create();
-//		List<? extends SnapshotDetail> snapshots = osv3().blockStorage().snapshots().listDetail(options);
+//		CinderVolumeSnapshotsResponse snapshots = osv3().blockStorage().snapshots().listDetail(options);
 //
-//		assertTrue(snapshots.size() > 0);
-//		assertTrue("b836dc3d-4e10-4ea4-a34c-8f6b0460a583".equals(snapshots.get(0).getId()));
+//		assertTrue(snapshots.getSnapshotList().size() > 0);
+//		assertTrue("b836dc3d-4e10-4ea4-a34c-8f6b0460a583".equals(snapshots.getSnapshotList().get(0).getId()));
 //	}
 //
 //	@Test
@@ -101,7 +101,7 @@
 //		assertTrue(metadata != null);
 //		assertTrue("value1".equals(metadata.getMetadata().get("key1")));
 //	}
-//
+
 //	@Test
 //	public void updateMetadataTest() throws IOException {
 //		respondWith(JSON_SNAPSHOT_METADATA_UPDATE);
@@ -155,10 +155,10 @@
 //		assertTrue(updateMetadata != null);
 //		assertTrue(value.equals(updateMetadata.getMeta().get(key)));
 //	}
-//
-//	@Override
-//	protected Service service() {
-//		return Service.BLOCK_STORAGE;
-//	}
-//
-//}
+
+	@Override
+	protected Service service() {
+		return Service.BLOCK_STORAGE;
+	}
+
+}

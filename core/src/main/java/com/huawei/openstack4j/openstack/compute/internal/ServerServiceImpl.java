@@ -69,6 +69,7 @@ import com.huawei.openstack4j.openstack.common.Metadata;
 import com.huawei.openstack4j.openstack.compute.domain.AdminPass;
 import com.huawei.openstack4j.openstack.compute.domain.ConsoleOutput;
 import com.huawei.openstack4j.openstack.compute.domain.ConsoleOutputOptions;
+//import com.huawei.openstack4j.openstack.compute.domain.MetadataItem;
 import com.huawei.openstack4j.openstack.compute.domain.NovaPassword;
 import com.huawei.openstack4j.openstack.compute.domain.NovaServer;
 import com.huawei.openstack4j.openstack.compute.domain.NovaServer.Servers;
@@ -353,10 +354,10 @@ public class ServerServiceImpl extends BaseComputeServices implements ServerServ
 
 		// Build options with the given numLines or default to full output
 		ConsoleOutputOptions consoleOutputOptions;
-		if (numLines <= 0)
-			consoleOutputOptions = new ConsoleOutputOptions();
-		else
-			consoleOutputOptions = new ConsoleOutputOptions(numLines);
+//		if (numLines <= 0)
+//			consoleOutputOptions = new ConsoleOutputOptions();
+//		else
+		consoleOutputOptions = new ConsoleOutputOptions(numLines);
 
 		ConsoleOutput c = post(ConsoleOutput.class, uri("/servers/%s/action", serverId)).entity(consoleOutputOptions)
 				.execute();
@@ -398,6 +399,9 @@ public class ServerServiceImpl extends BaseComputeServices implements ServerServ
 	 */
 	@Override
 	public VolumeAttachment attachVolume(String serverId, String volumeId, String device) {
+		checkNotNull(serverId);
+		checkNotNull(volumeId);
+		checkNotNull(device);
 		return post(NovaVolumeAttachment.class, uri("/servers/%s/os-volume_attachments", serverId))
 				.entity(NovaVolumeAttachment.create(volumeId, device))
 				.execute(ExecutionOptions.<NovaVolumeAttachment> create(PropagateOnStatus.on(404)));
@@ -408,6 +412,8 @@ public class ServerServiceImpl extends BaseComputeServices implements ServerServ
 	 */
 	@Override
 	public ActionResponse detachVolume(String serverId, String attachmentId) {
+		checkNotNull(serverId);
+		checkNotNull(attachmentId);
 		return ToActionResponseFunction.INSTANCE
 				.apply(delete(Void.class, uri("/servers/%s/os-volume_attachments/%s", serverId, attachmentId))
 						.executeWithResponse());
@@ -520,6 +526,7 @@ public class ServerServiceImpl extends BaseComputeServices implements ServerServ
 //	public Map<String, String> setMetadataItem(String serverId, String key, String value) {
 //		checkNotNull(serverId);
 //		checkNotNull(value);
+//		checkNotNull(key);
 //		HashMap<String,String> metadataMap = new HashMap<String,String>();
 //		metadataMap.put(key, value);
 //		return put(MetadataItem.class, uri("/servers/%s/metadata/%s", serverId, key)).entity(MetadataItem.toMetadataItem(metadataMap))
@@ -589,6 +596,8 @@ public class ServerServiceImpl extends BaseComputeServices implements ServerServ
 //	 */
 //	@Override
 //	public VolumeAttachment getAttachVolume(String serverId, String volumeId) {
+//        checkNotNull(serverId);
+//        checkNotNull(volumeId);
 //		return get(NovaVolumeAttachment.class, uri("/servers/%s/os-volume_attachments/%s", serverId,volumeId))
 //				.execute();
 //	}
@@ -598,6 +607,7 @@ public class ServerServiceImpl extends BaseComputeServices implements ServerServ
 //	 */
 //	@Override
 //	public List<? extends VolumeAttachment> listAttachedVolumes(String serverId) {
+//		checkNotNull(serverId);
 //		Invocation<NovaVolumeAttachment.NovaVolumeAttachments> volumeAttachmentInvocation = get(NovaVolumeAttachment.NovaVolumeAttachments.class, uri("/servers/%s/os-volume_attachments", serverId));
 //		return volumeAttachmentInvocation.execute().getList();
 //	}

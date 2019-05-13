@@ -1,0 +1,76 @@
+{
+  "versions": [
+    {
+      "min_version": "",
+      "media-types": [
+        {
+          "type": "application/vnd.openstack.volume+json;version=1",
+          "base": "application/json"
+        }
+      ],
+      "links": [
+        {
+          "rel": "describedby",
+          "href": "http://docs.openstack.org/",
+          "type": "text/html"
+        },
+        {
+          "rel": "self",
+          "href": "https://evs.cn-north-1.myhuaweicloud.com/v1"
+        }
+      ],
+      "id": "v1.0",
+      "updated": "2014-06-28T12:20:21Z",
+      "version": "",
+      "status": "SUPPORTED"
+    },
+    {
+      "min_version": "",
+      "media-types": [
+        {
+          "type": "application/vnd.openstack.volume+json;version=1",
+          "base": "application/json"
+        }
+      ],
+      "links": [
+        {
+          "rel": "describedby",
+          "href": "http://docs.openstack.org/",
+          "type": "text/html"
+        },
+        {
+          "rel": "self",
+          "href": "https://evs.cn-north-1.myhuaweicloud.com/v2"
+        }
+      ],
+      "id": "v2.0",
+      "updated": "2014-06-28T12:20:21Z",
+      "version": "",
+      "status": "SUPPORTED"
+    },
+    {
+      "min_version": "3.0",
+      "media-types": [
+        {
+          "type": "application/vnd.openstack.volume+json;version=1",
+          "base": "application/json"
+        }
+      ],
+      "links": [
+        {
+          "rel": "describedby",
+          "href": "http://docs.openstack.org/",
+          "type": "text/html"
+        },
+        {
+          "rel": "self",
+          "href": "https://evs.cn-north-1.myhuaweicloud.com/v3"
+        }
+      ],
+      "id": "v3.0",
+      "updated": "2016-02-08T12:20:21Z",
+      "version": "3.50",
+      "status": "CURRENT"
+    }
+  ]
+}

@@ -15,7 +15,7 @@
  *******************************************************************************/
 /******************************************************************************* 	                                                                                 
  *  Huawei has modified this source file.
- * 	Copyright 2018 Huawei Technologies Co.,Ltd.                                         
+ * 	Copyright 2019 Huawei Technologies Co.,Ltd.
  * 	                                                                                 
  * 	Licensed under the Apache License, Version 2.0 (the "License"); you may not      
  * 	use this file except in compliance with the License. You may obtain a copy of    
@@ -99,6 +99,8 @@ public class CinderVolume implements Volume {
 	private String backupId;
 	@JsonProperty("multiattach")
 	private Boolean multiattach;
+	@JsonProperty("links")
+	private List<Map<String,String>> links;
 
 	/**
 	 * {@inheritDoc}
@@ -293,6 +295,15 @@ public class CinderVolume implements Volume {
 	 * {@inheritDoc}
 	 */
 	@Override
+	public List<Map<String, String>> getLinks()
+	{
+		return links;
+	}
+
+	/**
+	 * {@inheritDoc}
+	 */
+	@Override
 	public String toString() {
 		return MoreObjects.toStringHelper(this).omitNullValues()
 				     .add("id", id).add("name", name).add("description", description)
@@ -300,7 +311,7 @@ public class CinderVolume implements Volume {
 				     .add("volumeType", volumeType).add("imageRef", getImageRef())
 				     .add("sourceVolid", sourceVolid).add("snapshotId", snapshotId).add("metadata", metadata)
 				     .add("bootable", bootable).add("imageMetadata", imageMetadata)
-				     .add("backupId",backupId).add("multiattach",multiattach)
+				     .add("backupId",backupId).add("multiattach",multiattach).add("links",links)
 				     .toString();
 	}
 

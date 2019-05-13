@@ -15,17 +15,19 @@
  *******************************************************************************/
 package com.huawei.openstack4j.openstack.evs.v2.internal;
 
-import static com.google.common.base.Preconditions.checkArgument;
+ import static com.google.common.base.Preconditions.checkArgument;
+// import static com.google.common.base.Preconditions.checkNotNull;
 
-import java.util.HashMap;
-import java.util.Map;
+ import java.util.HashMap;
+ import java.util.Map;
 
-import com.google.common.base.Strings;
-import com.huawei.openstack4j.openstack.evs.v2.domain.CloudVolumeSnapshotsResponse;
-import com.huawei.openstack4j.openstack.evs.v2.domain.Rollback;
-import com.huawei.openstack4j.openstack.evs.v2.domain.RollbackResponse;
+ import com.google.common.base.Strings;
+ import com.huawei.openstack4j.openstack.evs.v2.domain.CloudVolumeSnapshotsResponse;
+ import com.huawei.openstack4j.openstack.evs.v2.domain.Rollback;
+ import com.huawei.openstack4j.openstack.evs.v2.domain.RollbackResponse;
+// import com.huawei.openstack4j.openstack.evs.v2.domain.SnapshotRollback;
 
-public class VolumeSnapshotService extends BaseElasticVolumeService{
+ public class VolumeSnapshotService extends BaseElasticVolumeService{
 
      /**
       * List Cloud VolumeSnapshot

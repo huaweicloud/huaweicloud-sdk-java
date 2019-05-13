@@ -1,64 +1,68 @@
-///*******************************************************************************
-// * 	Copyright 2019 Huawei Technologies Co., Ltd.
-// *
-// * 	Licensed under the Apache License, Version 2.0 (the "License"); you may not
-// * 	use this file except in compliance with the License. You may obtain a copy of
-// * 	the License at
-// *
-// * 	    http://www.apache.org/licenses/LICENSE-2.0
-// *
-// * 	Unless required by applicable law or agreed to in writing, software
-// * 	distributed under the License is distributed on an "AS IS" BASIS, WITHOUT
-// * 	WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the
-// * 	License for the specific language governing permissions and limitations under
-// * 	the License.
-// *******************************************************************************/
-//package com.huawei.openstack4j.api.storage;
-//
-//import static org.testng.Assert.assertTrue;
-//
-//import java.io.IOException;
-//import java.util.HashMap;
-//import java.util.List;
-//import java.util.Map;
-//
-//import org.slf4j.Logger;
-//import org.slf4j.LoggerFactory;
-//import org.testng.annotations.Test;
-//
-//import com.google.common.collect.Maps;
-//import com.huawei.openstack4j.api.AbstractTest;
-//import com.huawei.openstack4j.model.common.ActionResponse;
-//import com.huawei.openstack4j.model.storage.block.Volume;
-//import com.huawei.openstack4j.model.storage.block.VolumeType;
-//import com.huawei.openstack4j.openstack.storage.block.domain.Extension;
-//import com.huawei.openstack4j.openstack.storage.block.domain.VolumeMeta;
-//import com.huawei.openstack4j.openstack.storage.block.domain.VolumeMetadata;
-//
-//@Test(suiteName = "EVS/Volumes", enabled = true)
-//public class VolumeV2Tests extends AbstractTest {
-//    private static final Logger LOGGER = LoggerFactory.getLogger(VolumeV2Tests.class);
-//
-//    private static final String JSON_VOLUMES_1 = "/storage/v2/volumes1.json";
-//
-//    private static final String JSON_VOLUME_METADATA_UPDATE = "/storage/v2/volume_metadata_update.json";
-//
-//    private static final String JSON_VOLUME_METADATA = "/storage/v2/volume_metadata.json";
-//
-//    private static final String JSON_VOLUME_METADATA_CREATE = "/storage/v2/volume_metadata_create.json";
-//
-//    private static final String JSON_VOLUME_METADATAS = "/storage/v2/volume_metadatas.json";
-//
-//    private static final String JSON_VOLUME_METADATA_UPDATE_WITH_KEY = "/storage/v2/volume_metadata_update_with_key.json";
-//
-//    private static final String JSON_EXTENSIONS = "/storage/v2/extensions.json";
-//
-//    private static final String JSON_TYPE = "/storage/v2/type.json";
-//
+/*******************************************************************************
+ * 	Copyright 2019 Huawei Technologies Co., Ltd.
+ *
+ * 	Licensed under the Apache License, Version 2.0 (the "License"); you may not
+ * 	use this file except in compliance with the License. You may obtain a copy of
+ * 	the License at
+ *
+ * 	    http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * 	Unless required by applicable law or agreed to in writing, software
+ * 	distributed under the License is distributed on an "AS IS" BASIS, WITHOUT
+ * 	WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the
+ * 	License for the specific language governing permissions and limitations under
+ * 	the License.
+ *******************************************************************************/
+package com.huawei.openstack4j.api.storage;
+
+import static org.testng.Assert.assertTrue;
+
+import java.io.IOException;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.testng.annotations.Test;
+
+import com.google.common.collect.Maps;
+import com.huawei.openstack4j.api.AbstractTest;
+import com.huawei.openstack4j.model.common.ActionResponse;
+import com.huawei.openstack4j.model.storage.block.VolumeType;
+import com.huawei.openstack4j.openstack.storage.block.domain.CinderVolumesResponse;
+import com.huawei.openstack4j.model.storage.block.VolumeUploadImage;
+import com.huawei.openstack4j.model.storage.block.options.UploadImageData;
+import com.huawei.openstack4j.openstack.storage.block.domain.Extension;
+import com.huawei.openstack4j.openstack.storage.block.domain.VolumeMeta;
+import com.huawei.openstack4j.openstack.storage.block.domain.VolumeMetadata;
+
+@Test(suiteName = "EVS/Volumes", enabled = true)
+public class VolumeV2Tests extends AbstractTest {
+    private static final Logger LOGGER = LoggerFactory.getLogger(VolumeV2Tests.class);
+
+    private static final String JSON_VOLUMES_1 = "/storage/v2/volumes1.json";
+
+    private static final String JSON_VOLUME_METADATA_UPDATE = "/storage/v2/volume_metadata_update.json";
+
+    private static final String JSON_VOLUME_METADATA = "/storage/v2/volume_metadata.json";
+
+    private static final String JSON_VOLUME_METADATA_CREATE = "/storage/v2/volume_metadata_create.json";
+
+    private static final String JSON_VOLUME_METADATAS = "/storage/v2/volume_metadatas.json";
+
+    private static final String JSON_VOLUME_METADATA_UPDATE_WITH_KEY = "/storage/v2/volume_metadata_update_with_key.json";
+
+    private static final String JSON_EXTENSIONS = "/storage/v2/extensions.json";
+
+    private static final String JSON_TYPE = "/storage/v2/type.json";
+
+    private static final String JSON_Volume_Upload_Image  = "/storage/v2/volume_upload_image.json";
+
 //    @Test
 //    public void listVolumesTest() throws IOException {
 //        respondWith(JSON_VOLUMES_1);
-//        List<? extends Volume> volumes = osv3().blockStorage().volumes().listVolumes();
+//        CinderVolumesResponse volumes = osv3().blockStorage().volumes().listVolumes();
 //        LOGGER.info("{}", volumes);
 //        assertTrue(volumes != null);
 //    }
@@ -68,11 +72,11 @@
 //        respondWith(JSON_VOLUMES_1);
 //        Map<String, String> query = new HashMap<String, String>();
 //        query.put("name", "volume-for-snapshot");
-//        List<? extends Volume> volumes = osv3().blockStorage().volumes().listVolumes(query);
+//        CinderVolumesResponse volumes = osv3().blockStorage().volumes().listVolumes(query);
 //        LOGGER.info("{}", volumes);
 //        assertTrue(volumes != null);
 //    }
-//
+
 //    @Test
 //    public void updateMetadataTest() throws IOException {
 //        respondWith(JSON_VOLUME_METADATA_UPDATE);
@@ -173,9 +177,23 @@
 //        assertTrue(type != null);
 //        assertTrue(typeId.equals(type.getId()));
 //    }
-//
-//    @Override
-//    protected Service service() {
-//        return Service.BLOCK_STORAGE;
-//    }
-//}
+
+    @Test
+    public void uploadImageDataTest() throws IOException {
+        respondWith(JSON_Volume_Upload_Image);
+
+        String imageName = "imageName";
+        String id = "4b233fd2-ce4c-47ca-8c4c-e1aa28ad0c0c";
+        UploadImageData data = UploadImageData.create(imageName);
+        VolumeUploadImage volumeUploadImage = osv3().blockStorage().volumes().uploadToImage(id, data);
+
+        assertTrue(volumeUploadImage != null);
+        assertTrue(imageName.equals(volumeUploadImage.getImageName()));
+        assertTrue(id.equals(volumeUploadImage.getId()));
+    }
+
+    @Override
+    protected Service service() {
+        return Service.BLOCK_STORAGE;
+    }
+}

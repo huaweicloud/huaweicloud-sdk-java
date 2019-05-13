@@ -72,6 +72,16 @@ public class SubnetDemo {
             System.out.println("List all subnets failed");
         }
 
+        //List subnets with filter
+        Map<String, String> filteringParams = new HashMap<>();
+        filteringParams.put("limit", "1");
+        List<? extends Subnet> listWithFilterResp = osclient.networking().subnet().list(filteringParams);
+        if (null != listWithFilterResp && listWithFilterResp.size() > 0) {
+            System.out.println("List subnets with filter success, size = " + listWithFilterResp.size());
+        } else {
+            System.out.println("List subnets with filter failed");
+        }
+
         //Update a subnet
         String dnsUpdate = "1.1.1.1";
         Subnet subnetUpdate = NeutronSubnet.builder().name("subnetUpdateDemo").addDNSNameServer(dnsUpdate).enableDHCP(false).build();

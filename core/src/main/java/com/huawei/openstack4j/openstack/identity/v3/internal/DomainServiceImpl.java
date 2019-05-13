@@ -25,6 +25,7 @@ import com.huawei.openstack4j.model.common.ActionResponse;
 import com.huawei.openstack4j.model.identity.v3.Domain;
 import com.huawei.openstack4j.openstack.identity.v3.domain.KeystoneDomain;
 import com.huawei.openstack4j.openstack.identity.v3.domain.KeystoneDomain.Domains;
+import com.huawei.openstack4j.openstack.identity.v3.domain.PasswordConfig;
 import com.huawei.openstack4j.openstack.internal.BaseOpenStackService;
 
 public class DomainServiceImpl extends BaseOpenStackService implements DomainService {
@@ -70,6 +71,19 @@ public class DomainServiceImpl extends BaseOpenStackService implements DomainSer
     @Override
     public List<? extends Domain> list() {
         return get(Domains.class, uri(PATH_DOMAINS)).execute().getList();
+    }
+
+    @Override
+    public PasswordConfig getDomainPasswordConfig(String domainId){
+        checkNotNull(domainId);
+        return get(PasswordConfig.class, uri("/domains/%s/config/security_compliance", domainId)).execute();
+    }
+
+    @Override
+    public PasswordConfig getDomainPasswordConfigByOption(String domainId, String option){
+        checkNotNull(domainId);
+        checkNotNull(option);
+        return get(PasswordConfig.class, uri("/domains/%s/config/security_compliance/%s", domainId, option)).execute();
     }
 
 }

@@ -55,19 +55,19 @@ public class TokenServiceImpl extends BaseOpenStackService implements TokenServi
     @Override
     public List<? extends Service> getServiceCatalog(String tokenId) {
         checkNotNull(tokenId);
-        return get(Catalog.class, uri(PATH_SERVICE_CATALOGS)).header(HEADER_X_SUBJECT_TOKEN, tokenId).execute().getList();
+        return get(Catalog.class, uri(PATH_SERVICE_CATALOGS)).execute().getList();
     }
 
     @Override
     public List<? extends Project> getProjectScopes(String tokenId) {
         checkNotNull(tokenId);
-        return get(Projects.class, uri(PATH_PROJECT_SCOPES)).header(HEADER_X_SUBJECT_TOKEN, tokenId).execute().getList();
+        return get(Projects.class, uri(PATH_PROJECT_SCOPES)).execute().getList();
     }
 
     @Override
     public List<? extends Domain> getDomainScopes(String tokenId) {
         checkNotNull(tokenId);
-        return get(Domains.class, uri(PATH_DOMAIN_SCOPES)).header(HEADER_X_SUBJECT_TOKEN, tokenId).execute().getList();
+        return get(Domains.class, uri(PATH_DOMAIN_SCOPES)).execute().getList();
     }
 
 }

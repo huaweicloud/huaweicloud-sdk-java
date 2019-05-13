@@ -15,16 +15,17 @@
  *******************************************************************************/
 package com.huawei.openstack4j.openstack.networking.internal;
 
-import static com.google.common.base.Preconditions.checkNotNull;
-
-import java.util.List;
-
 import com.huawei.openstack4j.api.networking.SubnetService;
 import com.huawei.openstack4j.model.common.ActionResponse;
 import com.huawei.openstack4j.model.network.Subnet;
 import com.huawei.openstack4j.openstack.networking.domain.NeutronSubnet;
-import com.huawei.openstack4j.openstack.networking.domain.NeutronSubnetUpdate;
 import com.huawei.openstack4j.openstack.networking.domain.NeutronSubnet.Subnets;
+import com.huawei.openstack4j.openstack.networking.domain.NeutronSubnetUpdate;
+
+import java.util.List;
+import java.util.Map;
+
+import static com.google.common.base.Preconditions.checkNotNull;
 
 /**
  * OpenStack (Neutron) Subnet based Operations implementation
@@ -76,5 +77,16 @@ public class SubnetServiceImpl extends BaseNetworkingServices implements SubnetS
         return put(NeutronSubnet.class, uri("/subnets/%s", subnetId))
                 .entity(NeutronSubnetUpdate.createFromSubnet(subnet))
                 .execute();
+    }
+
+    @Override
+    public List<? extends Subnet> list(Map<String, String> filteringParams) {
+        Invocation<NeutronSubnet.Subnets> subnetsInvocation = get(NeutronSubnet.Subnets.class, "/subnets");
+        if (filteringParams != null) {
+            for (Map.Entry<String, String> entry : filteringParams.entrySet()) {
+                subnetsInvocation = subnetsInvocation.param(entry.getKey(), entry.getValue());
+            }
+        }
+        return subnetsInvocation.execute().getList();
     }
 }

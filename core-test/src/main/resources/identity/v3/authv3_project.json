@@ -1460,6 +1460,34 @@
         "type": "evs",
         "id": "2241f6c6096a11e793ae92361f002671",
         "name": "evs"
+      },
+      {
+        "endpoints": [
+          {
+            "region_id": "RegionOne",
+            "url": "http://127.0.0.1:10028/v3.0/project-id",
+            "region": "RegionOne",
+            "interface": "public",
+            "id": "2241f1ee096a11e793ae92361f002671"
+          },
+          {
+            "region_id": "RegionOne",
+            "url": "http://127.0.0.1:10028/v3.0/project-id",
+            "region": "RegionOne",
+            "interface": "admin",
+            "id": "2241f446096a11e793ae92361f002671"
+          },
+          {
+            "region_id": "RegionOne",
+            "url": "http://127.0.0.1:10028/v3.0/project-id",
+            "region": "RegionOne",
+            "interface": "internal",
+            "id": "2241f55e096a11e793ae92361f002671"
+          }
+        ],
+        "type": "iam",
+        "id": "2241f6c6096a11e793ae92361f002671",
+        "name": "iam"
       }
     ],
     "extras": {},

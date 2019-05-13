@@ -16,7 +16,10 @@
 package com.huawei.openstack4j.api.identity.v3;
 
 import static org.testng.Assert.assertEquals;
+import static org.testng.AssertJUnit.assertNull;
 
+import com.huawei.openstack4j.model.identity.v3.User;
+import com.huawei.openstack4j.openstack.identity.v3.domain.PasswordConfig;
 import org.testng.annotations.Test;
 
 import com.huawei.openstack4j.api.AbstractTest;
@@ -31,6 +34,9 @@ public class KeystoneDomainServiceTests extends AbstractTest {
 
     private static final String JSON_DOMAINS_CREATE = "/identity/v3/domains_create_response.json";
     private static final String JSON_DOMAINS_UPDATE = "/identity/v3/domains_update_response.json";
+    private static final String JSON_DOMAINS_PASSWORD_CONFIG = "/identity/v3/domains_password_config.json";
+    private static final String JSON_DOMAINS_PASSWORD_CONFIG_BY_OPTION = "/identity/v3/domains_password_config_by_option.json";
+    private static final String DOMAIN_ID = "******";
     private static final String DOMAIN_NAME = "Domain_CRUD";
     private static String DOMAIN_DESCRIPTION = "Domain used for CRUD tests";
     private static String DOMAIN_DESCRIPTION_UPDATED = "An updated domain used for CRUD tests";
@@ -80,5 +86,20 @@ public class KeystoneDomainServiceTests extends AbstractTest {
         assertEquals(updatedDomain.getDescription(), DOMAIN_DESCRIPTION_UPDATED);
 
     }*/
+
+    @Test
+    public void testGetPasswordConfig() throws Exception {
+        respondWith(JSON_DOMAINS_PASSWORD_CONFIG);
+        PasswordConfig config = osv3().identity().domains().getDomainPasswordConfig(DOMAIN_ID);
+        assertEquals(config.getSecurityCompliance().get("password_regex"), "^(?=.*\\d)(?=.*[a-zA-Z]).{7,}$");
+        assertEquals(config.getSecurityCompliance().get("password_regex_description"), "Passwords must contain at least 1 letter, 1 digit, and be a minimum length of 7 characters.");
+    }
+
+    @Test
+    public void testGetPasswordConfigByOption() throws Exception {
+        respondWith(JSON_DOMAINS_PASSWORD_CONFIG_BY_OPTION);
+        PasswordConfig config = osv3().identity().domains().getDomainPasswordConfigByOption(DOMAIN_ID, "password_regex");
+        assertEquals(config.getPasswordRegex(), "^(?=.*\\d)(?=.*[a-zA-Z]).{7,}$");
+    }
 
 }

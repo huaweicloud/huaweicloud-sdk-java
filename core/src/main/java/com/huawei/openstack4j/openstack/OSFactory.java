@@ -194,6 +194,10 @@ public abstract class OSFactory<T extends OSFactory<T>> {
     public static IOSClientBuilder.AKSK builderAKSK() {
         return new OSClientBuilder.ClientAKSK();
     }
+
+    public static IOSClientBuilder.TempAKSK builderTempAKSK() {
+        return new OSClientBuilder.ClientTempAKSK();
+    }
     /**
 	 * do refresh token by your self
 	 * 

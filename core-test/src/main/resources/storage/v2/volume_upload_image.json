@@ -1,0 +1,31 @@
+{
+	"os-volume_upload_image": 
+	{
+		"status": "uploading",
+		"size": 10,
+		"id": "4b233fd2-ce4c-47ca-8c4c-e1aa28ad0c0c",
+		"image_id": "68a9da5e-4ad0-447e-97c0-7143ff622d25",
+		"image_name": "imageName",
+		"volume_type": 
+		{
+			"description": "None",
+			"deleted": false,
+			"created_at": "2015-05-24T14:47:22.132268",
+			"updated_at": "2018-05-21T08:24:40.487220",
+			"extra_specs": 
+			{
+				"RESKEY:availability_zones": "az1.dc1,dc2,kvmxen.dc1",
+				"volume_backend_name": "<or> FusionStorage_SATA <or> dss_dsware <or> DeC_SATA001 <or> fusionstoragesata1 <or> fusionstoragesata <or> DSS_SATA <or> fusionstoragesata_az3",
+				"os-vendor-extended:sold_out_availability_zones": ""
+			},
+			"is_public": true,
+			"deleted_at": null,
+			"id": "8247b6ed-37f0-4c48-8ef1-f0027fb332bc",
+			"name": "SATA"
+		},
+		"container_format": "bare",
+		"disk_format": "vhd",
+		"display_description": null,
+		"updated_at": "2019-04-15T07:31:37.384430"
+	}
+}

@@ -29,8 +29,10 @@ import org.testng.collections.Lists;
 
 import com.google.common.collect.Maps;
 import com.huawei.openstack4j.api.AbstractTest;
+//import com.huawei.openstack4j.model.common.ActionResponse;
 import com.huawei.openstack4j.model.compute.RebootType;
 import com.huawei.openstack4j.model.compute.StopType;
+//import com.huawei.openstack4j.openstack.common.AsyncJobEntity;
 import com.huawei.openstack4j.openstack.ecs.v1.contants.IpType;
 import com.huawei.openstack4j.openstack.ecs.v1.contants.NetworkChargingMode;
 import com.huawei.openstack4j.openstack.ecs.v1.contants.ShareType;
@@ -41,10 +43,12 @@ import com.huawei.openstack4j.openstack.ecs.v1.domain.CloudServer.CloudServers;
 import com.huawei.openstack4j.openstack.ecs.v1.domain.DataVolume;
 import com.huawei.openstack4j.openstack.ecs.v1.domain.Flavor;
 import com.huawei.openstack4j.openstack.ecs.v1.domain.FloatingIPCreate;
+//import com.huawei.openstack4j.openstack.ecs.v1.domain.OSReinstall;
 import com.huawei.openstack4j.openstack.ecs.v1.domain.Personality;
 import com.huawei.openstack4j.openstack.ecs.v1.domain.RootVolume;
 import com.huawei.openstack4j.openstack.ecs.v1.domain.ServerChangeOS;
 import com.huawei.openstack4j.openstack.ecs.v1.domain.ServerCreate;
+//import com.huawei.openstack4j.openstack.ecs.v1.domain.SupportAutoRecovery;
 
 @Test(suiteName = "ECS/Servers")
 public class ServerTests extends AbstractTest {

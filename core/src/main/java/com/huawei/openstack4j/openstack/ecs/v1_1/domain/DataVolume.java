@@ -83,4 +83,5 @@ public class DataVolume implements ModelEntity {
 	 */
 	@JsonProperty("extendparam")
 	VolumeExtendParam extendParam;
+	
 }

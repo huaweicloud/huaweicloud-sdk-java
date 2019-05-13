@@ -31,6 +31,7 @@
  * *******************************************************************************/
 package com.huawei.openstack4j.api.client;
 
+import com.huawei.openstack4j.api.OSClient;
 import com.huawei.openstack4j.api.OSClient.OSClientAKSK;
 import com.huawei.openstack4j.api.OSClient.OSClientV2;
 import com.huawei.openstack4j.api.OSClient.OSClientV3;
@@ -257,7 +258,6 @@ public interface IOSClientBuilder<R, T extends IOSClientBuilder<R, T>> {
     	 */
     	AKSK credentials(String accessKey, String secretKey, String region, String projectId, String cloudDomainName);
 
-
         /**
          * build method for {@link #credentials(String, String, String, String, String)}
          *
@@ -268,7 +268,6 @@ public interface IOSClientBuilder<R, T extends IOSClientBuilder<R, T>> {
          * @return
          */
     	AKSK credentials(String accessKey, String secretKey, String region, String projectId, String domainId, String cloudDomainName);
-
         /**
          * build method for {@link #credentials(String, String, String, String)}
          *
@@ -281,4 +280,45 @@ public interface IOSClientBuilder<R, T extends IOSClientBuilder<R, T>> {
         AKSK credentials(String accessKey, String secretKey, String region, String cloudDomainName);
     }
 
+    /**
+     * OpenStack4j Client builder which authenticates against version TempAKSK
+     */
+    public interface TempAKSK extends IOSClientBuilder<OSClient.OSClientTempAKSK, TempAKSK> {
+
+        /**
+         * build method for {@link #credentials(String, String, String, String, String, String)}
+         *
+         * @param accessKey
+         * @param secretKey
+         * @param region
+         * @param projectId
+         * @param cloudDomainName
+         * @param securityToken
+         * @return
+         */
+        TempAKSK credentials(String accessKey, String secretKey, String region, String projectId, String cloudDomainName, String securityToken);
+
+        /**
+         * build method for {@link #credentials(String, String, String, String, String, String, String)}
+         *
+         * @param accessKey
+         * @param secretKey
+         * @param region
+         * @param cloudDomainName
+         * @param securityToken
+         * @return
+         */
+        TempAKSK credentials(String accessKey, String secretKey, String region, String projectId, String domainId, String cloudDomainName, String securityToken);
+        /**
+         * build method for {@link #credentials(String, String, String, String,String)}
+         *
+         * @param accessKey
+         * @param secretKey
+         * @param region
+         * @param cloudDomainName
+         * @param securityToken
+         * @return
+         */
+        TempAKSK credentials(String accessKey, String secretKey, String region, String cloudDomainName, String securityToken);
+    }
 }

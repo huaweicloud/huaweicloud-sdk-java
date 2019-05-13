@@ -1,0 +1,23 @@
+{
+  "quota_set": {
+    "volumes": {
+      "reserved": 4,
+      "allocated": 0,
+      "limit": 100,
+      "in_use": 56
+    },
+	"snapshots": {
+      "reserved": 0,
+      "allocated": 0,
+      "limit": 200,
+      "in_use": 12
+    },
+	"backups": {
+      "reserved": 0,
+      "allocated": 0,
+      "limit": -1,
+      "in_use": 544
+    },
+    "id": "2fe576ee18e541898fe20b3208d53217"
+  }
+}

@@ -10,6 +10,9 @@ import com.huawei.openstack4j.api.OSClient.OSClientV3;
 import com.huawei.openstack4j.model.common.Identifier;
 import com.huawei.openstack4j.model.storage.block.VolumeSnapshot;
 import com.huawei.openstack4j.openstack.OSFactory;
+import com.huawei.openstack4j.openstack.storage.block.domain.CinderVolumeSnapshotsResponse;
+import com.huawei.openstack4j.openstack.storage.block.domain.SnapshotDetail;
+import com.huawei.openstack4j.openstack.storage.block.options.SnapshotListOptions;
 
 public class SnapshotDemo {
 	public static void main(String[] args) throws InterruptedException
@@ -124,5 +127,31 @@ public class SnapshotDemo {
 			System.out.println("get snapshotsList failed");
 		}
 		VolumeSnapshot snapshotDetail2 = snapshotsList2.get(0);
+
+//		//get snapshots detail list
+//		CinderVolumeSnapshotsResponse snapshotsList3 = os.blockStorage().snapshots().listDetail();
+//		if (null != snapshotsList3 && snapshotsList3.getSnapshotList().size() >= 0)
+//		{
+//			System.out.println("get snapshotsList success, count = " + snapshotsList3.getSnapshotList().size());
+//		}
+//		else
+//		{
+//			System.out.println("get snapshotsList failed");
+//		}
+//		SnapshotDetail snapshotDetail3 = snapshotsList3.getSnapshotList().get(0);
+//
+//		//get snapshots detail list with options
+//		SnapshotListOptions options = SnapshotListOptions.create().limit(3);
+//		CinderVolumeSnapshotsResponse snapshotsList4 = os.blockStorage().snapshots().listDetail(options);
+//		if (null != snapshotsList4 && snapshotsList4.getSnapshotList().size() >= 0)
+//		{
+//			System.out.println("get snapshotsList success, count = " + snapshotsList4.getSnapshotList().size());
+//		}
+//		else
+//		{
+//			System.out.println("get snapshotsList failed");
+//		}
+//		SnapshotDetail snapshotDetail4 = snapshotsList4.getSnapshotList().get(0);
+
 	}
 }

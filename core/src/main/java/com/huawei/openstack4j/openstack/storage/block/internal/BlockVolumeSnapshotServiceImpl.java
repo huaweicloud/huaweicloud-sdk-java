@@ -13,19 +13,43 @@
  * 	License for the specific language governing permissions and limitations under    
  * 	the License.                                                                     
  *******************************************************************************/
+/*******************************************************************************
+ *  Huawei has modified this source file.
+ * 	Copyright 2019 Huawei Technologies Co.,Ltd.
+ *
+ * 	Licensed under the Apache License, Version 2.0 (the "License"); you may not
+ * 	use this file except in compliance with the License. You may obtain a copy of
+ * 	the License at
+ *
+ * 	    http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * 	Unless required by applicable law or agreed to in writing, software
+ * 	distributed under the License is distributed on an "AS IS" BASIS, WITHOUT
+ * 	WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the
+ * 	License for the specific language governing permissions and limitations under
+ * 	the License.
+ * *******************************************************************************/
 package com.huawei.openstack4j.openstack.storage.block.internal;
 
+import static com.google.common.base.Preconditions.checkArgument;
 import static com.google.common.base.Preconditions.checkNotNull;
 
 import java.util.List;
 import java.util.Map;
 
+import com.google.common.base.Strings;
 import com.huawei.openstack4j.api.Builders;
 import com.huawei.openstack4j.api.storage.BlockVolumeSnapshotService;
 import com.huawei.openstack4j.model.common.ActionResponse;
 import com.huawei.openstack4j.model.storage.block.VolumeSnapshot;
 import com.huawei.openstack4j.openstack.storage.block.domain.CinderVolumeSnapshot;
 import com.huawei.openstack4j.openstack.storage.block.domain.CinderVolumeSnapshot.VolumeSnapshots;
+import com.huawei.openstack4j.openstack.storage.block.domain.CinderVolumeSnapshotsResponse;
+import com.huawei.openstack4j.openstack.storage.block.domain.SnapshotDetail;
+import com.huawei.openstack4j.openstack.storage.block.domain.SnapshotMeta;
+import com.huawei.openstack4j.openstack.storage.block.domain.SnapshotMetadata;
+import com.huawei.openstack4j.openstack.storage.block.domain.SnapshotUpdate;
+import com.huawei.openstack4j.openstack.storage.block.options.SnapshotListOptions;
 
 /**
  * OpenStack (Cinder) Volume Snapshot Operations API Implementation.
@@ -107,17 +131,17 @@ public class BlockVolumeSnapshotServiceImpl extends BaseBlockStorageServices imp
 //	 * {@inheritDoc}
 //	 */
 //	@Override
-//	public List<? extends SnapshotDetail> listDetail() {
-//		return get(SnapshotDetail.SnapshotDetails.class, "/snapshots/detail").execute().getList();
+//	public CinderVolumeSnapshotsResponse listDetail() {
+//		return get(CinderVolumeSnapshotsResponse.class, "/snapshots/detail").execute();
 //	}
 //
 //	/**
 //	 * {@inheritDoc}
 //	 */
 //	@Override
-//	public List<? extends SnapshotDetail> listDetail(SnapshotListOptions options) {
+//	public CinderVolumeSnapshotsResponse listDetail(SnapshotListOptions options) {
 //		checkNotNull(options, "`options` is required");
-//		return get(SnapshotDetail.SnapshotDetails.class, "/snapshots/detail").params(options.getOptions()).execute().getList();
+//		return get(CinderVolumeSnapshotsResponse.class, "/snapshots/detail").params(options.getOptions()).execute();
 //	}
 //
 //	/**

@@ -102,7 +102,8 @@ public abstract class AbstractTest {
         CDN(10024),
         FGS(10025),
 		DSS(10026),
-		EVS(10027);
+		EVS(10027),
+        IAM(10028);
         //@on
 
 		private final int port;

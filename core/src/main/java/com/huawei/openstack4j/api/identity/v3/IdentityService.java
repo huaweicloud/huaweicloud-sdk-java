@@ -38,7 +38,7 @@ public interface IdentityService extends RestService {
      *
      * @return the domain service
      */
-    //DomainService domains();
+    DomainService domains();
 
     /**
      * Projects Service API
@@ -59,14 +59,14 @@ public interface IdentityService extends RestService {
      *
      * @return the role service
      */
-    //RoleService roles();
+    RoleService roles();
 
     /**
      * Group Service API
      *
      * @return the group service
      */
-    //GroupService groups();
+    GroupService groups();
     
     /**
      * Token Service API
@@ -94,8 +94,15 @@ public interface IdentityService extends RestService {
      *
      * @return the region service
      */
-    //RegionService regions();
-    
+    RegionService regions();
+
+    /**
+     * Version Service API
+     *
+     * @return the version service
+     */
+    VersionService versions();
+
     /**
      * List extensions currently available on the OpenStack instance
      *

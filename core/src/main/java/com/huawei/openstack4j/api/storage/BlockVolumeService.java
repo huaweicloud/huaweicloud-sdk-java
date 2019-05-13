@@ -15,7 +15,7 @@
  *******************************************************************************/
 /******************************************************************************* 	                                                                                 
  *  Huawei has modified this source file.
- * 	Copyright 2018 Huawei Technologies Co.,Ltd.                                         
+ * 	Copyright 2019 Huawei Technologies Co.,Ltd.
  * 	                                                                                 
  * 	Licensed under the Apache License, Version 2.0 (the "License"); you may not      
  * 	use this file except in compliance with the License. You may obtain a copy of    
@@ -41,6 +41,10 @@ import com.huawei.openstack4j.model.storage.block.VolumeType;
 import com.huawei.openstack4j.model.storage.block.VolumeUploadImage;
 import com.huawei.openstack4j.model.storage.block.options.UploadImageData;
 import com.huawei.openstack4j.openstack.storage.block.domain.CinderVolumeUpdate;
+import com.huawei.openstack4j.openstack.storage.block.domain.CinderVolumesResponse;
+import com.huawei.openstack4j.openstack.storage.block.domain.Extension;
+import com.huawei.openstack4j.openstack.storage.block.domain.VolumeMeta;
+import com.huawei.openstack4j.openstack.storage.block.domain.VolumeMetadata;
 
 /**
  * Manages Volumes and Volume Type based operations against Block Storage (Cinder)
@@ -102,6 +106,15 @@ public interface BlockVolumeService extends RestService {
 	 * @return the action response
 	 */
 	ActionResponse delete(String volumeId);
+
+//	/**
+//	 * Deletes the specified volume with snapshots
+//	 *
+//	 * @param volumeId the volume identifier
+//	 * @param cascade delete volume snapshots or not
+//	 * @return the action response
+//	 */
+//	ActionResponse forceDelete(String volumeId, Boolean cascade);
 
 	/**
 	 * Attempt forced removal of volume, regardless of the state.
@@ -235,25 +248,11 @@ public interface BlockVolumeService extends RestService {
 //	ActionResponse setBootable(String volumeId, boolean bootable);
 //
 //	/**
-//	 * Querying API Versions
-//	 *
-//	 * @return
-//	 */
-//	List<? extends Version> versions();
-//
-//	/**
-//	 * Querying API Versions (v2)
-//	 *
-//	 * @return
-//	 */
-//	List<? extends Version> versionsV2();
-//
-//	/**
 //	 * Querying block store disks.
 //	 *
 //	 * @return List of Volumes.
 //	 */
-//    List<? extends Volume> listVolumes();
+//	CinderVolumesResponse listVolumes();
 //
 //    /**
 //     * Querying block store disks filtered by parameters.
@@ -261,7 +260,7 @@ public interface BlockVolumeService extends RestService {
 //     * @param filteringParams map (name, value) of filtering parameters.
 //     * @return List of Volumes.
 //     */
-//    List<? extends Volume> listVolumes(Map<String, String> filteringParams);
+//	CinderVolumesResponse listVolumes(Map<String, String> filteringParams);
 //
 //	/**
 //	 * Querying details about a disk type.

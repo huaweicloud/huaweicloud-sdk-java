@@ -15,17 +15,28 @@
  *******************************************************************************/
 package com.huawei.openstack4j.api.vpc.v2;
 
-import okhttp3.mockwebserver.RecordedRequest;
+ import okhttp3.mockwebserver.RecordedRequest;
 
-import static org.testng.Assert.assertEquals;
+ import static org.testng.Assert.assertEquals;
 
-import org.testng.annotations.Test;
+ import java.util.ArrayList;
+ import java.util.List;
 
-import com.huawei.openstack4j.api.AbstractTest;
-import com.huawei.openstack4j.openstack.vpc.v2.domain.AsyncBandWidthRespEntity;
-import com.huawei.openstack4j.openstack.vpc.v2.domain.VirtualBandWidthUpdate;
-import com.huawei.openstack4j.openstack.vpc.v2.domain.VirtualBandWidths;
-import com.huawei.openstack4j.openstack.vpc.v2.domain.VirtualExtendParamUpdate;
+ import org.testng.annotations.Test;
+
+ import com.huawei.openstack4j.api.AbstractTest;
+ import com.huawei.openstack4j.model.common.ActionResponse;
+ import com.huawei.openstack4j.openstack.vpc.v2.contants.VirtualChargingMode;
+ import com.huawei.openstack4j.openstack.vpc.v2.domain.AsyncBandWidthRespEntity;
+ import com.huawei.openstack4j.openstack.vpc.v2.domain.BandwidthBatchCreate;
+ import com.huawei.openstack4j.openstack.vpc.v2.domain.BandwidthCreate;
+ import com.huawei.openstack4j.openstack.vpc.v2.domain.BandwidthInsert;
+ import com.huawei.openstack4j.openstack.vpc.v2.domain.BandwidthRemove;
+ import com.huawei.openstack4j.openstack.vpc.v2.domain.BandwidthResp;
+ import com.huawei.openstack4j.openstack.vpc.v2.domain.PublicIpInfo;
+ import com.huawei.openstack4j.openstack.vpc.v2.domain.VirtualBandWidthUpdate;
+ import com.huawei.openstack4j.openstack.vpc.v2.domain.VirtualBandWidths;
+ import com.huawei.openstack4j.openstack.vpc.v2.domain.VirtualExtendParamUpdate;
 
 @Test(suiteName = "VPC/BandWidth")
 public class BandWidthTest extends AbstractTest{
@@ -52,63 +63,63 @@ public class BandWidthTest extends AbstractTest{
 		assertEquals(respEntity.getOrderId(), "this-is-a-order-id");
 	}
 
-//	@Test
-//	public void createTest() throws Exception{
-//		respondWith("/vpc/v2/bandwidth.json");
-//		BandwidthCreate bandwidthCreate = BandwidthCreate.builder().name("test").size(5).build();
-//		BandwidthResp bandwidthResp = osv3().vpcV2().bandwidths().create(bandwidthCreate);
-//		assertEquals(bandwidthResp.getName(), "bandwidth123");
-//		assertEquals(bandwidthResp.getShareType().toString(), "WHOLE");
-//		assertEquals(bandwidthResp.getSize().toString(), "10");
-//		assertEquals(bandwidthResp.getChargeMode().toString(), "BANDWIDTH");
-//		assertEquals(bandwidthResp.getId(), "3fa5b383-5a73-4dcb-a314-c6128546d855");
-//	}
-//
-//	@Test
-//	public void batchCreateTest() throws Exception{
-//		respondWith("/vpc/v2/bandwidth_batchcreate.json");
-//		List<BandwidthResp> bandwidthResps = osv3().vpcV2().bandwidths().batchCreate(BandwidthBatchCreate.builder().count(5).name("test").size(10).build());
-//		assertEquals(bandwidthResps.size(), 2);
-//		assertEquals(bandwidthResps.get(0).getId(), "3fa5b383-5a73-4dcb-a314-c6128546d855");
-//		assertEquals(bandwidthResps.get(0).getName(), "bandwidth123");
-//		assertEquals(bandwidthResps.get(0).getShareType().toString(), "WHOLE");
-//		assertEquals(bandwidthResps.get(0).getSize().toString(), "10");
-//		assertEquals(bandwidthResps.get(0).getChargeMode().toString(), "BANDWIDTH");
-//		assertEquals(bandwidthResps.get(1).getId(), "d91b0028-6f6b-4478-808a-297b75b6812a");
-//		assertEquals(bandwidthResps.get(1).getName(), "bandwidth123");
-//		assertEquals(bandwidthResps.get(1).getShareType().toString(), "WHOLE");
-//		assertEquals(bandwidthResps.get(1).getSize().toString(), "10");
-//		assertEquals(bandwidthResps.get(1).getChargeMode().toString(), "BANDWIDTH");
-//	}
-//
-//	@Test
-//	public void deleteTest() throws Exception{
-//		respondWith(200);
-//		ActionResponse delete = osv3().vpcV2().bandwidths().delete("bandwidth-id");
-//		assertEquals(delete.getCode(), 200);
-//	}
-//
-//	@Test
-//	public void insertTest() throws Exception{
-//		respondWith("/vpc/v2/bandwidth.json");
-//		List<PublicIpInfo> publicIpInfos = new ArrayList<>();
-//		publicIpInfos.add(PublicIpInfo.builder().publicipId("publicip-id").build());
-//		BandwidthInsert bandwidthInsert = BandwidthInsert.builder().publicipInfo(publicIpInfos).build();
-//		BandwidthResp bandwidthResp = osv3().vpcV2().bandwidths().insert("bandwidth-id",bandwidthInsert);
-//		assertEquals(bandwidthResp.getName(), "bandwidth123");
-//		assertEquals(bandwidthResp.getShareType().toString(), "WHOLE");
-//		assertEquals(bandwidthResp.getSize().toString(), "10");
-//		assertEquals(bandwidthResp.getChargeMode().toString(), "BANDWIDTH");
-//		assertEquals(bandwidthResp.getId(), "3fa5b383-5a73-4dcb-a314-c6128546d855");
-//	}
-//
-//	@Test
-//	public void removeTest() throws Exception{
-//		respondWith(200);
-//		List<PublicIpInfo> publicIpInfos = new ArrayList<>();
-//		publicIpInfos.add(PublicIpInfo.builder().publicipId("publicip-id").build());
-//		BandwidthRemove bandwidthRemove = BandwidthRemove.builder().publicipInfo(publicIpInfos).size(10).chargeMode(VirtualChargingMode.BANDWIDTH).build();
-//		ActionResponse remove = osv3().vpcV2().bandwidths().remove("bandwidth-id", bandwidthRemove);
-//		assertEquals(remove.getCode(), 200);
-//	}
+	@Test
+	public void createTest() throws Exception{
+		respondWith("/vpc/v2/bandwidth.json");
+		BandwidthCreate bandwidthCreate = BandwidthCreate.builder().name("test").size(5).build();
+		BandwidthResp bandwidthResp = osv3().vpcV2().bandwidths().create(bandwidthCreate);
+		assertEquals(bandwidthResp.getName(), "bandwidth123");
+		assertEquals(bandwidthResp.getShareType().toString(), "WHOLE");
+		assertEquals(bandwidthResp.getSize().toString(), "10");
+		assertEquals(bandwidthResp.getChargeMode().toString(), "BANDWIDTH");
+		assertEquals(bandwidthResp.getId(), "3fa5b383-5a73-4dcb-a314-c6128546d855");
+	}
+
+	@Test
+	public void batchCreateTest() throws Exception{
+		respondWith("/vpc/v2/bandwidth_batchcreate.json");
+		List<BandwidthResp> bandwidthResps = osv3().vpcV2().bandwidths().batchCreate(BandwidthBatchCreate.builder().count(5).name("test").size(10).build());
+		assertEquals(bandwidthResps.size(), 2);
+		assertEquals(bandwidthResps.get(0).getId(), "3fa5b383-5a73-4dcb-a314-c6128546d855");
+		assertEquals(bandwidthResps.get(0).getName(), "bandwidth123");
+		assertEquals(bandwidthResps.get(0).getShareType().toString(), "WHOLE");
+		assertEquals(bandwidthResps.get(0).getSize().toString(), "10");
+		assertEquals(bandwidthResps.get(0).getChargeMode().toString(), "BANDWIDTH");
+		assertEquals(bandwidthResps.get(1).getId(), "d91b0028-6f6b-4478-808a-297b75b6812a");
+		assertEquals(bandwidthResps.get(1).getName(), "bandwidth123");
+		assertEquals(bandwidthResps.get(1).getShareType().toString(), "WHOLE");
+		assertEquals(bandwidthResps.get(1).getSize().toString(), "10");
+		assertEquals(bandwidthResps.get(1).getChargeMode().toString(), "BANDWIDTH");
+	}
+
+	@Test
+	public void deleteTest() throws Exception{
+		respondWith(200);
+		ActionResponse delete = osv3().vpcV2().bandwidths().delete("bandwidth-id");
+		assertEquals(delete.getCode(), 200);
+	}
+
+	@Test
+	public void insertTest() throws Exception{
+		respondWith("/vpc/v2/bandwidth.json");
+		List<PublicIpInfo> publicIpInfos = new ArrayList<>();
+		publicIpInfos.add(PublicIpInfo.builder().publicipId("publicip-id").build());
+		BandwidthInsert bandwidthInsert = BandwidthInsert.builder().publicipInfo(publicIpInfos).build();
+		BandwidthResp bandwidthResp = osv3().vpcV2().bandwidths().insert("bandwidth-id",bandwidthInsert);
+		assertEquals(bandwidthResp.getName(), "bandwidth123");
+		assertEquals(bandwidthResp.getShareType().toString(), "WHOLE");
+		assertEquals(bandwidthResp.getSize().toString(), "10");
+		assertEquals(bandwidthResp.getChargeMode().toString(), "BANDWIDTH");
+		assertEquals(bandwidthResp.getId(), "3fa5b383-5a73-4dcb-a314-c6128546d855");
+	}
+
+	@Test
+	public void removeTest() throws Exception{
+		respondWith(200);
+		List<PublicIpInfo> publicIpInfos = new ArrayList<>();
+		publicIpInfos.add(PublicIpInfo.builder().publicipId("publicip-id").build());
+		BandwidthRemove bandwidthRemove = BandwidthRemove.builder().publicipInfo(publicIpInfos).size(10).chargeMode(VirtualChargingMode.BANDWIDTH).build();
+		ActionResponse remove = osv3().vpcV2().bandwidths().remove("bandwidth-id", bandwidthRemove);
+		assertEquals(remove.getCode(), 200);
+	}
 }

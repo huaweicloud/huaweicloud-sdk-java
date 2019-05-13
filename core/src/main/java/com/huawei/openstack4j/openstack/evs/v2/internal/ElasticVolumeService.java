@@ -31,4 +31,8 @@ public class ElasticVolumeService extends BaseElasticVolumeService implements Re
 	 public JobService jobs() {
 		 return Apis.get(JobService.class);
 	 }
+
+	public VersionService versions() {
+		return Apis.get(VersionService.class);
+	}
 }

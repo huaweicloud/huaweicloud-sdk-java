@@ -15,14 +15,15 @@
  *******************************************************************************/
 package com.huawei.openstack4j.openstack.ecs.v1.internal;
 
-import static com.google.common.base.Preconditions.checkArgument;
+ import static com.google.common.base.Preconditions.checkArgument;
 
-import com.google.common.base.Strings;
-import com.huawei.openstack4j.api.types.ServiceType;
-import com.huawei.openstack4j.openstack.common.AsyncJobEntity;
-import com.huawei.openstack4j.openstack.common.functions.ReplaceVersionOfURL;
-import com.huawei.openstack4j.openstack.ecs.v1.domain.ServerChangeOS;
-import com.huawei.openstack4j.openstack.internal.BaseOpenStackService;
+ import com.google.common.base.Strings;
+ import com.huawei.openstack4j.api.types.ServiceType;
+ import com.huawei.openstack4j.openstack.common.AsyncJobEntity;
+ import com.huawei.openstack4j.openstack.common.functions.ReplaceVersionOfURL;
+// import com.huawei.openstack4j.openstack.ecs.v1.domain.OSReinstall;
+ import com.huawei.openstack4j.openstack.ecs.v1.domain.ServerChangeOS;
+ import com.huawei.openstack4j.openstack.internal.BaseOpenStackService;
 
 public class CloudServerV2Service extends BaseOpenStackService {
 

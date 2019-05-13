@@ -19,6 +19,7 @@ import java.net.URI;
 import java.net.URISyntaxException;
 import java.util.Set;
 
+import com.huawei.openstack4j.openstack.iam.internal.IamService;
 import org.slf4j.LoggerFactory;
 
 import com.google.common.collect.Iterables;
@@ -341,4 +342,11 @@ public class OSClientSessionV3 extends OSClientSession<OSClientSessionV3, OSClie
 	public KeyManagementService keyManagement() {
 		return Apis.get(KeyManagementService.class);
 	}
+
+	@Override
+	public IamService iam() {
+		return Apis.get(IamService.class);
+	}
+
+
 }

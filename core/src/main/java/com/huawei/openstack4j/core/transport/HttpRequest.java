@@ -30,6 +30,7 @@ import com.huawei.openstack4j.openstack.identity.signer.AKSK;
 import com.huawei.openstack4j.openstack.identity.signer.AKSK.Credential;
 import com.huawei.openstack4j.openstack.internal.OSClientSession;
 import com.huawei.openstack4j.openstack.internal.OSClientSessionAKSK;
+import com.huawei.openstack4j.openstack.internal.OSClientSessionTempAKSK;
 
 /**
  * A Request Delegate which aids in building the request that is compatible with the OpenStack Rest API. The request is used to encoding as well as keeping reference to 
@@ -449,12 +450,31 @@ public class HttpRequest<R> {
 					String projectId = ((OSClientSessionAKSK) session).getProjectId();
 					String domainId = ((OSClientSessionAKSK) session).getDomainId();
 					//Determine if it is a global service
-					if (projectId != null && !"".equals(projectId)){
-						request.getHeaders().put(ClientConstants.HEADER_X_PROJECT_ID, aksk.getProjectId());
-					}else if(domainId != null && !"".equals(domainId) ){
+					if(domainId != null && !"".equals(domainId)){
 						request.getHeaders().put(ClientConstants.HEADER_X_DOMAIN_ID, aksk.getDomainId());
+					}else if(projectId != null && !"".equals(projectId) ){
+						request.getHeaders().put(ClientConstants.HEADER_X_PROJECT_ID, aksk.getProjectId());
+					}
+				}else if (session instanceof OSClientSessionTempAKSK) {
+					OSClientSessionTempAKSK tempAKSK = ((OSClientSessionTempAKSK) session);
+					request.region = tempAKSK.getRegion();
+					Credential credential = Credential.builder().ak(tempAKSK.getAccessKey()).sk(tempAKSK.getSecretKey()).build();
+					HashMap<String, String> headers = AKSK.sign(request, credential);
+					request.getHeaders().putAll(headers);
+					String projectId = ((OSClientSessionTempAKSK) session).getProjectId();
+					String domainId = ((OSClientSessionTempAKSK) session).getDomainId();
+					String securityToken = ((OSClientSessionTempAKSK) session).getSecurityToken();
+					if(securityToken != null && !"".equals(securityToken)){
+						request.getHeaders().put(ClientConstants.X_SECURITY_TOKEN, securityToken);
+					}
+					//Determine if it is a global service
+					if(domainId != null && !"".equals(domainId)){
+						request.getHeaders().put(ClientConstants.HEADER_X_DOMAIN_ID, tempAKSK.getDomainId());
+					}else if(projectId != null && !"".equals(projectId) ){
+						request.getHeaders().put(ClientConstants.HEADER_X_PROJECT_ID, tempAKSK.getProjectId());
 					}
 				}
+
 				
 				//Add micro version
 				Config config = request.getConfig();

@@ -34,6 +34,7 @@ package com.huawei.openstack4j.openstack.client;
 import static com.google.common.base.Preconditions.checkArgument;
 
 import com.google.common.base.Strings;
+import com.huawei.openstack4j.api.OSClient;
 import com.huawei.openstack4j.api.OSClient.OSClientAKSK;
 import com.huawei.openstack4j.api.OSClient.OSClientV2;
 import com.huawei.openstack4j.api.OSClient.OSClientV3;
@@ -51,6 +52,7 @@ import com.huawei.openstack4j.openstack.identity.v3.domain.KeystoneAuth;
 import com.huawei.openstack4j.openstack.identity.v3.domain.KeystoneAuth.AuthScope;
 import com.huawei.openstack4j.openstack.internal.OSAuthenticator;
 import com.huawei.openstack4j.openstack.internal.OSClientSessionAKSK;
+import com.huawei.openstack4j.openstack.internal.OSClientSessionTempAKSK;
 
 /**
  * Builder definitions for creating a Client
@@ -314,8 +316,109 @@ public abstract class OSClientBuilder<R, T extends IOSClientBuilder<R, T>> imple
             this.cloudDomainName = cloudDomainName;
             this.region = region;
             this.domainId = domainId;
+            this.projectId = projectId;
             return this;
         }
 		//TODO add more quick build method later?
 		}
+
+    public static class ClientTempAKSK extends OSClientBuilder<OSClient.OSClientTempAKSK, IOSClientBuilder.TempAKSK>
+            implements IOSClientBuilder.TempAKSK {
+
+        private String accessKey;
+        private String secretKey;
+        private String cloudDomainName;
+        private String projectId;
+        private String region;
+        private String domainId;
+        private String securityToken;
+
+        /*
+         * {@inheritDoc}
+         */
+        @Override
+        public OSClient.OSClientTempAKSK authenticate() throws AuthenticationException {
+            OSClient.OSClientTempAKSK session = null;
+
+            if (!Strings.isNullOrEmpty(domainId)){
+                session = new OSClientSessionTempAKSK().credentials(accessKey, secretKey, region, projectId, domainId, cloudDomainName, securityToken)
+                        .perspective(perspective).useConfig(config);
+            }else if(!Strings.isNullOrEmpty(projectId)){
+                session = new OSClientSessionTempAKSK().credentials(accessKey, secretKey, region, projectId, cloudDomainName, securityToken)
+                        .perspective(perspective).useConfig(config);
+            }else {
+                session = new OSClientSessionTempAKSK().credentials(accessKey, secretKey, region, cloudDomainName, securityToken)
+                        .perspective(perspective).useConfig(config);
+            }
+            return session;
+        }
+
+        /*
+         * {@inheritDoc}
+         */
+        @Override
+        public com.huawei.openstack4j.api.client.IOSClientBuilder.TempAKSK credentials(String accessKey, String secretKey,
+                                                                                   String region, String projectId, String cloudDomainName,String securityToken) {
+
+            checkArgument(!Strings.isNullOrEmpty(accessKey),"parameter `accessKey` should not be empty");
+            checkArgument(!Strings.isNullOrEmpty(secretKey),"parameter `secretKey` should not be empty");
+            checkArgument(!Strings.isNullOrEmpty(region),"parameter `region` should not be empty");
+            checkArgument(!Strings.isNullOrEmpty(projectId),"parameter `projectId` should not be empty");
+            checkArgument(!Strings.isNullOrEmpty(cloudDomainName),"parameter `cloudDomainName` should not be empty");
+            checkArgument(!Strings.isNullOrEmpty(securityToken),"parameter `securityToken` should not be empty");
+            this.accessKey = accessKey;
+            this.secretKey = secretKey;
+            this.cloudDomainName = cloudDomainName;
+            this.projectId = projectId;
+            this.region = region;
+            this.securityToken = securityToken;
+            return this;
+        }
+
+        /*
+         * {@inheritDoc}
+         */
+        @Override
+        public com.huawei.openstack4j.api.client.IOSClientBuilder.TempAKSK credentials(String accessKey, String secretKey,
+                                                                                   String region, String cloudDomainName, String securityToken) {
+
+            checkArgument(!Strings.isNullOrEmpty(accessKey),"parameter `accessKey` should not be empty");
+            checkArgument(!Strings.isNullOrEmpty(secretKey),"parameter `secretKey` should not be empty");
+            checkArgument(!Strings.isNullOrEmpty(region),"parameter `region` should not be empty");
+            checkArgument(!Strings.isNullOrEmpty(cloudDomainName),"parameter `cloudDomainName` should not be empty");
+            checkArgument(!Strings.isNullOrEmpty(securityToken),"parameter `securityToken` should not be empty");
+
+            this.accessKey = accessKey;
+            this.secretKey = secretKey;
+            this.cloudDomainName = cloudDomainName;
+            this.region = region;
+            this.securityToken = securityToken;
+            return this;
+        }
+
+        /*
+         * {@inheritDoc}
+         */
+        @Override
+        public com.huawei.openstack4j.api.client.IOSClientBuilder.TempAKSK credentials(String accessKey, String secretKey,
+                                                                                   String region, String projectId, String domainId,String cloudDomainName, String securityToken) {
+
+            checkArgument(!Strings.isNullOrEmpty(accessKey),"parameter `accessKey` should not be empty");
+            checkArgument(!Strings.isNullOrEmpty(secretKey),"parameter `secretKey` should not be empty");
+            checkArgument(!Strings.isNullOrEmpty(region),"parameter `region` should not be empty");
+            checkArgument(!Strings.isNullOrEmpty(cloudDomainName),"parameter `domain` should not be empty");
+            checkArgument(!Strings.isNullOrEmpty(domainId),"parameter `domainId` should not be empty");
+            checkArgument(!Strings.isNullOrEmpty(securityToken),"parameter `securityToken` should not be empty");
+
+            this.accessKey = accessKey;
+            this.secretKey = secretKey;
+            this.cloudDomainName = cloudDomainName;
+            this.region = region;
+            this.domainId = domainId;
+            this.projectId = projectId;
+            this.securityToken = securityToken;
+            return this;
+        }
+        //TODO add more quick build method later?
+    }
 }

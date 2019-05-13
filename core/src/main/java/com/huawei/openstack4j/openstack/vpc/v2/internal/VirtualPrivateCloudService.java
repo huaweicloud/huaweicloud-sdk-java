@@ -28,15 +28,15 @@ public class VirtualPrivateCloudService extends BaseVirtualPrivateCloudService i
 		return Apis.get(BandWidthService.class);
 	}
 
-//	public PeeringService peerings(){
-//		return Apis.get(PeeringService.class);
-//	}
+	public PeeringService peerings(){
+		return Apis.get(PeeringService.class);
+	}
 
-//	public RouteService routes(){
-//		return Apis.get(RouteService.class);
-//	}
+	public RouteService routes(){
+		return Apis.get(RouteService.class);
+	}
 
-//	public NetworkIpService networkips(){
-//		return Apis.get(NetworkIpService.class);
-//	}
+	public NetworkIpService networkips(){
+		return Apis.get(NetworkIpService.class);
+	}
 }

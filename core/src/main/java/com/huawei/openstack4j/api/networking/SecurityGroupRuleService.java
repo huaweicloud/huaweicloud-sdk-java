@@ -19,6 +19,7 @@ import java.util.List;
 import java.util.Map;
 
 import com.huawei.openstack4j.common.RestService;
+import com.huawei.openstack4j.model.common.ActionResponse;
 import com.huawei.openstack4j.model.network.SecurityGroupRule;
 
 
@@ -49,7 +50,7 @@ public interface SecurityGroupRuleService extends RestService {
    *
    * @param id the id
    */
-  void delete(String id);
+  ActionResponse delete(String id);
   
   /**
    * Creates a security group rule.

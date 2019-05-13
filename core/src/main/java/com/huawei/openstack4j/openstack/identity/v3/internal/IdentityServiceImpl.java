@@ -34,13 +34,15 @@ public class IdentityServiceImpl extends BaseOpenStackService implements Identit
    /* @Override
     public CredentialService credentials() {
         return Apis.get(CredentialService.class);
-    }
+    }*/
+
 
     @Override
     public DomainService domains() {
         return Apis.get(DomainService.class);
     }
-*/
+
+
     @Override
     public ProjectService projects() {
         return Apis.get(ProjectService.class);
@@ -51,16 +53,17 @@ public class IdentityServiceImpl extends BaseOpenStackService implements Identit
         return Apis.get(UserService.class);
     }
 
-   /* @Override
-    public RoleService roles() {
-        return Apis.get(RoleService.class);
-    }
-
     @Override
     public GroupService groups() {
         return Apis.get(GroupService.class);
     }
 
+    @Override
+    public RoleService roles() {
+        return Apis.get(RoleService.class);
+    }
+
+    /*
     @Override
     public PolicyService policies() {
         return Apis.get(PolicyService.class);
@@ -71,16 +74,21 @@ public class IdentityServiceImpl extends BaseOpenStackService implements Identit
         return Apis.get(ServiceEndpointService.class);
     }
 
-   /* @Override
+    @Override
     public RegionService regions() {
         return Apis.get(RegionService.class);
-    }*/
+    }
 
     @Override
     public TokenService tokens() {
         return Apis.get(TokenService.class);
     }
-    
+
+    @Override
+    public VersionService versions() {
+        return Apis.get(VersionService.class);
+    }
+
     @Override
     public List<? extends Extension> listExtensions() {
         return get(ExtensionList.class, PATH_EXTENSIONS).execute().getList();

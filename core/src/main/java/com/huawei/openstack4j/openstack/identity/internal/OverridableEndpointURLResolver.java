@@ -302,8 +302,12 @@ public class OverridableEndpointURLResolver implements EndpointURLResolver {
 			return url;	
 		}	
 		String endpoint = overrides.get(p.type);
-		if(null != endpoint){
-			url = endpoint.replace("%(project_id)s", p.projectId);		 
+		if(null != endpoint ){
+			if(null != p.projectId){
+				url = endpoint.replace("%(project_id)s", p.projectId);
+			}else{
+				url = endpoint;
+			}
 			CACHE.put(key, url);
 		}		 
 		return url;

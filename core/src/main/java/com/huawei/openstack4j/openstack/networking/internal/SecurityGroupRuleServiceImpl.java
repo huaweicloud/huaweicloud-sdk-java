@@ -21,6 +21,7 @@ import java.util.List;
 import java.util.Map;
 
 import com.huawei.openstack4j.api.networking.SecurityGroupRuleService;
+import com.huawei.openstack4j.model.common.ActionResponse;
 import com.huawei.openstack4j.model.network.SecurityGroupRule;
 import com.huawei.openstack4j.openstack.networking.domain.NeutronSecurityGroupRule;
 import com.huawei.openstack4j.openstack.networking.domain.NeutronSecurityGroupRule.SecurityGroupRules;
@@ -45,9 +46,9 @@ public class SecurityGroupRuleServiceImpl extends BaseNetworkingServices impleme
      * {@inheritDoc}
      */
     @Override
-    public void delete(String ruleId) {
+    public ActionResponse delete(String ruleId) {
         checkNotNull(ruleId);
-        delete(Void.class, uri("/security-group-rules/%s", ruleId)).execute();
+        return  deleteWithResponse(uri("/security-group-rules/%s", ruleId)).execute();
     }
 
     /**

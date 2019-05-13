@@ -20,6 +20,7 @@ import java.util.List;
 import com.huawei.openstack4j.common.RestService;
 import com.huawei.openstack4j.model.common.ActionResponse;
 import com.huawei.openstack4j.model.identity.v3.Domain;
+import com.huawei.openstack4j.openstack.identity.v3.domain.PasswordConfig;
 
 /**
  * Identity V3 Domain Service
@@ -83,5 +84,22 @@ public interface DomainService extends RestService {
      * @return list of domains
      */
     List<? extends Domain> list();
+
+    /**
+     * get domain password strength config
+     *
+     * @param domainId the domain id
+     * @return the password config
+     */
+    PasswordConfig getDomainPasswordConfig(String domainId);
+
+    /**
+     * get domain password strength config by option
+     *
+     * @param domainId the domain id
+     * @param option the option
+     * @return the password config
+     */
+    PasswordConfig getDomainPasswordConfigByOption(String domainId, String option);
 
 }

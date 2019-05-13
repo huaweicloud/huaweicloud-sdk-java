@@ -16,6 +16,7 @@
 package com.huawei.openstack4j.api.networking;
 
 import java.util.List;
+import java.util.Map;
 
 import com.huawei.openstack4j.common.RestService;
 import com.huawei.openstack4j.model.common.ActionResponse;
@@ -34,6 +35,15 @@ public interface SubnetService extends RestService {
      * @return the list of subnets or empty
      */
     List<? extends Subnet> list();
+
+
+    /**
+     * Get list of Subnet(s) accessible by the current tenant
+     * @param filteringParams map (name, value) of filtering parameters
+     *
+     * @return the list<? extends security group>
+     */
+    List<? extends Subnet> list(Map<String, String> filteringParams);
 
     /**
      * Gets a Subnet by ID
