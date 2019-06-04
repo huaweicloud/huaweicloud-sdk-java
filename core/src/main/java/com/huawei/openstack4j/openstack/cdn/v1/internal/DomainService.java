@@ -410,6 +410,7 @@ public class DomainService extends BaseCdnServices{
 	/**
 	 * Configuring domain IP Acl
 	 * @param domainId
+     * @param ipAcl
 	 * @return {@link IpAcl} instance
 	 * @throws ServerCdnErrorResponseException
 	 */
@@ -429,6 +430,7 @@ public class DomainService extends BaseCdnServices{
 	/**
 	 * Configuring domain origin range status
 	 * @param domainId
+     * @param status   "on" or "off"
 	 * @return {@link OriginRange} instance
 	 * @throws ServerCdnErrorResponseException
 	 */
@@ -451,6 +453,7 @@ public class DomainService extends BaseCdnServices{
 	/**
 	 * Configuring domain 302 follow status
 	 * @param domainId
+     * @param status  "on" or "off"
 	 * @return {@link OriginRange} instance
 	 * @throws ServerCdnErrorResponseException
 	 */
