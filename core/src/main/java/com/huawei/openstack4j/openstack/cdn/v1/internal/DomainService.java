@@ -15,6 +15,7 @@
  *******************************************************************************/
 package com.huawei.openstack4j.openstack.cdn.v1.internal;
 
+import java.util.HashMap;
 import java.util.Map;
 
 import com.google.common.base.Preconditions;
@@ -22,8 +23,11 @@ import com.huawei.openstack4j.openstack.cdn.v1.domain.CacheConfig;
 import com.huawei.openstack4j.openstack.cdn.v1.domain.Domain;
 import com.huawei.openstack4j.openstack.cdn.v1.domain.Domain.Domains;
 import com.huawei.openstack4j.openstack.cdn.v1.domain.DomainCreate;
+import com.huawei.openstack4j.openstack.cdn.v1.domain.Follow302;
 import com.huawei.openstack4j.openstack.cdn.v1.domain.HttpsInfo;
+import com.huawei.openstack4j.openstack.cdn.v1.domain.IpAcl;
 import com.huawei.openstack4j.openstack.cdn.v1.domain.OriginHost;
+import com.huawei.openstack4j.openstack.cdn.v1.domain.OriginRange;
 import com.huawei.openstack4j.openstack.cdn.v1.domain.PreheatingTask;
 import com.huawei.openstack4j.openstack.cdn.v1.domain.PreheatingTaskCreate;
 import com.huawei.openstack4j.openstack.cdn.v1.domain.Referer;
@@ -385,5 +389,85 @@ public class DomainService extends BaseCdnServices{
 		}
 		return taskDetailInvocation.execute(this.buildExecutionOptions(TaskDetail.class));
 	}
-	
+
+	/**
+	 * Querying domain IP Acl
+	 * @param domainId
+	 * @return {@link IpAcl} instance
+	 * @throws ServerCdnErrorResponseException
+	 */
+	public IpAcl getIpAcl(String domainId, Map<String, String> params) {
+		Preconditions.checkNotNull(domainId, "parameter `domainId` should not be null");
+		Invocation<IpAcl> domainInvocation = get(IpAcl.class, uri("/domains/%s/ip-acl", domainId));
+		if (params != null) {
+			for (Map.Entry<String, String> entry : params.entrySet()) {
+				domainInvocation = domainInvocation.param(entry.getKey(), entry.getValue());
+			}
+		}
+		return domainInvocation.execute(this.buildExecutionOptions(IpAcl.class));
+	}
+
+	/**
+	 * Configuring domain IP Acl
+	 * @param domainId
+	 * @return {@link IpAcl} instance
+	 * @throws ServerCdnErrorResponseException
+	 */
+	public IpAcl setIpAcl(String domainId, IpAcl ipAcl, Map<String, String> params) {
+		Preconditions.checkNotNull(domainId, "parameter `domainId` should not be null");
+		Preconditions.checkNotNull(ipAcl, "parameter `ipAcl` should not be null");
+		Invocation<IpAcl> domainInvocation = put(IpAcl.class, uri("/domains/%s/ip-acl", domainId)).entity(ipAcl);
+		if (params != null) {
+			for (Map.Entry<String, String> entry : params.entrySet()) {
+				domainInvocation = domainInvocation.param(entry.getKey(), entry.getValue());
+			}
+		}
+		return domainInvocation.execute(this.buildExecutionOptions(IpAcl.class));
+	}
+
+
+	/**
+	 * Configuring domain origin range status
+	 * @param domainId
+	 * @return {@link OriginRange} instance
+	 * @throws ServerCdnErrorResponseException
+	 */
+	public OriginRange setOriginRange(String domainId, String status, Map<String, String> params) {
+		Preconditions.checkNotNull(domainId, "parameter `domainId` should not be null");
+		Preconditions.checkNotNull(status, "parameter `status` should not be null");
+
+		Map<String, String> request = new HashMap<>();
+		request.put("range_status", status);
+
+		Invocation<OriginRange> domainInvocation = put(OriginRange.class, uri("/domains/%s/range-switch", domainId)).entity(request);
+		if (params != null) {
+			for (Map.Entry<String, String> entry : params.entrySet()) {
+				domainInvocation = domainInvocation.param(entry.getKey(), entry.getValue());
+			}
+		}
+		return domainInvocation.execute(this.buildExecutionOptions(OriginRange.class));
+	}
+
+	/**
+	 * Configuring domain 302 follow status
+	 * @param domainId
+	 * @return {@link OriginRange} instance
+	 * @throws ServerCdnErrorResponseException
+	 */
+	public Follow302 setFollow302Status(String domainId, String status, Map<String, String> params) {
+		Preconditions.checkNotNull(domainId, "parameter `domainId` should not be null");
+		Preconditions.checkNotNull(status, "parameter `status` should not be null");
+
+		Map<String, String> request = new HashMap<>();
+		request.put("follow302_status", status);
+
+		Invocation<Follow302> domainInvocation = put(Follow302.class, uri("/domains/%s/follow302-switch", domainId)).entity(request);
+		if (params != null) {
+			for (Map.Entry<String, String> entry : params.entrySet()) {
+				domainInvocation = domainInvocation.param(entry.getKey(), entry.getValue());
+			}
+		}
+		return domainInvocation.execute(this.buildExecutionOptions(Follow302.class));
+	}
+
 }
