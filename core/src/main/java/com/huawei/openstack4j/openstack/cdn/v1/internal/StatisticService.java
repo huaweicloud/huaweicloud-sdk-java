@@ -330,7 +330,7 @@ public class StatisticService extends BaseCdnServices {
 	 * @param region
 	 * @param startTime
 	 * @param endTime
-	 * @return {@link TopUrlsSummary} instance
+	 * @return {@link RegionDetailSummary} instance
 	 * @throws ServerCdnErrorResponseException
 	 */
 	public RegionDetailSummary queryRegionDetailSummary(String domainName,
@@ -372,7 +372,7 @@ public class StatisticService extends BaseCdnServices {
 	 * @param carrier
 	 * @param startTime
 	 * @param endTime
-	 * @return {@link TopUrlsSummary} instance
+	 * @return {@link CarrierDetailSummary} instance
 	 * @throws ServerCdnErrorResponseException
 	 */
 	public CarrierDetailSummary queryCarrierDetailSummary(String domainName,
@@ -454,7 +454,7 @@ public class StatisticService extends BaseCdnServices {
 	 * @param carrier
 	 * @param startTime
 	 * @param endTime
-	 * @return {@link TopUrlsSummary} instance
+	 * @return {@link RegionCarrierDomainSummary} instance
 	 * @throws ServerCdnErrorResponseException
 	 */
 	public RegionCarrierDomainSummary queryRegionCarrierDomainSummary(String domainName,
@@ -501,7 +501,7 @@ public class StatisticService extends BaseCdnServices {
 	 * @param startTime
 	 * @param endTime
 	 * @param interval
-	 * @return {@link TopUrlsSummary} instance
+	 * @return {@link RegionCarrierDetail} instance
 	 * @throws ServerCdnErrorResponseException
 	 */
 	public RegionCarrierDetail queryRegionCarrierDetail(String domainName,
