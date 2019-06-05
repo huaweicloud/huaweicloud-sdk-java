@@ -392,7 +392,7 @@ public class DomainService extends BaseCdnServices{
 
 	/**
 	 * Querying domain IP Acl
-	 * @param domainId
+     * @param domainId
 	 * @return {@link IpAcl} instance
 	 * @throws ServerCdnErrorResponseException
 	 */

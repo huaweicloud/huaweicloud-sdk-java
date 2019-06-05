@@ -20,12 +20,17 @@ import java.util.List;
 import com.google.common.base.Preconditions;
 import com.huawei.openstack4j.openstack.cdn.v1.domain.Bandwidth;
 import com.huawei.openstack4j.openstack.cdn.v1.domain.BandwidthDetail;
+import com.huawei.openstack4j.openstack.cdn.v1.domain.CarrierDetailSummary;
 import com.huawei.openstack4j.openstack.cdn.v1.domain.DomainConsumption;
 import com.huawei.openstack4j.openstack.cdn.v1.domain.DomainConsumption.DomainConsumptions;
 import com.huawei.openstack4j.openstack.cdn.v1.domain.DomainSummary;
 import com.huawei.openstack4j.openstack.cdn.v1.domain.DomainSummaryDetail;
 import com.huawei.openstack4j.openstack.cdn.v1.domain.Flux;
 import com.huawei.openstack4j.openstack.cdn.v1.domain.FluxDetail;
+import com.huawei.openstack4j.openstack.cdn.v1.domain.RegionCarrierDetail;
+import com.huawei.openstack4j.openstack.cdn.v1.domain.RegionCarrierDomainSummary;
+import com.huawei.openstack4j.openstack.cdn.v1.domain.RegionDetailSummary;
+import com.huawei.openstack4j.openstack.cdn.v1.domain.TopUrlsSummary;
 import com.huawei.openstack4j.openstack.cdn.v1.exception.ServerCdnErrorResponseException;
 
 /**
@@ -317,4 +322,220 @@ public class StatisticService extends BaseCdnServices {
 		return domainConsumptionsInvocation.execute(this.buildExecutionOptions(DomainConsumptions.class)).getDomainConsumptions();
 	}
 
+	/**
+	 * Querying region detail summary
+	 *
+	 * @param domainName
+	 * @param statType
+	 * @param region
+	 * @param startTime
+	 * @param endTime
+	 * @return {@link TopUrlsSummary} instance
+	 * @throws ServerCdnErrorResponseException
+	 */
+	public RegionDetailSummary queryRegionDetailSummary(String domainName,
+														String statType,
+														String region,
+														Long startTime,
+														Long endTime,
+														String enterpriseProjectId) throws ServerCdnErrorResponseException {
+
+		Preconditions.checkNotNull(domainName, "parameter `domainName` should not be null");
+		Preconditions.checkNotNull(statType, "parameter `statType` should not be null");
+		Preconditions.checkNotNull(region, "parameter `region` should not be null");
+
+		Invocation<RegionDetailSummary> topUrlsSummaryInvocation =
+				get(RegionDetailSummary.class, uri("/statistics/region-detail-summary"))
+						.param("domain_name", domainName)
+						.param("stat_type", statType)
+						.param("region", region);
+
+		if (startTime != null) {
+			topUrlsSummaryInvocation = topUrlsSummaryInvocation.param("start_time", startTime);
+		}
+		if (endTime != null) {
+			topUrlsSummaryInvocation = topUrlsSummaryInvocation.param("end_time", endTime);
+		}
+		if (enterpriseProjectId != null) {
+			topUrlsSummaryInvocation = topUrlsSummaryInvocation.param("enterprise_project_id", enterpriseProjectId);
+		}
+
+		return topUrlsSummaryInvocation.execute(this.buildExecutionOptions(RegionDetailSummary.class));
+
+	}
+
+	/**
+	 * Querying carrier detail summary
+	 *
+	 * @param domainName
+	 * @param statType
+	 * @param carrier
+	 * @param startTime
+	 * @param endTime
+	 * @return {@link TopUrlsSummary} instance
+	 * @throws ServerCdnErrorResponseException
+	 */
+	public CarrierDetailSummary queryCarrierDetailSummary(String domainName,
+														  String statType,
+														  String carrier,
+														  Long startTime,
+														  Long endTime,
+														  String enterpriseProjectId) throws ServerCdnErrorResponseException {
+
+		Preconditions.checkNotNull(domainName, "parameter `domainName` should not be null");
+		Preconditions.checkNotNull(statType, "parameter `statType` should not be null");
+		Preconditions.checkNotNull(carrier, "parameter `carrier` should not be null");
+
+		Invocation<CarrierDetailSummary> topUrlsSummaryInvocation =
+				get(CarrierDetailSummary.class, uri("/statistics/carrier-detail-summary"))
+						.param("domain_name", domainName)
+						.param("stat_type", statType)
+						.param("carrier", carrier);
+
+		if (startTime != null) {
+			topUrlsSummaryInvocation = topUrlsSummaryInvocation.param("start_time", startTime);
+		}
+		if (endTime != null) {
+			topUrlsSummaryInvocation = topUrlsSummaryInvocation.param("end_time", endTime);
+		}
+		if (enterpriseProjectId != null) {
+			topUrlsSummaryInvocation = topUrlsSummaryInvocation.param("enterprise_project_id", enterpriseProjectId);
+		}
+		return topUrlsSummaryInvocation.execute(this.buildExecutionOptions(CarrierDetailSummary.class));
+	}
+
+	/**
+	 * Querying Top 100 urls summary
+	 *
+	 * @param domainName
+	 * @param statType
+	 * @param startTime
+	 * @param endTime
+	 * @param serviceArea
+	 * @return {@link TopUrlsSummary} instance
+	 * @throws ServerCdnErrorResponseException
+	 */
+	public TopUrlsSummary queryTopUrlsSummary(String domainName,
+											  String statType,
+											  Long startTime,
+											  Long endTime,
+											  String serviceArea,
+											  String enterpriseProjectId) throws ServerCdnErrorResponseException {
+
+		Preconditions.checkNotNull(domainName, "parameter `domainName` should not be null");
+		Preconditions.checkNotNull(statType, "parameter `statType` should not be null");
+
+		Invocation<TopUrlsSummary> topUrlsSummaryInvocation =
+				get(TopUrlsSummary.class, uri("/statistics/top-url"))
+						.param("domain_name", domainName)
+						.param("stat_type", statType);
+
+		if (startTime != null) {
+			topUrlsSummaryInvocation = topUrlsSummaryInvocation.param("start_time", startTime);
+		}
+		if (endTime != null) {
+			topUrlsSummaryInvocation = topUrlsSummaryInvocation.param("end_time", endTime);
+		}
+		if (serviceArea != null) {
+			topUrlsSummaryInvocation = topUrlsSummaryInvocation.param("service_area", serviceArea);
+		}
+		if (enterpriseProjectId != null) {
+			topUrlsSummaryInvocation = topUrlsSummaryInvocation.param("enterprise_project_id", enterpriseProjectId);
+		}
+		return topUrlsSummaryInvocation.execute(this.buildExecutionOptions(TopUrlsSummary.class));
+	}
+
+	/**
+	 * Querying region carrier domain consumption
+	 *
+	 * @param domainName
+	 * @param statType
+	 * @param region
+	 * @param carrier
+	 * @param startTime
+	 * @param endTime
+	 * @return {@link TopUrlsSummary} instance
+	 * @throws ServerCdnErrorResponseException
+	 */
+	public RegionCarrierDomainSummary queryRegionCarrierDomainSummary(String domainName,
+																	  String statType,
+																	  String region,
+																	  String carrier,
+																	  Long startTime,
+																	  Long endTime,
+																	  String enterpriseProjectId) throws ServerCdnErrorResponseException {
+
+		Preconditions.checkNotNull(domainName, "parameter `domainName` should not be null");
+		Preconditions.checkNotNull(statType, "parameter `statType` should not be null");
+		Preconditions.checkNotNull(region, "parameter `region` should not be null");
+		Preconditions.checkNotNull(carrier, "parameter `carrier` should not be null");
+
+		Invocation<RegionCarrierDomainSummary> topUrlsSummaryInvocation =
+				get(RegionCarrierDomainSummary.class, uri("/statistics/region-carrier-domain"))
+						.param("domain_name", domainName)
+						.param("stat_type", statType)
+						.param("region", region)
+						.param("carrier", carrier);
+
+		if (startTime != null) {
+			topUrlsSummaryInvocation = topUrlsSummaryInvocation.param("start_time", startTime);
+		}
+		if (endTime != null) {
+			topUrlsSummaryInvocation = topUrlsSummaryInvocation.param("end_time", endTime);
+		}
+		if (enterpriseProjectId != null) {
+			topUrlsSummaryInvocation = topUrlsSummaryInvocation.param("enterprise_project_id", enterpriseProjectId);
+		}
+
+		return topUrlsSummaryInvocation.execute(this.buildExecutionOptions(RegionCarrierDomainSummary.class));
+
+	}
+
+	/**
+	 * Querying region carrier detail consumption
+	 *
+	 * @param domainName
+	 * @param statType
+	 * @param region
+	 * @param carrier
+	 * @param startTime
+	 * @param endTime
+	 * @param interval
+	 * @return {@link TopUrlsSummary} instance
+	 * @throws ServerCdnErrorResponseException
+	 */
+	public RegionCarrierDetail queryRegionCarrierDetail(String domainName,
+														String statType,
+														String region,
+														String carrier,
+														Long startTime,
+														Long endTime,
+														Integer interval,
+														String enterpriseProjectId) throws ServerCdnErrorResponseException {
+
+		Preconditions.checkNotNull(domainName, "parameter `domainName` should not be null");
+		Preconditions.checkNotNull(statType, "parameter `statType` should not be null");
+		Preconditions.checkNotNull(region, "parameter `region` should not be null");
+		Preconditions.checkNotNull(carrier, "parameter `carrier` should not be null");
+
+		Invocation<RegionCarrierDetail> topUrlsSummaryInvocation =
+				get(RegionCarrierDetail.class, uri("/statistics/region-carrier-detail"))
+						.param("domain_name", domainName)
+						.param("stat_type", statType)
+						.param("region", region)
+						.param("carrier", carrier);
+
+		if (startTime != null) {
+			topUrlsSummaryInvocation = topUrlsSummaryInvocation.param("start_time", startTime);
+		}
+		if (endTime != null) {
+			topUrlsSummaryInvocation = topUrlsSummaryInvocation.param("end_time", endTime);
+		}
+		if (enterpriseProjectId != null) {
+			topUrlsSummaryInvocation = topUrlsSummaryInvocation.param("enterprise_project_id", enterpriseProjectId);
+		}
+
+		return topUrlsSummaryInvocation.execute(this.buildExecutionOptions(RegionCarrierDetail.class));
+
+	}
 }
