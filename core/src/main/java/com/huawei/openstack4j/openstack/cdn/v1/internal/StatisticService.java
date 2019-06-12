@@ -528,9 +528,15 @@ public class StatisticService extends BaseCdnServices {
 		if (startTime != null) {
 			topUrlsSummaryInvocation = topUrlsSummaryInvocation.param("start_time", startTime);
 		}
+
 		if (endTime != null) {
 			topUrlsSummaryInvocation = topUrlsSummaryInvocation.param("end_time", endTime);
 		}
+
+		if (interval != null) {
+			topUrlsSummaryInvocation = topUrlsSummaryInvocation.param("interval", interval);
+		}
+
 		if (enterpriseProjectId != null) {
 			topUrlsSummaryInvocation = topUrlsSummaryInvocation.param("enterprise_project_id", enterpriseProjectId);
 		}
