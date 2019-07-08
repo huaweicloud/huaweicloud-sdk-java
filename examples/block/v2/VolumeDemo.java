@@ -4,6 +4,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import com.google.common.collect.Maps;
 import com.huawei.openstack4j.api.Builders;
 import com.huawei.openstack4j.api.OSClient.OSClientV3;
 import com.huawei.openstack4j.model.common.ActionResponse;
@@ -17,6 +18,9 @@ import com.huawei.openstack4j.openstack.storage.block.domain.CinderBlockQuotaSet
 import com.huawei.openstack4j.openstack.storage.block.domain.CinderVolume;
 import com.huawei.openstack4j.openstack.storage.block.domain.CinderVolumeUpdate;
 import com.huawei.openstack4j.openstack.storage.block.domain.CinderVolumesResponse;
+import com.huawei.openstack4j.openstack.storage.block.domain.Extension;
+import com.huawei.openstack4j.openstack.storage.block.domain.VolumeMeta;
+import com.huawei.openstack4j.openstack.storage.block.domain.VolumeMetadata;
 
 public class VolumeDemo {
 	public static void main(String[] args) throws InterruptedException
@@ -124,8 +128,8 @@ public class VolumeDemo {
 
 		//delete volume
 		ActionResponse deleteVolumeResponse = os.blockStorage().volumes().delete(volumeId);
-//		//delete volume with snapshots
-//		ActionResponse deleteVolumeCascadeResponse = os.blockStorage().volumes().forceDelete(volumeId, true);
+		//delete volume with snapshots
+		ActionResponse deleteVolumeCascadeResponse = os.blockStorage().volumes().forceDelete(volumeId, true);
 
 		//wait until volume deleted
 		int queryDeletedVolumeCount = 1;
@@ -170,37 +174,49 @@ public class VolumeDemo {
 		}
 		Volume volumeDetail2 = volumeList2.get(0);
 
-//		//get list of volume detail
-//		CinderVolumesResponse volumeList3 = os.blockStorage().volumes().listVolumes();
-//		if (null != volumeList3 && volumeList3.getVolumeList().size() >= 0)
-//		{
-//			System.out.println("get volumeList success, count = " + volumeList3.getVolumeList().size());
-//		}
-//		else
-//		{
-//			System.out.println("get volumeList failed");
-//		}
-//		CinderVolume volumeDetail3 = volumeList3.getVolumeList().get(0);
-//
-//		//get list of volume detail by filter
-//		Map<String, String> filteringParams = new HashMap<>();
-//		filteringParams.put("name", "volumeName");
-//		CinderVolumesResponse volumeList4 = os.blockStorage().volumes().listVolumes(filteringParams);
-//		if (null != volumeList4 && volumeList4.getVolumeList().size() >= 0)
-//		{
-//			System.out.println("get volumeList success, count = " + volumeList4.getVolumeList().size());
-//		}
-//		else
-//		{
-//			System.out.println("get volumeList failed");
-//		}
-//		CinderVolume volumeDetail4 = volumeList4.getVolumeList().get(0);
+		//get list of volume detail
+		CinderVolumesResponse volumeList3 = os.blockStorage().volumes().listVolumes();
+		if (null != volumeList3 && volumeList3.getVolumeList().size() >= 0)
+		{
+			System.out.println("get volumeList success, count = " + volumeList3.getVolumeList().size());
+		}
+		else
+		{
+			System.out.println("get volumeList failed");
+		}
+		CinderVolume volumeDetail3 = volumeList3.getVolumeList().get(0);
+
+		//get list of volume detail by filter
+		Map<String, String> filteringParams = new HashMap<>();
+		filteringParams.put("name", "volumeName");
+		CinderVolumesResponse volumeList4 = os.blockStorage().volumes().listVolumes(filteringParams);
+		if (null != volumeList4 && volumeList4.getVolumeList().size() >= 0)
+		{
+			System.out.println("get volumeList success, count = " + volumeList4.getVolumeList().size());
+		}
+		else
+		{
+			System.out.println("get volumeList failed");
+		}
+		CinderVolume volumeDetail4 = volumeList4.getVolumeList().get(0);
 
 		// get list of volume types
 		List<? extends VolumeType> volumeTypes = os.blockStorage().volumes().listVolumeTypes();
 		for (VolumeType type: volumeTypes)
 		{
 			System.out.println(type.getId());
+		}
+
+		// get single volume type
+		String typeId = "xxx";
+		VolumeType type = os.blockStorage().volumes().getVolumeType(typeId);
+		if (null != type)
+		{
+			System.out.println("get single volume type success");
+		}
+		else
+		{
+			System.out.println("get single volume type failed");
 		}
 
 		//update volume to image
@@ -228,11 +244,113 @@ public class VolumeDemo {
 			System.out.println("readonly mode update failed");
 		}
 
-//		// get tenant quota
-//		CinderBlockQuotaSetResponse quotaSetResponse = os.blockStorage().quotaSets().quotaForTenant("tenantId");
-//		Map<String, Object> quotaSet = quotaSetResponse.getQuotaSet();
-//		System.out.println((String)quotaSet.get("id"));
-//		Map<String, Integer> volumes = (Map<String, Integer>)quotaSet.get("volumes");
-//		System.out.println(volumes.get("reserved"));
+		// set volume bootable
+		osclient.blockStorage().volumes().setBootable(volumeId, true);
+		Volume volumeSetBootable = osclient.blockStorage().volumes().get(volumeId);
+		if (null != volumeSetBootable && volumeSetBootable.bootable())
+		{
+			System.out.println("set volume bootable success");
+		}
+		else
+		{
+			System.out.println("set volume bootable failed");
+		}
+		// get tenant quota
+		CinderBlockQuotaSetResponse quotaSetResponse = os.blockStorage().quotaSets().quotaForTenant("tenantId");
+		Map<String, Object> quotaSet = quotaSetResponse.getQuotaSet();
+		System.out.println((String)quotaSet.get("id"));
+		Map<String, Integer> volumes = (Map<String, Integer>)quotaSet.get("volumes");
+		System.out.println(volumes.get("reserved"));
+
+		// get extensiopns
+		List<? extends Extension> extensions = os.blockStorage().volumes().listExtensions();
+		if (null != extensions && extensions.size() >= 0)
+		{
+			System.out.println("get extensions success, count = " + extensions.size());
+		}
+		else
+		{
+			System.out.println("get extensions failed");
+		}
+
+		// create volume metadata
+		Map<String, String> createMetadataMap = Maps.newHashMap();
+		createMetadataMap.put("key1", "value1");
+		createMetadataMap.put("key2", "value2");
+		VolumeMetadata createMetadataReq = VolumeMetadata.builder().metadata(createMetadataMap).build();
+		VolumeMetadata createMetadataRep = os.blockStorage().volumes().createMetadata(volumeId, createMetadataReq);
+		if (null != createMetadataRep)
+		{
+			System.out.println("create volume metadata success");
+		}
+		else
+		{
+			System.out.println("create volume metadata failed");
+		}
+
+		// get volume metadata
+		VolumeMetadata getMetadataRep = os.blockStorage().volumes().getMetadata(volumeId);
+		if (null != getMetadataRep)
+		{
+			System.out.println("get volume metadata success");
+		}
+		else
+		{
+			System.out.println("get volume metadata failed");
+		}
+
+		// update volume metadata
+		Map<String, String> updateMetadataMap = Maps.newHashMap();
+		updateMetadataMap.put("key", "value");
+		VolumeMetadata updateMetadataReq = VolumeMetadata.builder().metadata(updateMetadataMap).build();
+		VolumeMetadata updateMetadataRep = os.blockStorage().volumes().updateMetadata(volumeId, updateMetadataReq);
+		if (null != updateMetadataRep)
+		{
+			System.out.println("update volume metadata success");
+		}
+		else
+		{
+			System.out.println("update volume metadata failed");
+		}
+
+		// update volume metadata by key
+		String updateMetakey = "key";
+		Map<String, String> updateMetaMap = Maps.newHashMap();
+		updateMetaMap.put(updateMetakey, "value_update");
+		VolumeMeta updateMetaReq = VolumeMeta.builder().meta(updateMetaMap).build();
+		VolumeMeta updateMetaRep = os.blockStorage().volumes().updateMeta(volumeId, updateMetakey, updateMetaReq);
+		if (null != updateMetaRep)
+		{
+			System.out.println("update volume metadata by key success");
+		}
+		else
+		{
+			System.out.println("update volume metadata by key failed");
+		}
+
+		// delete volume metadata by key
+		String deleteMetatdataKey = "key1";
+		ActionResponse deleteMetatdataRep = os.blockStorage().volumes().deleteMetadata(volumeId, deleteMetatdataKey);
+		VolumeMeta getDeletedMeta = os.blockStorage().volumes().getMeta(volumeId, deleteMetatdataKey);
+		if (null == getDeletedMeta)
+		{
+			System.out.println("delete volume metadata by key success");
+		}
+		else
+		{
+			System.out.println("delete volume metadata by key failed");
+		}
+
+		// get volume metadata by key
+		String getMetatdataKey = "key2";
+		VolumeMeta getMetaRep = os.blockStorage().volumes().getMeta(volumeId, getMetatdataKey);
+		if (null != getMetaRep)
+		{
+			System.out.println("get volume metadata by key success");
+		}
+		else
+		{
+			System.out.println("get volume metadata by key failed");
+		}
 	}
 }

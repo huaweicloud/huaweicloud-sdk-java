@@ -49,11 +49,20 @@ public class Bandwidth implements ModelEntity {
 	@JsonProperty("chargemode")
 	private NetworkChargingMode chargeMode;
 
-	@java.beans.ConstructorProperties({ "size", "shareType", "chargeMode" })
-	public Bandwidth(Integer size, ShareType shareType, NetworkChargingMode chargeMode) {
+	/**
+	 * 带宽ID
+	 * 创建WHOLE类型带宽的弹性IP时可以指定之前的共享带宽创建。
+	 * 取值范围：WHOLE类型的带宽ID。
+	 */
+	@JsonProperty("id")
+	private String id;
+
+	@java.beans.ConstructorProperties({ "size", "shareType", "chargeMode", "id"})
+	public Bandwidth(Integer size, ShareType shareType, NetworkChargingMode chargeMode, String id) {
 		this.size = size;
 		this.shareType = shareType;
 		this.chargeMode = chargeMode;
+		this.id = id;
 	}
 
 	public Bandwidth() {
@@ -75,20 +84,25 @@ public class Bandwidth implements ModelEntity {
 		return this.chargeMode;
 	}
 
+	public String getId() {
+		return id;
+	}
+
 	@Override
 	public String toString() {
 		return "Bandwidth(size=" + this.getSize() + ", shareType=" + this.getShareType() + ", chargeMode="
-				+ this.getChargeMode() + ")";
+				+ this.getChargeMode() + ", id=" + this.getId() +")";
 	}
 
 	public BandwidthBuilder toBuilder() {
-		return new BandwidthBuilder().size(this.size).shareType(this.shareType).chargeMode(this.chargeMode);
+		return new BandwidthBuilder().size(this.size).shareType(this.shareType).chargeMode(this.chargeMode).id(this.id);
 	}
 
 	public static class BandwidthBuilder {
 		private Integer size;
 		private ShareType shareType;
 		private NetworkChargingMode chargeMode;
+		private String id;
 
 		BandwidthBuilder() {
 		}
@@ -108,14 +122,19 @@ public class Bandwidth implements ModelEntity {
 			return this;
 		}
 
+		public Bandwidth.BandwidthBuilder id(String id){
+			this.id = id;
+			return this;
+		}
+
 		public Bandwidth build() {
-			return new Bandwidth(size, shareType, chargeMode);
+			return new Bandwidth(size, shareType, chargeMode, id);
 		}
 
 		@Override
 		public String toString() {
 			return "Bandwidth.BandwidthBuilder(size=" + this.size + ", shareType=" + this.shareType + ", chargeMode="
-					+ this.chargeMode + ")";
+					+ this.chargeMode + ", id=" + this.id + ")";
 		}
 	}
 }

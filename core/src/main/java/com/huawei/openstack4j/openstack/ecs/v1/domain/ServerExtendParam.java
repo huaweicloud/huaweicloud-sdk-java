@@ -42,11 +42,20 @@ public class ServerExtendParam {
 	@JsonProperty("support_auto_recovery")
 	Boolean autoRecovery;
 
-	@java.beans.ConstructorProperties({ "chargingMode", "regionId", "autoRecovery" })
-	public ServerExtendParam(ServerChargingMode chargingMode, String regionId, Boolean autoRecovery) {
+	/**
+	 * 企业项目ID
+	 * 约束：
+	 * 如果设置企业项目ID，那么需要确保创建弹性云服务器使用的其他资源都共属于同一个企业项目ID底下。
+	 */
+	@JsonProperty("enterprise_project_id")
+	String enterpriseProjectId;
+
+	@java.beans.ConstructorProperties({ "chargingMode", "regionId", "autoRecovery", "enterpriseProjectId"})
+	public ServerExtendParam(ServerChargingMode chargingMode, String regionId, Boolean autoRecovery, String enterpriseProjectId) {
 		this.chargingMode = chargingMode;
 		this.regionId = regionId;
 		this.autoRecovery = autoRecovery;
+		this.enterpriseProjectId = enterpriseProjectId;
 	}
 
 	public ServerExtendParam() {
@@ -68,10 +77,13 @@ public class ServerExtendParam {
 		return this.autoRecovery;
 	}
 
+	public String getEnterpriseProjectId(){
+		return this.enterpriseProjectId;
+	}
 	@Override
 	public String toString() {
 		return "ServerExtendParam(chargingMode=" + this.getChargingMode() + ", regionId=" + this.getRegionId()
-				+ ", autoRecovery=" + this.getAutoRecovery() + ")";
+				+ ", autoRecovery=" + this.getAutoRecovery() + ")" + ", enterpriseProjectId=" + this.getEnterpriseProjectId() + ")";
 	}
 
 	public ServerExtendParamBuilder toBuilder() {
@@ -83,6 +95,7 @@ public class ServerExtendParam {
 		private ServerChargingMode chargingMode;
 		private String regionId;
 		private Boolean autoRecovery;
+		private String enterpriseProjectId;
 
 		ServerExtendParamBuilder() {
 		}
@@ -102,14 +115,19 @@ public class ServerExtendParam {
 			return this;
 		}
 
+		public ServerExtendParam.ServerExtendParamBuilder enterpriseProjectId(String enterpriseProjectId){
+			this.enterpriseProjectId = enterpriseProjectId;
+			return this;
+		}
+
 		public ServerExtendParam build() {
-			return new ServerExtendParam(chargingMode, regionId, autoRecovery);
+			return new ServerExtendParam(chargingMode, regionId, autoRecovery, enterpriseProjectId);
 		}
 
 		@Override
 		public String toString() {
 			return "ServerExtendParam.ServerExtendParamBuilder(chargingMode=" + this.chargingMode + ", regionId="
-					+ this.regionId + ", autoRecovery=" + this.autoRecovery + ")";
+					+ this.regionId + ", autoRecovery=" + this.autoRecovery + ", enterpriseProjectId=" + this.enterpriseProjectId + ")";
 		}
 	}
 }

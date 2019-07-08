@@ -14,18 +14,21 @@ import com.huawei.openstack4j.model.network.Network;
 import com.huawei.openstack4j.openstack.OSFactory;
 
 import com.huawei.openstack4j.model.compute.Action;
-import com.huawei.openstack4j.model.compute.Flavor;
 import com.huawei.openstack4j.model.compute.RebootType;
 import com.huawei.openstack4j.model.compute.Server;
 import com.huawei.openstack4j.model.compute.ServerCreate;
 import com.huawei.openstack4j.model.compute.ServerUpdateOptions;
+import com.huawei.openstack4j.model.compute.StopType;
 import com.huawei.openstack4j.model.compute.VolumeAttachment;
 import com.huawei.openstack4j.model.compute.Server.Status;
 import com.huawei.openstack4j.model.compute.actions.RebuildOptions;
+import com.huawei.openstack4j.model.compute.InstanceAction;
+import com.huawei.openstack4j.openstack.common.AsyncJobEntity;
+import com.huawei.openstack4j.model.compute.StopType;
 
 public class ServerDemo {
 	public static void main(String[] args) {
-		
+
 		// Using credentials for authentication
 		String authUrl = "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"; //endpoint Url
 		String user = "xxxxxx"; //username
@@ -33,23 +36,23 @@ public class ServerDemo {
 		String projectId = "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"; //projectId
 		String userDomainId = "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"; //domainId
 
-		// create connection		
+		// create connection
 		OSClientV3 os = OSFactory.builderV3()
 			.endpoint(authUrl)
 			.credentials(user, password, Identifier.byId(userDomainId))
-			.scopeToProject(Identifier.byId(projectId)).authenticate();	
-		
-		String flavorId = "c1.medium";
-		String imageId = "228b642c-7538-4364-99b4-a88f271234a4";
-		String newflavorid = "c2.medium";
-		String newimageid = "af60e0d5-6952-4f3d-b0ed-31bb19d4a692";
-		String volId = "bc9aef05-299f-4e87-bd7a-779780020690";
-		
+			.scopeToProject(Identifier.byId(projectId)).authenticate();
+
+		String flavorId = "xxxxxx";
+		String imageId = "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx";
+		String newflavorid = "xxxxxx";
+		String newimageid = "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx";
+		String volId = "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx";
+
 		// get list of network
 		List<? extends Network> networks = os.networking().network().list();
 		ArrayList<String> networkList = new ArrayList<String>();
 		networkList.add(networks.get(0).getId());
-		
+
 		//create server
 		ServerCreate sc = Builders.server()
 				.name("test-name")
@@ -64,7 +67,7 @@ public class ServerDemo {
 		} else {
 			System.out.println("boot the first server failed");
 		}
-		
+
 		//wait for server status to ACTIVE
 		Server waitServer = os.compute().servers().waitForServerStatus(server.getId(), Status.ACTIVE, 10, TimeUnit.MINUTES);
 		Status endStatus = waitServer.getStatus();
@@ -72,7 +75,7 @@ public class ServerDemo {
 			System.out.println("waitForServerStatus success");
 		} else {
 			System.out.println("waitForServerStatus failed");
-		}	
+		}
 		String secServerId = null;
 		Server secondServer = os.compute().servers().bootAndWaitActive(sc, 180000);
 		if (null != secondServer) {
@@ -92,13 +95,13 @@ public class ServerDemo {
 		}
 
 		//stop server with type
-		ActionResponse repStopWithType = os.compute().servers().stop(serverId, StopType.HARD);
+		ActionResponse repStopWithType = os.compute().servers().stop(server.getId(), StopType.HARD);
 		if (repStopWithType.isSuccess()) {
 			System.out.println("hard stop server success");
 		} else {
 			System.out.println("hard stop server failed");
 		}
-		
+
 		//start server
 		ActionResponse repStart = os.compute().servers().action(server.getId(), Action.START);
 		os.compute().servers().waitForServerStatus(server.getId(), Status.ACTIVE, 10, TimeUnit.MINUTES);
@@ -107,7 +110,7 @@ public class ServerDemo {
 		} else {
 			System.out.println("Start the server failed");
 		}
-		
+
 		//lock server
 		ActionResponse repLock = os.compute().servers().action(server.getId(), Action.LOCK);
 		if (repLock.isSuccess()) {
@@ -115,7 +118,7 @@ public class ServerDemo {
 		} else {
 			System.out.println("Lock the server failed");
 		}
-		
+
 		//unlock server
 		ActionResponse repUnLock = os.compute().servers().action(server.getId(), Action.UNLOCK);
 		if (repUnLock.isSuccess()) {
@@ -124,7 +127,7 @@ public class ServerDemo {
 			System.out.println("Unlock the server failed");
 		}
 
-		//attach volume
+		//attach a volume to a server
 		VolumeAttachment attach = os.compute().servers().attachVolume(server.getId(), volId, "/dev/sdd");
 		String attachmentId = null;
 		if (null != attach) {
@@ -141,15 +144,23 @@ public class ServerDemo {
 		//get server attached volume list
 		List<? extends VolumeAttachment> list = os.compute().servers().listAttachedVolumes(server.getId());
 		System.out.println("server attached volume list is: " + list);
-		
-		//detach Volume
+
+		//detach a volume from a server
 		ActionResponse repDetach = os.compute().servers().detachVolume(server.getId(), volId);
 		if (repDetach.isSuccess()) {
 			System.out.println("detachVolume success");
 		} else {
 			System.out.println("detachVolume failed");
 		}
-		
+
+		//detach volume with delete flag
+		ActionResponse repDetachEnforce = os.compute().servers().detachVolume(server.getId(), volId, 1);
+		if (repDetachEnforce.isSuccess()) {
+			System.out.println("enforce detach volume success");
+		} else {
+			System.out.println("enforce detach volume failed");
+		}
+
 		//get server
 		Server serverInfo = os.compute().servers().get(server.getId());
 		if (null != serverInfo) {
@@ -157,7 +168,7 @@ public class ServerDemo {
 		} else {
 			System.out.println("get serverInfo server failed");
 		}
-		
+
 		//get list of server
 		List<? extends Server> serverList = os.compute().servers().list();
 		if (serverList.size() > 0) {
@@ -165,7 +176,7 @@ public class ServerDemo {
 		} else {
 			System.out.println("get serverList failed");
 		}
-		
+
 		//get list of server(not include detail)
 		List<? extends Server> partList = os.compute().servers().list(false);
 		if (partList.size() > 0) {
@@ -173,7 +184,7 @@ public class ServerDemo {
 		} else {
 			System.out.println("get partList failed");
 		}
-		
+
 		//get server with parameter
 		Map<String,String> filteringParams = new HashMap<String, String>();
 		filteringParams.put("name", "test");
@@ -184,7 +195,18 @@ public class ServerDemo {
 		} else {
 			System.out.println("get filterList failed");
 		}
-		
+
+		//get server list with detail and filter parameters
+		Map<String,String> filtering = new HashMap<String, String>();
+		filtering.put("name", "test");
+		filtering.put("status", "ACTIVE");
+		List<? extends Server> queryserverList = os.compute().servers().list(false, filtering);
+		if (queryserverList.size() > 0) {
+		    System.out.println("get cloud server list success, size = " + queryserverList.size());
+		} else {
+		    System.out.println("get cloud server list failed");
+		}
+
 		//reboot server
 		ActionResponse repReboot = os.compute().servers().reboot(server.getId(), RebootType.HARD);
 		os.compute().servers().waitForServerStatus(server.getId(), Status.ACTIVE, 10, TimeUnit.MINUTES);
@@ -193,7 +215,7 @@ public class ServerDemo {
 		} else {
 			System.out.println("Reboot the server failed");
 		}
-		
+
 		//rebuild server
 		ActionResponse repRebuild = os.compute().servers().rebuild(server.getId(), RebuildOptions.create().image(newimageid));
 		os.compute().servers().waitForServerStatus(server.getId(), Status.ACTIVE, 10, TimeUnit.MINUTES);
@@ -202,7 +224,7 @@ public class ServerDemo {
 		} else {
 			System.out.println("Rebuild the server failed");
 		}
-		
+
 		//update server
 		Server updatedServer = os.compute().servers().update(server.getId(), ServerUpdateOptions.create().name("test-name2"));
 		if (null != updatedServer) {
@@ -210,7 +232,7 @@ public class ServerDemo {
 		} else {
 			System.out.println("updatedServer failed");
 		}
-		
+
 		//get server metadata
 		Map<String,String> meta = os.compute().servers().getMetadata(server.getId());
 		if (null != meta) {
@@ -218,26 +240,44 @@ public class ServerDemo {
 		} else {
 			System.out.println("getMetadata failed");
 		}
-		
+
 		//update server metadata
-		Map<String,String> newMetadata = new HashMap<String, String>(); 
+		Map<String,String> newMetadata = new HashMap<String, String>();
 		newMetadata.put("Group", "MyGroup");
 		Map<String,String> updatedMeta = os.compute().servers().updateMetadata(server.getId(), newMetadata);
 		if (null != updatedMeta) {
-			System.out.println("updatedMeta success, value= " + updatedMeta.values());
+		    System.out.println("updatedMeta success, value= " + updatedMeta.values());
 		} else {
-			System.out.println("updatedMeta failed");
+		    System.out.println("updatedMeta failed");
 		}
-		
+
+		//update server specified metadata.
+		String value = "testValue";
+		Map<String, String> keymeta = os.compute().servers().setMetadataItem(server.getId(), key, value);
+		if (null != keymeta) {
+		    System.out.println("setMetadataItem success, value= " + keymeta.values());
+		} else {
+		    System.out.println("setMetadataItem failed");
+		}
+
+		//get server metadata with specified key
+		String key = "xxxxxx";
+		Map<String, String> metadata = os.compute().servers().getMetadataItem(server.getId(), key);
+		if (null != metadata) {
+		    System.out.println("getMetadataItem success, value= " + metadata.values());
+		} else {
+		    System.out.println("getMetadataItem failed");
+		}
+
 		//delete server metadata
 		ActionResponse repDeleteMeta = os.compute().servers().deleteMetadataItem(server.getId(), "Group");
 		if (repDeleteMeta.isSuccess()) {
-			Map<String,String> delMeta = os.compute().servers().getMetadata(server.getId());
-			System.out.println("deleteMetadataItem success, value = " + delMeta.values());
+		    Map<String,String> delMeta = os.compute().servers().getMetadata(server.getId());
+		    System.out.println("deleteMetadataItem success, value = " + delMeta.values());
 		} else {
-			System.out.println("deleteMetadataItem failed");
+		    System.out.println("deleteMetadataItem failed");
 		}
-		
+
 		//resize server
 		os.compute().servers().action(server.getId(), Action.STOP);
 		os.compute().servers().waitForServerStatus(server.getId(), Status.SHUTOFF, 10, TimeUnit.MINUTES);
@@ -248,7 +288,7 @@ public class ServerDemo {
 		} else{
 			System.out.println("Resize the server failed");
 		}
-		
+
 		//confirm resize
 		ActionResponse repconfirmResize = os.compute().servers().confirmResize(server.getId());
 		if (repconfirmResize.isSuccess()) {
@@ -257,7 +297,7 @@ public class ServerDemo {
 		} else{
 			System.out.println("ConfirmResize the server failed");
 		}
-		
+
 		//revert Resize
 		ActionResponse repRevertResize = os.compute().servers().revertResize(server.getId());
 		if (repRevertResize.isSuccess()) {
@@ -274,7 +314,7 @@ public class ServerDemo {
 		} else {
 			System.out.println("createSnapshot server failed");
 		}
-		
+
 		//delete server
 		ActionResponse repDeleteServer = os.compute().servers().delete(server.getId());
 		if (repDeleteServer.isSuccess()) {
@@ -282,5 +322,27 @@ public class ServerDemo {
 		} else {
 			System.out.println("DeleteServer failed");
 		}
+
+		//get instance action list of a server
+		List<? extends InstanceAction> operationList = os.compute().servers().instanceActions().list(server.getId());
+		if (operationList.size() > 0) {
+			System.out.println("get instance action list success, size = " + operationList.size());
+		} else {
+			System.out.println("get instance action failed");
+		}
+
+		//get instance action by request ID
+		String requestId = "xxxxxxxxxxxxxxxxxxxxxxxx";
+		InstanceAction instanceAction = os.compute().servers().instanceActions().get(server.getId(), requestId);
+		if (null != instanceAction) {
+			System.out.println("get instance action, instance uuid is :" + instanceAction.getInstanceUuid());
+		} else {
+			System.out.println("get instance action");
+		}
+
+		//get console log
+		int length = 50;
+		String consoleOutput = os.compute().servers().getConsoleOutput(server.getId(), length);
+		System.out.println("console Output:" + consoleOutput);
 	}
 }

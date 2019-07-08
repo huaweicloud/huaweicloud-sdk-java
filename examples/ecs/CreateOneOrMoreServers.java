@@ -6,6 +6,7 @@ import sun.misc.BASE64Encoder;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.concurrent.TimeUnit;
 
 import com.huawei.openstack4j.api.Builders;
 import com.huawei.openstack4j.api.OSClient.OSClientV3;
@@ -15,6 +16,7 @@ import com.huawei.openstack4j.openstack.OSFactory;
 import com.huawei.openstack4j.openstack.ecs.v1.domain.Job;
 import com.huawei.openstack4j.model.compute.RebootType;
 import com.huawei.openstack4j.model.compute.Server;
+import com.huawei.openstack4j.model.compute.Server.Status;
 import com.huawei.openstack4j.model.compute.ServerCreate;
 import com.huawei.openstack4j.model.compute.StopType;
 
@@ -64,7 +66,7 @@ public class CreateOneOrMoreServers {
 		int interval = 10;
 		
 		//use userData to create linux server
-		String userDataOrg = "#!/bin/bash \r\n echo 'root:P@ssWr0d123' | chpasswd ;";
+		String userDataOrg = "#!/bin/bash \r\n echo 'root:xxxxx' | chpasswd ;";
 		
 		//parse userData to Base64 format
 		byte[] userDataByte = userDataOrg.getBytes();

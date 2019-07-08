@@ -11,7 +11,7 @@ import com.huawei.openstack4j.model.compute.RebootType;
 import com.huawei.openstack4j.api.OSClient.OSClientV3;
 import com.huawei.openstack4j.model.common.Identifier;
 import com.huawei.openstack4j.model.compute.Action;
-import com.huawei.openstack4j.model.compute.Server;
+import com.huawei.openstack4j.model.common.ActionResponse;
 import com.huawei.openstack4j.model.compute.Server.Status;
 import com.huawei.openstack4j.openstack.OSFactory;
 
@@ -20,7 +20,8 @@ import com.huawei.openstack4j.openstack.ecs.v1.contants.NetworkChargingMode;
 import com.huawei.openstack4j.openstack.ecs.v1.contants.ShareType;
 import com.huawei.openstack4j.openstack.ecs.v1.contants.VolumeType;
 import com.huawei.openstack4j.openstack.ecs.v1.domain.Bandwidth;
-import com.huawei.openstack4j.openstack.ecs.v1.domain.CloudServer;
+import com.huawei.openstack4j.openstack.ecs.v1.domain.Job;
+import com.huawei.openstack4j.openstack.ecs.v1.domain.SubJob;
 import com.huawei.openstack4j.openstack.ecs.v1.domain.CloudServer.CloudServers;
 import com.huawei.openstack4j.openstack.ecs.v1.domain.DataVolume;
 import com.huawei.openstack4j.openstack.ecs.v1.domain.FloatingIPCreate;
@@ -29,11 +30,14 @@ import com.huawei.openstack4j.openstack.ecs.v1.domain.ResizeServer;
 import com.huawei.openstack4j.openstack.ecs.v1.domain.RootVolume;
 import com.huawei.openstack4j.openstack.ecs.v1.domain.ServerCreate;
 import com.huawei.openstack4j.openstack.ecs.v1.domain.ServerExtendParam;
+import com.huawei.openstack4j.openstack.ecs.v1.domain.SupportAutoRecovery;
+import com.huawei.openstack4j.openstack.ecs.v1.domain.AsyncServerRespEntity;
+
 import sun.misc.BASE64Encoder;
 
 public class CloudServerV1 {
 	public static void main(String[] args) throws InterruptedException {
-		
+
 		// Using credentials for authentication
 		String authUrl = "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"; //endpoint Url
 		String user = "xxxxx"; //username
@@ -41,53 +45,109 @@ public class CloudServerV1 {
 		String projectId = "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"; //projectId
 		String userDomainId = "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"; //domainId
 
-		//create connection	
+		//create connection
 		OSClientV3 os = OSFactory.builderV3()
-		.endpoint(authUrl)
-		.credentials(user, password, Identifier.byId(userDomainId))
-		.scopeToProject(Identifier.byId(projectId)).authenticate();
-		
+				.endpoint(authUrl)
+				.credentials(user, password, Identifier.byId(userDomainId))
+				.scopeToProject(Identifier.byId(projectId)).authenticate();
+
 		int count = 1;
-		String flavorId = "s2.xlarge.1";
-		String imageId = "a1e6a557-e6c5-43a0-9d4e-a90fdf376afb";
-		String vpcId = "0d85e49a-6aef-42a9-8583-c86e4317a7e2";
-		String networkId = "319944c8-baac-46da-a3a8-f07956105a4e";
-		String secGroup = "114f5982-ecdc-4297-ae23-e6aa17763c78";
-		
-		String userData_org = "#!/bin/bash \r\n echo 'root:Cloud.1234' | chpasswd ;";
-	    byte[] userData_byte = userData_org.getBytes();
-	    String userData = new BASE64Encoder().encode(userData_byte);
-	    
+		String flavorId = "flavor_id";
+		String imageId = "image_id";
+		String vpcId = "vpc_id";
+		String networkId = "network_id";
+		String secGroup = "security_groups";
+
+		String userData_org = "#!/bin/bash \r\n echo 'root:xxxxx' | chpasswd ;";
+		byte[] userData_byte = userData_org.getBytes();
+		String userData = new BASE64Encoder().encode(userData_byte);
+
 		Bandwidth bandwidth = Bandwidth.builder().size(10).shareType(ShareType.PER).chargeMode(NetworkChargingMode.TRAFFIC).build();
 		FloatingIPCreate FIPbuild = FloatingIPCreate.builder().ipType(IpType.BGP).bandwidth(bandwidth).build();
-		
+
 		ServerCreate creation = ServerCreate.builder()
 				.name("test-name")
-                .flavorRef(flavorId)
-                .imageRef(imageId)
-                .userData(userData)
-                .vpcId(vpcId)
-                .addNetwork(networkId)
-                .availabilityZone("eu-de-02")
-                .addSecurityGroup(secGroup)
-                .addTag("key", "testvalue")
-                .publicIP(FIPbuild)
-                .keyName("KeyPair-a6c5")
-                .addMetadata("Group", "testGroup")
-                .addPersonality(Personality.builder().contents("some content").path("/etc/test.txt").build())
-                .rootVolume(RootVolume.builder().type(VolumeType.SSD).build())
-                .addDataVolume(DataVolume.builder().size(10).type(VolumeType.SATA).multiAttach(true).passthrough(true).build())
-                .extendParam(ServerExtendParam.builder().autoRecovery(true).build())
-                .count(count).build();
-				
-		//create server
+				.flavorRef(flavorId)
+				.imageRef(imageId)
+				.userData(userData)
+				.vpcId(vpcId)
+				.addNetwork(networkId)
+				.availabilityZone("eu-de-02")
+				.addSecurityGroup(secGroup)
+				.addTag("key", "testvalue")
+				.publicIP(FIPbuild)
+				.keyName("KeyPair-a6c5")
+				.addMetadata("Group", "testGroup")
+				.addPersonality(Personality.builder().contents("some content").path("/etc/test.txt").build())
+				.rootVolume(RootVolume.builder().type(VolumeType.SSD).build())
+				.addDataVolume(DataVolume.builder().size(10).type(VolumeType.SATA).multiAttach(true).passthrough(true).build())
+				.extendParam(ServerExtendParam.builder().autoRecovery(true).build())
+				.count(count).build();
+
+		//create server ,return jobId
 		String jobId = os.ecs().servers().create(creation);
 		if (null != jobId) {
+			Job job = os.ecs().jobs().get(jobId);
+			while (!"SUCCESS".equals(job.getStatus()) && !"FAIL".equals(job.getStatus())) {
+				try {
+					Thread.sleep(8000);
+				} catch (InterruptedException e) {
+					e.printStackTrace();
+				}
+				System.out.println("jobStatus"+job.getStatus());
+				job = os.ecs().jobs().get(jobId);
+			}
+			List<SubJob> subJobList = job.getEntities().getSubJobs();
+			List<String> successServers = new ArrayList<>();
+			List<String> failServers = new ArrayList<>();
+			for (SubJob subJob : subJobList) {
+				if ("SUCCESS".equals(subJob.getStatus())) {
+					successServers.add(subJob.getEntities().getServerId());
+				} else {
+					failServers.add(subJob.getEntities().getServerId());
+				}
+			}
 			System.out.println("create server success, jobId = " + jobId);
+			System.out.println("success servers=" + successServers);
+			System.out.println("fail servers=" + failServers);
 		} else {
 			System.out.println("create server failed");
 		}
-		
+
+		//create server ,return AsyncServerRespEntity
+		AsyncServerRespEntity rep1 = os.ecs().servers().createServer(creation);
+		if (null != rep1) {
+			Job job = os.ecs().jobs().get(rep1.getJobId());
+			while (!"SUCCESS".equals(job.getStatus()) && !"FAIL".equals(job.getStatus())) {
+				try {
+					Thread.sleep(8000);
+				} catch (InterruptedException e) {
+					e.printStackTrace();
+				}
+				System.out.println("jobStatus" + job.getStatus());
+				job = os.ecs().jobs().get(rep1.getJobId());
+			}
+			List<SubJob> subJobList = job.getEntities().getSubJobs();
+			List<String> successServers = new ArrayList<>();
+			List<String> failServers = new ArrayList<>();
+			for (SubJob subJob : subJobList) {
+				if ("SUCCESS".equals(subJob.getStatus())) {
+					successServers.add(subJob.getEntities().getServerId());
+				} else {
+					failServers.add(subJob.getEntities().getServerId());
+				}
+			}
+			System.out.println("create server success, jobId = " + rep1.getJobId());
+			System.out.println("success servers=" + successServers);
+			System.out.println("fail servers=" + failServers);
+		} else {
+			System.out.println("create server failed");
+		}
+
+		ArrayList<String> serverIds = new ArrayList<>();
+		serverIds.add("server-id-1");
+		serverIds.add("server-id-2");
+
 		//reboot server
 		String rebootJobId = os.ecs().servers().reboot(serverIds, RebootType.SOFT);
 		if (null != rebootJobId) {
@@ -95,7 +155,7 @@ public class CloudServerV1 {
 		} else {
 			System.out.println("batch reboot server failed");
 		}
-		
+
 		//stop server
 		String stopJobId = os.ecs().servers().stop(serverIds, StopType.SOFT);
 		if (null != stopJobId) {
@@ -103,7 +163,7 @@ public class CloudServerV1 {
 		} else {
 			System.out.println("batch stop server failed");
 		}
-		
+
 		//start server
 		String startJobId = os.ecs().servers().start(serverIds);
 		if (null != startJobId) {
@@ -111,7 +171,7 @@ public class CloudServerV1 {
 		} else {
 			System.out.println("batch start server failed");
 		}
-		
+
 		//delete server
 		String deleteJobId = os.ecs().servers().delete(serverIds, false, false);
 		if (null != deleteJobId) {
@@ -119,7 +179,7 @@ public class CloudServerV1 {
 		} else {
 			System.out.println("batch delete server failed");
 		}
-		
+
 		//resize server
 		String newFlavorId = "s2.medium.2";
 		String serverId = "ac91c721-9e8e-4147-83d9-b4f07ad607ed";
@@ -145,5 +205,18 @@ public class CloudServerV1 {
 		CloudServers serverObjects = os.ecs().servers().listWithCount(filter);
 		System.out.println("server count: " + serverObjects.getCount());
 		System.out.println("server list: " + serverObjects.getServers());
+
+		//get autorecovery configuration of server
+		SupportAutoRecovery autoRecoveryConfig = os.ecs().servers().getAutoRecovery(serverId);
+		if (null != autoRecoveryConfig) {
+			System.out.println("get autorecovery configuration of server success: " + autoRecoveryConfig.getSupportAutoRecovery());
+		} else {
+			System.out.println("get autorecovery configuration of server failed");
+		}
+
+		//manage automatic recovery of a server
+		SupportAutoRecovery supportAutoRecovery = SupportAutoRecovery.builder().supportAutoRecovery("true").build();
+		ActionResponse actionResponse = os.ecs().servers().manageAutoRecovery(serverId, supportAutoRecovery);
+		System.out.println("response:" + actionResponse);
 	}
 }

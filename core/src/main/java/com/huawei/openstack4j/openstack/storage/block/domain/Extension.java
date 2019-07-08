@@ -47,7 +47,7 @@ public class Extension implements ModelEntity {
     /**
      * The description
      */
-    private String descrption;
+    private String description;
 
     /**
      * The link for the disk transfer.

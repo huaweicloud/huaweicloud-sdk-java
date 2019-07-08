@@ -19,7 +19,7 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonValue;
 
 public enum Status {
-	ACTIVE,REBOOT,HARD_REBOOT,REBUILD,MIGRATING,BUILD,SHUTOFF,RESIZE,VERIFY_RESIZE,ERROR,DELETED;
+	ACTIVE,REBOOT,HARD_REBOOT,REBUILD,MIGRATING,BUILD,SHUTOFF,RESIZE,VERIFY_RESIZE,ERROR,DELETED,REVERT_RESIZE;
 		@JsonCreator
 		public static Status forValue(String value) {
 			if (value != null)

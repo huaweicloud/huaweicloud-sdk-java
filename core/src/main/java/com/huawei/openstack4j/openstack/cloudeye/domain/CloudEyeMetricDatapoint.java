@@ -30,12 +30,11 @@ import java.util.Date;
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class CloudEyeMetricDatapoint implements DataPoint {
     private static final long serialVersionUID = -4256727437488902455L;
-
     Number average;
     Number variance;
     Number min;
     Number max;
+    Number sum;
     Date timestamp;
     String unit;
-
 }

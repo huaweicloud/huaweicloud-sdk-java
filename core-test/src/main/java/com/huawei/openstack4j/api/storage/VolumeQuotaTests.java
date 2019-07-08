@@ -32,15 +32,15 @@ public class VolumeQuotaTests extends AbstractTest {
         return Service.BLOCK_STORAGE;
     }
 
-//    @Test
-//    public void quotaForTenantTest() throws Exception {
-//        respondWith("/storage/v2/cinder_volume_quota_set.json");
-//
-//        final String projectId = "2fe576ee18e541898fe20b3208d53217";
-//        CinderBlockQuotaSetResponse quotaSetResponse = osv3().blockStorage().quotaSets().quotaForTenant(projectId);
-//        Map<String, Object> quotaSet = quotaSetResponse.getQuotaSet();
-//        assertEquals((String)quotaSet.get("id"), projectId);
-//        Map<String, Integer> volumes = (Map<String, Integer>)quotaSet.get("volumes");
-//        assertTrue(4 == volumes.get("reserved"));
-//    }
+    @Test
+    public void quotaForTenantTest() throws Exception {
+        respondWith("/storage/v2/cinder_volume_quota_set.json");
+
+        final String projectId = "2fe576ee18e541898fe20b3208d53217";
+        CinderBlockQuotaSetResponse quotaSetResponse = osv3().blockStorage().quotaSets().quotaForTenant(projectId);
+        Map<String, Object> quotaSet = quotaSetResponse.getQuotaSet();
+        assertEquals((String)quotaSet.get("id"), projectId);
+        Map<String, Integer> volumes = (Map<String, Integer>)quotaSet.get("volumes");
+        assertTrue(4 == volumes.get("reserved"));
+    }
 }

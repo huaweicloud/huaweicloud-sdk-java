@@ -47,7 +47,7 @@ public class IdResourceEntity implements IdEntity {
 
 	@JsonProperty
 	private String id;
-	
+
 	public IdResourceEntity() {
 	}
 	

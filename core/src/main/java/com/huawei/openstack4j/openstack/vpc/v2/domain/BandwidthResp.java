@@ -97,6 +97,14 @@ public class BandwidthResp implements ModelEntity {
     @JsonProperty("enterprise_project_id")
     private String enterpriseProjectId;
 
+    /**
+     * 带宽的状态
+     */
+    @JsonProperty("status")
+    private String status;
+
+
+
     public static class BandwidthResps extends ListResult<BandwidthResp>{
 
         private static final long serialVersionUID = -8374367023990463178L;

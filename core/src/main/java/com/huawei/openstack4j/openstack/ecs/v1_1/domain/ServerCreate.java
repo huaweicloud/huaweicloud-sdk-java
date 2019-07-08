@@ -1,12 +1,12 @@
- /*******************************************************************************
+/*******************************************************************************
  * 	Copyright 2018 Huawei Technologies Co.,Ltd.                                         
- * 	                                                                                 
+ *
  * 	Licensed under the Apache License, Version 2.0 (the "License"); you may not      
  * 	use this file except in compliance with the License. You may obtain a copy of    
  * 	the License at                                                                   
- * 	                                                                                 
+ *
  * 	    http://www.apache.org/licenses/LICENSE-2.0                                   
- * 	                                                                                 
+ *
  * 	Unless required by applicable law or agreed to in writing, software              
  * 	distributed under the License is distributed on an "AS IS" BASIS, WITHOUT        
  * 	WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the         
@@ -25,12 +25,8 @@ import com.fasterxml.jackson.annotation.JsonRootName;
 import com.huawei.openstack4j.model.ModelEntity;
 import com.huawei.openstack4j.openstack.common.IdResourceEntity;
 import com.huawei.openstack4j.openstack.common.ListResult;
-import com.huawei.openstack4j.openstack.ecs.v1_1.domain.DataVolume;
-import com.huawei.openstack4j.openstack.ecs.v1_1.domain.FloatingIPCreate;
 import com.huawei.openstack4j.openstack.ecs.v1.domain.Network;
 import com.huawei.openstack4j.openstack.ecs.v1.domain.Personality;
-import com.huawei.openstack4j.openstack.ecs.v1_1.domain.PublicIP;
-import com.huawei.openstack4j.openstack.ecs.v1_1.domain.RootVolume;
 
 /**
  * A model represent Compute V1 Server creation
@@ -96,10 +92,10 @@ public class ServerCreate implements ModelEntity {
 
 	/**
 	 * 配置云服务器的弹性IP信息，弹性IP有三种配置方式。
-	
-		不使用（无该字段）
-		自动分配，需要指定新创建弹性IP的信息
-		使用已有，需要指定已创建弹性IP的信息
+
+	 不使用（无该字段）
+	 自动分配，需要指定新创建弹性IP的信息
+	 使用已有，需要指定已创建弹性IP的信息
 	 */
 	@JsonProperty("publicip")
 	private PublicIP publicIP;
@@ -119,7 +115,7 @@ public class ServerCreate implements ModelEntity {
 
 	/**
 	 * 云服务器对应数据盘相关配置。每一个数据结构代表一块待创建的数据盘。
-		约束：目前新创建的弹性云服务器最多可挂载23块数据盘。
+	 约束：目前新创建的弹性云服务器最多可挂载23块数据盘。
 	 */
 	@JsonProperty("data_volumes")
 	private List<DataVolume> dataVolumes;
@@ -145,27 +141,43 @@ public class ServerCreate implements ModelEntity {
 
 	/**
 	 * 创建云服务器元数据。
-		创建密码方式鉴权的Windows弹性云服务器时，为必填字段。
+	 创建密码方式鉴权的Windows弹性云服务器时，为必填字段。
 	 */
 	@JsonProperty("metadata")
 	private Map<String, Object> metadata;
 
 	/**
 	 * 弹性云服务器的标签。
-		标签的格式为“key.value”。其中，key的长度不超过36个字符，value的长度不超过43个字符。
-		标签命名时，需满足如下要求：
-		标签的key值只能包含大写字母（A~Z）、小写字母（a~z）、数字（0-9）、下划线（_）、中划线（-）以及中文字符。
-		标签的value值只能包含大写字母（A~Z）、小写字母（a~z）、数字（0-9）、下划线（_）、中划线（-）、小数点（.）以及中文字符。
+	 标签的格式为“key.value”。其中，key的长度不超过36个字符，value的长度不超过43个字符。
+	 标签命名时，需满足如下要求：
+	 标签的key值只能包含大写字母（A~Z）、小写字母（a~z）、数字（0-9）、下划线（_）、中划线（-）以及中文字符。
+	 标签的value值只能包含大写字母（A~Z）、小写字母（a~z）、数字（0-9）、下划线（_）、中划线（-）、小数点（.）以及中文字符。
 	 */
 	@JsonProperty("tags")
 	private List<String> tags;
-	
+	/**
+	 * 弹性云服务器的标签。
+	 * 创建弹性云服务器时，一台弹性云服务器最多可以添加10个标签。
+	 * 公有云新增server_tags字段，该字段与tags字段功能相同，支持的key、value取值范围更广，建议使用server_tags字段。
+	 */
+	@JsonProperty("server_tags")
+	private List<ServerTags> serverTags;
+	/**
+	 *
+	 * 云服务器描述信息
+	 * 默认为空字符串。
+	 * 长度最多允许85个字符。
+	 * 不能包含“<” 和 “>”等特殊符号。
+	 */
+	@JsonProperty("description")
+	private String description;
+
 	/**
 	 * 云服务器名称是否允许重名。
 	 */
 	@JsonProperty("isAutoRename")
 	private Boolean isAutoRename;
-	
+
 	/**
 	 * 云服务器调度信息。
 	 */
@@ -174,12 +186,12 @@ public class ServerCreate implements ModelEntity {
 
 	@java.beans.ConstructorProperties({ "name", "imageRef", "flavorRef", "personality", "userData", "adminPass",
 			"keyName", "vpcId", "networks", "publicIP", "count", "rootVolume", "dataVolumes", "securityGroups",
-			"availabilityZone", "extendParam", "metadata", "tags" ,"isAutoRename","schedulerHints" })
+			"availabilityZone", "extendParam", "metadata", "tags" ,"serverTags","description","isAutoRename","schedulerHints" })
 	public ServerCreate(String name, String imageRef, String flavorRef, List<Personality> personality, String userData,
-			String adminPass, String keyName, String vpcId, List<Network> networks, PublicIP publicIP, Integer count,
-			RootVolume rootVolume, List<DataVolume> dataVolumes, List<IdResourceEntity> securityGroups,
-			String availabilityZone, ServerExtendParam extendParam, Map<String, Object> metadata, List<String> tags,
-			SchedulerHints schedulerHints,Boolean isAutoRename) {
+						String adminPass, String keyName, String vpcId, List<Network> networks, PublicIP publicIP, Integer count,
+						RootVolume rootVolume, List<DataVolume> dataVolumes, List<IdResourceEntity> securityGroups,
+						String availabilityZone, ServerExtendParam extendParam, Map<String, Object> metadata, List<String> tags,
+						List<ServerTags> serverTags, String description, SchedulerHints schedulerHints,Boolean isAutoRename) {
 		this.name = name;
 		this.imageRef = imageRef;
 		this.flavorRef = flavorRef;
@@ -198,6 +210,8 @@ public class ServerCreate implements ModelEntity {
 		this.extendParam = extendParam;
 		this.metadata = metadata;
 		this.tags = tags;
+		this.serverTags = serverTags;
+		this.description = description;
 		this.schedulerHints =schedulerHints;
 		this.isAutoRename =isAutoRename;
 	}
@@ -215,7 +229,7 @@ public class ServerCreate implements ModelEntity {
 				.vpcId(this.vpcId).networks(this.networks).publicIP(this.publicIP).count(this.count)
 				.rootVolume(this.rootVolume).dataVolumes(this.dataVolumes).securityGroups(this.securityGroups)
 				.availabilityZone(this.availabilityZone).extendParam(this.extendParam).metadata(this.metadata)
-				.tags(this.tags);
+				.tags(this.tags).serverTags(this.serverTags).description(this.description);
 	}
 
 	public String getName() {
@@ -289,7 +303,15 @@ public class ServerCreate implements ModelEntity {
 	public List<String> getTags() {
 		return this.tags;
 	}
-	
+
+	public List<ServerTags> getServerTags(){
+		return this.serverTags;
+	}
+
+	public String getDescription(){
+		return this.description;
+	}
+
 	public Boolean getIsAutoRename(){
 		return this.isAutoRename;
 	}
@@ -297,8 +319,8 @@ public class ServerCreate implements ModelEntity {
 	public SchedulerHints getSchedulerHints(){
 		return this.schedulerHints;
 	}
-	
-	
+
+
 	@Override
 	public String toString() {
 		return "ServerCreate(name=" + this.getName() + ", imageRef=" + this.getImageRef() + ", flavorRef="
@@ -308,18 +330,19 @@ public class ServerCreate implements ModelEntity {
 				+ ", rootVolume=" + this.getRootVolume() + ", dataVolumes=" + this.getDataVolumes()
 				+ ", securityGroups=" + this.getSecurityGroups() + ", availabilityZone=" + this.getAvailabilityZone()
 				+ ", extendParam=" + this.getExtendParam() + ", metadata=" + this.getMetadata() + ", tags="
-				+ this.getTags() +this.getIsAutoRename() +this.getSchedulerHints() + ")";
+				+ this.getTags() + ", serverTags=" + this.getServerTags() + ", description="+ this.getDescription() +
+				this.getIsAutoRename() +this.getSchedulerHints() + ")";
 	}
 	public static class ServerCreates extends ListResult<ServerCreate> {
 
 		/**
-		 * 
+		 *
 		 */
 		private static final long serialVersionUID = -2458222536946947327L;
 		/**
-		 * 
+		 *
 		 */
-		
+
 		@JsonProperty("servers")
 		private List<ServerCreate> ServerCreates;
 
@@ -347,9 +370,11 @@ public class ServerCreate implements ModelEntity {
 		private ServerExtendParam extendParam;
 		private Map<String, Object> metadata;
 		private List<String> tags;
+		private List<ServerTags> serverTags;
+		private String description;
 		private Boolean isAutoRename;
 		private SchedulerHints schedulerHints;
-		
+
 		ServerCreateBuilder() {
 		}
 
@@ -490,7 +515,7 @@ public class ServerCreate implements ModelEntity {
 			this.metadata = metadata;
 			return this;
 		}
-		
+
 		public ServerCreateBuilder addMetadata(String key, Object value) {
 			if (this.metadata == null) {
 				this.metadata = new HashMap<String , Object>();
@@ -520,11 +545,29 @@ public class ServerCreate implements ModelEntity {
 			return this;
 		}
 
+		public ServerCreateBuilder serverTags(List<ServerTags> serverTags){
+			this.serverTags = serverTags;
+			return this;
+		}
+
+		public ServerCreateBuilder addServerTag(ServerTags serverTag) {
+			if (this.serverTags == null){
+				this.serverTags = new ArrayList<>();
+			}
+			this.serverTags.add(serverTag);
+			return this;
+		}
+
+		public ServerCreateBuilder description(String description){
+			this.description = description;
+			return this;
+		}
+
 		public ServerCreateBuilder isAutoRename(Boolean isAutoRename){
 			this.isAutoRename = isAutoRename;
 			return this;
 		}
-		
+
 		public ServerCreateBuilder schedulerHints(SchedulerHints schedulerHints){
 			this.schedulerHints = schedulerHints;
 			return this;
@@ -532,7 +575,7 @@ public class ServerCreate implements ModelEntity {
 		public ServerCreate build() {
 			return new ServerCreate(name, imageRef, flavorRef, personality, userData, adminPass, keyName, vpcId,
 					networks, publicIP, count, rootVolume, dataVolumes, securityGroups, availabilityZone, extendParam,
-					metadata, tags,schedulerHints,isAutoRename);
+					metadata, tags,serverTags,description,schedulerHints,isAutoRename);
 		}
 
 		@Override
@@ -543,7 +586,8 @@ public class ServerCreate implements ModelEntity {
 					+ ", networks=" + this.networks + ", publicIP=" + this.publicIP + ", count=" + this.count
 					+ ", rootVolume=" + this.rootVolume + ", dataVolumes=" + this.dataVolumes + ", securityGroups="
 					+ this.securityGroups + ", availabilityZone=" + this.availabilityZone + ", extendParam="
-					+ this.extendParam + ", metadata=" + this.metadata + ", tags=" + this.tags + ")";
+					+ this.extendParam + ", metadata=" + this.metadata + ", tags=" + this.tags + ", serverTags=" +
+					this.serverTags+", description=" + this.description+")";
 		}
 	}
 }

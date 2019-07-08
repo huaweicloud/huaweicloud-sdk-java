@@ -107,14 +107,14 @@ public interface BlockVolumeService extends RestService {
 	 */
 	ActionResponse delete(String volumeId);
 
-//	/**
-//	 * Deletes the specified volume with snapshots
-//	 *
-//	 * @param volumeId the volume identifier
-//	 * @param cascade delete volume snapshots or not
-//	 * @return the action response
-//	 */
-//	ActionResponse forceDelete(String volumeId, Boolean cascade);
+	/**
+	 * Deletes the specified volume with snapshots
+	 *
+	 * @param volumeId the volume identifier
+	 * @param cascade delete volume snapshots or not
+	 * @return the action response
+	 */
+	ActionResponse forceDelete(String volumeId, Boolean cascade);
 
 	/**
 	 * Attempt forced removal of volume, regardless of the state.
@@ -238,98 +238,98 @@ public interface BlockVolumeService extends RestService {
 	 */
 	ActionResponse forceDetach(String volumeId, String initiator,String attachmentId  );
 
-//	/**
-//	 * Configuring Bootable for an EVS Disk
-//	 *
-//	 * @param volumeId
-//	 * @param bootable
-//	 * @return
-//	 */
-//	ActionResponse setBootable(String volumeId, boolean bootable);
-//
-//	/**
-//	 * Querying block store disks.
-//	 *
-//	 * @return List of Volumes.
-//	 */
-//	CinderVolumesResponse listVolumes();
-//
-//    /**
-//     * Querying block store disks filtered by parameters.
-//     *
-//     * @param filteringParams map (name, value) of filtering parameters.
-//     * @return List of Volumes.
-//     */
-//	CinderVolumesResponse listVolumes(Map<String, String> filteringParams);
-//
-//	/**
-//	 * Querying details about a disk type.
-//	 *
-//	 * @param typeId The id of disk's type.
-//	 * @return A VolumeType.
-//	 */
-//	VolumeType getVolumeType(String typeId);
-//
-//	/**
-//	 * Adding or Updating Metadata of an EVS Disk
-//	 *
-//	 * @param volumeId
-//	 * @return
-//	 */
-//	VolumeMetadata createMetadata(String volumeId, VolumeMetadata metadata);
-//
-//	/**
-//	 * Querying Metadata of an EVS Disk
-//	 *
-//	 * @param volumeId
-//	 * @return
-//	 */
-//	VolumeMetadata getMetadata(String volumeId);
-//
-//	/**
-//	 * Querying One Piece of EVS Disk Metadata
-//	 *
-//	 * @param volumeId
-//	 * @param key
-//	 * @return
-//	 */
-//	VolumeMeta getMeta(String volumeId, String key);
-//
-//	/**
-//	 * Updating Metadata of an EVS Disk
-//	 *
-//	 * @param volumeId
-//	 * @param metadata
-//	 * @return
-//	 */
-//	VolumeMetadata updateMetadata(String volumeId, VolumeMetadata metadata);
-//
-//	/**
-//	 * Updating One Piece of EVS Disk Metadata
-//	 *
-//	 * @param volumeId
-//	 * @param key
-//	 *            Specifies the key of the metadata that requires the update
-//	 * @param metadata
-//	 *            Specifies the piece of the disk metadata, which is made up of a
-//	 *            key-value pair
-//	 * @return
-//	 */
-//	VolumeMeta updateMeta(String volumeId, String key, VolumeMeta metadata);
-//
-//	/**
-//	 * Deleting One Piece of EVS Disk Metadata
-//	 *
-//	 * @param volumeId
-//	 * @param key
-//	 * @return
-//	 */
-//	ActionResponse deleteMetadata(String volumeId, String key);
-//
-//	/**
-//	 * Querying API Extensions
-//	 *
-//	 * @return
-//	 */
-//	List<? extends Extension> listExtensions();
+	/**
+	 * Configuring Bootable for an EVS Disk
+	 *
+	 * @param volumeId
+	 * @param bootable
+	 * @return
+	 */
+	ActionResponse setBootable(String volumeId, boolean bootable);
+
+	/**
+	 * Querying block store disks.
+	 *
+	 * @return List of Volumes.
+	 */
+	CinderVolumesResponse listVolumes();
+
+    /**
+     * Querying block store disks filtered by parameters.
+     *
+     * @param filteringParams map (name, value) of filtering parameters.
+     * @return List of Volumes.
+     */
+	CinderVolumesResponse listVolumes(Map<String, String> filteringParams);
+
+	/**
+	 * Querying details about a disk type.
+	 *
+	 * @param typeId The id of disk's type.
+	 * @return A VolumeType.
+	 */
+	VolumeType getVolumeType(String typeId);
+
+	/**
+	 * Adding or Updating Metadata of an EVS Disk
+	 *
+	 * @param volumeId
+	 * @return
+	 */
+	VolumeMetadata createMetadata(String volumeId, VolumeMetadata metadata);
+
+	/**
+	 * Querying Metadata of an EVS Disk
+	 *
+	 * @param volumeId
+	 * @return
+	 */
+	VolumeMetadata getMetadata(String volumeId);
+
+	/**
+	 * Querying One Piece of EVS Disk Metadata
+	 *
+	 * @param volumeId
+	 * @param key
+	 * @return
+	 */
+	VolumeMeta getMeta(String volumeId, String key);
+
+	/**
+	 * Updating Metadata of an EVS Disk
+	 *
+	 * @param volumeId
+	 * @param metadata
+	 * @return
+	 */
+	VolumeMetadata updateMetadata(String volumeId, VolumeMetadata metadata);
+
+	/**
+	 * Updating One Piece of EVS Disk Metadata
+	 *
+	 * @param volumeId
+	 * @param key
+	 *            Specifies the key of the metadata that requires the update
+	 * @param metadata
+	 *            Specifies the piece of the disk metadata, which is made up of a
+	 *            key-value pair
+	 * @return
+	 */
+	VolumeMeta updateMeta(String volumeId, String key, VolumeMeta metadata);
+
+	/**
+	 * Deleting One Piece of EVS Disk Metadata
+	 *
+	 * @param volumeId
+	 * @param key
+	 * @return
+	 */
+	ActionResponse deleteMetadata(String volumeId, String key);
+
+	/**
+	 * Querying API Extensions
+	 *
+	 * @return
+	 */
+	List<? extends Extension> listExtensions();
 }

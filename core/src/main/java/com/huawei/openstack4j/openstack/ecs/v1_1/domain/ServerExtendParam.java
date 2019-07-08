@@ -88,4 +88,12 @@ public class ServerExtendParam {
 	 */
 	Boolean isAutoPay;
 
+	/**
+	 * 企业项目ID
+	 * 约束：
+	 * 如果设置企业项目ID，那么需要确保创建弹性云服务器使用的其他资源都共属于同一个企业项目ID底下。
+	 */
+	@JsonProperty("enterprise_project_id")
+	String enterpriseProjectId;
+
 }

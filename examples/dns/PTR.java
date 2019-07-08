@@ -1,9 +1,11 @@
 package com.huawei.openstack.sample;
 
+import com.huawei.openstack4j.api.Builders;
 import com.huawei.openstack4j.api.OSClient;
 import com.huawei.openstack4j.model.common.Identifier;
 import com.huawei.openstack4j.openstack.OSFactory;
-import com.huawei.openstack.sample.Constant;
+import com.huawei.openstack4j.openstack.dns.v2.domain.DesignatePTR;
+import com.huawei.openstack4j.openstack.dns.v2.domain.DesignatePTR.DesignatePTRBuilder;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -34,7 +36,7 @@ public class PTR {
     }
 
     private static void setup(){
-        PtrBuilder builder = Builders.ptr();
+        DesignatePTRBuilder builder = Builders.ptr();
         DesignatePTR ptr = (DesignatePTR) builder.ptrdname(Constants.PTRNAME).floatingIpId(Constants.FLOATINGIPID).description(Constants.PTR_DESCRIPTION).ttl(Constants.TTL).region(Constants.REGION).build();
         DesignatePTR result = os.dns().ptrs().setup(ptr);
     }

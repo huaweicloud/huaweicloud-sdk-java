@@ -69,7 +69,7 @@ import com.huawei.openstack4j.openstack.common.Metadata;
 import com.huawei.openstack4j.openstack.compute.domain.AdminPass;
 import com.huawei.openstack4j.openstack.compute.domain.ConsoleOutput;
 import com.huawei.openstack4j.openstack.compute.domain.ConsoleOutputOptions;
-//import com.huawei.openstack4j.openstack.compute.domain.MetadataItem;
+import com.huawei.openstack4j.openstack.compute.domain.MetadataItem;
 import com.huawei.openstack4j.openstack.compute.domain.NovaPassword;
 import com.huawei.openstack4j.openstack.compute.domain.NovaServer;
 import com.huawei.openstack4j.openstack.compute.domain.NovaServer.Servers;
@@ -419,6 +419,19 @@ public class ServerServiceImpl extends BaseComputeServices implements ServerServ
 						.executeWithResponse());
 	}
 
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public ActionResponse detachVolume(String serverId, String volumeId, int deleteFlag) {
+        checkNotNull(serverId);
+        checkNotNull(volumeId);
+        return ToActionResponseFunction.INSTANCE
+                .apply(delete(Void.class, uri("/servers/%s/os-volume_attachments/%s", serverId, volumeId))
+                        .param("delete_flag", deleteFlag)
+                        .executeWithResponse());
+    }
+
 	/**
 	 * {@inheritDoc}
 	 */
@@ -462,12 +475,12 @@ public class ServerServiceImpl extends BaseComputeServices implements ServerServ
 	/**
 	 * {@inheritDoc}
 	 */
-	@Override
-	public ActionResponse changeAdminPassword(String serverId, String adminPassword) {
-		checkNotNull(serverId);
-		checkNotNull(adminPassword);
-		return invokeAction(serverId, new ChangePassword(adminPassword));
-	}
+//	@Override
+//	public ActionResponse changeAdminPassword(String serverId, String adminPassword) {
+//		checkNotNull(serverId);
+//		checkNotNull(adminPassword);
+//		return invokeAction(serverId, new ChangePassword(adminPassword));
+//	}
 
 	/**
 	 * {@inheritDoc}
@@ -509,29 +522,29 @@ public class ServerServiceImpl extends BaseComputeServices implements ServerServ
 				.execute();
 	}
 
-//	/**
-//	 * {@inheritDoc}
-//	 */
-//	@Override
-//	public Map<String, String> getMetadataItem(String serverId, String key) {
-//		checkNotNull(serverId);
-//		checkNotNull(key);
-//		return get(MetadataItem.class, uri("/servers/%s/metadata/%s", serverId,key)).execute();
-//	}
-//
-//	/**
-//	 * {@inheritDoc}
-//	 */
-//	@Override
-//	public Map<String, String> setMetadataItem(String serverId, String key, String value) {
-//		checkNotNull(serverId);
-//		checkNotNull(value);
-//		checkNotNull(key);
-//		HashMap<String,String> metadataMap = new HashMap<String,String>();
-//		metadataMap.put(key, value);
-//		return put(MetadataItem.class, uri("/servers/%s/metadata/%s", serverId, key)).entity(MetadataItem.toMetadataItem(metadataMap))
-//				.execute();
-//	}
+	/**
+	 * {@inheritDoc}
+	 */
+	@Override
+	public Map<String, String> getMetadataItem(String serverId, String key) {
+		checkNotNull(serverId);
+		checkNotNull(key);
+		return get(MetadataItem.class, uri("/servers/%s/metadata/%s", serverId,key)).execute();
+	}
+
+	/**
+	 * {@inheritDoc}
+	 */
+	@Override
+	public Map<String, String> setMetadataItem(String serverId, String key, String value) {
+		checkNotNull(serverId);
+		checkNotNull(value);
+		checkNotNull(key);
+		HashMap<String,String> metadataMap = new HashMap<String,String>();
+		metadataMap.put(key, value);
+		return put(MetadataItem.class, uri("/servers/%s/metadata/%s", serverId, key)).entity(MetadataItem.toMetadataItem(metadataMap))
+				.execute();
+	}
 
 	/**
 	 * {@inheritDoc}
@@ -591,25 +604,25 @@ public class ServerServiceImpl extends BaseComputeServices implements ServerServ
 		return post(AdminPass.class, uri("/servers/%s/action", serverId)).entity(EvacuateAction.create(options))
 				.execute();
 	}
-//	/**
-//	 * {@inheritDoc}
-//	 */
-//	@Override
-//	public VolumeAttachment getAttachVolume(String serverId, String volumeId) {
-//        checkNotNull(serverId);
-//        checkNotNull(volumeId);
-//		return get(NovaVolumeAttachment.class, uri("/servers/%s/os-volume_attachments/%s", serverId,volumeId))
-//				.execute();
-//	}
-//
-//	/**
-//	 * {@inheritDoc}
-//	 */
-//	@Override
-//	public List<? extends VolumeAttachment> listAttachedVolumes(String serverId) {
-//		checkNotNull(serverId);
-//		Invocation<NovaVolumeAttachment.NovaVolumeAttachments> volumeAttachmentInvocation = get(NovaVolumeAttachment.NovaVolumeAttachments.class, uri("/servers/%s/os-volume_attachments", serverId));
-//		return volumeAttachmentInvocation.execute().getList();
-//	}
+	/**
+	 * {@inheritDoc}
+	 */
+	@Override
+	public VolumeAttachment getAttachVolume(String serverId, String volumeId) {
+        checkNotNull(serverId);
+        checkNotNull(volumeId);
+		return get(NovaVolumeAttachment.class, uri("/servers/%s/os-volume_attachments/%s", serverId,volumeId))
+				.execute();
+	}
+
+	/**
+	 * {@inheritDoc}
+	 */
+	@Override
+	public List<? extends VolumeAttachment> listAttachedVolumes(String serverId) {
+		checkNotNull(serverId);
+		Invocation<NovaVolumeAttachment.NovaVolumeAttachments> volumeAttachmentInvocation = get(NovaVolumeAttachment.NovaVolumeAttachments.class, uri("/servers/%s/os-volume_attachments", serverId));
+		return volumeAttachmentInvocation.execute().getList();
+	}
 
 }

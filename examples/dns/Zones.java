@@ -3,12 +3,11 @@ package com.huawei.openstack.sample;
 import com.huawei.openstack4j.api.Builders;
 import com.huawei.openstack4j.api.OSClient;
 import com.huawei.openstack4j.model.common.Identifier;
-import com.huawei.openstack4j.model.dns.v2.Zone;
 import com.huawei.openstack4j.model.dns.v2.ZoneType;
 import com.huawei.openstack4j.model.dns.v2.builder.ZoneBuilder;
+import com.huawei.openstack4j.model.dns.v2.Zone;
 import com.huawei.openstack4j.openstack.OSFactory;
 import com.huawei.openstack4j.openstack.dns.v2.domain.DesignateZone;
-import com.huawei.openstack.sample.Constant;
 
 
 public class Zones {

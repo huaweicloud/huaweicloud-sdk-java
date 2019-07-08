@@ -9,7 +9,11 @@
     } ],
     "vpcid" : "vpc-id",
     "nics" : [ {
-      "subnet_id" : "network-id"
+      "subnet_id" : "network-id",
+      "ipv6_enable" : true,
+      "ipv6_bandwidth" : {
+        "id" : "ipv6_bandwidth_id"
+      }
     } ],
     "publicip" : {
       "eip" : {
@@ -17,28 +21,50 @@
         "bandwidth" : {
           "size" : 10,
           "sharetype" : "PER",
-          "chargemode" : "bandwidth"
+          "chargemode" : "traffic",
+          "id" : "bandwidthId"
+        },
+        "extendparam" : {
+          "chargingMode" : "postPaid"
         }
       }
     },
-    "count" : 2,
     "root_volume" : {
       "volumetype" : "SSD",
-      "size" : 10
+      "size" : 10,
+      "hw:passthrough" : true
     },
     "data_volumes" : [ {
       "volumetype" : "SAS",
       "size" : 100,
       "multiattach" : true,
-      "hw:passthrough" : true
+      "hw:passthrough" : true,
+      "extendparam" : {
+        "snapshotId" : "snapshotId"
+      },
+      "data_image_id" : "data_image_id"
     } ],
     "security_groups" : [ {
       "id" : "securityGroupId"
     } ],
     "availability_zone" : "eu-de-01",
+    "extendparam" : {
+      "enterprise_project_id" : "enterpriseProjectId"
+    },
     "metadata" : {
       "mkey" : "mvalue"
     },
-    "tags" : [ "key.value" ]
+    "tags" : [ "key.value" ],
+    "server_tags" : [ {
+      "key" : "key1",
+      "value" : "value1"
+    }, {
+      "key" : "key2",
+      "value" : "value2"
+    } ],
+    "description" : "description",
+    "os:scheduler_hints" : {
+      "group" : "groupId"
+    }
   }
 }

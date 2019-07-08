@@ -141,12 +141,12 @@ public class QuotaSetServiceImpl extends BaseComputeServices implements QuotaSet
         		.execute();
 	}
 
-//    /**
-//     * {@inheritDoc}
-//     */
-//    @Override
-//    public QuotaSet getDefault(String tenantId) {
-//        checkNotNull(tenantId);
-//        return get(NovaQuotaSet.class, uri("/os-quota-sets/%s/defaults", tenantId)).execute();
-//    }
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public QuotaSet getDefault(String tenantId) {
+        checkNotNull(tenantId);
+        return get(NovaQuotaSet.class, uri("/os-quota-sets/%s/defaults", tenantId)).execute();
+    }
 }

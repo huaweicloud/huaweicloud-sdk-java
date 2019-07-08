@@ -285,7 +285,7 @@ public interface ServerService {
      * @param adminPassword the new password
      * @return ActionResponse
      */
-    ActionResponse changeAdminPassword(String serverId, String adminPassword);
+//    ActionResponse changeAdminPassword(String serverId, String adminPassword);
 
     /**
      * detach the volume to the given server
@@ -295,6 +295,16 @@ public interface ServerService {
      * @return the action response
      */
     ActionResponse detachVolume(String serverId,String attachmentId);
+
+    /**
+     * detach the volume to the given server with delete type flag
+     * @param serverId the server identifier
+     * @param volumeId the attachment identifier
+     * @param deleteFlag the delete type flag
+     *
+     * @return the action response
+     */
+    ActionResponse detachVolume(String serverId, String volumeId, int deleteFlag);
     
     /**
      * Only user with admin role can do this.
@@ -411,36 +421,36 @@ public interface ServerService {
      */
     ServerPassword evacuate(String serverId, EvacuateOptions options);
 
-//    /**
-//     * get volumeAttachment by serverId and volumeId
-//     *
-//     * @param serverId the server identifier
-//     * @param volumeId the volume identifier
-//     * @return volumeAttachment or null if not applicable
-//     */
-//    VolumeAttachment getAttachVolume(String serverId, String volumeId);
-//
-//    /**
-//     * Show Attached Volumes
-//     *
-//     * @param serverId the server identifier
-//     * @return list of all volumeAttachments
-//     */
-//    List<? extends VolumeAttachment> listAttachedVolumes(String serverId);
-//
-//    /**
-//     * Get metadata item via the specified {@code key} and {@code serverId}
-//     *
-//     * @param serverId the server identifier
-//     * @return Map of metadata of key and value
-//     */
-//    Map<String, String> getMetadataItem(String serverId,String key);
-//
-//    /**
-//     * Get metadata item via the specified {@code key} and {@code serverId}
-//     *
-//     * @param serverId the server identifier
-//     * @return Map of metadata of key and value
-//     */
-//    Map<String, String> setMetadataItem(String serverId,String key, String value);
+    /**
+     * get volumeAttachment by serverId and volumeId
+     *
+     * @param serverId the server identifier
+     * @param volumeId the volume identifier
+     * @return volumeAttachment or null if not applicable
+     */
+    VolumeAttachment getAttachVolume(String serverId, String volumeId);
+
+    /**
+     * Show Attached Volumes
+     *
+     * @param serverId the server identifier
+     * @return list of all volumeAttachments
+     */
+    List<? extends VolumeAttachment> listAttachedVolumes(String serverId);
+
+    /**
+     * Get metadata item via the specified {@code key} and {@code serverId}
+     *
+     * @param serverId the server identifier
+     * @return Map of metadata of key and value
+     */
+    Map<String, String> getMetadataItem(String serverId,String key);
+
+    /**
+     * Get metadata item via the specified {@code key} and {@code serverId}
+     *
+     * @param serverId the server identifier
+     * @return Map of metadata of key and value
+     */
+    Map<String, String> setMetadataItem(String serverId,String key, String value);
 }

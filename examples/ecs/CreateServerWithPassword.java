@@ -36,20 +36,13 @@ public class CreateServerWithPassword {
 				.credentials(user, password, Identifier.byId(userDomainId))
 				.scopeToProject(Identifier.byId(projectId)).authenticate();
 
-		// Filte server list
-		Map<String , String> filterName = new HashMap<String, String>();
-		filterName.put("name", "ecs");
-		filterName.put("status", "ACTIVE");
-		List<? extends Server> servers = osclient.compute().servers().list(filterName);
-		System.out.println(servers);
-	
 		String flavorId = "s2.xlarge.1";
 		String imageId = "5d153261-c05c-456e-b38b-074eea7ce880";
 		String networkId = "319944c8-baac-46da-a3a8-f07956105a4e";
 		String imageIdWindows = "a1e6a557-e6c5-43a0-9d4e-a90fdf376afb";
 		
 		// use user-data to create linux server 
-		String userDataOrg = "#!/bin/bash \r\n echo 'root:P@ssWr0d123' | chpasswd ;";
+		String userDataOrg = "#!/bin/bash \r\n echo 'root:xxxxx' | chpasswd ;";
 		
 		//parse userData to Base64 format
 		byte[] userDataByte = userDataOrg.getBytes();
@@ -72,8 +65,10 @@ public class CreateServerWithPassword {
 		
 		//create linux server, wait for server status to Active
 		Server newServer = osclient.compute().servers().boot(scLinux);
-		osclient.compute().servers().waitForServerStatus(newServer.getId(), Status.ACTIVE, 10, TimeUnit.MINUTES);
-		System.out.println("New Server " + newServer);            
+		Server waitResult = osclient.compute().servers().waitForServerStatus(newServer.getId(), Status.ACTIVE, 10, TimeUnit.MINUTES);
+		System.out.println("New Server status: " + waitResult.getStatus());
+		System.out.println("New Server: " + newServer);
+		System.out.println("Waiting for the result: " + waitResult);
 				
 		//use adminpass to create windows server
 		ServerCreate scWindows = Builders.server()
@@ -81,7 +76,7 @@ public class CreateServerWithPassword {
 				.flavor(flavorId)
 				.image(imageIdWindows)
 				.availabilityZone("eu-de-02")
-				.addMetadataItem("admin_pass", "P@ssWr0d123")
+				.addMetadataItem("admin_pass", "xxxxx")
 				.networks(networkList)
 				.build();
 		System.out.println("New Server body " + scWindows);
@@ -89,7 +84,14 @@ public class CreateServerWithPassword {
 		//create windows server, wait for server status to Active
 		Server newServerWindows = osclient.compute().servers().boot(scWindows);
 		osclient.compute().servers().waitForServerStatus(newServerWindows.getId(), Status.ACTIVE, 10, TimeUnit.MINUTES);
-		System.out.println("New Server " + newServerWindows);   
+		System.out.println("New Server " + newServerWindows);
+
+		// Filte server list
+		Map<String , String> filterName = new HashMap<String, String>();
+		filterName.put("name", "ecs");
+		filterName.put("status", "ACTIVE");
+		List<? extends Server> servers = osclient.compute().servers().list(filterName);
+		System.out.println(servers);
 		
 		// stop server 
 		ActionResponse repStop = osclient.compute().servers().action(newServer.getId(), Action.STOP);

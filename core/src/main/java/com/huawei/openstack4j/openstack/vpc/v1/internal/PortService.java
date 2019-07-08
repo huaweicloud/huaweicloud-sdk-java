@@ -40,7 +40,7 @@ import com.huawei.openstack4j.openstack.vpc.v1.domain.PortUpdate;
 public class PortService extends BaseOpenStackService {
 	
 	public static String CONTENT_JSON = "application/json;charset=utf-8";
-	
+
 	public PortService(){
 		super(ServiceType.VPC,RemoveProjectIdFromURL.INSTANCE);
 	}

@@ -29,21 +29,21 @@ public class VersionService extends BaseElasticVolumeService{
      super(ServiceType.EVS, RemoveVersionProjectIdFromURL.INSTANCE);
     }
 
-//    /**
-//     *  Get Version List
-//     * @return List<? extends Version>
-//     */
-//     public List<? extends Version> versions() {
-//         return get(Version.Versions.class, "/").execute().getList();
-//     }
-//
-//    /**
-//     *  Get Single Version
-//     *  @param version version
-//     * @return List<? extends Version>
-//     */
-//     public List<? extends Version> version(String version) {
-//         checkArgument(!Strings.isNullOrEmpty(version), "`version` should not be empty");
-//         return get(Version.Versions.class, "/" + version).execute().getList();
-//    }
+    /**
+     *  Get Version List
+     * @return List<? extends Version>
+     */
+     public List<? extends Version> list() {
+         return get(Version.Versions.class, "/").execute().getList();
+     }
+
+    /**
+     *  Get Single Version
+     *  @param version version
+     * @return List<? extends Version>
+     */
+     public List<? extends Version> get(String version) {
+         checkArgument(!Strings.isNullOrEmpty(version), "`version` should not be empty");
+         return get(Version.Versions.class, "/" + version).execute().getList();
+    }
 }

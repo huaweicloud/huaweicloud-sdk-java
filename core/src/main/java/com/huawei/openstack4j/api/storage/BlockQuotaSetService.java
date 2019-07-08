@@ -85,13 +85,13 @@ public interface BlockQuotaSetService extends RestService {
      */
     BlockQuotaSetUsage usageForTenant(String tenantId);
 
-//    /**
-//     * Gets details for quotas for a specified tenant
-//     *
-//     * @param tenantId the tenant identifier
-//     * @return the quota usage details
-//     */
-//    CinderBlockQuotaSetResponse quotaForTenant(String tenantId);
+    /**
+     * Gets details for quotas for a specified tenant
+     *
+     * @param tenantId the tenant identifier
+     * @return the quota usage details
+     */
+    CinderBlockQuotaSetResponse quotaForTenant(String tenantId);
 
     /**
      * Gets details for quotas for a specified tenant and user.

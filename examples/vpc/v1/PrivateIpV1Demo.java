@@ -41,7 +41,7 @@ public class PrivateIpDemo {
                 .scopeToProject(Identifier.byId(projectId)).authenticate();
 
         // Create PrivateIp
-        PrivateIp privateIp = PrivateIp.builder().subnetId("531dec0f-3116-411b-a21b-e612e42349fd")
+        PrivateIp privateIp = PrivateIp.builder().subnetId("xxxxxx")
                 .build();
         List<PrivateIp> privateIpList = new ArrayList<>();
         privateIpList.add(privateIp);
@@ -64,7 +64,7 @@ public class PrivateIpDemo {
         }
 
         // List PrivateIps
-        List<? extends PrivateIp> listResp = osclient.vpc().privateIps().list("531dec0f-3116-411b-a21b-e612e42349fd");
+        List<? extends PrivateIp> listResp = osclient.vpc().privateIps().list("xxxxxx");
         if (null != listResp) {
             System.out.println("List PrivateIps success, size is = " + listResp.size());
         } else {
@@ -74,7 +74,7 @@ public class PrivateIpDemo {
         // List PrivateIps with filter
         Map<String, String> filteringParams = new HashMap<>();
         filteringParams.put("limit", "5");
-        List<? extends PrivateIp> listWithFilterResp = osclient.vpc().privateIps().list("531dec0f-3116-411b-a21b-e612e42349fd",filteringParams);
+        List<? extends PrivateIp> listWithFilterResp = osclient.vpc().privateIps().list("xxxxxx",filteringParams);
         if (null != listWithFilterResp) {
             System.out.println("List PrivateIps success, size is = " + listResp.size());
         } else {

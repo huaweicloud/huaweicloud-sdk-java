@@ -41,10 +41,10 @@ public class VpcDemo {
                 .scopeToProject(Identifier.byId(projectId)).authenticate();
 
         // Create VPC
-        String cidr = "172.17.0.100/26";
+        String cidr = "xxx.xxx.xxx.xxx/xx";
         VpcCreate vpc = VpcCreate.builder()
                 .cidr(cidr)
-                .name("testVpc")
+                .name("xxxxxx")
                 .enterpriseProjectId("")
                 .build();
         Vpc createResp = osclient.vpc().vpcs().create(vpc);

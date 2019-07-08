@@ -17,6 +17,14 @@ import com.huawei.openstack4j.model.ModelEntity;
  * 	License for the specific language governing permissions and limitations under    
  * 	the License.                                                                     
  *******************************************************************************/
+
+/**
+ * The Interface FloatingIP.
+ *
+ * <p>Copyright (c) 2014 by Dorado Software, Inc. All Rights Reserved.
+ *
+ * @author nanderson
+ */
 public interface FloatingIP extends ModelEntity {
 
   /**

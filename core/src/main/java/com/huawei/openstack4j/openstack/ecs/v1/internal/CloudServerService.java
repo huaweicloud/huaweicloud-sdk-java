@@ -25,19 +25,20 @@ package com.huawei.openstack4j.openstack.ecs.v1.internal;
  import com.google.common.base.Strings;
  import com.google.common.collect.Lists;
  import com.huawei.openstack4j.model.ModelEntity;
-// import com.huawei.openstack4j.model.common.ActionResponse;
+ import com.huawei.openstack4j.model.common.ActionResponse;
  import com.huawei.openstack4j.model.compute.RebootType;
  import com.huawei.openstack4j.model.compute.StopType;
  import com.huawei.openstack4j.openstack.common.AsyncJobEntity;
  import com.huawei.openstack4j.openstack.common.IdResourceEntity;
  import com.huawei.openstack4j.openstack.ecs.v1.domain.CloudAbsoluteLimit;
  import com.huawei.openstack4j.openstack.ecs.v1.domain.CloudServer;
+ import com.huawei.openstack4j.openstack.ecs.v1.domain.AsyncServerRespEntity;
  import com.huawei.openstack4j.openstack.ecs.v1.domain.CloudServer.CloudServers;
  import com.huawei.openstack4j.openstack.ecs.v1.domain.Flavor;
  import com.huawei.openstack4j.openstack.ecs.v1.domain.Flavor.Flavors;
  import com.huawei.openstack4j.openstack.ecs.v1.domain.ResizeServer;
  import com.huawei.openstack4j.openstack.ecs.v1.domain.ServerCreate;
-// import com.huawei.openstack4j.openstack.ecs.v1.domain.SupportAutoRecovery;
+ import com.huawei.openstack4j.openstack.ecs.v1.domain.SupportAutoRecovery;
 
  public class CloudServerService extends BaseElasticComputeServices {
 
@@ -60,6 +61,24 @@ package com.huawei.openstack4j.openstack.ecs.v1.internal;
 		checkArgument(creation.getRootVolume() != null, "parameter `root_volume` should not be empty");
 		return post(AsyncJobEntity.class, "/cloudservers").entity(creation).execute().getId();
 	}
+
+	 /**
+	  * create one or multiple server
+	  *
+	  * @param creation
+	  * @return			entity of the asynchronous create server task
+	  */
+	 public AsyncServerRespEntity createServer(ServerCreate creation) {
+		 checkArgument(!Strings.isNullOrEmpty(creation.getImageRef()), "parameter `imageRef` should not be empty");
+		 checkArgument(!Strings.isNullOrEmpty(creation.getFlavorRef()), "parameter `flavorRef` should not be empty");
+		 checkArgument(!Strings.isNullOrEmpty(creation.getName()), "parameter `name` should not be empty");
+		 checkArgument(!Strings.isNullOrEmpty(creation.getVpcId()), "parameter `vpcid` should not be empty");
+		 checkArgument(!Strings.isNullOrEmpty(creation.getAvailabilityZone()), "parameter `availability_zone` should not be empty");
+		 checkArgument(creation.getNetworks() != null && creation.getNetworks().size() > 0,
+				 "parameter `networks` should not be empty");
+		 checkArgument(creation.getRootVolume() != null, "parameter `root_volume` should not be empty");
+		 return post(AsyncServerRespEntity.class, "/cloudservers").entity(creation).execute();
+	 }
 
 	/**
 	 * batch delete servers
@@ -201,26 +220,26 @@ package com.huawei.openstack4j.openstack.ecs.v1.internal;
 		return get(CloudAbsoluteLimit.class, uri("/cloudservers/limits")).execute();
 	}
 
-//	 /**
-//	  * Check whether the cloud server is configured with automatic recovery actions.
-//	  * @return
-//	  * */
-//	public SupportAutoRecovery getAutoRecovery(String serverId){
-//		checkArgument(!Strings.isNullOrEmpty(serverId), "parameter `serverId` should not be empty");
-//		return get(SupportAutoRecovery.class, uri("/cloudservers/"+serverId+"/autorecovery")).execute();
-//	}
-//
-//	 /**
-//	  * Manage cloud server automatic recovery action
-//	  * @param serverId
-//	  * @param supportAutoRecovery
-//	  * @return
-//	  */
-//	public ActionResponse manageAutoRecovery(String serverId, SupportAutoRecovery supportAutoRecovery){
-//		checkArgument(!Strings.isNullOrEmpty(serverId), "parameter `serverId` should not be empty");
-//		checkArgument(!(supportAutoRecovery == null), "parameter `supportAutoRecovery` should not be empty");
-//		return put(ActionResponse.class, uri("/cloudservers/"+serverId+"/autorecovery")).entity(supportAutoRecovery).execute();
-//	}
+	 /**
+	  * Check whether the cloud server is configured with automatic recovery actions.
+	  * @return
+	  * */
+	public SupportAutoRecovery getAutoRecovery(String serverId){
+		checkArgument(!Strings.isNullOrEmpty(serverId), "parameter `serverId` should not be empty");
+		return get(SupportAutoRecovery.class, uri("/cloudservers/"+serverId+"/autorecovery")).execute();
+	}
+
+	 /**
+	  * Manage cloud server automatic recovery action
+	  * @param serverId
+	  * @param supportAutoRecovery
+	  * @return
+	  */
+	public ActionResponse manageAutoRecovery(String serverId, SupportAutoRecovery supportAutoRecovery){
+		checkArgument(!Strings.isNullOrEmpty(serverId), "parameter `serverId` should not be empty");
+		checkArgument(!(supportAutoRecovery == null), "parameter `supportAutoRecovery` should not be empty");
+		return put(ActionResponse.class, uri("/cloudservers/"+serverId+"/autorecovery")).entity(supportAutoRecovery).execute();
+	}
 
 //	/**
 //	 *Query cloud server specification change support list

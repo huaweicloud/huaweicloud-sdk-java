@@ -7,7 +7,7 @@ import com.huawei.openstack4j.openstack.OSFactory;
 import com.huawei.openstack4j.model.compute.Limits;
 import com.huawei.openstack4j.model.compute.QuotaSet;
 
-public class QuotaSetDemo {
+public class QuotaDemo {
 	public static void main(String[] args) {
 
 		// Using credentials for authentication
@@ -23,20 +23,37 @@ public class QuotaSetDemo {
 			.credentials(username, password, Identifier.byId(userDomainId))
 			.scopeToProject(Identifier.byId(projectId)).authenticate();
 		
-		//get quotaset
-		QuotaSet quotaSet = os.compute().quotaSets().get(projectId);
-		if (null != quotaSet) {
-			System.out.println("get quotaSet success, id = " + quotaSet.getId());
-		} else {
-			System.out.println("get quotaSet failed");
-		}
-		
-		//get quotaSet limit
+		//get quota limit
 		Limits limits = os.compute().quotaSets().limits();
 		if (null != limits) {
 			System.out.println("get limits success, absolute = " + limits.getAbsolute());
 		} else {
 			System.out.println("get limits failed");
+		}
+
+		//get quota without user id
+		QuotaSet quotaSet = os.compute().quotaSets().get(projectId);
+		if (null != quotaSet) {
+		    System.out.println("get quotaSet success, id = " + quotaSet.getId());
+		} else {
+		    System.out.println("get quotaSet failed");
+		}
+
+		//get quota with user id
+		String userId = "xxxxxxxxxxxxxxxxxxxxxxxxxxx";
+		QuotaSet quotaUserId = os.compute().quotaSets().get(projectId, user_id);
+		if (null != quotaUserId) {
+			System.out.git println("get quotaSet success, id = " + quotaUserId.getId());
+		} else {
+			System.out.println("get quotaSet failed");
+		}
+
+		//query default quota
+		QuotaSet DefaultQuotaSet = os.compute().quotaSets().getDefault(projectId);
+		if (null != quotaSet) {
+			System.out.println("get quotaSet success, id = " + quotaSet.getId());
+		} else {
+			System.out.println("get quotaSet failed");
 		}
 	}
 }

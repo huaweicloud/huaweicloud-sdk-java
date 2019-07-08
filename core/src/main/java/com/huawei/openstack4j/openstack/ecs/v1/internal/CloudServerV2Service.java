@@ -21,7 +21,7 @@ package com.huawei.openstack4j.openstack.ecs.v1.internal;
  import com.huawei.openstack4j.api.types.ServiceType;
  import com.huawei.openstack4j.openstack.common.AsyncJobEntity;
  import com.huawei.openstack4j.openstack.common.functions.ReplaceVersionOfURL;
-// import com.huawei.openstack4j.openstack.ecs.v1.domain.OSReinstall;
+ import com.huawei.openstack4j.openstack.ecs.v1.domain.OSReinstall;
  import com.huawei.openstack4j.openstack.ecs.v1.domain.ServerChangeOS;
  import com.huawei.openstack4j.openstack.internal.BaseOpenStackService;
 
@@ -43,15 +43,15 @@ public class CloudServerV2Service extends BaseOpenStackService {
 		return post(AsyncJobEntity.class, "/cloudservers/"+serverId+"/changeos").entity(change).execute().getId();
 	}
 
-//	/**
-//	 * Reinstall the elastic cloud server operating system
-//	 * @param serverId
-//	 * @param osReinstall
-//	 * @return
-//	 */
-//	public AsyncJobEntity reinstallOS(OSReinstall osReinstall, String serverId){
-//		checkArgument(!Strings.isNullOrEmpty(serverId), "parameter `serverId` should not be empty");
-//		checkArgument(!(osReinstall == null), "parameter `osReinstall` should not be empty");
-//		return post(AsyncJobEntity.class, uri("/cloudservers/"+serverId+"/reinstallos")).entity(osReinstall).execute();
-//	}
+	/**
+	 * Reinstall the elastic cloud server operating system
+	 * @param serverId
+	 * @param osReinstall
+	 * @return
+	 */
+	public AsyncJobEntity reinstallOS(OSReinstall osReinstall, String serverId){
+		checkArgument(!Strings.isNullOrEmpty(serverId), "parameter `serverId` should not be empty");
+		checkArgument(!(osReinstall == null), "parameter `osReinstall` should not be empty");
+		return post(AsyncJobEntity.class, uri("/cloudservers/"+serverId+"/reinstallos")).entity(osReinstall).execute();
+	}
 }

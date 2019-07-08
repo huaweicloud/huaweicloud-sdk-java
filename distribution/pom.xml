@@ -20,13 +20,13 @@
 	<parent>
 		<groupId>com.huawei</groupId>
 		<artifactId>openstack4j-parent</artifactId>
-		<version>1.0.13</version>
+		<version>1.0.15</version>
 	</parent>
 	<modelVersion>4.0.0</modelVersion>
 	<artifactId>openstack4j</artifactId>
-	<name>OpenStack4j Distribution</name>
-	<description>OpenStack Java API</description>
-	<url>http://github.com/ContainX/openstack4j/</url>
+	<name>Huaweicloud SDK Java</name>
+	<description>Huawei Cloud Open API SDK for Java</description>
+	<url>https://github.com/huaweicloud/huaweicloud-sdk-java/</url>
 	<packaging>jar</packaging>
 
 	<dependencies>

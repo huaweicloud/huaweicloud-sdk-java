@@ -9,7 +9,6 @@ import com.huawei.openstack4j.model.dns.v2.ZoneType;
 import com.huawei.openstack4j.model.dns.v2.builder.RecordsetBuilder;
 import com.huawei.openstack4j.openstack.OSFactory;
 import com.huawei.openstack4j.openstack.dns.v2.options.RecordsetListOptions;
-import com.huawei.openstack.sample.Constant;
 
 
 import java.util.ArrayList;
@@ -73,6 +72,7 @@ public class Recordsets {
                 .build();
         Recordset result = os.dns().recordsets().create(Constants.RECORDSET_ZONE_ID,recordset);
         Constants.RECORDSET_ID = result.getId();
+        Constants.ZONE_ID = result.getZoneId();
     }
 
     private static void createRecordset2() {
@@ -95,7 +95,7 @@ public class Recordsets {
     }
 
     private static void listByZoneId() {
-        os.dns().recordsets().list();
+        os.dns().recordsets().list(Constants.ZONE_ID);
     }
 
     private static void list() {

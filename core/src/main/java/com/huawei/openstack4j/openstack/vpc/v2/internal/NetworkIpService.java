@@ -35,7 +35,7 @@ public class NetworkIpService extends BaseOpenStackService {
      * @return
      */
     public NetworkIpAvailability get(String networkId){
-        checkArgument(!Strings.isNullOrEmpty(networkId),"parameter `peeringId` should not be empty");
+        checkArgument(!Strings.isNullOrEmpty(networkId),"parameter `networkId` should not be empty");
         return get(NetworkIpAvailability.class,uri("/network-ip-availabilities/%s",networkId)).execute();
     }
 

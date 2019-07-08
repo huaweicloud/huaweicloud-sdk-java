@@ -154,13 +154,43 @@ public class ServerCreate implements ModelEntity {
 	@JsonProperty("tags")
 	private List<String> tags;
 
+	/**
+	 * 弹性云服务器的标签。
+	 * 创建弹性云服务器时，一台弹性云服务器最多可以添加10个标签。
+	 * 公有云新增server_tags字段，该字段与tags字段功能相同，支持的key、value取值范围更广，建议使用server_tags字段。
+	 */
+	@JsonProperty("server_tags")
+	private List<ServerTags> serverTags;
+	/**
+	 *
+	 * 云服务器描述信息
+	 * 默认为空字符串。
+	 * 长度最多允许85个字符。
+	 * 不能包含“<” 和 “>”等特殊符号。
+	 */
+	@JsonProperty("description")
+	private String description;
+
+	/**
+	 * 云服务器名称是否允许重名。
+	 */
+	@JsonProperty("isAutoRename")
+	private Boolean isAutoRename;
+
+	/**
+	 * 云服务器调度信息。
+	 */
+	@JsonProperty("os:scheduler_hints")
+	private OsSchedulerHints schedulerHints;
+
 	@java.beans.ConstructorProperties({ "name", "imageRef", "flavorRef", "personality", "userData", "adminPass",
 			"keyName", "vpcId", "networks", "publicIP", "count", "rootVolume", "dataVolumes", "securityGroups",
-			"availabilityZone", "extendParam", "metadata", "tags" })
+			"availabilityZone", "extendParam", "metadata", "tags", "serverTags", "description", "isAutoRename", "schedulerHints"})
 	public ServerCreate(String name, String imageRef, String flavorRef, List<Personality> personality, String userData,
 			String adminPass, String keyName, String vpcId, List<Network> networks, PublicIP publicIP, Integer count,
 			RootVolume rootVolume, List<DataVolume> dataVolumes, List<IdResourceEntity> securityGroups,
-			String availabilityZone, ServerExtendParam extendParam, Map<String, Object> metadata, List<String> tags) {
+			String availabilityZone, ServerExtendParam extendParam, Map<String, Object> metadata, List<String> tags,
+						List<ServerTags> serverTags, String description, Boolean isAutoRename, OsSchedulerHints schedulerHints) {
 		this.name = name;
 		this.imageRef = imageRef;
 		this.flavorRef = flavorRef;
@@ -179,6 +209,10 @@ public class ServerCreate implements ModelEntity {
 		this.extendParam = extendParam;
 		this.metadata = metadata;
 		this.tags = tags;
+		this.serverTags = serverTags;
+		this.description = description;
+		this.isAutoRename = isAutoRename;
+		this.schedulerHints = schedulerHints;
 	}
 
 	public ServerCreate() {
@@ -194,7 +228,8 @@ public class ServerCreate implements ModelEntity {
 				.vpcId(this.vpcId).networks(this.networks).publicIP(this.publicIP).count(this.count)
 				.rootVolume(this.rootVolume).dataVolumes(this.dataVolumes).securityGroups(this.securityGroups)
 				.availabilityZone(this.availabilityZone).extendParam(this.extendParam).metadata(this.metadata)
-				.tags(this.tags);
+				.tags(this.tags).serverTags(this.serverTags).description(this.description).isAutoRename(this.isAutoRename)
+				.schedulerHints(this.schedulerHints);
 	}
 
 	public String getName() {
@@ -269,6 +304,22 @@ public class ServerCreate implements ModelEntity {
 		return this.tags;
 	}
 
+	public List<ServerTags> getServerTags(){
+		return this.serverTags;
+	}
+
+	public String getDescription(){
+		return this.description;
+	}
+
+	public Boolean getAutoRename() {
+		return this.isAutoRename;
+	}
+
+	public OsSchedulerHints getSchedulerHints() {
+		return this.schedulerHints;
+	}
+
 	@Override
 	public String toString() {
 		return "ServerCreate(name=" + this.getName() + ", imageRef=" + this.getImageRef() + ", flavorRef="
@@ -278,7 +329,8 @@ public class ServerCreate implements ModelEntity {
 				+ ", rootVolume=" + this.getRootVolume() + ", dataVolumes=" + this.getDataVolumes()
 				+ ", securityGroups=" + this.getSecurityGroups() + ", availabilityZone=" + this.getAvailabilityZone()
 				+ ", extendParam=" + this.getExtendParam() + ", metadata=" + this.getMetadata() + ", tags="
-				+ this.getTags() + ")";
+				+ this.getTags() + ", serverTags=" + this.getServerTags() + ", description="+ this.getDescription()
+				+ ", isAutoRename="+ this.getAutoRename()+ ", schedulerHints="+ this.getSchedulerHints();
 	}
 	public static class ServerCreates extends ListResult<ServerCreate> {
 
@@ -317,6 +369,10 @@ public class ServerCreate implements ModelEntity {
 		private ServerExtendParam extendParam;
 		private Map<String, Object> metadata;
 		private List<String> tags;
+		private List<ServerTags> serverTags;
+		private String description;
+		private Boolean isAutoRename;
+		private OsSchedulerHints schedulerHints;
 
 		ServerCreateBuilder() {
 		}
@@ -488,10 +544,38 @@ public class ServerCreate implements ModelEntity {
 			return this;
 		}
 
+		public ServerCreateBuilder serverTags(List<ServerTags> serverTags){
+			this.serverTags = serverTags;
+			return this;
+		}
+
+		public ServerCreateBuilder addServerTag(ServerTags serverTag) {
+			if (this.serverTags == null){
+				this.serverTags = new ArrayList<>();
+			}
+			this.serverTags.add(serverTag);
+			return this;
+		}
+
+		public ServerCreateBuilder description(String description){
+			this.description = description;
+			return this;
+		}
+
+		public ServerCreateBuilder isAutoRename(Boolean isAutoRename){
+			this.isAutoRename = isAutoRename;
+			return this;
+		}
+
+		public ServerCreateBuilder schedulerHints(OsSchedulerHints schedulerHints){
+			this.schedulerHints = schedulerHints;
+			return this;
+		}
+
 		public ServerCreate build() {
 			return new ServerCreate(name, imageRef, flavorRef, personality, userData, adminPass, keyName, vpcId,
 					networks, publicIP, count, rootVolume, dataVolumes, securityGroups, availabilityZone, extendParam,
-					metadata, tags);
+					metadata, tags, serverTags, description, isAutoRename, schedulerHints);
 		}
 
 		@Override
@@ -502,7 +586,8 @@ public class ServerCreate implements ModelEntity {
 					+ ", networks=" + this.networks + ", publicIP=" + this.publicIP + ", count=" + this.count
 					+ ", rootVolume=" + this.rootVolume + ", dataVolumes=" + this.dataVolumes + ", securityGroups="
 					+ this.securityGroups + ", availabilityZone=" + this.availabilityZone + ", extendParam="
-					+ this.extendParam + ", metadata=" + this.metadata + ", tags=" + this.tags + ")";
+					+ this.extendParam + ", metadata=" + this.metadata + ", tags=" + this.tags + ", serverTags=" +
+					this.serverTags+ ", isAutoRename=" + this.isAutoRename +", description=" + this.description + ", schedulerHints=" + this.schedulerHints+")";
 		}
 	}
 }

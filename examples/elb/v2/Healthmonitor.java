@@ -40,7 +40,7 @@ public class Healthmonitor {
 		osclient.networking().lbaasV2().healthMonitor().get(hm_id);
 		
 //Update a healthmonitor
-		HealthMonitorV2Update hm_mod = NeutronHealthMonitorV2Update.builder().delay(3).maxRetries(5).httpMethod(HttpMethod.GET).expectedCodes("200").build();
+		HealthMonitorV2Update hm_mod = NeutronHealthMonitorV2Update.builder().delay(3).maxRetries(5).httpMethod(NeutronHealthMonitorV2.httpMethodType.GET).expectedCodes("200").build();
 		osclient.networking().lbaasV2().healthMonitor().update(hm_id, hm_mod);
 		
 //Delete a healthmonitor

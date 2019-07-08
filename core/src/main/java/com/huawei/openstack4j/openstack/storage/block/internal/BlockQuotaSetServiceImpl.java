@@ -94,14 +94,14 @@ public class BlockQuotaSetServiceImpl extends BaseBlockStorageServices implement
         return get(CinderBlockQuotaSetUsage.class, uri("/os-quota-sets/%s", tenantId)).param("usage", true).execute();
     }
 
-//    /**
-//     * {@inheritDoc}
-//     */
-//    @Override
-//    public CinderBlockQuotaSetResponse quotaForTenant(String tenantId) {
-//        checkNotNull(tenantId, "Tenant cannot be null");
-//        return get(CinderBlockQuotaSetResponse.class, uri("/os-quota-sets/%s", tenantId)).param("usage", true).execute();
-//    }
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public CinderBlockQuotaSetResponse quotaForTenant(String tenantId) {
+        checkNotNull(tenantId, "Tenant cannot be null");
+        return get(CinderBlockQuotaSetResponse.class, uri("/os-quota-sets/%s", tenantId)).param("usage", true).execute();
+    }
 
     @Override
     public BlockQuotaSetUsage usageForUser(String tenantId, String userId) {

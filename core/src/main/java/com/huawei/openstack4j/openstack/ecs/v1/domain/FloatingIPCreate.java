@@ -23,7 +23,6 @@ import lombok.ToString;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.huawei.openstack4j.model.ModelEntity;
-import com.huawei.openstack4j.openstack.ecs.v1.domain.Bandwidth;
 import com.huawei.openstack4j.openstack.ecs.v1.contants.IpType;
 
 /**
@@ -57,5 +56,11 @@ public class FloatingIPCreate implements ModelEntity {
 	 */
 	@JsonProperty("bandwidth")
 	Bandwidth bandwidth;
+
+	/**
+	 * 创建弹性IP的附加信息。
+	 */
+	@JsonProperty("extendparam")
+	FloatingIPExtendParam extendparam;
 
 }

@@ -88,7 +88,7 @@ public class BandWidthService extends BaseVirtualPrivateCloudService {
 	 */
 	public BandwidthResp insert(String bandwidthId, BandwidthInsert bandwidthInsert){
 		checkArgument(!Strings.isNullOrEmpty(bandwidthId),"parameter `bandwidthId` should not be empty");
-		checkArgument(null != bandwidthInsert, "parameter `bandwidthBatchCreate` should not be empty");
+		checkArgument(null != bandwidthInsert, "parameter `bandwidthInsert` should not be empty");
 		for(PublicIpInfo publicIpInfo : bandwidthInsert.getPublicipInfo()){
 			checkArgument(!Strings.isNullOrEmpty(publicIpInfo.getPublicipId()),"parameter `publicIpInfo.publicipId` should not be empty");
 		}

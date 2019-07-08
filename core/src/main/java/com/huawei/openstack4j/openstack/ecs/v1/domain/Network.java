@@ -42,10 +42,25 @@ public class Network implements ModelEntity {
 	@JsonProperty("ip_address")
 	private String ipAddress;
 
-	@java.beans.ConstructorProperties({ "subnetId", "ipAddress" })
-	public Network(String subnetId, String ipAddress) {
+	/**
+	 * 是否支持ipv6。
+	 * 取值为true时，标识此网卡支持ipv6。
+	 */
+	@JsonProperty("ipv6_enable")
+	private Boolean ipv6Enable;
+
+	/**
+	 * 绑定的共享带宽ID。
+	 */
+	@JsonProperty("ipv6_bandwidth")
+	private Ipv6BandWidth ipv6Bandwidth;
+
+	@java.beans.ConstructorProperties({ "subnetId", "ipAddress", "ipv6Enable", "ipv6Bandwidth" })
+	public Network(String subnetId, String ipAddress, Boolean ipv6Enable, Ipv6BandWidth ipv6Bandwidth) {
 		this.subnetId = subnetId;
 		this.ipAddress = ipAddress;
+		this.ipv6Enable = ipv6Enable;
+		this.ipv6Bandwidth = ipv6Bandwidth;
 	}
 
 	public Network() {
@@ -63,18 +78,30 @@ public class Network implements ModelEntity {
 		return this.ipAddress;
 	}
 
+	public Boolean getIpv6Enable() {
+		return this.ipv6Enable;
+	}
+
+	public Ipv6BandWidth getIpv6Bandwidth() {
+		return this.ipv6Bandwidth;
+	}
+
 	@Override
 	public String toString() {
-		return "Network(subnetId=" + this.getSubnetId() + ", ipAddress=" + this.getIpAddress() + ")";
+		return "Network(subnetId=" + this.getSubnetId() + ", ipAddress=" + this.getIpAddress() +
+				", ipv6Enable=" + this.getIpv6Enable() + ", ipv6Bandwidth=" + this.getIpv6Bandwidth() + ")";
 	}
 
 	public NetworkBuilder toBuilder() {
-		return new NetworkBuilder().subnetId(this.subnetId).ipAddress(this.ipAddress);
+		return new NetworkBuilder().subnetId(this.subnetId).ipAddress(this.ipAddress)
+				.ipv6Enable(this.ipv6Enable).ipv6Bandwidth(this.ipv6Bandwidth);
 	}
 
 	public static class NetworkBuilder {
 		private String subnetId;
 		private String ipAddress;
+		private Boolean ipv6Enable;
+		private Ipv6BandWidth ipv6Bandwidth;
 
 		NetworkBuilder() {
 		}
@@ -89,13 +116,24 @@ public class Network implements ModelEntity {
 			return this;
 		}
 
+		public Network.NetworkBuilder ipv6Enable(Boolean ipv6Enable) {
+			this.ipv6Enable = ipv6Enable;
+			return this;
+		}
+
+		public Network.NetworkBuilder ipv6Bandwidth(Ipv6BandWidth ipv6Bandwidth) {
+			this.ipv6Bandwidth = ipv6Bandwidth;
+			return this;
+		}
+
 		public Network build() {
-			return new Network(subnetId, ipAddress);
+			return new Network(subnetId, ipAddress, ipv6Enable, ipv6Bandwidth);
 		}
 
 		@Override
 		public String toString() {
-			return "Network.NetworkBuilder(subnetId=" + this.subnetId + ", ipAddress=" + this.ipAddress + ")";
+			return "Network.NetworkBuilder(subnetId=" + this.subnetId + ", ipAddress=" + this.ipAddress +
+					", ipv6Enable=" + this.ipv6Enable + ", ipv6Bandwidth=" + this.ipv6Bandwidth + ")";
 		}
 	}
 }

@@ -15,6 +15,7 @@
  *******************************************************************************/
 package com.huawei.openstack4j.openstack.ecs.v1.domain;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.Map;
@@ -99,7 +100,7 @@ public class CloudServer implements ModelEntity{
 	@JsonProperty("OS-SRV-USG:terminated_at")
 	private Date terminatedAt;
 	@JsonProperty("os-extended-volumes:volumes_attached")
-	private List<IdResourceEntity> osExtendedVolumesAttached;
+	private List<ExtendedVolumesAttached> osExtendedVolumesAttached;
 	@JsonProperty("OS-EXT-SRV-ATTR:hostname")
 	private String hostname;
 	@JsonProperty("OS-EXT-SRV-ATTR:reservation_id")
@@ -144,5 +145,15 @@ public class CloudServer implements ModelEntity{
 		protected List<CloudServer> value() {
 			return servers;
 		}
+	}
+
+	public List<IdResourceEntity> getOsExtendedVolumesAttached() {
+		List<IdResourceEntity> tmp = new ArrayList<>();
+		tmp.addAll(osExtendedVolumesAttached);
+		return tmp;
+	}
+
+	public List<ExtendedVolumesAttached> getOsExtendedVolumesAttachedDetail() {
+		return osExtendedVolumesAttached;
 	}
 }

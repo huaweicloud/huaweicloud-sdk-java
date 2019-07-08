@@ -98,7 +98,14 @@ public class AKSK {
 
 		// Step 2: Create canonical URI--the part of the URI from domain to query
 		String pathOld = url.getPath();
-		String path  = pathOld.replaceAll(":", "%3A");
+		String path ="";
+		String[] split = pathOld.split("/");
+		for(String urlSplit : split){
+			path += "/" + urlEncode(urlSplit);
+		}
+		if(path.length() > 0){
+			path = path.substring(1, path.length());
+		}
 		String canonicalURI = path.endsWith("/") ? path : path + "/";
 
 		// Step 3: Create the canonical query string. In this example (a GET request),

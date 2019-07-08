@@ -33,18 +33,21 @@ public class BandWidthDemoV2 {
                 .credentials(user, password, Identifier.byId(userDomainId))
                 .scopeToProject(Identifier.byId(projectId)).authenticate();
 
-        //Update a BandWidth
-        String bandwidthId = "******";
-        VirtualBandWidths virtualBandWidths = null;
-        VirtualBandWidthUpdate virtualBandWidthUpdate = null;
-        virtualBandWidthUpdate.builder().name("updateDemo").size(20).build();
-        virtualBandWidths.builder().bandwidth(virtualBandWidthUpdate).build();
-        AsyncBandWidthRespEntity updateResp = osclient.vpcV2().bandwidths().update(virtualBandWidths, bandwidthId);
-        if (null != updateResp) {
-            System.out.println("Update a BandWidth success, orderId = " + updateResp.getOrderId());
-        } else {
-            System.out.println("Update a BandWidth failed");
-        }
+		// Update a BandWidth
+		String bandwidthId = "******";
+		VirtualBandWidthUpdate virtualBandWidthUpdate = VirtualBandWidthUpdate.builder()
+				.name("xxxxxx")
+				.size(20)
+				.build();
+		VirtualBandWidths virtualBandWidths = VirtualBandWidths.builder()
+				.bandwidth(virtualBandWidthUpdate)
+				.build();
+		AsyncBandWidthRespEntity updateResp = osclient.vpcV2().bandwidths().update(virtualBandWidths, bandwidthId);
+		if (null != updateResp) {
+			System.out.println("Update a BandWidth success, id = " + updateResp.getVirtualBandWidthResp().getId());
+		} else {
+			System.out.println("Update a BandWidth failed");
+		}
 
     }
 }

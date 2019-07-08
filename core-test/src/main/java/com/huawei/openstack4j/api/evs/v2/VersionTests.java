@@ -38,62 +38,62 @@ public class VersionTests extends AbstractTest{
         return Service.EVS;
     }
 
-//    @Test
-//    public void getVersionsTest() throws Exception
-//    {
-//        // check get versions
-//        respondWith("/evs/v2/versions.json");
-//        List<? extends Version> versions= osv3().evs().versions().versions();
-//        assertEquals(versions.size(), 3);
-//        Version version = versions.get(0);
-//        assertEquals(version.getMinVersion(), "");
-//        // check version media-types
-//        MediaType mediaType = version.getMediaTypes().get(0);
-//        assertEquals(mediaType.getType(), "application/vnd.openstack.volume+json;version=1");
-//        assertEquals(mediaType.getBase(), "application/json");
-//        // check version links
-//        VersionLink versionLink = version.getLinks().get(0);
-//        assertEquals(versionLink.getRel(), "describedby");
-//        assertEquals(versionLink.getHref(), "http://docs.openstack.org/");
-//        assertEquals(versionLink.getType(), "text/html");
-//        assertEquals(version.getId(), "v1.0");
-//        assertEquals(version.getUpdated(), "2014-06-28T12:20:21Z");
-//        assertEquals(version.getVersion(), "");
-//        assertEquals(version.getStatus(), "SUPPORTED");
-//
-//        // Check that the list request is the one we expect
-//        RecordedRequest listRequest = server.takeRequest();
-//        assertNotNull(listRequest.getHeader("X-Auth-Token"));
-//        assertTrue(listRequest.getPath().matches("/"));
-//    }
-//
-//    @Test
-//    public void getVersionV2Test() throws Exception
-//    {
-//        // check get versions
-//        respondWith("/evs/v2/versionV2.json");
-//        List<? extends Version> versions= osv3().evs().versions().version("v2");
-//        assertEquals(versions.size(), 1);
-//        Version version = versions.get(0);
-//        assertEquals(version.getMinVersion(), "");
-//        // check version media-types
-//        MediaType mediaType = version.getMediaTypes().get(0);
-//        assertEquals(mediaType.getType(), "application/vnd.openstack.volume+json;version=1");
-//        assertEquals(mediaType.getBase(), "application/json");
-//        // check version links
-//        VersionLink versionLink = version.getLinks().get(0);
-//        assertEquals(versionLink.getRel(), "describedby");
-//        assertEquals(versionLink.getHref(), "http://docs.openstack.org/");
-//        assertEquals(versionLink.getType(), "text/html");
-//        assertEquals(version.getId(), "v2.0");
-//        assertEquals(version.getUpdated(), "2014-06-28T12:20:21Z");
-//        assertEquals(version.getVersion(), "");
-//        assertEquals(version.getStatus(), "SUPPORTED");
-//
-//        // Check that the list request is the one we expect
-//        RecordedRequest listRequest = server.takeRequest();
-//        assertNotNull(listRequest.getHeader("X-Auth-Token"));
-//        assertTrue(listRequest.getPath().matches("/v2"));
-//    }
+    @Test
+    public void getVersionsTest() throws Exception
+    {
+        // check get versions
+        respondWith("/evs/v2/versions.json");
+        List<? extends Version> versions= osv3().evs().versions().list();
+        assertEquals(versions.size(), 3);
+        Version version = versions.get(0);
+        assertEquals(version.getMinVersion(), "");
+        // check version media-types
+        MediaType mediaType = version.getMediaTypes().get(0);
+        assertEquals(mediaType.getType(), "application/vnd.openstack.volume+json;version=1");
+        assertEquals(mediaType.getBase(), "application/json");
+        // check version links
+        VersionLink versionLink = version.getLinks().get(0);
+        assertEquals(versionLink.getRel(), "describedby");
+        assertEquals(versionLink.getHref(), "http://docs.openstack.org/");
+        assertEquals(versionLink.getType(), "text/html");
+        assertEquals(version.getId(), "v1.0");
+        assertEquals(version.getUpdated(), "2014-06-28T12:20:21Z");
+        assertEquals(version.getVersion(), "");
+        assertEquals(version.getStatus(), "SUPPORTED");
+
+        // Check that the list request is the one we expect
+        RecordedRequest listRequest = server.takeRequest();
+        assertNotNull(listRequest.getHeader("X-Auth-Token"));
+        assertTrue(listRequest.getPath().matches("/"));
+    }
+
+    @Test
+    public void getVersionV2Test() throws Exception
+    {
+        // check get versions
+        respondWith("/evs/v2/versionV2.json");
+        List<? extends Version> versions= osv3().evs().versions().get("v2");
+        assertEquals(versions.size(), 1);
+        Version version = versions.get(0);
+        assertEquals(version.getMinVersion(), "");
+        // check version media-types
+        MediaType mediaType = version.getMediaTypes().get(0);
+        assertEquals(mediaType.getType(), "application/vnd.openstack.volume+json;version=1");
+        assertEquals(mediaType.getBase(), "application/json");
+        // check version links
+        VersionLink versionLink = version.getLinks().get(0);
+        assertEquals(versionLink.getRel(), "describedby");
+        assertEquals(versionLink.getHref(), "http://docs.openstack.org/");
+        assertEquals(versionLink.getType(), "text/html");
+        assertEquals(version.getId(), "v2.0");
+        assertEquals(version.getUpdated(), "2014-06-28T12:20:21Z");
+        assertEquals(version.getVersion(), "");
+        assertEquals(version.getStatus(), "SUPPORTED");
+
+        // Check that the list request is the one we expect
+        RecordedRequest listRequest = server.takeRequest();
+        assertNotNull(listRequest.getHeader("X-Auth-Token"));
+        assertTrue(listRequest.getPath().matches("/v2"));
+    }
 
 }

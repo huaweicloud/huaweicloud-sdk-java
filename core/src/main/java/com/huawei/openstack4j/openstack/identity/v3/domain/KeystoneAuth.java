@@ -307,6 +307,8 @@ public class KeystoneAuth implements Authentication, AuthStore {
 
                 if (project.isTypeID()) {
                     scope.id = project.getId();
+                } else {
+                	scope.name = project.getId();
                 }
                 return scope;
 

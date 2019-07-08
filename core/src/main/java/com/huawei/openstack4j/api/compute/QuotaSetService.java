@@ -47,12 +47,12 @@ public interface QuotaSetService extends RestService {
 	 */
 	QuotaSet get(String tenantId, String userId);
 
-//	/**
-//	 * Gets the Default QuotaSet for the given tenant
-//	 * @param tenantId the identifier for the tenant
-//	 * @return the quota set
-//	 */
-//	QuotaSet getDefault(String tenantId);
+	/**
+	 * Gets the Default QuotaSet for the given tenant
+	 * @param tenantId the identifier for the tenant
+	 * @return the quota set
+	 */
+	QuotaSet getDefault(String tenantId);
 
 	/**
 	 * Updates quota for a specified class

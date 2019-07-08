@@ -48,7 +48,7 @@ public class CloudServer {
 		String networkId = "dadd702e-f4ec-44c0-86e8-fb2397d15ae4";
 		String secGroup = "c9ce5f25-f5d7-44eb-b486-f196f465edf0";
 		
-		String userData_org = "#!/bin/bash \r\n echo 'root:Cloud.1234' | chpasswd ;";
+		String userData_org = "#!/bin/bash \r\n echo 'root:xxxxx' | chpasswd ;";
 		byte[] userData_byte = userData_org.getBytes();
 		String userData = new BASE64Encoder().encode(userData_byte);
 		

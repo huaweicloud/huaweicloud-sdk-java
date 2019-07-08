@@ -28,7 +28,7 @@ import com.fasterxml.jackson.annotation.JsonValue;
  */
 public enum NetworkChargingMode {
 	
-	TRAFFIC("traffic"), BANDWIDTH("bandwidth");
+	TRAFFIC("traffic");
 
 	private String val;
 

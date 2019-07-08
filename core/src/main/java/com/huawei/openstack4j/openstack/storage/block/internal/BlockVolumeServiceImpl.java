@@ -120,16 +120,16 @@ public class BlockVolumeServiceImpl extends BaseBlockStorageServices implements 
 		return deleteWithResponse(uri("/volumes/%s", volumeId)).execute();
 	}
 
-//	/**
-//	 * {@inheritDoc}
-//	 */
-//	@Override
-//	public ActionResponse forceDelete(String volumeId, Boolean cascade) {
-//		checkNotNull(volumeId);
-//		Map<String, Object> params = new HashMap<>();
-//		params.put("cascade",cascade);
-//		return deleteWithResponse(uri("/volumes/%s", volumeId)).params(params).execute();
-//	}
+	/**
+	 * {@inheritDoc}
+	 */
+	@Override
+	public ActionResponse forceDelete(String volumeId, Boolean cascade) {
+		checkNotNull(volumeId);
+		Map<String, Object> params = new HashMap<>();
+		params.put("cascade",cascade);
+		return deleteWithResponse(uri("/volumes/%s", volumeId)).params(params).execute();
+	}
 
 	/**
 	 * {@inheritDoc}
@@ -315,114 +315,116 @@ public class BlockVolumeServiceImpl extends BaseBlockStorageServices implements 
 		return post(ActionResponse.class, uri("/volumes/%s/action", volumeId)).entity(detach).execute();
 	}
 
-//	/**
-//	 * {@inheritDoc}
-//	 */
-//	@Override
-//	public ActionResponse setBootable(String volumeId, boolean bootable) {
-//		Map<String, Boolean> map = Maps.newHashMap();
-//		map.put("bootable", bootable);
-//		Map<String, Object> param = Maps.newHashMap();
-//		param.put("os-set_bootable", map);
-//		return postWithResponse(uri("/volumes/%s/action", volumeId)).entity(param).execute();
-//	}
-//
-//	/**
-//	 * {@inheritDoc}
-//	 */
-//	@Override
-//	public CinderVolumesResponse listVolumes() {
-//		return get(CinderVolumesResponse.class, "/volumes").execute();
-//	}
-//
-//	/**
-//	 * {@inheritDoc}
-//	 */
-//	@Override
-//	public CinderVolumesResponse listVolumes(Map<String, String> filteringParams) {
-//		Invocation<CinderVolumesResponse> volumeInvocation = get(CinderVolumesResponse.class, "/volumes");
-//		if (filteringParams != null) {
-//			for (Map.Entry<String, String> entry : filteringParams.entrySet()) {
-//				volumeInvocation = volumeInvocation.param(entry.getKey(), entry.getValue());
-//			}
-//		}
-//		return volumeInvocation.execute();
-//	}
-//
-//	/**
-//	 * {@inheritDoc}
-//	 */
-//	@Override
-//	public VolumeType getVolumeType(String typeId) {
-//		checkArgument(!Strings.isNullOrEmpty(typeId), "`typeId` should not be empty");
-//		return get(CinderVolumeType.class, uri("/types/%s", typeId)).execute();
-//	}
-//
-//	/**
-//	 * {@inheritDoc}
-//	 */
-//	@Override
-//	public VolumeMetadata createMetadata(String volumeId, VolumeMetadata metadata) {
-//		checkArgument(!Strings.isNullOrEmpty(volumeId), "`volumeId` should not be empty");
-//		checkArgument(metadata != null, "`metadata` is required");
-//		return post(VolumeMetadata.class, uri("/volumes/%s/metadata", volumeId)).entity(metadata).execute();
-//	}
-//
-//	/**
-//	 * {@inheritDoc}
-//	 */
-//	@Override
-//	public VolumeMetadata getMetadata(String volumeId) {
-//		checkArgument(!Strings.isNullOrEmpty(volumeId), "`volumeId` should not be empty");
-//		return get(VolumeMetadata.class, uri("/volumes/%s/metadata", volumeId)).execute();
-//	}
-//
-//	/**
-//	 * {@inheritDoc}
-//	 */
-//	@Override
-//	public VolumeMeta getMeta(String volumeId, String key) {
-//		checkArgument(!Strings.isNullOrEmpty(volumeId), "`volumeId` should not be empty");
-//		checkArgument(!Strings.isNullOrEmpty(key), "`key` should not be empty");
-//		return get(VolumeMeta.class, uri("/volumes/%s/metadata/%s", volumeId, key)).execute();
-//	}
-//
-//	/**
-//	 * {@inheritDoc}
-//	 */
-//	@Override
-//	public VolumeMetadata updateMetadata(String volumeId, VolumeMetadata metadata) {
-//		checkArgument(!Strings.isNullOrEmpty(volumeId), "`volumeId` should not be empty");
-//		checkArgument(metadata != null, "`metadata` is required");
-//		return put(VolumeMetadata.class, uri("/volumes/%s/metadata", volumeId)).entity(metadata).execute();
-//	}
-//
-//	/**
-//	 * {@inheritDoc}
-//	 */
-//	@Override
-//	public VolumeMeta updateMeta(String volumeId, String key, VolumeMeta metadata) {
-//		checkArgument(!Strings.isNullOrEmpty(volumeId), "`volumeId` should not be empty");
-//		checkArgument(!Strings.isNullOrEmpty(key), "`key` should not be empty");
-//		checkArgument(metadata != null, "`metadata` is required");
-//		return put(VolumeMeta.class, uri("/volumes/%s/metadata/%s", volumeId, key)).entity(metadata).execute();
-//	}
-//
-//	/**
-//	 * {@inheritDoc}
-//	 */
-//	@Override
-//	public ActionResponse deleteMetadata(String volumeId, String key) {
-//		checkArgument(!Strings.isNullOrEmpty(volumeId), "`volumeId` should not be empty");
-//		checkArgument(!Strings.isNullOrEmpty(key), "`key` should not be empty");
-//		return deleteWithResponse(uri("/volumes/%s/metadata/%s", volumeId, key)).execute();
-//	}
-//
-//	/**
-//	 * {@inheritDoc}
-//	 */
-//	@Override
-//	public List<? extends Extension> listExtensions() {
-//		return get(Extension.Extensions.class, "/extensions").execute().getList();
-//	}
+	/**
+	 * {@inheritDoc}
+	 */
+	@Override
+	public ActionResponse setBootable(String volumeId, boolean bootable) {
+		checkNotNull(volumeId);
+		checkNotNull(bootable);
+		Map<String, Boolean> map = Maps.newHashMap();
+		map.put("bootable", bootable);
+		Map<String, Object> param = Maps.newHashMap();
+		param.put("os-set_bootable", map);
+		return postWithResponse(uri("/volumes/%s/action", volumeId)).entity(param).execute();
+	}
+
+	/**
+	 * {@inheritDoc}
+	 */
+	@Override
+	public CinderVolumesResponse listVolumes() {
+		return get(CinderVolumesResponse.class, "/volumes").execute();
+	}
+
+	/**
+	 * {@inheritDoc}
+	 */
+	@Override
+	public CinderVolumesResponse listVolumes(Map<String, String> filteringParams) {
+		Invocation<CinderVolumesResponse> volumeInvocation = get(CinderVolumesResponse.class, "/volumes");
+		if (filteringParams != null) {
+			for (Map.Entry<String, String> entry : filteringParams.entrySet()) {
+				volumeInvocation = volumeInvocation.param(entry.getKey(), entry.getValue());
+			}
+		}
+		return volumeInvocation.execute();
+	}
+
+	/**
+	 * {@inheritDoc}
+	 */
+	@Override
+	public VolumeType getVolumeType(String typeId) {
+		checkArgument(!Strings.isNullOrEmpty(typeId), "`typeId` should not be empty");
+		return get(CinderVolumeType.class, uri("/types/%s", typeId)).execute();
+	}
+
+	/**
+	 * {@inheritDoc}
+	 */
+	@Override
+	public VolumeMetadata createMetadata(String volumeId, VolumeMetadata metadata) {
+		checkArgument(!Strings.isNullOrEmpty(volumeId), "`volumeId` should not be empty");
+		checkArgument(metadata != null, "`metadata` is required");
+		return post(VolumeMetadata.class, uri("/volumes/%s/metadata", volumeId)).entity(metadata).execute();
+	}
+
+	/**
+	 * {@inheritDoc}
+	 */
+	@Override
+	public VolumeMetadata getMetadata(String volumeId) {
+		checkArgument(!Strings.isNullOrEmpty(volumeId), "`volumeId` should not be empty");
+		return get(VolumeMetadata.class, uri("/volumes/%s/metadata", volumeId)).execute();
+	}
+
+	/**
+	 * {@inheritDoc}
+	 */
+	@Override
+	public VolumeMeta getMeta(String volumeId, String key) {
+		checkArgument(!Strings.isNullOrEmpty(volumeId), "`volumeId` should not be empty");
+		checkArgument(!Strings.isNullOrEmpty(key), "`key` should not be empty");
+		return get(VolumeMeta.class, uri("/volumes/%s/metadata/%s", volumeId, key)).execute();
+	}
+
+	/**
+	 * {@inheritDoc}
+	 */
+	@Override
+	public VolumeMetadata updateMetadata(String volumeId, VolumeMetadata metadata) {
+		checkArgument(!Strings.isNullOrEmpty(volumeId), "`volumeId` should not be empty");
+		checkArgument(metadata != null, "`metadata` is required");
+		return put(VolumeMetadata.class, uri("/volumes/%s/metadata", volumeId)).entity(metadata).execute();
+	}
+
+	/**
+	 * {@inheritDoc}
+	 */
+	@Override
+	public VolumeMeta updateMeta(String volumeId, String key, VolumeMeta metadata) {
+		checkArgument(!Strings.isNullOrEmpty(volumeId), "`volumeId` should not be empty");
+		checkArgument(!Strings.isNullOrEmpty(key), "`key` should not be empty");
+		checkArgument(metadata != null, "`metadata` is required");
+		return put(VolumeMeta.class, uri("/volumes/%s/metadata/%s", volumeId, key)).entity(metadata).execute();
+	}
+
+	/**
+	 * {@inheritDoc}
+	 */
+	@Override
+	public ActionResponse deleteMetadata(String volumeId, String key) {
+		checkArgument(!Strings.isNullOrEmpty(volumeId), "`volumeId` should not be empty");
+		checkArgument(!Strings.isNullOrEmpty(key), "`key` should not be empty");
+		return deleteWithResponse(uri("/volumes/%s/metadata/%s", volumeId, key)).execute();
+	}
+
+	/**
+	 * {@inheritDoc}
+	 */
+	@Override
+	public List<? extends Extension> listExtensions() {
+		return get(Extension.Extensions.class, "/extensions").execute().getList();
+	}
 }

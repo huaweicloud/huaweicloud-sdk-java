@@ -83,5 +83,11 @@ public class DataVolume implements ModelEntity {
 	 */
 	@JsonProperty("extendparam")
 	VolumeExtendParam extendParam;
+
+	/**
+	 * 数据镜像的ID，UUID格式。
+	 */
+	@JsonProperty("data_image_id")
+	String dataImageId;
 	
 }

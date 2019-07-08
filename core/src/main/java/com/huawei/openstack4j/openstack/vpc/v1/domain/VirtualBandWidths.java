@@ -128,8 +128,12 @@ public class VirtualBandWidths implements ModelEntity {
 	 */
 	@JsonProperty("enterprise_project_id")
 	private String enterpriseProjectId;
-	
-	
+
+	/**
+	 * 带宽的状态
+	 */
+	@JsonProperty("status")
+	private String status;
 	
 	
 	

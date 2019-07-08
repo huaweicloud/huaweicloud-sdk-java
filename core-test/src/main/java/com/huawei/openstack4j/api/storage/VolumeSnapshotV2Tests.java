@@ -18,6 +18,7 @@ package com.huawei.openstack4j.api.storage;
 import static org.testng.Assert.assertTrue;
 
 import java.io.IOException;
+import java.util.HashMap;
 import java.util.Map;
 
 import org.testng.annotations.Test;
@@ -42,119 +43,119 @@ public class VolumeSnapshotV2Tests extends AbstractTest {
 	private static final String JSON_SNAPSHOT_METADATA_UPDATE = "/storage/v2/snapshot_metadata_update.json";
 	private static final String JSON_SNAPSHOT_METADATA = "/storage/v2/snapshot_metadata.json";
 
-//	@Test
-//	public void listDetailTest() throws IOException {
-//		respondWith(JSON_SNAPSHOTS);
-//
-//		CinderVolumeSnapshotsResponse snapshots = osv3().blockStorage().snapshots().listDetail();
-//
-//		assertTrue(snapshots.getSnapshotList().size() > 0);
-//		assertTrue("b836dc3d-4e10-4ea4-a34c-8f6b0460a583".equals(snapshots.getSnapshotList().get(0).getId()));
-//	}
-//
-//	@Test
-//	public void listDetailWithOptionsTest() throws IOException {
-//		respondWith(JSON_SNAPSHOTS);
-//
-//		SnapshotListOptions options = SnapshotListOptions.create();
-//		CinderVolumeSnapshotsResponse snapshots = osv3().blockStorage().snapshots().listDetail(options);
-//
-//		assertTrue(snapshots.getSnapshotList().size() > 0);
-//		assertTrue("b836dc3d-4e10-4ea4-a34c-8f6b0460a583".equals(snapshots.getSnapshotList().get(0).getId()));
-//	}
-//
-//	@Test
-//	public void updateTest() throws IOException {
-//		respondWith(JSON_SNAPSHOT_UPDATE);
-//
-//		String snapshotId = "f9faf7df-fdc1-4093-9ef3-5cba06eef995";
-//		String name = "snap-001";
-//		SnapshotUpdate snapshot = SnapshotUpdate.builder().name(name).build();
-//		SnapshotDetail update = osv3().blockStorage().snapshots().update(snapshotId, snapshot);
-//
-//		assertTrue(update != null);
-//		assertTrue(snapshotId.equals(update.getId()));
-//	}
-//
-//	@Test
-//	public void createMetadataTest() throws IOException {
-//		respondWith(JSON_SNAPSHOT_METADATA_CREATE);
-//
-//		String snapshotId = "snapshotId";
-//		Map<String, String> map = Maps.newHashMap();
-//		map.put("key1", "value1");
-//		map.put("key2", "value2");
-//		SnapshotMetadata metadata = SnapshotMetadata.builder().metadata(map).build();
-//		SnapshotMetadata createMetadata = osv3().blockStorage().snapshots().createMetadata(snapshotId, metadata);
-//
-//		assertTrue(createMetadata != null);
-//		assertTrue("value1".equals(createMetadata.getMetadata().get("key1")));
-//	}
-//
-//	@Test
-//	public void getMetadataTest() throws IOException {
-//		respondWith(JSON_SNAPSHOT_METADATAS);
-//
-//		String snapshotId = "snapshotId";
-//		SnapshotMetadata metadata = osv3().blockStorage().snapshots().getMetadata(snapshotId);
-//
-//		assertTrue(metadata != null);
-//		assertTrue("value1".equals(metadata.getMetadata().get("key1")));
-//	}
+	@Test
+	public void listDetailTest() throws IOException {
+		respondWith(JSON_SNAPSHOTS);
 
-//	@Test
-//	public void updateMetadataTest() throws IOException {
-//		respondWith(JSON_SNAPSHOT_METADATA_UPDATE);
-//
-//		String snapshotId = "snapshotId";
-//		Map<String, String> map = Maps.newHashMap();
-//		map.put("key1", "value1");
-//		map.put("key2", "value2");
-//		SnapshotMetadata metadata = SnapshotMetadata.builder().metadata(map).build();
-//		SnapshotMetadata updateMetadata = osv3().blockStorage().snapshots().updateMetadata(snapshotId, metadata);
-//
-//		assertTrue(updateMetadata != null);
-//		assertTrue("value1".equals(updateMetadata.getMetadata().get("key1")));
-//	}
-//
-//	@Test
-//	public void deleteMetaTest() {
-//		respondWith(200);
-//
-//		String key = "key";
-//		String snapshotId = "snapshotId";
-//		ActionResponse resp = osv3().blockStorage().snapshots().deleteMeta(snapshotId, key);
-//
-//		assertTrue(resp.isSuccess());
-//	}
-//
-//	@Test
-//	public void getMetaTest() throws IOException {
-//		respondWith(JSON_SNAPSHOT_METADATA);
-//
-//		String key = "key1";
-//		String snapshotId = "snapshotId";
-//		SnapshotMeta metadata = osv3().blockStorage().snapshots().getMeta(snapshotId, key);
-//
-//		assertTrue(metadata != null);
-//		assertTrue("value1".equals(metadata.getMeta().get(key)));
-//	}
-//
-//	@Test
-//	public void updateMetaTest() throws IOException {
-//		respondWith(JSON_SNAPSHOT_METADATA);
-//
-//		String key = "key1";
-//		String value = "value1";
-//		String snapshotId = "snapshotId";
-//		Map<String, String> map = Maps.newHashMap();
-//		map.put(key, value);
-//		SnapshotMeta metadata = SnapshotMeta.builder().meta(map).build();
-//		SnapshotMeta updateMetadata = osv3().blockStorage().snapshots().updateMeta(snapshotId, key, metadata);
-//
-//		assertTrue(updateMetadata != null);
-//		assertTrue(value.equals(updateMetadata.getMeta().get(key)));
-//	}
+		CinderVolumeSnapshotsResponse snapshots = osv3().blockStorage().snapshots().listDetail();
+
+		assertTrue(snapshots.getSnapshotList().size() > 0);
+		assertTrue("b836dc3d-4e10-4ea4-a34c-8f6b0460a583".equals(snapshots.getSnapshotList().get(0).getId()));
+	}
+
+	@Test
+	public void listDetailWithOptionsTest() throws IOException {
+		respondWith(JSON_SNAPSHOTS);
+
+		Map<String,String> filteringParams = new HashMap<String,String>();
+		CinderVolumeSnapshotsResponse snapshots = osv3().blockStorage().snapshots().listDetail(filteringParams);
+
+		assertTrue(snapshots.getSnapshotList().size() > 0);
+		assertTrue("b836dc3d-4e10-4ea4-a34c-8f6b0460a583".equals(snapshots.getSnapshotList().get(0).getId()));
+	}
+
+	@Test
+	public void updateTest() throws IOException {
+		respondWith(JSON_SNAPSHOT_UPDATE);
+
+		String snapshotId = "f9faf7df-fdc1-4093-9ef3-5cba06eef995";
+		String name = "snap-001";
+		SnapshotUpdate snapshot = SnapshotUpdate.builder().name(name).build();
+		SnapshotDetail update = osv3().blockStorage().snapshots().update(snapshotId, snapshot);
+
+		assertTrue(update != null);
+		assertTrue(snapshotId.equals(update.getId()));
+	}
+
+	@Test
+	public void createMetadataTest() throws IOException {
+		respondWith(JSON_SNAPSHOT_METADATA_CREATE);
+
+		String snapshotId = "snapshotId";
+		Map<String, String> map = Maps.newHashMap();
+		map.put("key1", "value1");
+		map.put("key2", "value2");
+		SnapshotMetadata metadata = SnapshotMetadata.builder().metadata(map).build();
+		SnapshotMetadata createMetadata = osv3().blockStorage().snapshots().createMetadata(snapshotId, metadata);
+
+		assertTrue(createMetadata != null);
+		assertTrue("value1".equals(createMetadata.getMetadata().get("key1")));
+	}
+
+	@Test
+	public void getMetadataTest() throws IOException {
+		respondWith(JSON_SNAPSHOT_METADATAS);
+
+		String snapshotId = "snapshotId";
+		SnapshotMetadata metadata = osv3().blockStorage().snapshots().getMetadata(snapshotId);
+
+		assertTrue(metadata != null);
+		assertTrue("value1".equals(metadata.getMetadata().get("key1")));
+	}
+
+	@Test
+	public void updateMetadataTest() throws IOException {
+		respondWith(JSON_SNAPSHOT_METADATA_UPDATE);
+
+		String snapshotId = "snapshotId";
+		Map<String, String> map = Maps.newHashMap();
+		map.put("key1", "value1");
+		map.put("key2", "value2");
+		SnapshotMetadata metadata = SnapshotMetadata.builder().metadata(map).build();
+		SnapshotMetadata updateMetadata = osv3().blockStorage().snapshots().updateMetadata(snapshotId, metadata);
+
+		assertTrue(updateMetadata != null);
+		assertTrue("value1".equals(updateMetadata.getMetadata().get("key1")));
+	}
+
+	@Test
+	public void deleteMetaTest() {
+		respondWith(200);
+
+		String key = "key";
+		String snapshotId = "snapshotId";
+		ActionResponse resp = osv3().blockStorage().snapshots().deleteMeta(snapshotId, key);
+
+		assertTrue(resp.isSuccess());
+	}
+
+	@Test
+	public void getMetaTest() throws IOException {
+		respondWith(JSON_SNAPSHOT_METADATA);
+
+		String key = "key1";
+		String snapshotId = "snapshotId";
+		SnapshotMeta metadata = osv3().blockStorage().snapshots().getMeta(snapshotId, key);
+
+		assertTrue(metadata != null);
+		assertTrue("value1".equals(metadata.getMeta().get(key)));
+	}
+
+	@Test
+	public void updateMetaTest() throws IOException {
+		respondWith(JSON_SNAPSHOT_METADATA);
+
+		String key = "key1";
+		String value = "value1";
+		String snapshotId = "snapshotId";
+		Map<String, String> map = Maps.newHashMap();
+		map.put(key, value);
+		SnapshotMeta metadata = SnapshotMeta.builder().meta(map).build();
+		SnapshotMeta updateMetadata = osv3().blockStorage().snapshots().updateMeta(snapshotId, key, metadata);
+
+		assertTrue(updateMetadata != null);
+		assertTrue(value.equals(updateMetadata.getMeta().get(key)));
+	}
 
 	@Override
 	protected Service service() {

@@ -18,6 +18,18 @@ import com.huawei.openstack4j.model.network.Agent;
  * 	License for the specific language governing permissions and limitations under    
  * 	the License.                                                                     
  *******************************************************************************/
+
+/**
+ * <p>
+ * <b>Copyright:</b> Copyright (c) 2016
+ * </p>
+ * <p>
+ * <b>Company:</b> Ericsson
+ * </p>
+ *
+ * @author emagnbr 2016- initial version
+ *
+ */
 public interface AgentBuilder extends Builder<AgentBuilder, Agent> {
 
     /**

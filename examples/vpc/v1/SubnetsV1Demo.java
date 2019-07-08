@@ -40,10 +40,10 @@ public class SubnetsDemo {
 
         // Create subnet
         SubnetCreate subnet = SubnetCreate.builder()
-                .name("testSubnet")
-                .cidr("192.168.20.0/24")
-                .gatewayIp("192.168.20.1")
-                .vpcId("3ec3b33f-ac1c-4630-ad1c-7dba1ed79d85")
+                .name("xxxxxx")
+                .cidr("xxx.xxx.xxx.xxx/xx")
+                .gatewayIp("xxx.xxx.xxx.xxx")
+                .vpcId("xxxxxx")
                 .build();
 
         Subnet createResp = osclient.vpc().subnets().create(subnet);

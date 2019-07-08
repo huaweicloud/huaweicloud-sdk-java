@@ -58,11 +58,18 @@ public class RootVolume implements ModelEntity {
 	@JsonProperty("extendparam")
 	VolumeExtendParam extendParam;
 
-	@java.beans.ConstructorProperties({ "type", "size", "extendParam" })
-	public RootVolume(VolumeType type, Integer size, VolumeExtendParam extendParam) {
+	/**
+	 * 使用SDI规格创建虚拟机时请关注该参数，如果该参数值为true，说明创建的为scsi类型的卷
+	 */
+	@JsonProperty("hw:passthrough")
+	Boolean passthrough;
+
+	@java.beans.ConstructorProperties({ "type", "size", "extendParam", "passthrough" })
+	public RootVolume(VolumeType type, Integer size, VolumeExtendParam extendParam, Boolean passthrough) {
 		this.type = type;
 		this.size = size;
 		this.extendParam = extendParam;
+		this.passthrough = passthrough;
 	}
 
 	public RootVolume() {
@@ -84,20 +91,26 @@ public class RootVolume implements ModelEntity {
 		return this.extendParam;
 	}
 
+	public Boolean getPassthrough() {
+		return this.passthrough;
+	}
+
 	@Override
 	public String toString() {
 		return "RootVolume(type=" + this.getType() + ", size=" + this.getSize() + ", extendParam="
-				+ this.getExtendParam() + ")";
+				+ this.getExtendParam() + ", passthrough=" + this.getPassthrough() + ")";
 	}
 
 	public RootVolumeBuilder toBuilder() {
-		return new RootVolumeBuilder().type(this.type).size(this.size).extendParam(this.extendParam);
+		return new RootVolumeBuilder().type(this.type).size(this.size).extendParam(this.extendParam)
+				.passthrough(this.passthrough);
 	}
 
 	public static class RootVolumeBuilder {
 		private VolumeType type;
 		private Integer size;
 		private VolumeExtendParam extendParam;
+		private Boolean passthrough;
 
 		RootVolumeBuilder() {
 		}
@@ -117,14 +130,19 @@ public class RootVolume implements ModelEntity {
 			return this;
 		}
 
+		public RootVolume.RootVolumeBuilder passthrough(Boolean passthrough) {
+			this.passthrough = passthrough;
+			return this;
+		}
+
 		public RootVolume build() {
-			return new RootVolume(type, size, extendParam);
+			return new RootVolume(type, size, extendParam, passthrough);
 		}
 
 		@Override
 		public String toString() {
 			return "RootVolume.RootVolumeBuilder(type=" + this.type + ", size=" + this.size + ", extendParam="
-					+ this.extendParam + ")";
+					+ this.extendParam + ", passthrough=" + this.passthrough + ")";
 		}
 	}
 }

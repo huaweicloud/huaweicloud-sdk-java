@@ -26,7 +26,8 @@ import com.fasterxml.jackson.annotation.JsonValue;
  */
 public enum ShareType {
 
-	PER("PER");	// 独享
+	PER("PER"),      // 独享
+	WHOLE("WHOLE");	// 共享
 
 	String value;
 

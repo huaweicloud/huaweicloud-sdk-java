@@ -1,6 +1,8 @@
 package sample;
 
 import java.util.concurrent.TimeUnit;
+import java.util.ArrayList;
+import java.util.List;
 
 import com.huawei.openstack4j.api.OSClient.OSClientV3;
 import com.huawei.openstack4j.model.common.Identifier;
@@ -14,6 +16,8 @@ import com.huawei.openstack4j.openstack.ecs.v1.contants.IpType;
 import com.huawei.openstack4j.openstack.ecs.v1.contants.PeriodType;
 import com.huawei.openstack4j.openstack.ecs.v1.contants.VolumeType;
 import com.huawei.openstack4j.openstack.ecs.v1.domain.Personality;
+import com.huawei.openstack4j.openstack.ecs.v1.domain.Job;
+import com.huawei.openstack4j.openstack.ecs.v1.domain.SubJob;
 import com.huawei.openstack4j.openstack.ecs.v1_1.domain.ResizeServer;
 import com.huawei.openstack4j.openstack.ecs.v1_1.contants.ServerChargingMode;
 import com.huawei.openstack4j.openstack.ecs.v1_1.contants.ShareType;
@@ -24,6 +28,7 @@ import com.huawei.openstack4j.openstack.ecs.v1_1.domain.RootVolume;
 import com.huawei.openstack4j.openstack.ecs.v1_1.domain.SchedulerHints;
 import com.huawei.openstack4j.openstack.ecs.v1_1.domain.ServerCreate;
 import com.huawei.openstack4j.openstack.ecs.v1_1.domain.ServerExtendParam;
+import com.huawei.openstack4j.openstack.ecs.v1_1.domain.AsyncServerRespEntity;
 
 public class CloudServer {
 	public static void main(String[] args) {
@@ -48,7 +53,7 @@ public class CloudServer {
 		String networkId = "dadd702e-f4ec-44c0-86e8-fb2397d15ae4";
 		String secGroup = "c9ce5f25-f5d7-44eb-b486-f196f465edf0";
 		
-		String userData_org = "#!/bin/bash \r\n echo 'root:Cloud.1234' | chpasswd ;";
+		String userData_org = "#!/bin/bash \r\n echo 'root:xxxxx' | chpasswd ;";
 		byte[] userData_byte = userData_org.getBytes();
 		String userData = new BASE64Encoder().encode(userData_byte);
 		
@@ -80,9 +85,10 @@ public class CloudServer {
                 .build();
 				
 		//create prepaid server
-		AsyncRespEntity rep1 = os.ecsV1_1().servers().create(creation1);
+		AsyncServerRespEntity rep1 = os.ecsV1_1().servers().create(creation1);
 		if (null != rep1) {
 			System.out.println("create server success, orderid = " + rep1.getOrderId());
+			System.out.println("serverIds = " + rep1.getServerIds());
 		} else {
 			System.out.println("create server failed");
 		}
@@ -123,9 +129,31 @@ public class CloudServer {
                 .build();
 		
 		//create postpaid server
-		AsyncRespEntity rep2 = os.ecsV1_1().servers().create(creation2);
+		AsyncServerRespEntity rep2 = os.ecsV1_1().servers().create(creation2);
 		if (null != rep2) {
-			System.out.println("create server success, jobid = " + rep2.getJobId());
+			Job job = os.ecs().jobs().get(rep2.getJobId());
+			while (!"SUCCESS".equals(job.getStatus()) && !"FAIL".equals(job.getStatus())) {
+				try {
+					Thread.sleep(8000);
+				} catch (InterruptedException e) {
+					e.printStackTrace();
+				}
+				System.out.println("jobStatus"+job.getStatus());
+				job = os.ecs().jobs().get(rep2.getJobId());
+			}
+			List<SubJob> subJobList = job.getEntities().getSubJobs();
+			List<String> successServers = new ArrayList<>();
+			List<String> failServers = new ArrayList<>();
+			for (SubJob subJob : subJobList) {
+				if ("SUCCESS".equals(subJob.getStatus())) {
+					successServers.add(subJob.getEntities().getServerId());
+				} else {
+					failServers.add(subJob.getEntities().getServerId());
+				}
+			}
+			System.out.println("create server success, jobId = " + rep2.getJobId());
+			System.out.println("success servers=" + successServers);
+			System.out.println("fail servers=" + failServers);
 		} else {
 			System.out.println("create server failed");
 		}

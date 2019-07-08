@@ -59,124 +59,124 @@ public class VolumeV2Tests extends AbstractTest {
 
     private static final String JSON_Volume_Upload_Image  = "/storage/v2/volume_upload_image.json";
 
-//    @Test
-//    public void listVolumesTest() throws IOException {
-//        respondWith(JSON_VOLUMES_1);
-//        CinderVolumesResponse volumes = osv3().blockStorage().volumes().listVolumes();
-//        LOGGER.info("{}", volumes);
-//        assertTrue(volumes != null);
-//    }
-//
-//    @Test
-//    public void listVolumesWithOptionsTest() throws IOException {
-//        respondWith(JSON_VOLUMES_1);
-//        Map<String, String> query = new HashMap<String, String>();
-//        query.put("name", "volume-for-snapshot");
-//        CinderVolumesResponse volumes = osv3().blockStorage().volumes().listVolumes(query);
-//        LOGGER.info("{}", volumes);
-//        assertTrue(volumes != null);
-//    }
+    @Test
+    public void listVolumesTest() throws IOException {
+        respondWith(JSON_VOLUMES_1);
+        CinderVolumesResponse volumes = osv3().blockStorage().volumes().listVolumes();
+        LOGGER.info("{}", volumes);
+        assertTrue(volumes != null);
+    }
 
-//    @Test
-//    public void updateMetadataTest() throws IOException {
-//        respondWith(JSON_VOLUME_METADATA_UPDATE);
-//
-//        String volumeId = "volumeId";
-//        Map<String, String> map = Maps.newHashMap();
-//        map.put("key", "value");
-//        VolumeMetadata metadata = VolumeMetadata.builder().metadata(map).build();
-//        VolumeMetadata updateMetadata = osv3().blockStorage().volumes().updateMetadata(volumeId, metadata);
-//
-//        assertTrue(updateMetadata != null);
-//        assertTrue("value1".equals(updateMetadata.getMetadata().get("key1")));
-//    }
-//
-//    @Test
-//    public void deleteMetadataTest() {
-//        respondWith(200);
-//
-//        String key = "key";
-//        String volumeId = "volumeId";
-//        ActionResponse resp = osv3().blockStorage().volumes().deleteMetadata(volumeId, key);
-//
-//        assertTrue(resp.isSuccess());
-//    }
-//
-//    @Test
-//    public void getMetaTest() throws IOException {
-//        respondWith(JSON_VOLUME_METADATA);
-//
-//        String key = "key";
-//        String volumeId = "volumeId";
-//        VolumeMeta metadata = osv3().blockStorage().volumes().getMeta(volumeId, key);
-//
-//        assertTrue(metadata != null);
-//        assertTrue("value1".equals(metadata.getMeta().get("key1")));
-//    }
-//
-//    @Test
-//    public void createMetadataTest() throws IOException {
-//        respondWith(JSON_VOLUME_METADATA_CREATE);
-//
-//        String volumeId = "volumeId";
-//        Map<String, String> map = Maps.newHashMap();
-//        map.put("key1", "value1");
-//        map.put("key2", "value2");
-//        VolumeMetadata metadata = VolumeMetadata.builder().metadata(map).build();
-//        VolumeMetadata createMetadata = osv3().blockStorage().volumes().createMetadata(volumeId, metadata);
-//
-//        assertTrue(createMetadata != null);
-//        assertTrue("value1".equals(createMetadata.getMetadata().get("key1")));
-//        assertTrue("value2".equals(createMetadata.getMetadata().get("key2")));
-//    }
-//
-//    @Test
-//    public void getMetadataTest() throws IOException {
-//        respondWith(JSON_VOLUME_METADATAS);
-//
-//        String volumeId = "volumeId";
-//        VolumeMetadata metadata = osv3().blockStorage().volumes().getMetadata(volumeId);
-//
-//        assertTrue(metadata != null);
-//        assertTrue("value1".equals(metadata.getMetadata().get("key1")));
-//        assertTrue("value2".equals(metadata.getMetadata().get("key2")));
-//    }
-//
-//    @Test
-//    public void updateMetaTest() throws IOException {
-//        respondWith(JSON_VOLUME_METADATA_UPDATE_WITH_KEY);
-//
-//        String key = "key";
-//        String volumeId = "volumeId";
-//        Map<String, String> map = Maps.newHashMap();
-//        map.put("key1", "value1");
-//        VolumeMeta metadata = VolumeMeta.builder().meta(map).build();
-//        VolumeMeta updateMetadata = osv3().blockStorage().volumes().updateMeta(volumeId, key, metadata);
-//
-//        assertTrue(updateMetadata != null);
-//        assertTrue("value1".equals(updateMetadata.getMeta().get("key1")));
-//    }
-//
-//    @Test
-//    public void listExtensionsTest() throws IOException {
-//        respondWith(JSON_EXTENSIONS);
-//
-//        List<? extends Extension> extensions = osv3().blockStorage().volumes().listExtensions();
-//
-//        assertTrue(extensions.size() > 0);
-//        assertTrue("SchedulerHints".equals(extensions.get(0).getName()));
-//    }
-//
-//    @Test
-//    public void getVolumeTypeTest() throws IOException {
-//        respondWith(JSON_TYPE);
-//
-//        String typeId = "ea6e3c13-aac5-46e0-b280-745ed272e662";
-//        VolumeType type = osv3().blockStorage().volumes().getVolumeType(typeId);
-//
-//        assertTrue(type != null);
-//        assertTrue(typeId.equals(type.getId()));
-//    }
+    @Test
+    public void listVolumesWithOptionsTest() throws IOException {
+        respondWith(JSON_VOLUMES_1);
+        Map<String, String> query = new HashMap<String, String>();
+        query.put("name", "volume-for-snapshot");
+        CinderVolumesResponse volumes = osv3().blockStorage().volumes().listVolumes(query);
+        LOGGER.info("{}", volumes);
+        assertTrue(volumes != null);
+    }
+
+    @Test
+    public void updateMetadataTest() throws IOException {
+        respondWith(JSON_VOLUME_METADATA_UPDATE);
+
+        String volumeId = "volumeId";
+        Map<String, String> map = Maps.newHashMap();
+        map.put("key", "value");
+        VolumeMetadata metadata = VolumeMetadata.builder().metadata(map).build();
+        VolumeMetadata updateMetadata = osv3().blockStorage().volumes().updateMetadata(volumeId, metadata);
+
+        assertTrue(updateMetadata != null);
+        assertTrue("value1".equals(updateMetadata.getMetadata().get("key1")));
+    }
+
+    @Test
+    public void deleteMetadataTest() {
+        respondWith(200);
+
+        String key = "key";
+        String volumeId = "volumeId";
+        ActionResponse resp = osv3().blockStorage().volumes().deleteMetadata(volumeId, key);
+
+        assertTrue(resp.isSuccess());
+    }
+
+    @Test
+    public void getMetaTest() throws IOException {
+        respondWith(JSON_VOLUME_METADATA);
+
+        String key = "key";
+        String volumeId = "volumeId";
+        VolumeMeta metadata = osv3().blockStorage().volumes().getMeta(volumeId, key);
+
+        assertTrue(metadata != null);
+        assertTrue("value1".equals(metadata.getMeta().get("key1")));
+    }
+
+    @Test
+    public void createMetadataTest() throws IOException {
+        respondWith(JSON_VOLUME_METADATA_CREATE);
+
+        String volumeId = "volumeId";
+        Map<String, String> map = Maps.newHashMap();
+        map.put("key1", "value1");
+        map.put("key2", "value2");
+        VolumeMetadata metadata = VolumeMetadata.builder().metadata(map).build();
+        VolumeMetadata createMetadata = osv3().blockStorage().volumes().createMetadata(volumeId, metadata);
+
+        assertTrue(createMetadata != null);
+        assertTrue("value1".equals(createMetadata.getMetadata().get("key1")));
+        assertTrue("value2".equals(createMetadata.getMetadata().get("key2")));
+    }
+
+    @Test
+    public void getMetadataTest() throws IOException {
+        respondWith(JSON_VOLUME_METADATAS);
+
+        String volumeId = "volumeId";
+        VolumeMetadata metadata = osv3().blockStorage().volumes().getMetadata(volumeId);
+
+        assertTrue(metadata != null);
+        assertTrue("value1".equals(metadata.getMetadata().get("key1")));
+        assertTrue("value2".equals(metadata.getMetadata().get("key2")));
+    }
+
+    @Test
+    public void updateMetaTest() throws IOException {
+        respondWith(JSON_VOLUME_METADATA_UPDATE_WITH_KEY);
+
+        String key = "key";
+        String volumeId = "volumeId";
+        Map<String, String> map = Maps.newHashMap();
+        map.put("key1", "value1");
+        VolumeMeta metadata = VolumeMeta.builder().meta(map).build();
+        VolumeMeta updateMetadata = osv3().blockStorage().volumes().updateMeta(volumeId, key, metadata);
+
+        assertTrue(updateMetadata != null);
+        assertTrue("value1".equals(updateMetadata.getMeta().get("key1")));
+    }
+
+    @Test
+    public void listExtensionsTest() throws IOException {
+        respondWith(JSON_EXTENSIONS);
+
+        List<? extends Extension> extensions = osv3().blockStorage().volumes().listExtensions();
+
+        assertTrue(extensions.size() > 0);
+        assertTrue("SchedulerHints".equals(extensions.get(0).getName()));
+    }
+
+    @Test
+    public void getVolumeTypeTest() throws IOException {
+        respondWith(JSON_TYPE);
+
+        String typeId = "ea6e3c13-aac5-46e0-b280-745ed272e662";
+        VolumeType type = osv3().blockStorage().volumes().getVolumeType(typeId);
+
+        assertTrue(type != null);
+        assertTrue(typeId.equals(type.getId()));
+    }
 
     @Test
     public void uploadImageDataTest() throws IOException {

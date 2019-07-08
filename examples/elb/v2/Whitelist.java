@@ -34,7 +34,7 @@ public class Whitelist {
 		osclient.networking().lbaasV2().lbWhitelist().get(wl_id);
 		
 //Update a Whitelist
-		NeutronWhitelistUpdate whitelist_update = NeutronWhitelistUpdate.builder().whitelist("192.168.0.0/24，192.168.1.0、25").build();
+		NeutronWhitelistUpdate whitelist_update = NeutronWhitelistUpdate.builder().whitelist("192.168.0.0/24,192.168.1.0/25").build();
 		osclient.networking().lbaasV2().lbWhitelist().update(whitelist_update, wl_id);
 		
 //Delete a Whitelist

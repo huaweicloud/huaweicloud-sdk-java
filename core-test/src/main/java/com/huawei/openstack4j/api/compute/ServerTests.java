@@ -24,7 +24,7 @@ import static org.testng.Assert.assertNull;
 import static org.testng.Assert.assertTrue;
 
 import java.util.List;
-//import java.util.Map;
+import java.util.Map;
 
 import org.testng.Assert;
 import org.testng.annotations.Test;
@@ -39,7 +39,7 @@ import com.huawei.openstack4j.model.compute.Server.Status;
 import com.huawei.openstack4j.model.compute.ServerCreate;
 import com.huawei.openstack4j.model.compute.ServerPassword;
 import com.huawei.openstack4j.model.compute.StopType;
-//import com.huawei.openstack4j.model.compute.VolumeAttachment;
+import com.huawei.openstack4j.model.compute.VolumeAttachment;
 import com.huawei.openstack4j.model.compute.actions.EvacuateOptions;
 
 /**
@@ -72,38 +72,49 @@ public class ServerTests extends AbstractTest {
 		assertEquals("new-server-test", s.getName());
 	}
 	
-//	@Test
-//	public void getMetadataItem() throws Exception{
-//		respondWith(200,"{\"meta\": {\"org\": \"huawei\"}}");
-//		Map<String,String> metadataItem = osv3().compute().servers().getMetadataItem("kdsf-cj", "org");
-//		assertEquals("huawei", metadataItem.get("org"));
-//	}
-//
-//	@Test
-//	public void setMetadataItem() throws Exception{
-//		respondWith(200,"{\"meta\": {\"org\": \"huawei1\"}}");
-//		Map<String,String> metadataItem = osv3().compute().servers().setMetadataItem("kdsf-cj", "org", "huawei1");
-//		assertEquals("huawei1", metadataItem.get("org"));
-//	}
-//
-//	@Test
-//	public void listAttachedVolumes() throws Exception{
-//		respondWith(JSON_SERVER_ATTACHED_VOLUMES_LIST_OUTPUT);
-//		List<? extends VolumeAttachment> attachedVolumes = osv3().compute().servers().listAttachedVolumes("4d8c3732-a248-40ed-bebc-539a6ffd25c0");
-//		assertEquals(attachedVolumes.size(),2);
-//		assertEquals(attachedVolumes.get(0).getDevice(),"/dev/sdd");
-//	}
-//
-//	@Test
-//	public void getAttachVolume() throws Exception{
-//		respondWith(200,"{\"volumeAttachment\": "
-//				+ "{\"device\": \"/dev/sdd\","
-//				+ "\"id\": \"a26887c6-c47b-4654-abb5-dfadf7d3f803\","
-//				+ "\"serverId\": \"4d8c3732-a248-40ed-bebc-539a6ffd25c0\","
-//				+ "\"volumeId\": \"a26887c6-c47b-4654-abb5-dfadf7d3f803\"}}");
-//		VolumeAttachment volumeAttachment = osv3().compute().servers().getAttachVolume("4d8c3732-a248-40ed-bebc-539a6ffd25c0", "a26887c6-c47b-4654-abb5-dfadf7d3f803");
-//		assertEquals(volumeAttachment.getDevice(),"/dev/sdd");
-//	}
+	@Test
+	public void getMetadataItem() throws Exception{
+		respondWith(200,"{\"meta\": {\"org\": \"huawei\"}}");
+		Map<String,String> metadataItem = osv3().compute().servers().getMetadataItem("kdsf-cj", "org");
+		assertEquals("huawei", metadataItem.get("org"));
+	}
+
+	@Test
+	public void setMetadataItem() throws Exception{
+		respondWith(200,"{\"meta\": {\"org\": \"huawei1\"}}");
+		Map<String,String> metadataItem = osv3().compute().servers().setMetadataItem("kdsf-cj", "org", "huawei1");
+		assertEquals("huawei1", metadataItem.get("org"));
+	}
+
+	@Test
+	public void listAttachedVolumes() throws Exception{
+		respondWith(JSON_SERVER_ATTACHED_VOLUMES_LIST_OUTPUT);
+		List<? extends VolumeAttachment> attachedVolumes = osv3().compute().servers().listAttachedVolumes("4d8c3732-a248-40ed-bebc-539a6ffd25c0");
+		assertEquals(attachedVolumes.size(),2);
+		assertEquals(attachedVolumes.get(0).getDevice(),"/dev/sdd");
+	}
+
+	@Test
+	public void getAttachVolume() throws Exception{
+		respondWith(200,"{\"volumeAttachment\": "
+				+ "{\"device\": \"/dev/sdd\","
+				+ "\"id\": \"a26887c6-c47b-4654-abb5-dfadf7d3f803\","
+				+ "\"serverId\": \"4d8c3732-a248-40ed-bebc-539a6ffd25c0\","
+				+ "\"volumeId\": \"a26887c6-c47b-4654-abb5-dfadf7d3f803\"}}");
+		VolumeAttachment volumeAttachment = osv3().compute().servers().getAttachVolume("4d8c3732-a248-40ed-bebc-539a6ffd25c0", "a26887c6-c47b-4654-abb5-dfadf7d3f803");
+		assertEquals(volumeAttachment.getDevice(),"/dev/sdd");
+	}
+
+	@Test
+	public void detachVolume() {
+		String serverId = "server-id";
+		String volumeId = "volume-id";
+		respondWith(200);
+
+		ActionResponse successResponse = osv3().compute().servers().detachVolume(serverId, volumeId, 1);
+		assertNotNull(successResponse);
+		assertTrue(successResponse.isSuccess());
+	}
 
 	@Test(expectedExceptions = ServerResponseException.class, invocationCount = 10)
 	public void serverError() throws Exception {

@@ -64,12 +64,27 @@ public class DataVolume implements ModelEntity {
 	@JsonProperty("hw:passthrough")
 	Boolean passthrough;
 
-	@java.beans.ConstructorProperties({ "type", "size", "multiAttach", "passthrough" })
-	public DataVolume(VolumeType type, Integer size, Boolean multiAttach, Boolean passthrough) {
+	/**
+	 * 磁盘的产品信息。
+	 */
+	@JsonProperty("extendparam")
+	VolumeExtendParam extendParam;
+
+	/**
+	 * 数据镜像的ID，UUID格式。
+	 */
+	@JsonProperty("data_image_id")
+	String dataImageId;
+
+	@java.beans.ConstructorProperties({ "type", "size", "multiAttach", "passthrough", "extendparam", "dataImageId"})
+	public DataVolume(VolumeType type, Integer size, Boolean multiAttach, Boolean passthrough,
+					  VolumeExtendParam extendParam, String dataImageId) {
 		this.type = type;
 		this.size = size;
 		this.multiAttach = multiAttach;
 		this.passthrough = passthrough;
+		this.extendParam = extendParam;
+		this.dataImageId = dataImageId;
 	}
 
 	public DataVolume() {
@@ -95,15 +110,24 @@ public class DataVolume implements ModelEntity {
 		return this.passthrough;
 	}
 
+	public VolumeExtendParam getExtendParam() {
+		return this.extendParam;
+	}
+
+	public String getDataImageId() {
+		return this.dataImageId;
+	}
+
 	@Override
 	public String toString() {
 		return "DataVolume(type=" + this.getType() + ", size=" + this.getSize() + ", multiAttach="
-				+ this.getMultiAttach() + ", passthrough=" + this.getPassthrough() + ")";
+				+ this.getMultiAttach() + ", passthrough=" + this.getPassthrough() + ", extendParam="
+				+ this.getExtendParam() + ", dataImageId=" + this.getDataImageId() + ")";
 	}
 
 	public DataVolumeBuilder toBuilder() {
 		return new DataVolumeBuilder().type(this.type).size(this.size).multiAttach(this.multiAttach)
-				.passthrough(this.passthrough);
+				.passthrough(this.passthrough).extendParam(this.extendParam).dataImageId(this.dataImageId);
 	}
 
 	public static class DataVolumeBuilder {
@@ -111,6 +135,8 @@ public class DataVolume implements ModelEntity {
 		private Integer size;
 		private Boolean multiAttach;
 		private Boolean passthrough;
+		private VolumeExtendParam extendParam;
+		private String dataImageId;
 
 		DataVolumeBuilder() {
 		}
@@ -135,14 +161,25 @@ public class DataVolume implements ModelEntity {
 			return this;
 		}
 
+		public DataVolume.DataVolumeBuilder extendParam(VolumeExtendParam extendParam) {
+			this.extendParam = extendParam;
+			return this;
+		}
+
+		public DataVolume.DataVolumeBuilder dataImageId(String dataImageId) {
+			this.dataImageId = dataImageId;
+			return this;
+		}
+
 		public DataVolume build() {
-			return new DataVolume(type, size, multiAttach, passthrough);
+			return new DataVolume(type, size, multiAttach, passthrough, extendParam, dataImageId);
 		}
 
 		@Override
 		public String toString() {
 			return "DataVolume.DataVolumeBuilder(type=" + this.type + ", size=" + this.size + ", multiAttach="
-					+ this.multiAttach + ", passthrough=" + this.passthrough + ")";
+					+ this.multiAttach + ", passthrough=" + this.passthrough + ", extendParam=" + this.extendParam
+					+ ", dataImageId=" + this.dataImageId + ")";
 		}
 	}
 }

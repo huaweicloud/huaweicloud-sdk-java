@@ -132,7 +132,7 @@ public interface ComputeService extends RestService {
 	 * Server Tag Management Service
 	 * @return ServerTag Service
 	 */
-//	ServerTagService serverTags();
+	ServerTagService serverTags();
 	
     /**
      *  Compute services service

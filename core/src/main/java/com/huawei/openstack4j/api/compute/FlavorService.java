@@ -81,7 +81,7 @@ public interface FlavorService extends RestService {
 	 * @param flavorId
 	 * @return all extra specs for this flavor
 	 */
-	Map<String, String> listExtraSpecs(String flavorId);
+//	Map<String, String> listExtraSpecs(String flavorId);
 
 	/**
 	 * post a key-value map, if key exist, value will be updated, if not ,new
