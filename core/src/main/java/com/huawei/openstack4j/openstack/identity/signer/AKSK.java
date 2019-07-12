@@ -345,20 +345,8 @@ public class AKSK {
 		try {
 			MessageDigest md = MessageDigest.getInstance("SHA-256");
 			md.update(text.getBytes("UTF-8"));
-			return md.digest();
-		} catch (Exception e) {
-			throw new RuntimeException("Unable to compute hash while signing request: " + e.getMessage(), e);
-		}
-	}
-
-	/**
-	 * Hashes the byte array using the SHA-256 algorithm.
-	 */
-	public static byte[] sha256(byte[] data) {
-		try {
-			MessageDigest md = MessageDigest.getInstance("SHA-256");
-			md.update(data);
-			return md.digest();
+			byte[] digest = md.digest();
+			return digest;
 		} catch (Exception e) {
 			throw new RuntimeException("Unable to compute hash while signing request: " + e.getMessage(), e);
 		}
@@ -375,17 +363,6 @@ public class AKSK {
 		}
 	}
 
-	protected static byte[] sign(String stringData, byte[] key, String algorithm) {
-		try {
-			byte[] data = stringData.getBytes("UTF-8");
-			Mac mac = Mac.getInstance(algorithm);
-			mac.init(new SecretKeySpec(key, algorithm));
-			return mac.doFinal(data);
-		} catch (Exception e) {
-			throw new RuntimeException("Unable to calculate a request signature: " + e.getMessage(), e);
-		}
-	}
-		
 	public static void main(String[] args) {
 		System.out.println(BinaryUtils.toHex(sha256("")));
 	}
