@@ -21,6 +21,9 @@ import com.huawei.openstack4j.model.common.Identifier;
 import com.huawei.openstack4j.model.image.v2.Member;
 import com.huawei.openstack4j.model.image.v2.Member.MemberStatus;
 import com.huawei.openstack4j.openstack.OSFactory;
+import com.huawei.openstack4j.openstack.image.v2.domain.GlanceMember;
+
+import java.util.List;
 
 public class MemberDemo {
 
@@ -54,14 +57,6 @@ public class MemberDemo {
 		}else {
 			System.out.println("get member failed");
 		}
-		
-		//删除成员
-		ActionResponse deleteResp = os.imagesV2().deleteMember(imageId, memberId);
-		if (null != deleteResp){
-			System.out.println("delete member success");
-		}else {
-			System.out.println("delete member failed");
-		}
 
 		//更新成员状态
 		Member updateResp = os.imagesV2().updateMember(imageId, memberId, MemberStatus.ACCEPTED);
@@ -70,6 +65,21 @@ public class MemberDemo {
 		}else {
 			System.out.println("update member failed");
 		}
-	}
 
+		//获取成员列表
+		List<Member> listMembers = (List<Member>) os.imagesV2().listMembers(imageId);
+		if (null != listMembers){
+			System.out.println("get members success ,members =" + listMembers.toString());
+		}else {
+			System.out.println("update member failed");
+		}
+
+		//删除成员
+		ActionResponse deleteResp = os.imagesV2().deleteMember(imageId, memberId);
+		if (null != deleteResp){
+			System.out.println("delete member success");
+		}else {
+			System.out.println("delete member failed");
+		}
+	}
 }

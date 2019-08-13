@@ -94,4 +94,10 @@ public interface HealthMonitorV2Update extends ModelEntity, Buildable<HealthMoni
      *         which is up (true) or down (false).
      */
     Boolean isAdminStateUp();
+    /**
+     * Optional.
+     *
+     * @return monitorPort The monitorPort of the health monitor
+     */
+    Integer getMonitorPort();
 }

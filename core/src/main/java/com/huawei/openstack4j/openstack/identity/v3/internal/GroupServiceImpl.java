@@ -19,6 +19,7 @@ import static com.google.common.base.Preconditions.checkNotNull;
 import static com.huawei.openstack4j.core.transport.ClientConstants.*;
 
 import java.util.List;
+import java.util.Map;
 
 import com.huawei.openstack4j.api.identity.v3.GroupService;
 import com.huawei.openstack4j.model.common.ActionResponse;
@@ -37,6 +38,18 @@ public class GroupServiceImpl extends BaseOpenStackService implements GroupServi
     public Group get(String groupId) {
         checkNotNull(groupId);
         return get(KeystoneGroup.class, PATH_GROUPS, "/", groupId).execute();
+    }
+
+    @Override
+    public List<? extends Group> list(Map<String, String> filteringParams){
+        Invocation<Groups> flavorInvocation = get(Groups.class, uri(PATH_GROUPS));
+        if (filteringParams != null) {
+            for (Map.Entry<String, String> entry : filteringParams.entrySet()) {
+                flavorInvocation = flavorInvocation.param(entry.getKey(), entry.getValue());
+            }
+        }
+
+        return flavorInvocation.execute().getList();
     }
 
     @Override

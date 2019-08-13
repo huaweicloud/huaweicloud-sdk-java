@@ -16,6 +16,7 @@
 package com.huawei.openstack4j.api.identity.v3;
 
 import java.util.List;
+import java.util.Map;
 
 import com.huawei.openstack4j.common.RestService;
 import com.huawei.openstack4j.model.common.ActionResponse;
@@ -93,5 +94,12 @@ public interface ProjectService extends RestService {
 	 * @return list of projects
 	 */
 	List<? extends Project> list();
+
+	/**
+	 * list projects the current token has access to
+	 * @param filteringParams
+	 * @return list of projects
+	 */
+	List<? extends Project> list(Map<String, String> filteringParams);
 
 }

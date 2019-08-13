@@ -5,6 +5,10 @@ import com.huawei.openstack4j.model.identity.v3.Group;
 import com.huawei.openstack4j.openstack.OSFactory;
 import com.huawei.openstack4j.openstack.identity.v3.domain.KeystoneGroup;
 
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
 public class GroupDemo {
 
     public static void main(String[] args){
@@ -23,6 +27,14 @@ public class GroupDemo {
         //Creating a User Group
         Group sampleGroup = KeystoneGroup.builder().name("**********").description("**********").build();
         osclient.identity().groups().create(sampleGroup);
+
+        //Create a User Group with param
+        String domainId = "**********";
+        String groupName = "**********";
+        String description = "**********";
+        Group sampleGroup = osclient.identity().groups().create(domainId, groupName, description);
+        System.out.println(sampleGroup);
+
 
         //Deleting a User Group
         String groupId = "**********";
@@ -47,6 +59,15 @@ public class GroupDemo {
         String domainId = "**********";
         Group sampleGroup3 = osclient.identity().groups().getByName(groupName, domainId);
         System.out.println(sampleGroup3);
+
+        //Querying User Group list with filterparam
+        Map<String, String> filteringParams = new HashMap<>();
+        String domainId = "**********";
+        filteringParams.put("domain_id", domainId);
+        List<? extends Group> groupList = osclient.identity().groups().list(filteringParams);
+        for(Group group : groupList) {
+            System.out.println(group);
+        }
 
         //Querying User Group Details
         String groupId3 = "**********";

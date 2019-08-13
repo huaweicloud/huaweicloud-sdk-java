@@ -65,6 +65,7 @@ public class HealthMonitorV2Tests extends AbstractTest {
         HealthMonitorV2 hm = osv3().networking().lbaasV2().healthMonitor().get(id);
         assertNotNull(hm);
         assertEquals(hm.getId(), id);
+
     }
 
     public void testCreateHealthMonitorV2() throws IOException {

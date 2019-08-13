@@ -22,14 +22,10 @@ import java.util.Map;
 
 import com.google.common.base.Strings;
 import com.huawei.openstack4j.openstack.common.AsyncJobEntity;
-import com.huawei.openstack4j.openstack.ims.v2.domain.DataImage;
-import com.huawei.openstack4j.openstack.ims.v2.domain.Image;
+import com.huawei.openstack4j.openstack.ims.v2.domain.*;
 import com.huawei.openstack4j.openstack.ims.v2.domain.Image.Images;
-import com.huawei.openstack4j.openstack.ims.v2.domain.ImageCreateByExternalImage;
-import com.huawei.openstack4j.openstack.ims.v2.domain.ImageCreateByInstance;
-import com.huawei.openstack4j.openstack.ims.v2.domain.ImageUpdate;
 
-/**
+ /**
  * Created on 2018/8/29.
  */
 public class ImageService extends BaseImageManagementService{
@@ -63,6 +59,19 @@ public class ImageService extends BaseImageManagementService{
         checkArgument(!Strings.isNullOrEmpty(imageCreateByExternalImage.getImageUrl()), "parameter `imageUrl` should not be empty");
         checkArgument(!(null==(imageCreateByExternalImage.getMinDisk())), "parameter `minDisk` should not be empty");
         return post(AsyncJobEntity.class, "/cloudimages/action").entity(imageCreateByExternalImage).execute().getId();
+    }
+
+    /**
+     * 使用快速导入创建镜像
+     * @param imageCreateByQuickImport
+     * @return
+     */
+    public String create(ImageCreateByQuickImport imageCreateByQuickImport){
+        checkArgument(!Strings.isNullOrEmpty(imageCreateByQuickImport.getName()), "parameter `name` should not be empty");
+        checkArgument(!Strings.isNullOrEmpty(imageCreateByQuickImport.getImageUrl()), "parameter `imageUrl` should not be empty");
+        checkArgument(!Strings.isNullOrEmpty(imageCreateByQuickImport.getType()), "parameter `type` should not be empty");
+        checkArgument(!(null==(imageCreateByQuickImport.getMinDisk())), "parameter `minDisk` should not be empty");
+        return post(AsyncJobEntity.class, "/cloudimages/quickimport/action").entity(imageCreateByQuickImport).execute().getId();
     }
     
     /**

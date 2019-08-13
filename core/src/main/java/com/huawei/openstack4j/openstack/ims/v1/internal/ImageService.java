@@ -19,13 +19,9 @@ import static com.google.common.base.Preconditions.checkArgument;
 
 import com.google.common.base.Strings;
 import com.huawei.openstack4j.openstack.common.AsyncJobEntity;
-import com.huawei.openstack4j.openstack.ims.v1.domain.ImageCreateByBackup;
-import com.huawei.openstack4j.openstack.ims.v1.domain.ImageCreateByInstance;
-import com.huawei.openstack4j.openstack.ims.v1.domain.ImageCreateByOBS;
-import com.huawei.openstack4j.openstack.ims.v1.domain.RegistImage;
-import com.huawei.openstack4j.openstack.ims.v1.domain.ExportImage;
+import com.huawei.openstack4j.openstack.ims.v1.domain.*;
 
-/**
+ /**
  * Created on 2018/8/29.
  */
 public class ImageService extends BaseImageManagementService {
@@ -55,7 +51,7 @@ public class ImageService extends BaseImageManagementService {
     
     /**
      * 使用上传至OBS桶中的外部数据卷镜像文件制作数据镜像
-     * @param ImageCreateByOBS
+     * @param imageCreateByOBS
      * @return
      */
     public String create(ImageCreateByOBS imageCreateByOBS){
@@ -89,4 +85,31 @@ public class ImageService extends BaseImageManagementService {
         checkArgument(!Strings.isNullOrEmpty(imageId),"parameter `imageId` should not be empty");
 		 return post(AsyncJobEntity.class, uri("/cloudimages/%s/file",imageId)).entity(image).execute().getId();
 	}
-}
+
+     /**
+      * 用户将一个已有镜像本区域内复制为另一个镜像
+      * @param copyImageInRegion
+      * @param imageId
+      * @return
+      */
+     public String copyInRegion(CopyImageInRegion copyImageInRegion, String imageId) {
+         checkArgument(!Strings.isNullOrEmpty(copyImageInRegion.getName()), "parameter `name` should not be empty");
+         checkArgument(!Strings.isNullOrEmpty(imageId),"parameter `imageId` should not be empty");
+         return post(AsyncJobEntity.class, uri("/cloudimages/%s/copy",imageId)).entity(copyImageInRegion).execute().getId();
+     }
+
+     /**
+      * 用户将一个已有镜像跨区域复制为另一个镜像
+      * @param copyImageCrossRegion
+      * @param imageId
+      * @return
+      */
+     public String copyCrossRegion(CopyImageCrossRegion copyImageCrossRegion, String imageId) {
+         checkArgument(!Strings.isNullOrEmpty(copyImageCrossRegion.getAgencyName()), "parameter `agencyName` should not be empty");
+         checkArgument(!Strings.isNullOrEmpty(copyImageCrossRegion.getProjectName()), "parameter `projectName` should not be empty");
+         checkArgument(!Strings.isNullOrEmpty(copyImageCrossRegion.getName()), "parameter `name` should not be empty");
+         checkArgument(!Strings.isNullOrEmpty(copyImageCrossRegion.getRegion()), "parameter `region` should not be empty");
+         checkArgument(!Strings.isNullOrEmpty(imageId),"parameter `imageId` should not be empty");
+         return post(AsyncJobEntity.class, uri("/cloudimages/%s/cross_region_copy",imageId)).entity(copyImageCrossRegion).execute().getId();
+     }
+ }

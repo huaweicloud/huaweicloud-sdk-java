@@ -3,7 +3,9 @@ import com.huawei.openstack4j.model.common.Identifier;
 import com.huawei.openstack4j.model.identity.v3.Endpoint;
 import com.huawei.openstack4j.openstack.OSFactory;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class EndpointDemo {
 
@@ -22,6 +24,16 @@ public class EndpointDemo {
 
         //Querying Endpoints
         List<? extends Endpoint> endpointList = osclient.identity().serviceEndpoints().listEndpoints();
+        for(Endpoint endpoint : endpointList){
+            System.out.println(endpoint);
+        }
+
+        //Querying Endpoints with filterparam
+        Map<String, String> filteringParams = new HashMap<>();
+        String serviceId = "**********";
+        filteringParams.put("interface", "public");
+        filteringParams.put("service_id", serviceId);
+        List<? extends Endpoint> endpointList = osclient.identity().serviceEndpoints().listEndpoints(filteringParams);
         for(Endpoint endpoint : endpointList){
             System.out.println(endpoint);
         }

@@ -16,6 +16,7 @@
 package com.huawei.openstack4j.api.identity.v3;
 
 import java.util.List;
+import java.util.Map;
 
 import com.huawei.openstack4j.common.RestService;
 import com.huawei.openstack4j.model.common.ActionResponse;
@@ -37,6 +38,14 @@ public interface GroupService extends RestService {
      * @return the group
      */
     Group get(String groupId);
+
+    /**
+     * get detailed information about groups matching specified by param
+     *
+     * @param filteringParams
+     * @return the of list groups matching the name across all domains
+     */
+    List<? extends Group> list(Map<String, String> filteringParams);
 
     /**
      * get detailed information about groups matching specified by name and domain

@@ -62,9 +62,17 @@ public class NeutronListenerV2Update implements ListenerV2Update {
     @JsonProperty("connection_limit")
     private Integer connectionLimit;
 
+    /**
+     * 监听器使用的服务器证书的Id
+     */
     @JsonProperty("default_tls_container_ref")
     private String defaultTlsContainerRef;
 
+    /**
+     * 监听器使用的CA证书的ID
+     */
+    @JsonProperty("client_ca_tls_container_ref")
+    private String clientTlsContainerRef;
     
 
     @JsonProperty("default_pool_id")
@@ -118,6 +126,11 @@ public class NeutronListenerV2Update implements ListenerV2Update {
     }
 
     @Override
+    public String getClientTlsContainerRef() {
+        return clientTlsContainerRef;
+    }
+
+    @Override
     public String toString() {
         return MoreObjects.toStringHelper(this)
                 .add("adminStateUp", adminStateUp)
@@ -126,6 +139,7 @@ public class NeutronListenerV2Update implements ListenerV2Update {
                 .add("defaultPoolId", defaultPoolId)
                 .add("connectionLimit", connectionLimit)
                 .add("defaultTlsContainerRef", defaultTlsContainerRef)
+                .add("clientTlsContainerRef", clientTlsContainerRef)
                 .toString();
     }
 
@@ -202,7 +216,13 @@ public class NeutronListenerV2Update implements ListenerV2Update {
             return this;
         }
 
-		@Override
+        @Override
+        public ListenerV2UpdateBuilder clientTlsContainerRef(String clientTlsContainerRef) {
+            m.clientTlsContainerRef = clientTlsContainerRef;
+            return this;
+        }
+
+        @Override
 		public ListenerV2UpdateBuilder defaultPoolId(String defaultPoolId) {
 			  m.defaultPoolId = defaultPoolId;
 	          return this;

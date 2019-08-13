@@ -20,6 +20,7 @@ import static com.huawei.openstack4j.core.transport.ClientConstants.*;
 
 import java.net.URL;
 import java.util.List;
+import java.util.Map;
 
 import com.huawei.openstack4j.api.identity.v3.ServiceEndpointService;
 import com.huawei.openstack4j.api.types.Facing;
@@ -77,8 +78,32 @@ public class ServiceEndpointServiceImpl extends BaseOpenStackService implements 
     }
 
     @Override
+    public List<? extends Service> list(Map<String, String> filteringParams){
+        Invocation<Services> flavorInvocation = get(Services.class, uri(PATH_SERVICES));
+        if (filteringParams != null) {
+            for (Map.Entry<String, String> entry : filteringParams.entrySet()) {
+                flavorInvocation = flavorInvocation.param(entry.getKey(), entry.getValue());
+            }
+        }
+
+        return flavorInvocation.execute().getList();
+    }
+
+    @Override
     public List<? extends Endpoint> listEndpoints() {
         return get(Endpoints.class, uri(PATH_ENDPOINTS)).execute().getList();
+    }
+
+    @Override
+    public List<? extends Endpoint> listEndpoints(Map<String, String> filteringParams){
+        Invocation<Endpoints> flavorInvocation = get(Endpoints.class, uri(PATH_ENDPOINTS));
+        if (filteringParams != null) {
+            for (Map.Entry<String, String> entry : filteringParams.entrySet()) {
+                flavorInvocation = flavorInvocation.param(entry.getKey(), entry.getValue());
+            }
+        }
+
+        return flavorInvocation.execute().getList();
     }
 
     @Override

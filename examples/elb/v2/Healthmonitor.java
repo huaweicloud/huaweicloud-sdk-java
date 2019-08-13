@@ -24,12 +24,13 @@ public class Healthmonitor {
 	OSClientV3 osclient = OSFactory.builderV3().endpoint(authUrl)
 			.credentials(user, password, Identifier.byId(userDomainId))
 			.scopeToProject(Identifier.byId(projectId)).authenticate();
-	
-			
+
+
 			
 		String pool_id = "******";
+		Integer monitorPort = ******;
 //Create a healthmonitor		
-		HealthMonitorV2 hm = NeutronHealthMonitorV2.builder().adminStateUp(true).poolId(pool_id).delay(10).maxRetries(10).timeout(10).type(HealthMonitorType.HTTP).build();
+		HealthMonitorV2 hm = NeutronHealthMonitorV2.builder().adminStateUp(true).poolId(pool_id).monitorPort(monitorPort).delay(10).maxRetries(10).timeout(10).type(HealthMonitorType.HTTP).build();
 		osclient.networking().lbaasV2().healthMonitor().create(hm);
 		
 //List all health monitor
@@ -39,8 +40,9 @@ public class Healthmonitor {
 		String hm_id = "";
 		osclient.networking().lbaasV2().healthMonitor().get(hm_id);
 		
+		Integer monitorUpdatePort = ******;
 //Update a healthmonitor
-		HealthMonitorV2Update hm_mod = NeutronHealthMonitorV2Update.builder().delay(3).maxRetries(5).httpMethod(NeutronHealthMonitorV2.httpMethodType.GET).expectedCodes("200").build();
+		HealthMonitorV2Update hm_mod = NeutronHealthMonitorV2Update.builder().monitorPort(monitorUpdatePort).delay(3).maxRetries(5).httpMethod(NeutronHealthMonitorV2.httpMethodType.GET).expectedCodes("200").build();
 		osclient.networking().lbaasV2().healthMonitor().update(hm_id, hm_mod);
 		
 //Delete a healthmonitor

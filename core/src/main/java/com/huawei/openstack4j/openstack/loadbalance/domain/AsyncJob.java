@@ -59,7 +59,9 @@ public class AsyncJob implements ModelEntity {
 		INIT,
 		;
 	}
-	
-	
 
+	public Map<String, Object> getEntities()
+	{
+		return entities;
+	}
 }

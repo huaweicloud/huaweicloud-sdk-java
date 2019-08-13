@@ -80,6 +80,9 @@ public class NeutronListenerV2 implements ListenerV2 {
     @JsonProperty("sni_container_refs")
     private List<String> sniContainerRefs;
 
+    @JsonProperty("client_ca_tls_container_ref")
+    private String clientTlsContainerRef;
+
     /**
      * {@inheritDoc}
      */
@@ -177,6 +180,11 @@ public class NeutronListenerV2 implements ListenerV2 {
     }
 
     @Override
+    public String getclientTlsContainerRef() {
+        return clientTlsContainerRef;
+    }
+
+    @Override
     public String toString(){
         return MoreObjects.toStringHelper(this)
                 .add("id", id)
@@ -191,6 +199,7 @@ public class NeutronListenerV2 implements ListenerV2 {
                 .add("defaultPoolId", defaultPoolId)
                 .add("defaultTlsContainerRef", defaultTlsContainerRef)
                 .add("sniContainerRefs", sniContainerRefs)
+                .add("clientTlsContainerRef", clientTlsContainerRef)
                 .toString();
     }
 
@@ -300,6 +309,12 @@ public class NeutronListenerV2 implements ListenerV2 {
         @Override
         public ListenerV2Builder defaultTlsContainerRef(String tlsContainerRef){
             m.defaultTlsContainerRef = tlsContainerRef;
+            return this;
+        }
+
+        @Override
+        public ListenerV2Builder clientTlsContainerRef(String clientTlsContainerRef) {
+            m.clientTlsContainerRef = clientTlsContainerRef;
             return this;
         }
     }

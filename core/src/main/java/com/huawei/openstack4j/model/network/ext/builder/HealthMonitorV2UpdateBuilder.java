@@ -104,4 +104,11 @@ public interface HealthMonitorV2UpdateBuilder extends Builder<HealthMonitorV2Upd
      * @return HealthMonitorV2UpdateBuilder
      */
     HealthMonitorV2UpdateBuilder timeout(Integer timeout);
+    /**
+     *
+     * @param monitorPort
+     *            The monitorPort of HealthMonitor
+     * @return HealthMonitorV2UpdateBuilder
+     */
+    HealthMonitorV2UpdateBuilder monitorPort(Integer monitorPort);
 }

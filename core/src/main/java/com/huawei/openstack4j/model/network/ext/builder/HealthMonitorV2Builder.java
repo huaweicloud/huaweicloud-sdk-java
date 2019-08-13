@@ -133,4 +133,12 @@ public interface HealthMonitorV2Builder extends Buildable.Builder<HealthMonitorV
      * @return HealthMonitorV2Builder
      */
     HealthMonitorV2Builder adminStateUp(Boolean adminStateUp);
+
+ /**
+  * Optional
+  *
+  * @param monitorPort  The monitorPort of the health monitor,
+  * @return HealthMonitorV2Builder
+  */
+ HealthMonitorV2Builder monitorPort(Integer monitorPort);
 }

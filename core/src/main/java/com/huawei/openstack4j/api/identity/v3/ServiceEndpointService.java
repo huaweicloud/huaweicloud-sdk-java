@@ -17,6 +17,7 @@ package com.huawei.openstack4j.api.identity.v3;
 
 import java.net.URL;
 import java.util.List;
+import java.util.Map;
 
 import com.huawei.openstack4j.api.types.Facing;
 import com.huawei.openstack4j.common.RestService;
@@ -80,6 +81,13 @@ public interface ServiceEndpointService extends RestService {
      */
     List<? extends Service> list();
 
+    /**
+     * Lists services with param
+     *
+     * @return the list of services
+     */
+    List<? extends Service> list(Map<String, String> filteringParams);
+
 
 
     /**
@@ -88,6 +96,14 @@ public interface ServiceEndpointService extends RestService {
      * @return the list of endpoints
      */
     List<? extends Endpoint> listEndpoints();
+
+    /**
+     * Lists available endpoints with endpoints
+     *
+     * @return the list of endpoints
+     */
+    List<? extends Endpoint> listEndpoints(Map<String, String> filteringParams);
+
 
     /**
      * Creates a new endpoint

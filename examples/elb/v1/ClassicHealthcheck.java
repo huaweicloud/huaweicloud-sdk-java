@@ -37,7 +37,7 @@ public class ClassicHealthcheck{
 		osclient.loadBalancer().healthchecks().update(hc_id, update);
 
 		// Delete a healthmonitor
-		osclient.loadBalancer().healthchecks().delete(lsn_id);
+		osclient.loadBalancer().healthchecks().delete(hc_id);
 	}
 
 }

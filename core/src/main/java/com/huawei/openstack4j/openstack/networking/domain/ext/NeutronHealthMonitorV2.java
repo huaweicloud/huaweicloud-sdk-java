@@ -31,7 +31,6 @@
  * *******************************************************************************/
 
 package com.huawei.openstack4j.openstack.networking.domain.ext;
-
 import java.util.List;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
@@ -44,6 +43,7 @@ import com.huawei.openstack4j.model.network.ext.HealthMonitorType;
 import com.huawei.openstack4j.model.network.ext.HealthMonitorV2;
 import com.huawei.openstack4j.model.network.ext.builder.HealthMonitorV2Builder;
 import com.huawei.openstack4j.openstack.common.ListResult;
+
 
 /**
  * A lbaas v2 health monitor entity
@@ -99,8 +99,17 @@ public class NeutronHealthMonitorV2 implements HealthMonitorV2 {
 
     private List<ListItem> pools;
 
+    /**
+     * 指定对应的poolId
+     */
     @JsonProperty("pool_id")
     private String poolId;
+    /**
+     * 创建健康检查时指定健康检查的端口
+     * monitor_port
+     */
+    @JsonProperty("monitor_port")
+    private Integer monitorPort;
 
     @Override
     public String getId(){
@@ -157,6 +166,12 @@ public class NeutronHealthMonitorV2 implements HealthMonitorV2 {
         return pools;
     }
 
+    @Override
+    public Integer getMonitorPort() {
+        return monitorPort;
+    }
+
+
     /**
      * wrap this healthMonitorV2 to a builder
      * @return HealthMonitorV2Builder
@@ -189,6 +204,7 @@ public class NeutronHealthMonitorV2 implements HealthMonitorV2 {
                 .add("adminStateUp", adminStateUp)
                 .add("pools", pools)
                 .add("poolId", poolId)
+                .add("monitorPort", monitorPort)
                 .toString();
     }
 
@@ -231,6 +247,17 @@ public class NeutronHealthMonitorV2 implements HealthMonitorV2 {
         @Override
         public HealthMonitorV2Builder tenantId(String tenantId) {
             m.tenantId = tenantId;
+            return this;
+        }
+
+        /**
+         *
+         * @param monitorPort
+         * @return
+         */
+        @Override
+        public HealthMonitorV2Builder monitorPort(Integer monitorPort) {
+            m.monitorPort = monitorPort;
             return this;
         }
 

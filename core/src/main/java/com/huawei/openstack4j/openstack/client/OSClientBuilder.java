@@ -246,14 +246,11 @@ public abstract class OSClientBuilder<R, T extends IOSClientBuilder<R, T>> imple
             OSClientAKSK session = null;
 
             if (!Strings.isNullOrEmpty(domainId)){
-                session = new OSClientSessionAKSK().credentials(accessKey, secretKey, region, projectId, domainId, cloudDomainName)
-                        .perspective(perspective).useConfig(config);
+                session = new OSClientSessionAKSK().perspective(perspective).useConfig(config).credentials(accessKey, secretKey, region, projectId, domainId, cloudDomainName);
             }else if(!Strings.isNullOrEmpty(projectId)){
-                session = new OSClientSessionAKSK().credentials(accessKey, secretKey, region, projectId, cloudDomainName)
-                        .perspective(perspective).useConfig(config);
+                session = new OSClientSessionAKSK().perspective(perspective).useConfig(config).credentials(accessKey, secretKey, region, projectId, cloudDomainName);
             }else {
-                session = new OSClientSessionAKSK().credentials(accessKey, secretKey, region, cloudDomainName)
-                        .perspective(perspective).useConfig(config);
+                session = new OSClientSessionAKSK().perspective(perspective).useConfig(config).credentials(accessKey, secretKey, region, cloudDomainName);
             }
 			return session;
 		}

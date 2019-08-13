@@ -28,7 +28,7 @@ import com.huawei.openstack4j.api.types.ServiceType;
 import com.huawei.openstack4j.core.transport.ObjectMapperSingleton;
 import com.huawei.openstack4j.model.identity.URLResolverParams;
 
-/**
+ /**
  * Resolves an Endpoint URL based on the Service Type and Facing perspective
  *
  * @author Jeremy Unruh
@@ -39,8 +39,7 @@ public class AKSKEndpointURLResolver extends AbstractEndpointURLResolver {
 
 	
 	 ServiceEndpointProvider endpointProvider;
-	
-	
+
 	/**
 	 * default implementation 
 	 * 
@@ -63,12 +62,21 @@ public class AKSKEndpointURLResolver extends AbstractEndpointURLResolver {
 	 */
 	@Override
 	public String resolve(URLResolverParams p) {
-		String endpoint = this.getEndpointProvider().getEndpoint(p.type, p.perspective);
-		// filter placeholder parameters
-		endpoint = endpoint.replace("%(domain)s", p.domain);
-		endpoint = endpoint.replace("%(region)s", p.region);
-		if(p.projectId!=null){
-			endpoint = endpoint.replace("%(projectId)s", p.projectId);
+		String endpoint = null;
+		if(p.getServiceEndpoints() != null && p.getServiceEndpoints().get(p.type) != null){
+			endpoint = p.getServiceEndpoints().get(p.type).getEndpointFor(p.perspective);
+			if(p.projectId!=null){
+				endpoint = endpoint.replace("$(tenant_id)s", p.projectId);
+			}
+		}
+		if(endpoint == null){
+			endpoint = this.getEndpointProvider().getEndpoint(p.type, p.perspective);
+			// filter placeholder parameters
+			endpoint = endpoint.replace("%(domain)s", p.domain);
+			endpoint = endpoint.replace("%(region)s", p.region);
+			if(p.projectId!=null){
+				endpoint = endpoint.replace("%(projectId)s", p.projectId);
+			}
 		}
 		return endpoint;
 	}
@@ -78,12 +86,11 @@ public class AKSKEndpointURLResolver extends AbstractEndpointURLResolver {
 		return endpointProvider;
 	}
 
+
 	public AKSKEndpointURLResolver withEndpointProvider(ServiceEndpointProvider endpointProvider) {
 		this.endpointProvider = endpointProvider;
 		return this;
 	}
-
-
 
 	/**
 	 * Fetch all endpoint from local file storage

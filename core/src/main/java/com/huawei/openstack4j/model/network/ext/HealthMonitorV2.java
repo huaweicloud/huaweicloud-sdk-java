@@ -118,4 +118,12 @@ public interface HealthMonitorV2 extends ModelEntity, Buildable<HealthMonitorV2B
      */
     List<ListItem> getPools();
 
+    /**
+     * Optional
+     *
+     * Specific a monitor_port when a healthcheck is buit
+     */
+    Integer getMonitorPort();
+
+   // String setMonitorId(String monitor_id);
 }

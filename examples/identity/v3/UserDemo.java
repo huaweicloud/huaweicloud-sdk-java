@@ -6,7 +6,9 @@ import com.huawei.openstack4j.model.identity.v3.User;
 import com.huawei.openstack4j.openstack.OSFactory;
 import com.huawei.openstack4j.openstack.identity.v3.domain.KeystoneUser;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class UserDemo {
 
@@ -26,6 +28,15 @@ public class UserDemo {
         //Creating a User
         User sampleUser = KeystoneUser.builder().name("**********").password("**********").build();
         osclient.identity().users().create(sampleUser);
+
+        //Create User with param
+        String domainId = "**********";
+        String userName = "**********";
+        String userPassword = "**********";
+        String email = "**********";
+        boolean enabled = true;
+        User user1 = osclient.identity().users().create(domainId, userName, password, email, enabled);
+        System.out.println(user1);
 
         //Deleting a User
         String userId1 = "**********";
@@ -70,6 +81,29 @@ public class UserDemo {
         for(User user2 : userList){
             System.out.println(user2);
         }
+
+        //Querying a User List with filterparam
+        Map<String, String> filteringParams = new HashMap<>();
+        String userName="********";
+        filteringParams.put("name", userName);
+        List<? extends User> userList = osclient.identity().users().list(filteringParams);
+        for(User user2 : userList){
+            System.out.println(user2);
+        }
+
+        //Querying a User List by name
+        String userName="********";
+        List<? extends User> userList = osclient.identity().users().getByName(userName);
+        for(User user2 : userList){
+            System.out.println(user2);
+        }
+
+        //Querying a User by domainId and name
+        String domainId = "*********";
+        String userName = "********";
+        User user2 = osclient.identity().users().getByName(userName, domainId);
+        System.out.println(user2);
+
 
         //Querying User Details
         String userId6 = "**********";

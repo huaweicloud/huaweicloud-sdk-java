@@ -39,6 +39,7 @@ import com.huawei.openstack4j.model.network.ext.HealthMonitorV2Update;
 import com.huawei.openstack4j.model.network.ext.builder.HealthMonitorV2UpdateBuilder;
 import com.huawei.openstack4j.openstack.networking.domain.ext.NeutronHealthMonitorV2.httpMethodType;
 import com.google.common.base.MoreObjects;
+import org.omg.CORBA.INTERNAL;
 
 /**
  * Entity used to update lbaas v2 heathmonitor
@@ -84,7 +85,11 @@ public class NeutronHealthMonitorV2Update implements HealthMonitorV2Update {
      */
     @JsonProperty("admin_state_up")
     private Boolean adminStateUp;
-
+    /**
+     * The monitor_port of the health monitor
+     */
+    @JsonProperty("monitor_port")
+    private Integer monitorPort;
     /**
      * {@inheritDoc}
      */
@@ -142,6 +147,11 @@ public class NeutronHealthMonitorV2Update implements HealthMonitorV2Update {
     }
 
     @Override
+    public Integer getMonitorPort() {
+        return monitorPort;
+    }
+
+    @Override
     public String toString() {
         return MoreObjects.toStringHelper(this).omitNullValues()
                 .add("delay", delay)
@@ -151,6 +161,7 @@ public class NeutronHealthMonitorV2Update implements HealthMonitorV2Update {
                 .add("httpMethod", httpMethod)
                 .add("maxRetries",maxRetries)
                 .add("timeout", timeout)
+                .add("monitorPort", monitorPort)
                 .toString();
     }
 
@@ -262,5 +273,11 @@ public class NeutronHealthMonitorV2Update implements HealthMonitorV2Update {
 			 m.name = name;
 	         return this;
 		}
+
+        @Override
+        public HealthMonitorV2UpdateBuilder monitorPort(Integer monitorPort) {
+            m.monitorPort = monitorPort;
+            return this;
+        }
     }
 }

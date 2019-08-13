@@ -106,4 +106,13 @@ public interface ListenerV2Builder extends Buildable.Builder<ListenerV2Builder, 
      * @return ListenerV2Builder
      */
     ListenerV2Builder sniContainerRefs(List<String> sniContainerRefs);
+    /**
+     * Optional
+     *
+     * Specify the clientCaTlsContainerRef when a Listener is built
+     * @param clientTlsContainerRef
+     * @return ListenerV2Builder
+     */
+    ListenerV2Builder clientTlsContainerRef(String clientTlsContainerRef);
+
 }

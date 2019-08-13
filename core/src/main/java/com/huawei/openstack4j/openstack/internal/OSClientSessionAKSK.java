@@ -19,12 +19,17 @@ import static com.google.common.base.Preconditions.checkArgument;
 
 import java.net.URI;
 import java.net.URISyntaxException;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
 
+import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import com.google.common.base.Strings;
 import com.huawei.openstack4j.api.Apis;
 import com.huawei.openstack4j.api.OSClient.OSClientAKSK;
+import com.huawei.openstack4j.api.ServiceEndpointProvider;
 import com.huawei.openstack4j.api.client.CloudProvider;
 import com.huawei.openstack4j.api.exceptions.RegionEndpointNotFoundException;
 import com.huawei.openstack4j.api.identity.EndpointURLResolver;
@@ -32,6 +37,8 @@ import com.huawei.openstack4j.api.identity.v3.IdentityService;
 import com.huawei.openstack4j.api.types.ServiceType;
 import com.huawei.openstack4j.model.identity.AuthVersion;
 import com.huawei.openstack4j.model.identity.URLResolverParams;
+import com.huawei.openstack4j.model.identity.v3.Endpoint;
+import com.huawei.openstack4j.model.identity.v3.Service;
 import com.huawei.openstack4j.openstack.identity.internal.AKSKEndpointURLResolver;
 
 public class OSClientSessionAKSK extends OSClientSession<OSClientSessionAKSK, OSClientAKSK> implements OSClientAKSK {
@@ -41,6 +48,8 @@ public class OSClientSessionAKSK extends OSClientSession<OSClientSessionAKSK, OS
 	private String cloudDomainName;
 	private String projectId;
 	private String domainId;
+	private HashMap<ServiceType, ServiceEndpointProvider.ServiceEndpoint> serviceEndpoints;
+	private static final Logger LOG = LoggerFactory.getLogger(OSClientSessionAKSK.class);
 
 	CloudProvider provider = CloudProvider.HUAWEI;
 
@@ -62,7 +71,7 @@ public class OSClientSessionAKSK extends OSClientSession<OSClientSessionAKSK, OS
 		/*final EndpointURLResolver endpointResolver = (config != null && config.getEndpointURLResolver() != null)
 				? config.getEndpointURLResolver() : defaultEndpointURLResolver;		*/
 		URLResolverParams params = URLResolverParams.create(service).perspective(perspective).region(region)
-				.domain(cloudDomainName).projectId(projectId);
+				.domain(cloudDomainName).projectId(projectId).serviceEndpoints(serviceEndpoints);
 		//如果有重写就先去重写匹配，重写匹配不到就去配置文件匹配
 		String url = null;
 		try{
@@ -78,6 +87,38 @@ public class OSClientSessionAKSK extends OSClientSession<OSClientSessionAKSK, OS
 			throw new RegionEndpointNotFoundException("region endpoint can not be found");
 		}
 		return addNATIfApplicable(url);
+	}
+
+	public void initServiceEndpoints(){
+		OSClientSessionAKSK osclient = (OSClientSessionAKSK)OSClientSession.getCurrent();
+		List<? extends Service> services = new ArrayList<>();
+		List<? extends Endpoint> endpoints = new ArrayList<>();
+		try {
+			services = osclient.identity().serviceEndpoints().list();
+			endpoints = osclient.identity().serviceEndpoints().listEndpoints();
+		}catch (Exception e){
+			LOG.error("IAM Endpint failed to get, the specific reason is:"+e);
+			return;
+		}
+		HashMap<ServiceType, ServiceEndpointProvider.ServiceEndpoint> serviceEndpoints = new HashMap<>();
+		for(Service service : services){
+			for (Endpoint endpoint : endpoints){
+				if(service.getId() ==null){
+					continue;
+				}
+				if(service.getId().equals(endpoint.getServiceId())){
+					ServiceType serviceType = ServiceType.forName(service.getName());
+					if(serviceType == ServiceType.UNKNOWN ){
+						continue;
+					}
+					ServiceEndpointProvider.ServiceEndpoint serviceEndpoint = new ServiceEndpointProvider.ServiceEndpoint();
+					serviceEndpoint.setPublicEndpoint(endpoint.getUrl().toString());
+					serviceEndpoints.put(serviceType,serviceEndpoint);
+				}
+			}
+		}
+		this.serviceEndpoints = serviceEndpoints;
+		sessions.set(this);
 	}
 
 	private String addNATIfApplicable(String url) {
@@ -129,6 +170,7 @@ public class OSClientSessionAKSK extends OSClientSession<OSClientSessionAKSK, OS
 		this.projectId = projectId;
 		this.useRegion(region);
 		sessions.set(this);
+		initServiceEndpoints();
 		return this;
 	}
 
@@ -150,6 +192,7 @@ public class OSClientSessionAKSK extends OSClientSession<OSClientSessionAKSK, OS
 		this.projectId = projectId;
 		this.useRegion(region);
 		sessions.set(this);
+		initServiceEndpoints();
 		return this;
 	}
 
@@ -170,6 +213,7 @@ public class OSClientSessionAKSK extends OSClientSession<OSClientSessionAKSK, OS
 		this.cloudDomainName = cloudDomainName;
 		this.useRegion(region);
 		sessions.set(this);
+		initServiceEndpoints();
 		return this;
 	}
 

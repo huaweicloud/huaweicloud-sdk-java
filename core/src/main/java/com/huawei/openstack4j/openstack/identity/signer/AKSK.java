@@ -345,8 +345,8 @@ public class AKSK {
 		try {
 			MessageDigest md = MessageDigest.getInstance("SHA-256");
 			md.update(text.getBytes("UTF-8"));
-			byte[] digest = md.digest();
-			return digest;
+			byte[] bytes = md.digest();
+			return bytes;
 		} catch (Exception e) {
 			throw new RuntimeException("Unable to compute hash while signing request: " + e.getMessage(), e);
 		}

@@ -48,8 +48,8 @@ public class ImageDemo {
 				.authenticate();
 
 
+		//查询镜像列表
 		Map<String, String> filter = new HashMap<String, String>();
-
 		filter.put("limit", "2");
 		filter.put("visibility", "private");
 		filter.put("owner", projectId);
@@ -74,7 +74,7 @@ public class ImageDemo {
 
 		Image createResp = os.imagesV2().create(image);
 		if (null != createResp){
-			System.out.println("create image success, image = " + images.toString());
+			System.out.println("create image success, image = " + createResp.toString());
 		}else{
 			System.out.println("create image failed");
 		}
@@ -82,7 +82,7 @@ public class ImageDemo {
 		
 		//上传镜像文件
 		Payload payload = Payloads.create(new File("/opt/cirros.img"));
-		ActionResponse uploadResp = os.imagesV2().upload(image.getId(), payload, image);
+		ActionResponse uploadResp = os.imagesV2().upload(createResp.getId(), payload, createResp);
 		if(null != uploadResp){
 			System.out.println("upload image success");
 		}else {
@@ -90,21 +90,29 @@ public class ImageDemo {
 		}
 
 
-		//查询镜像信息
-		Image getResp = os.imagesV2().get(image.getId());
+		//查询镜像详情
+		Image getResp = os.imagesV2().get(createResp.getId());
 		if (null != getResp){
-			System.out.println("get image success, image = " + images.toString());
+			System.out.println("get image success, image = " + getResp.toString());
 		}else{
 			System.out.println("get image failed");
 		}
 
-		//删除镜像
-		ActionResponse deleteResp = os.imagesV2().delete(image.getId());
-		if(null != deleteResp){
-			System.out.println("delete image success");
+		//更新镜像
+		Image updateResp = os.imagesV2().update(createResp);
+		if (null != updateResp){
+			System.out.println("delete image success, image =" + updateResp.toString());
 		}else {
 			System.out.println("delete image failed");
 		}
+
+        //删除镜像
+        ActionResponse deleteResp = os.imagesV2().delete(createResp.getId());
+        if(null != deleteResp){
+            System.out.println("delete image success");
+        }else {
+            System.out.println("delete image failed");
+        }
 
 	}
 

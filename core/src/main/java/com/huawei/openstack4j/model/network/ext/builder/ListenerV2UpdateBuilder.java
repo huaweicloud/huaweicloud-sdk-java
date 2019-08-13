@@ -61,7 +61,7 @@ public interface ListenerV2UpdateBuilder extends Buildable.Builder<ListenerV2Upd
     /**
      * Optional
      *
-     * @param description
+     * @param defaultPoolId
      *            Human-readable defaultPoolId for the listener.
      * @return ListenerV2UpdateBuilder
      */
@@ -93,4 +93,12 @@ public interface ListenerV2UpdateBuilder extends Buildable.Builder<ListenerV2Upd
      * @return ListenerV2UpdateBuilder
      */
     ListenerV2UpdateBuilder defaultTlsContainerRef(String defaultTlsContainerRef);
+    /**
+     * Optional
+     *
+     * The CA certificate of Listener
+     * @param clientTlsContainerRef
+     * @return ListenerV2UpdateBuilder
+     */
+    ListenerV2UpdateBuilder clientTlsContainerRef(String clientTlsContainerRef);
 }

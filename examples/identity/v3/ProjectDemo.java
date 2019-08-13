@@ -4,7 +4,9 @@ import com.huawei.openstack4j.model.identity.v3.Project;
 import com.huawei.openstack4j.openstack.OSFactory;
 import com.huawei.openstack4j.openstack.identity.v3.domain.KeystoneProject;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class ProjectDemo {
 
@@ -20,6 +22,21 @@ public class ProjectDemo {
                 .credentials(user, password, Identifier.byId(userDomainId))
                 .scopeToDomain(Identifier.byId(userDomainId))
                 .authenticate();
+
+        //Querying all Project
+        List<? extends Project> projectList = osclient.identity().projects().list();
+        for(Project project : projectList){
+            System.out.println(project);
+        }
+
+        //Querying Project with filterparam
+        String domainId = "**********";
+        Map<String, String> filteringParams = new HashMap<>();
+        filteringParams.put("domain_id",domainId);
+        List<? extends Project> projectList = osclient.identity().projects().list(filteringParams);
+        for(Project project : projectList){
+            System.out.println(project);
+        }
 
         //Creating a Project
         String projectName = "**********";

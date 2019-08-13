@@ -21,15 +21,12 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
+import com.huawei.openstack4j.openstack.ims.v1.domain.*;
 import org.testng.annotations.Test;
 
 import com.huawei.openstack4j.api.AbstractTest;
-import com.huawei.openstack4j.openstack.ims.v1.domain.ExportImage;
-import com.huawei.openstack4j.openstack.ims.v1.domain.ImageCreateByBackup;
-import com.huawei.openstack4j.openstack.ims.v1.domain.ImageCreateByInstance;
-import com.huawei.openstack4j.openstack.ims.v1.domain.ImageCreateByOBS;
-import com.huawei.openstack4j.openstack.ims.v1.domain.RegistImage;
-@Test
+
+ @Test
 public class CloudImageV1Tests extends AbstractTest{
 
 	@Test
@@ -111,8 +108,29 @@ public class CloudImageV1Tests extends AbstractTest{
 		String jobId = osv3().ims().images().export(uploadImage, imageId);
 		assertNotNull(jobId);
 	}
-	
-	
+
+	@Test
+	public void copyInRegionTest(){
+		respondWith(200, "{\"job_id\": \"this-is-a-job-id\"}");
+		CopyImageInRegion copyImageInRegion = CopyImageInRegion.builder().name("image_name").build();
+		String imageId = "******";
+		String jobId = osv3().ims().images().copyInRegion(copyImageInRegion, imageId);
+		assertNotNull(jobId);
+	}
+
+	 @Test
+	 public void copyCrossRegionTest(){
+		 respondWith(200, "{\"job_id\": \"this-is-a-job-id\"}");
+		 CopyImageCrossRegion copyImageCrossRegion = CopyImageCrossRegion.builder()
+				 .name("image_name")
+				 .agencyName("agency_name")
+				 .projectName("project_name")
+				 .region("region").build();
+		 String imageId = "******";
+
+		 String jobId = osv3().ims().images().copyCrossRegion(copyImageCrossRegion, imageId);
+		 assertNotNull(jobId);
+	 }
 	
 	@Override
 	protected Service service() {

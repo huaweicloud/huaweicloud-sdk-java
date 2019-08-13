@@ -150,6 +150,22 @@ public class UserServiceImpl extends BaseOpenStackService implements UserService
      * {@inheritDoc}
      */
     @Override
+    public List<? extends User> list(Map<String, String> filteringParams) {
+        Invocation<Users> flavorInvocation = get(Users.class, uri(PATH_USERS));
+        if (filteringParams != null) {
+            for (Map.Entry<String, String> entry : filteringParams.entrySet()) {
+                flavorInvocation = flavorInvocation.param(entry.getKey(), entry.getValue());
+            }
+        }
+
+        return flavorInvocation.execute().getList();
+    }
+
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
     public List<? extends Role> listProjectUserRoles(String userId, String projectId) {
         checkNotNull(userId);
         checkNotNull(projectId);

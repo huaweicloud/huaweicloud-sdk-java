@@ -16,6 +16,7 @@
 package com.huawei.openstack4j.api.identity.v3;
 
 import java.util.List;
+import java.util.Map;
 
 import com.huawei.openstack4j.common.RestService;
 import com.huawei.openstack4j.model.common.ActionResponse;
@@ -139,6 +140,13 @@ public interface UserService extends RestService {
 	 * @return list of users
 	 */
 	List<? extends User> list();
+
+	/**
+	 * lists users with filter.
+	 *@param filteringParams
+	 * @return list of users
+	 */
+	List<? extends User> list(Map<String, String> filteringParams);
 	
 	/**
      * change password for user.

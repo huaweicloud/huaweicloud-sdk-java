@@ -4,9 +4,12 @@ import com.huawei.openstack4j.api.OSClient.OSClientV3;
 import com.huawei.openstack4j.model.common.Identifier;
 import com.huawei.openstack4j.model.loadbalance.LoadBalancer.Type;
 import com.huawei.openstack4j.openstack.OSFactory;
+import com.huawei.openstack4j.openstack.loadbalance.domain.AsyncJob;
 import com.huawei.openstack4j.openstack.loadbalance.domain.ELBLoadBalancerCreate;
 import com.huawei.openstack4j.openstack.loadbalance.domain.ELBLoadBalancerUpdate;
 import com.huawei.openstack4j.openstack.loadbalance.options.ELBLoadBalancerListOptions;
+
+import java.util.Map;
 
 public class ClassicLoadbalancer {
 
@@ -28,29 +31,31 @@ public class ClassicLoadbalancer {
 		Integer bandwidth = 10;
 		ELBLoadBalancerCreate create = ELBLoadBalancerCreate.builder().name(name).vpcId(vpc_id).bandwidth(bandwidth)
 				.type(Type.EXTERNAL).adminStateUp(1).build();
-		//osclient.loadBalancer().loadBalancers().create(create);
+		osclient.loadBalancer().loadBalancers().create(create);
 
-		// Check a job
+		// Check a job and get lb_id from job result
 		String job_id = "ff80808265ed06200166155854251d66";
-		osclient.loadBalancer().jobs().get(job_id);
+		AsyncJob recent_job = osclient.loadBalancer().jobs().get(job_id);
+		Map<String, Object> elb = (Map<String, Object>) recent_job.getEntities().get("elb");
+		String id = elb.get("id").toString();
 
 		// List all classic Loadbalancer under tenant's project
-		//osclient.loadBalancer().loadBalancers().list();
+		osclient.loadBalancer().loadBalancers().list();
 
 		// Query info about a specific Loadbalancer
 		String lb_id = "******";// specify your loadbalancer id here
 		ELBLoadBalancerListOptions options = ELBLoadBalancerListOptions.create().id(lb_id);
-		//osclient.loadBalancer().loadBalancers().list(options);
+		osclient.loadBalancer().loadBalancers().list(options);
 
 		// Update classic Loadbalancer
 		ELBLoadBalancerUpdate update = ELBLoadBalancerUpdate.builder().bandwidth(3).build();
-		//osclient.loadBalancer().loadBalancers().update(lb_id, update);
+		osclient.loadBalancer().loadBalancers().update(lb_id, update);
 
-		String job_id_2 = "******";
-		//osclient.loadBalancer().jobs().get(job_id_2);
+		// Get classic Loadbalancer
+		osclient.loadBalancer().loadBalancers().get(lb_id);
 
 		// Delete a classic Loadbalancer
-		//osclient.loadBalancer().loadBalancers().delete(lb_id);
+		osclient.loadBalancer().loadBalancers().delete(lb_id);
 
 	}
 

@@ -3,7 +3,9 @@ import com.huawei.openstack4j.model.common.Identifier;
 import com.huawei.openstack4j.model.identity.v3.Service;
 import com.huawei.openstack4j.openstack.OSFactory;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class ServiceDemo {
     public static void main(String[] args){
@@ -21,6 +23,14 @@ public class ServiceDemo {
 
         //Querying Services
         List<? extends Service> serviceList = osclient.identity().serviceEndpoints().list();
+        for(Service service : serviceList){
+            System.out.println(service);
+        }
+
+        //Querying Services with filterparam
+        Map<String, String> filteringParams = new HashMap<>();
+        filteringParams.put("type", "compute");
+        List<? extends Service> serviceList = osclient.identity().serviceEndpoints().list(filteringParams);
         for(Service service : serviceList){
             System.out.println(service);
         }

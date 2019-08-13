@@ -19,6 +19,7 @@ import static com.google.common.base.Preconditions.checkNotNull;
 import static com.huawei.openstack4j.core.transport.ClientConstants.*;
 
 import java.util.List;
+import java.util.Map;
 
 import com.huawei.openstack4j.api.identity.v3.ProjectService;
 import com.huawei.openstack4j.model.common.ActionResponse;
@@ -78,6 +79,17 @@ public class ProjectServiceImpl extends BaseOpenStackService implements ProjectS
     @Override
     public List<? extends Project> list() {
         return get(Projects.class, uri(PATH_PROJECTS)).execute().getList();
+    }
+
+    @Override
+    public List<? extends Project> list(Map<String, String> filteringParams){
+	    Invocation<Projects> flavorInvocation = get(Projects.class, uri(PATH_PROJECTS));
+        if (filteringParams != null) {
+            for (Map.Entry<String, String> entry : filteringParams.entrySet()) {
+                flavorInvocation = flavorInvocation.param(entry.getKey(), entry.getValue());
+            }
+        }
+        return  flavorInvocation.execute().getList();
     }
 
 }

@@ -31,6 +31,9 @@
  * *******************************************************************************/
 package com.huawei.openstack4j.model.identity;
 
+import java.util.HashMap;
+
+import com.huawei.openstack4j.api.ServiceEndpointProvider;
 import com.huawei.openstack4j.api.types.Facing;
 import com.huawei.openstack4j.api.types.ServiceType;
 import com.huawei.openstack4j.model.common.resolvers.LatestServiceVersionResolver;
@@ -56,7 +59,8 @@ public class URLResolverParams {
     // V4
     public String domain;
     public String projectId;
-    
+    private HashMap<ServiceType, ServiceEndpointProvider.ServiceEndpoint> serviceEndpoints;
+
     private URLResolverParams(Token token, ServiceType type) {
         this.token = token;
         this.type = (type == null) ? ServiceType.IDENTITY : type;
@@ -98,6 +102,11 @@ public class URLResolverParams {
         return this;
     }
 
+    public URLResolverParams serviceEndpoints(HashMap<ServiceType, ServiceEndpointProvider.ServiceEndpoint> serviceEndpoints) {
+        this.serviceEndpoints = serviceEndpoints;
+        return this;
+    }
+
     public ServiceVersionResolver getResolver() {
         return (resolver != null) ? resolver : LatestServiceVersionResolver.INSTANCE;
     }
@@ -110,7 +119,11 @@ public class URLResolverParams {
     public ServiceVersionResolver getV2Resolver() {
         return (resolver != null) ? resolver : StableServiceVersionResolver.INSTANCE;
     }
-    
+
+    public HashMap<ServiceType, ServiceEndpointProvider.ServiceEndpoint> getServiceEndpoints() {
+        return serviceEndpoints;
+    }
+
     public URLResolverParams domain(String domain) {
         this.domain = domain;
         return this;
