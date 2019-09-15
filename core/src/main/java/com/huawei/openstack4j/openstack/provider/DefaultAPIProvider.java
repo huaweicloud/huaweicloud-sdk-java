@@ -303,6 +303,10 @@ import com.huawei.openstack4j.openstack.fgs.v1.internal.FunctionGraphService;
 import com.huawei.openstack4j.openstack.fgs.v1.internal.FunctionService;
 import com.huawei.openstack4j.openstack.fgs.v1.internal.TriggerService;
 import com.huawei.openstack4j.openstack.fgs.v1.internal.VersionsService;
+import com.huawei.openstack4j.openstack.fgs.v2.internal.FunctionGraphV2Service;
+import com.huawei.openstack4j.openstack.fgs.v2.internal.FunctionV2Service;
+import com.huawei.openstack4j.openstack.fgs.v2.internal.TriggerV2Service;
+import com.huawei.openstack4j.openstack.fgs.v2.internal.VersionsV2Service;
 import com.huawei.openstack4j.openstack.gbp.internal.ExternalPolicyServiceImpl;
 import com.huawei.openstack4j.openstack.gbp.internal.ExternalSegmentServiceImpl;
 import com.huawei.openstack4j.openstack.gbp.internal.GbpServiceImpl;
@@ -892,6 +896,11 @@ public class DefaultAPIProvider implements APIProvider {
 		bind(FunctionService.class, FunctionService.class);
 		bind(TriggerService.class, TriggerService.class);
 		bind(VersionsService.class, VersionsService.class);
+
+        bind(FunctionGraphV2Service.class, FunctionGraphV2Service.class);
+        bind(FunctionV2Service.class, FunctionV2Service.class);
+        bind(TriggerV2Service.class, TriggerV2Service.class);
+        bind(VersionsV2Service.class, VersionsV2Service.class);
 
         // pool v1
         bind(DssService.class, DssService.class);

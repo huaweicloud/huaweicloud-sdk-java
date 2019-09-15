@@ -47,16 +47,16 @@ public class InterfaceDemo {
 					.networkId(network.getId()) 
 					.name("subnet-name") 
 					.enableDHCP(true) 
-					.cidr("192.168.0.0/24") 
-					.addDNSNameServer("8.8.8.8") 
-					.gateway("192.168.0.1") 
+					.cidr("******")
+					.addDNSNameServer("******")
+					.gateway("******")
 					.build()); 
 		
 		//create port
 		Port port = os.networking().port().create(Builders.port()
 				.name("port-name")
 				.networkId(network.getId())
-				.fixedIp("192.168.0.101", subnet.getId())
+				.fixedIp("******", subnet.getId())
 				.build());
 		portId = port.getId();
 		
@@ -70,7 +70,7 @@ public class InterfaceDemo {
 		}
 
 		//create interface with net_id and fixed_ips
-		String ipAddress = "192.168.1.100";
+		String ipAddress = "******";
 		FixedIp fixedIp = FixedIp.builder().ipAddress(ipAddress).build();
 		List<FixedIp> fixedIps = Lists.newArrayList();
 		fixedIps.add(fixedIp);

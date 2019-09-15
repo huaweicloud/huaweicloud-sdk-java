@@ -66,6 +66,15 @@ public class NovaQuotaSet implements QuotaSet {
 	@JsonProperty("key_pairs")
 	private int keyPairs;
 
+	@JsonProperty("fixed_ips")
+	private int fixedIps;
+
+	@JsonProperty("server_groups")
+	private int serverGroups;
+
+	@JsonProperty("server_group_members")
+	private int serverGroupMembers;
+
 	/**
 	 * {@inheritDoc}
 	 */
@@ -178,6 +187,30 @@ public class NovaQuotaSet implements QuotaSet {
 		return keyPairs;
 	}
 
+	/**
+	 * {@inheritDoc}
+	 */
+	@Override
+	public int getFixedIps() {
+		return fixedIps;
+	}
+
+	/**
+	 * {@inheritDoc}
+	 */
+	@Override
+	public int getServerGroups() {
+		return serverGroups;
+	}
+
+	/**
+	 * {@inheritDoc}
+	 */
+	@Override
+	public int getServerGroupMembers() {
+		return serverGroupMembers;
+	}
+
 	@Override
 	public String toString() {
 		return MoreObjects.toStringHelper(this).omitNullValues()
@@ -185,7 +218,8 @@ public class NovaQuotaSet implements QuotaSet {
 				     .add("injectedFileContentBytes", injectedFileContentBytes).add("injectedFiles", injectedFiles).add("gigabytes", gigabytes)
 				     .add("ram", "ram").add("securityGroups", securityGroups).add("securityGroupRules", securityGroupRules)
 				     .add("cores", cores).add("floatingIps", floatingIps).add("instances", instances).add("volumes", volumes)
-				     .add("injectedFilePathBytes", injectedFilePathBytes).add("keyPairs", keyPairs)
+				     .add("injectedFilePathBytes", injectedFilePathBytes).add("keyPairs", keyPairs).add("fixedIps", fixedIps)
+				     .add("serverGroups", serverGroups).add("serverGroupMembers", serverGroupMembers)
 				     .toString();
 	}
 

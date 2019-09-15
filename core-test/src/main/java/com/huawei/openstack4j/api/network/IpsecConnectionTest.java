@@ -33,8 +33,8 @@ public class IpsecConnectionTest extends AbstractTest {
     	final String ikePolicyId = "9b00d6b0-6c93-4ca5-9747-b8ade7bb514f";
     	final String vpnId = "5c561d9d-eaea-45f6-ae3e-08d1a7080828";
     	final String locdalEndpointId = "3e1815dd-e212-43d0-8f13-b494fa553e68";    	
-    	final String peerAddress = "172.24.4.233";
-    	final String peerId = "172.24.4.233";
+    	final String peerAddress = "******";
+    	final String peerId = "******";
     	final String name = "vpnconnection1";
     	final String psk = "cidr";
     	final String initiator = "bi-directional";

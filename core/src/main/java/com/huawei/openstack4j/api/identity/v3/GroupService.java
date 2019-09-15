@@ -114,6 +114,13 @@ public interface GroupService extends RestService {
     List<? extends User> listGroupUsers(String groupId);
 
     /**
+     * lists the users that belong to a group by filteringParams
+     *
+     * @return
+     */
+    List<? extends User> listGroupUsers(String groupId, Map<String, String> filteringParams);
+
+    /**
      * list role for group on a project
      *
      * @param groupId the group id

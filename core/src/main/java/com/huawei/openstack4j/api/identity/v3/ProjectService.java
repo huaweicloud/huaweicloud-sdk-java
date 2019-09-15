@@ -48,6 +48,16 @@ public interface ProjectService extends RestService {
 	Project create(String domainId, String name, String description, boolean enabled);
 
 	/**
+	 * Creates a new Project
+	 *
+	 * @param domainId the domain id
+	 * @param name the name of the new project
+	 * @param description the description of the new project
+	 * @return the newly created project
+	 */
+	Project create(String domainId, String name, String description);
+
+	/**
 	 * get detailed information on a project
 	 *
 	 * @param projectId the project id
@@ -101,5 +111,12 @@ public interface ProjectService extends RestService {
 	 * @return list of projects
 	 */
 	List<? extends Project> list(Map<String, String> filteringParams);
+
+	/**
+	 * list projects the current token has access to
+	 * @param filteringParams
+	 * @return list of projects
+	 */
+	List<? extends Project> listByObject(Map<String, Object> filteringParams);
 
 }

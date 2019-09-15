@@ -1,5 +1,5 @@
 /*******************************************************************************
- * 	Copyright 2017 HuaWei Tld                                     
+ * 	Copyright 2017 Huawei Technologies Co., Ltd.
  * 	                                                                                 
  * 	Licensed under the Apache License, Version 2.0 (the "License"); you may not      
  * 	use this file except in compliance with the License. You may obtain a copy of    
@@ -137,7 +137,6 @@ public class DatabaseInstanceTest extends AbstractTest {
 		Assert.assertEquals(instance.getVolume().getSize().intValue(), 100);
 
 		Assert.assertEquals(instance.getHostname(), null);
-		Assert.assertEquals(instance.getIp(), "192.168.2.7");
 		Assert.assertEquals(instance.getRegion(), "eu-de");
 
 		Assert.assertEquals(instance.getDatastore().getType(), DatastoreType.MySQL);

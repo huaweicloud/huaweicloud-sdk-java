@@ -121,8 +121,8 @@ public class CloudServer implements ModelEntity{
 	private Boolean locked;
 	@JsonProperty("tags")
 	private List<String> tags;
-//	@JsonProperty("os:scheduler_hints")
-//	private SchedulerHints schedulerHints;
+	@JsonProperty("os:scheduler_hints")
+	public Map<String, Object> schedulerHints;
 	@JsonProperty("enterprise_project_id")
 	private String enterpriseProjectId;
 	@JsonProperty("sys_tags")

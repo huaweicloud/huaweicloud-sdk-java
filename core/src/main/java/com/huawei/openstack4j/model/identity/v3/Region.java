@@ -19,6 +19,8 @@ import com.huawei.openstack4j.common.Buildable;
 import com.huawei.openstack4j.model.ModelEntity;
 import com.huawei.openstack4j.model.identity.v3.builder.RegionBuilder;
 
+import java.util.Map;
+
 public interface Region extends ModelEntity, Buildable<RegionBuilder> {
 
     /**
@@ -32,8 +34,25 @@ public interface Region extends ModelEntity, Buildable<RegionBuilder> {
     String getDescription();
 
     /**
+     * @return the description of the region
+     */
+    String getType();
+
+    /**
      * @return the id of the parent region
      */
     String getParentRegionId();
+
+    /**
+     *
+     * @return the links of the region
+     */
+    Map<String, String> getLinks();
+
+    /**
+     *
+     * @return the locales of the region
+     */
+    Map<String, String> getLocales();
 
 }

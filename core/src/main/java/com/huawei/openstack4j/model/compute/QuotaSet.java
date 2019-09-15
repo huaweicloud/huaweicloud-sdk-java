@@ -94,4 +94,19 @@ public interface QuotaSet extends ModelEntity {
 	 */
 	int getKeyPairs();
 
+	/**
+	 * @return  Number of fixed ips
+	 */
+	int getFixedIps();
+
+	/**
+	 * @return  Number of server groups
+	 */
+	int getServerGroups();
+
+	/**
+	 * @return  Number of server group members
+	 */
+	int getServerGroupMembers();
+
 }

@@ -44,6 +44,8 @@ public class KeystoneGroup implements Group {
     private String name;
     private String description;
     private Map<String, String> links;
+    @JsonProperty("create_time")
+    private Long createTime;
 
     /**
      * @return the group builder
@@ -101,6 +103,14 @@ public class KeystoneGroup implements Group {
      * {@inheritDoc}
      */
     @Override
+    public Long getCreateTime() {
+        return createTime;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
     public String toString() {
         return MoreObjects.toStringHelper(this).omitNullValues()
                 .add("id", id)
@@ -108,6 +118,7 @@ public class KeystoneGroup implements Group {
                 .add("description", description)
                 .add("links", links)
                 .add("domainId", domainId)
+                .add("createTime", createTime)
                 .toString();
     }
 
@@ -133,7 +144,8 @@ public class KeystoneGroup implements Group {
                 && Objects.equal(this.domainId, that.domainId)
                 && Objects.equal(this.description, that.description)
                 && Objects.equal(this.name, that.name)
-                && Objects.equal(this.links, that.links);
+                && Objects.equal(this.links, that.links)
+                && Objects.equal(this.createTime, that.createTime);
     }
 
     public static class GroupConcreteBuilder implements GroupBuilder {
@@ -205,6 +217,15 @@ public class KeystoneGroup implements Group {
         @Override
         public GroupBuilder links(Map<String, String> links) {
             model.links = links;
+            return this;
+        }
+
+        /**
+         * @see KeystoneGroup#getCreateTime()
+         */
+        @Override
+        public GroupBuilder createTime(Long createTime) {
+            model.createTime = createTime;
             return this;
         }
     }

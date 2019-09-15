@@ -79,21 +79,21 @@
         "endpoints": [
           {
             "region_id": "RegionOne",
-            "url": "http://127.0.0.1:10022",
+            "url": "http://127.0.0.1:10024",
             "region": "RegionOne",
             "interface": "admin",
             "id": "7202c1c716f74468b6d22a1a5f83e38d"
           },
           {
             "region_id": "RegionOne",
-            "url": "http://127.0.0.1:10022",
+            "url": "http://127.0.0.1:10024",
             "region": "RegionOne",
             "interface": "internal",
             "id": "373cf9b0185c4406bd7cae1a1e9e1b95"
           },
           {
             "region_id": "RegionOne",
-            "url": "http://127.0.0.1:10022",
+            "url": "http://127.0.0.1:10024",
             "region": "RegionOne",
             "interface": "public",
             "id": "58bc7c3c2c66464b99ec20a398492bce"

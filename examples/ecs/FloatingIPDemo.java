@@ -50,7 +50,7 @@ public class FloatingIPDemo {
 		}
 			
 		//specify fixedIp add EIP 
-		String fixedIp = "192.168.0.15";
+		String fixedIp = "******";
 		if(null != ip) {
 			ActionResponse rep2 = os.compute().floatingIps().addFloatingIP(server_id, fixedIp, ip.getFloatingIpAddress());
 			if (rep2.isSuccess()) {

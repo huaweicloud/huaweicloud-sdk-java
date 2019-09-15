@@ -102,6 +102,18 @@ public class GroupServiceImpl extends BaseOpenStackService implements GroupServi
     }
 
     @Override
+    public List<? extends User> listGroupUsers(String groupId, Map<String, String> filteringParams) {
+        checkNotNull(groupId);
+        Invocation<Users> flavorInvocation = get(Users.class, uri("/groups/%s/users", groupId));
+        if (filteringParams != null) {
+            for (Map.Entry<String, String> entry : filteringParams.entrySet()) {
+                flavorInvocation = flavorInvocation.param(entry.getKey(), entry.getValue());
+            }
+        }
+        return flavorInvocation.execute().getList();
+    }
+
+    @Override
     public ActionResponse checkGroupUser(String groupId, String userId) {
         checkNotNull(groupId);
         checkNotNull(userId);

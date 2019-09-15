@@ -97,7 +97,10 @@ public class CloudServer {
 		String newFlavorId = "s3.2xlarge.4";
 		String serverId = "d64db293-1937-4816-9e34-a99de8cd8fdb";
 		ResizeServer resize = ResizeServer.builder().flavorRef(newFlavorId).build();
+		// Stop server first
 		os.compute().servers().action(serverId, Action.STOP);
+		// Use the waitForServerStatus function to query the server status until the server is SHUTOFF.
+		// The timeout for this operation is 3 minutes.
 		os.compute().servers().waitForServerStatus(serverId, Status.SHUTOFF, 3, TimeUnit.MINUTES);
 		AsyncRespEntity resizeJobId = os.ecsV1_1().servers().resize(resize, serverId);
 		if (null != resizeJobId) {

@@ -39,11 +39,11 @@ public class SubnetDemo {
         //Create a subnet
         String networdId = "******";
         String tenantId = "******";
-        String dns = "8.8.8.8";
-        String poolsStart = "10.0.10.2";
-        String poolsEnd = "10.0.10.254";
-        String gateWay = "10.0.10.1";
-        String cidr = "10.0.10.0/24";
+        String dns = "******";
+        String poolsStart = "******";
+        String poolsEnd = "******";
+        String gateWay = "******";
+        String cidr = "******";
         Subnet subnet = NeutronSubnet.builder().name("subnetsdemo").enableDHCP(true).networkId(networdId)
                 .tenantId(tenantId).addDNSNameServer(dns).addPool(poolsStart, poolsEnd).ipVersion(IPVersionType.V4)
                 .gateway(gateWay).cidr(cidr).build();

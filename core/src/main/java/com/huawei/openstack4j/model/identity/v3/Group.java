@@ -55,4 +55,9 @@ public interface Group extends ModelEntity, Buildable<GroupBuilder> {
      */
     Map<String, String> getLinks();
 
+    /**
+     * @return the create time of the group
+     */
+    Long getCreateTime();
+
 }

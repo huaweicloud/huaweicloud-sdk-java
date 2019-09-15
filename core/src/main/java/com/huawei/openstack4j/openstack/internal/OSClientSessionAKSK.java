@@ -107,7 +107,13 @@ public class OSClientSessionAKSK extends OSClientSession<OSClientSessionAKSK, OS
 					continue;
 				}
 				if(service.getId().equals(endpoint.getServiceId())){
-					ServiceType serviceType = ServiceType.forName(service.getName());
+					if(region == null){
+						break;
+					}
+					if(!region.equalsIgnoreCase(endpoint.getRegion()) || !"PUBLIC".equalsIgnoreCase(endpoint.getIface().toString())){
+                        continue;
+                    }
+					ServiceType serviceType = ServiceType.forName(service.getType());
 					if(serviceType == ServiceType.UNKNOWN ){
 						continue;
 					}

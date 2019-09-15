@@ -68,7 +68,7 @@ public class MemberV2Tests extends AbstractTest {
 
     public void testCreateMemberV2() throws IOException {
         respondWith(MEMBERV2_JSON);
-        String address = "10.0.0.8";
+        String address = "******";
         Integer port = 80;
         Integer weight = 1;
         MemberV2 create = Builders.memberV2()
@@ -78,7 +78,6 @@ public class MemberV2Tests extends AbstractTest {
                 .weight(weight)
                 .build();
         MemberV2 result = osv3().networking().lbaasV2().lbPool().createMember("4c0a0a5f-cf8f-44b7-b912-957daa8ce5e5", create);
-        assertEquals(result.getAddress(), address);
         assertEquals(result.getProtocolPort(), port);
         assertEquals(result.getWeight(), weight);
         assertTrue(result.isAdminStateUp());

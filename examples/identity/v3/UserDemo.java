@@ -34,8 +34,7 @@ public class UserDemo {
         String userName = "**********";
         String userPassword = "**********";
         String email = "**********";
-        boolean enabled = true;
-        User user1 = osclient.identity().users().create(domainId, userName, password, email, enabled);
+        User user1 = osclient.identity().users().create(domainId, userName, password, email);
         System.out.println(user1);
 
         //Deleting a User
@@ -119,7 +118,9 @@ public class UserDemo {
 
         //Querying Users in a User Group
         String groupId = "**********";
-        List<? extends User> groupUserList = osclient.identity().groups().listGroupUsers(groupId);
+        Map<String, String> filteringParams = new HashMap<>();
+        filteringParams.put("enabled", "true");
+        List<? extends User> groupUserList = osclient.identity().groups().listGroupUsers(groupId, filteringParams);
         for(User user2 : groupUserList){
             System.out.println(user2);
         }

@@ -1,5 +1,5 @@
 /*******************************************************************************
- *  Copyright 2017 Huawei TLD
+ *  Copyright 2017 Huawei Technologies Co., Ltd.
  * 	                                                                                 
  * 	Licensed under the Apache License, Version 2.0 (the "License"); you may not      
  * 	use this file except in compliance with the License. You may obtain a copy of    
@@ -86,7 +86,7 @@ public class RecordsetTest extends AbstractTest {
 
 		});
 
-		ArrayList<String> records = Lists.newArrayList("192.168.10.1", "192.168.10.2", "192.168.10.3");
+		ArrayList<String> records = Lists.newArrayList("******", "******", "******");
 		recordset = osclient.dns().recordsets().create(privateZone.getId(), "sample." + name,
 				"For dns recordset sdk unittest", "A", 7200, records);
 
@@ -96,9 +96,9 @@ public class RecordsetTest extends AbstractTest {
 		Assert.assertEquals(recordset.getTtl().intValue(), 7200);
 		Assert.assertEquals(recordset.getZoneId(), privateZone.getId());
 		Assert.assertEquals(recordset.getRecords().size(), 3);
-		Assert.assertTrue(recordset.getRecords().contains("192.168.10.1"));
-		Assert.assertTrue(recordset.getRecords().contains("192.168.10.2"));
-		Assert.assertTrue(recordset.getRecords().contains("192.168.10.3"));
+		Assert.assertTrue(recordset.getRecords().contains("******"));
+		Assert.assertTrue(recordset.getRecords().contains("******"));
+		Assert.assertTrue(recordset.getRecords().contains("******"));
 	}
 
 	@AfterClass
@@ -110,10 +110,7 @@ public class RecordsetTest extends AbstractTest {
 		Assert.assertEquals(deleted.getTtl().intValue(), 7200);
 		Assert.assertEquals(deleted.getZoneId(), privateZone.getId());
 		Assert.assertEquals(deleted.getRecords().size(), 3);
-		Assert.assertTrue(deleted.getRecords().contains("192.168.10.1"));
-		Assert.assertTrue(deleted.getRecords().contains("192.168.10.2"));
-		Assert.assertTrue(deleted.getRecords().contains("192.168.10.3"));
-		
+
 		osclient.dns().zones().delete(privateZone.getId());
 	}
 
@@ -147,10 +144,7 @@ public class RecordsetTest extends AbstractTest {
 		Assert.assertEquals(get.getTtl().intValue(), 7200);
 		Assert.assertEquals(get.getZoneId(), privateZone.getId());
 		Assert.assertEquals(get.getRecords().size(), 3);
-		Assert.assertTrue(get.getRecords().contains("192.168.10.1"));
-		Assert.assertTrue(get.getRecords().contains("192.168.10.2"));
-		Assert.assertTrue(get.getRecords().contains("192.168.10.3"));
-		
+
 	}
 	
 

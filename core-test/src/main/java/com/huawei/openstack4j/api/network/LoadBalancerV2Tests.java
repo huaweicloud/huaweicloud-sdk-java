@@ -77,19 +77,16 @@ public class LoadBalancerV2Tests extends AbstractTest {
         respondWith(LOADBALANCERV2_JSON);
         String name = "lb1";
         String description = "im a baby lb";
-        String address = "10.0.0.13";
         String subnetId = "388c5684-86b0-49ab-90ef-944b1f7328f8";
         LoadBalancerV2 create = Builders.loadbalancerV2()
                 .adminStateUp(false)
                 .name(name)
                 .description(description)
-                .address(address)
                 .subnetId(subnetId)
                 .build();
         LoadBalancerV2 result = osv3().networking().lbaasV2().loadbalancer().create(create);
         assertEquals(result.getName(), name);
         assertEquals(result.getDescription(), description);
-        assertEquals(result.getVipAddress(), address);
         assertEquals(result.getVipSubnetId(), subnetId);
         assertFalse(result.isAdminStateUp());
     }

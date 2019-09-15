@@ -26,7 +26,7 @@ public class ClassicMember {
 
 		// Create a member
 		String lsn_id = "******";
-		String server_ip = "192.168.0.9";
+		String server_ip = "******";
 		String server_id = "******";
 		ELBServerCreate server = ELBServerCreate.builder().address(server_ip).serverId(server_id).build();
 		List<ServerCreate> list = new ArrayList<ServerCreate>();

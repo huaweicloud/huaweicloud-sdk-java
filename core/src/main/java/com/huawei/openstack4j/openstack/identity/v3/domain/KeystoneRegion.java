@@ -15,11 +15,11 @@
  *******************************************************************************/
 package com.huawei.openstack4j.openstack.identity.v3.domain;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonRootName;
+import com.fasterxml.jackson.annotation.*;
 import com.huawei.openstack4j.model.identity.v3.Region;
 import com.huawei.openstack4j.model.identity.v3.builder.RegionBuilder;
 import com.huawei.openstack4j.openstack.common.ListResult;
@@ -43,6 +43,10 @@ public class KeystoneRegion implements Region {
     private String description;
     @JsonProperty("parent_region_id")
     private String parentRegionId;
+
+    private Map<String, String> links;
+    private String type;
+    private Map<String, String> locales;
 
     /**
      * @return the region builder
@@ -71,12 +75,43 @@ public class KeystoneRegion implements Region {
         return parentRegionId;
     }
 
+    @JsonIgnore
+    @Override
+    public Map<String, String> getLinks() {
+        return links;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public void setLinks(Map<String, String> links) {
+        this.links = links;
+    }
+
+    @Override
+    public Map<String, String> getLocales() {
+        return locales;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public void setLocales(Map<String, String> locales) {
+        this.locales = locales;
+    }
+
+    @Override
+    public String getType() {return type; }
+
     @Override
     public String toString() {
         return MoreObjects.toStringHelper(this).omitNullValues()
                 .add("id", id)
                 .add("description", description)
                 .add("parentRegionId", parentRegionId)
+                .add("type", type)
+                .add("links", links)
+                .add("locales", locales)
                 .toString();
     }
 
@@ -92,7 +127,10 @@ public class KeystoneRegion implements Region {
         KeystoneRegion that = KeystoneRegion.class.cast(obj);
         return Objects.equal(this.id, that.id)
                 && Objects.equal(this.description, that.description)
-                && Objects.equal(this.parentRegionId, that.parentRegionId);
+                && Objects.equal(this.parentRegionId, that.parentRegionId)
+                && Objects.equal(this.links, that.links)
+                && Objects.equal(this.type, that.type)
+                && Objects.equal(this.locales, that.locales);
     }
 
     public static class Regions extends ListResult<KeystoneRegion> {
@@ -149,6 +187,23 @@ public class KeystoneRegion implements Region {
         @Override
         public RegionBuilder parentRegionId(String parentRegionId) {
             model.parentRegionId = parentRegionId;
+            return this;
+        }
+
+        @Override
+        public RegionBuilder type(String type) {
+            model.type = type;
+            return this;
+        }
+        @Override
+        public RegionBuilder links(Map<String, String> links){
+            model.links = links;
+            return this;
+        }
+
+        @Override
+        public RegionBuilder locales(Map<String, String> locales){
+            model.locales = locales;
             return this;
         }
     }

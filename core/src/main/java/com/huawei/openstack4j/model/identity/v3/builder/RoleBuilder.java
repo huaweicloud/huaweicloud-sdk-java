@@ -43,6 +43,36 @@ public interface RoleBuilder extends Builder<RoleBuilder, Role> {
     RoleBuilder links(Map<String, String> links);
 
     /**
+     * @see Role#getDisplayName()
+     */
+    RoleBuilder displayName(String displayName);
+
+    /**
+     * @see Role#getType()
+     */
+    RoleBuilder type(String type);
+
+    /**
+     * @see Role#getCatalog()
+     */
+    RoleBuilder catalog(String catalog);
+
+    /**
+     * @see Role#getFlag()
+     */
+    RoleBuilder flag(String flag);
+
+    /**
+     * @see Role#getDescription()
+     */
+    RoleBuilder description(String description);
+
+    /**
+     * @see Role#getPolicy()
+     */
+    RoleBuilder policy(Map<String, Object> policy);
+
+    /**
      * @see Role#getLinks()
      */
 	RoleBuilder domainId(String domainId);

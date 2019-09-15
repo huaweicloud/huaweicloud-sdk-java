@@ -1,5 +1,5 @@
 /*******************************************************************************
- * 	Copyright 2018 HuaWei Tld                                     
+ * 	Copyright 2018 Huawei Technologies Co., Ltd.
  * 	                                                                                 
  * 	Licensed under the Apache License, Version 2.0 (the "License"); you may not      
  * 	use this file except in compliance with the License. You may obtain a copy of    
@@ -69,7 +69,6 @@ public class PrivateIpTest extends AbstractTest {
 		Assert.assertNotNull(list);
 		Assert.assertEquals(list.size(), 2);
 		Assert.assertEquals(privateip.getId(), "d600542a-b231-45ed-af05-e9930cb14f78");
-		Assert.assertEquals(privateip.getIpAddress(), "192.168.1.11");
 		Assert.assertEquals(privateip.getStatus(), "DOWN");
 	}
 
@@ -93,7 +92,6 @@ public class PrivateIpTest extends AbstractTest {
 		Assert.assertNotNull(list);
 		Assert.assertEquals(list.size(), 2);
 		Assert.assertEquals(privateip.getId(), "d600542a-b231-45ed-af05-e9930cb14f78");
-		Assert.assertEquals(privateip.getIpAddress(), "192.168.1.11");
 		Assert.assertEquals(privateip.getStatus(), "DOWN");
 	}
 
@@ -103,7 +101,7 @@ public class PrivateIpTest extends AbstractTest {
 
 		PrivateIp privateip1 = PrivateIp.builder().subnetId("531dec0f-3116-411b-a21b-e612e42349fd").build();
 		PrivateIp privateip2 = PrivateIp.builder().subnetId("531dec0f-3116-411b-a21b-e612e42349fd")
-				.ipAddress("192.168.1.17").build();
+				.ipAddress("******").build();
 
 		PrivateIps privateipsApp = new PrivateIps();
 		ArrayList<PrivateIp> list = new ArrayList<PrivateIp>();
@@ -117,7 +115,6 @@ public class PrivateIpTest extends AbstractTest {
 		Assert.assertEquals(request.getPath(), "/v1/project-id/privateips");
 		Assert.assertEquals(request.getMethod(), "POST");
 		Assert.assertEquals(privateip.getId(), "c60c2ce1-1e73-44bd-bf48-fd688448ff7b");
-		Assert.assertEquals(privateip.getIpAddress(), "192.168.1.10");
 		Assert.assertEquals(privateip.getStatus(), "DOWN");
 	}
 
@@ -131,7 +128,6 @@ public class PrivateIpTest extends AbstractTest {
 		Assert.assertEquals(request.getPath(), "/v1/project-id/privateips/d600542a-b231-45ed-af05-e9930cb14f78");
 		Assert.assertEquals(request.getMethod(), "GET");
 		Assert.assertEquals(privateip.getId(), "d600542a-b231-45ed-af05-e9930cb14f78");
-		Assert.assertEquals(privateip.getIpAddress(), "192.168.1.11");
 		Assert.assertEquals(privateip.getStatus(), "DOWN");
 	}
 

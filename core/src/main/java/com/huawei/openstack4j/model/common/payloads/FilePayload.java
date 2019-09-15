@@ -34,7 +34,7 @@ public class FilePayload implements Payload<File> {
 
 	private File file;
 	private InputStream is;
-	
+
 	public FilePayload(File file) {
 		this.file = file;
 	}
@@ -49,7 +49,7 @@ public class FilePayload implements Payload<File> {
 			return is;
 		}
 		catch (FileNotFoundException e) {
-		  throw Throwables.propagate(e);
+		  	throw Throwables.propagate(e);
 		}
 	}
 

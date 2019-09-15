@@ -1,5 +1,5 @@
 /*******************************************************************************
- * 	Copyright 2017 HuaWei Tld                                     
+ * 	Copyright 2017 Huawei Technologies Co., Ltd.
  * 	                                                                                 
  * 	Licensed under the Apache License, Version 2.0 (the "License"); you may not      
  * 	use this file except in compliance with the License. You may obtain a copy of    
@@ -71,7 +71,6 @@ public class ELBLoadBalancerV1Tests extends AbstractTest {
 		String loadBalancerId = "a650695bb9344a3fa24dec344116d261";
 		LoadBalancer loadBalancer = osv3().loadBalancer().loadBalancers().get(loadBalancerId);
 		assertTrue(loadBalancer.getId().equals(loadBalancerId));
-		assertEquals(loadBalancer.getVipAddress(), "192.168.2.36");
 		assertEquals(loadBalancer.getStatus(), Status.ACTIVE);
 		assertEquals(loadBalancer.getBandwidth(), Integer.valueOf(1));
 		assertEquals(loadBalancer.getVpcId(), "31d158b8-e7d7-4b4a-b2a7-a5240296b267");

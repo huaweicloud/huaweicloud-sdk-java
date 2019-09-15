@@ -33,5 +33,28 @@ public class PasswordConfig implements ModelEntity {
     @JsonProperty("password_regex_description")
     private String passwordRegexDescription;
 
+    public String getPasswordRegex() {
+        if (passwordRegex == null){
+            return securityCompliance.get("password_regex");
+        }
+        return passwordRegex;
+    }
+
+    public String getPasswordRegexDescription() {
+        if (passwordRegexDescription == null){
+            return securityCompliance.get("password_regex_description");
+        }
+        return passwordRegexDescription;
+    }
+
+    @Override
+    public String toString() {
+        return MoreObjects.toStringHelper(this).omitNullValues()
+                .add("securityCompliance", securityCompliance)
+                .add("passwordRegex", passwordRegex)
+                .add("passwordRegexDescription", passwordRegexDescription)
+                .toString();
+    }
+
 }
 

@@ -45,7 +45,7 @@ public class DesignateRecordsetServiceTest extends AbstractTest {
 
 	private static final String ZONE_ID = "2c9eb155587194ec01587224c9f90149";
 	private static final String RECORDSET_NAME = "www.example.com.";
-	private static final ImmutableList<String> RECORDSET_RECORDS = ImmutableList.of("10.1.0.2");
+	private static final ImmutableList<String> RECORDSET_RECORDS = ImmutableList.of("******");
 	private static final Status RECORDSET_STATUS = Status.PENDING_CREATE;
 	private static final Action RECORDSET_ACTION = Action.CREATE;
 	public static final String DESCRIPTION = "This is an example record set.";
@@ -60,7 +60,7 @@ public class DesignateRecordsetServiceTest extends AbstractTest {
 	public void recordsetCreateASuccessTest() throws Exception {
 		respondWith(JSON_RECORDSET_A);
 		Recordset recordset = osv3().dns().recordsets().create(ZONE_ID, RECORDSET_NAME, DESCRIPTION, "A", TTL,
-				Lists.newArrayList("192.168.10.1", "192.168.10.2", "192.168.10.3"));
+				Lists.newArrayList("******", "******", "******"));
 		assertEquals(recordset.getZoneId(), ZONE_ID);
 		assertEquals(recordset.getName(), RECORDSET_NAME);
 		assertEquals(recordset.getType(), RecordSetType.A);
@@ -71,13 +71,13 @@ public class DesignateRecordsetServiceTest extends AbstractTest {
 	@Test(expectedExceptions = NullPointerException.class)
 	public void recordsetCreateFailed2Test() throws Exception {
 		osv3().dns().recordsets().create(ZONE_ID, null, DESCRIPTION, "A", TTL,
-				Lists.newArrayList("192.168.10.1", "192.168.10.2", "192.168.10.3"));
+				Lists.newArrayList("******", "******", "******"));
 	}
 
 	@Test(expectedExceptions = NullPointerException.class)
 	public void recordsetCreateFailed3Test() throws Exception {
 		osv3().dns().recordsets().create(ZONE_ID, RECORDSET_NAME, DESCRIPTION, "A", null,
-				Lists.newArrayList("192.168.10.1", "192.168.10.2", "192.168.10.3"));
+				Lists.newArrayList("******", "******", "******"));
 	}
 
 	@Test(expectedExceptions = NullPointerException.class)

@@ -34,6 +34,7 @@ import com.huawei.openstack4j.openstack.cdn.v1.domain.RefreshTaskCreate;
 import com.huawei.openstack4j.openstack.cdn.v1.domain.Source;
 import com.huawei.openstack4j.openstack.cdn.v1.domain.Task;
 import com.huawei.openstack4j.openstack.cdn.v1.domain.TaskDetail;
+import com.huawei.openstack4j.openstack.cdn.v1.domain.CdnIP;
 import com.huawei.openstack4j.openstack.identity.internal.OverridableEndpointURLResolver;
 
 import java.util.ArrayList;
@@ -41,28 +42,26 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class CdnDomainDemo
-{
+public class CdnDomainDemo {
 
-    public static void main(String[] args)
-    {
+    public static void main(String[] args) {
         // step 1: add cloud service override endpoint
         OverridableEndpointURLResolver endpointResolver = new OverridableEndpointURLResolver();
-        endpointResolver.addOverrideEndpoint(ServiceType.CDN, "https://cdn.example.com/v1.0");
-        // step 2: setup the authentication credit
+        endpointResolver.addOverrideEndpoint(ServiceType.CDN, "xxx");//example:"https://cdn.myhuaweicloud.com/v1.0"
+
+        // step 2: initial OpenStack4j Client
+        OSFactory.enableHttpLoggingFilter(true);
+        // step 3: config of the client
+        Config config = Config.newConfig()
+                .withEndpointURLResolver(endpointResolver);
+
+        // step 4: token authorization：setup the authentication credit
         String user = "username";
         String password = "password";
         String projectId = "projectId";
         String userDomainId = "userDomainId";
         String authUrl = "xxxxxxx";
 
-        // step 3: initial OpenStack4j Client
-        OSFactory.enableHttpLoggingFilter(true);
-        // config of the client
-        Config config = Config.newConfig()
-                .withEndpointURLResolver(endpointResolver);
-
-        // initial client
         OSClient.OSClientV3 osclient = OSFactory.builderV3()
                 .withConfig(config)
                 .endpoint(authUrl)
@@ -70,6 +69,17 @@ public class CdnDomainDemo
                 .scopeToDomain(Identifier.byId(userDomainId))
                 .scopeToProject(Identifier.byId(projectId))
                 .authenticate();
+
+        /*
+        // step4：AKSK authorization：：setup the authentication credit
+        String ak = "xxxx";
+        String sk = "xxxx";
+        String projectId = "xxxx";
+        String region = "xxxx"; //example: region = "cn-north-1"
+        String cloud = "xxxx"; //example: cloud = "myhuaweicloud.com"
+
+        OSClient.OSClientAKSK osclient = OSFactory.builderAKSK().withConfig(config).credentials(ak, sk, region, projectId, cloud) .authenticate();
+        */
 
         //Parameter package
         Map<String, String> params = new HashMap<>();
@@ -201,5 +211,10 @@ public class CdnDomainDemo
         domain = osclient.cdn().domains().delete("xxxxxxx", params);
         System.out.println(domain);
         System.out.println("domain delecte success...");
+
+        //query cdn ips
+        params.put("ips", "x.x.x.x,x.x.x.x");
+        CdnIP.CdnIPs cdnips = osclient.cdn().domains().queryCdnIPs(params);
+        System.out.println(cdnips.getList());
     }
 }

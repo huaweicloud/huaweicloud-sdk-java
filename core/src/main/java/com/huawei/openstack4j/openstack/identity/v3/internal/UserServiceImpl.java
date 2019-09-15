@@ -124,6 +124,18 @@ public class UserServiceImpl extends BaseOpenStackService implements UserService
      * {@inheritDoc}
      */
     @Override
+    public User create(String domainId, String name, String password, String email) {
+        checkNotNull(domainId);
+        checkNotNull(name);
+        checkNotNull(password);
+        checkNotNull(email);
+        return create(KeystoneUser.builder().domainId(domainId).name(name).password(password).email(email).build());
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
     public List<? extends Group> listUserGroups(String userId) {
         checkNotNull(userId);
         return get(Groups.class, uri("/users/%s/groups", userId)).execute().getList();

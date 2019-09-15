@@ -18,20 +18,11 @@ package com.huawei.openstack4j.openstack.cdn.v1.internal;
 import java.util.Map;
 
 import com.google.common.base.Preconditions;
-import com.huawei.openstack4j.openstack.cdn.v1.domain.CacheConfig;
-import com.huawei.openstack4j.openstack.cdn.v1.domain.Domain;
+import com.huawei.openstack4j.openstack.cdn.v1.domain.*;
 import com.huawei.openstack4j.openstack.cdn.v1.domain.Domain.Domains;
-import com.huawei.openstack4j.openstack.cdn.v1.domain.DomainCreate;
-import com.huawei.openstack4j.openstack.cdn.v1.domain.HttpsInfo;
-import com.huawei.openstack4j.openstack.cdn.v1.domain.OriginHost;
-import com.huawei.openstack4j.openstack.cdn.v1.domain.PreheatingTask;
-import com.huawei.openstack4j.openstack.cdn.v1.domain.PreheatingTaskCreate;
-import com.huawei.openstack4j.openstack.cdn.v1.domain.Referer;
-import com.huawei.openstack4j.openstack.cdn.v1.domain.RefreshTask;
-import com.huawei.openstack4j.openstack.cdn.v1.domain.RefreshTaskCreate;
 import com.huawei.openstack4j.openstack.cdn.v1.domain.Source.Origin;
 import com.huawei.openstack4j.openstack.cdn.v1.domain.Task.Tasks;
-import com.huawei.openstack4j.openstack.cdn.v1.domain.TaskDetail;
+import com.huawei.openstack4j.openstack.cdn.v1.domain.CdnIP.CdnIPs;
 import com.huawei.openstack4j.openstack.cdn.v1.exception.ServerCdnErrorResponseException;
 
 /**
@@ -385,5 +376,21 @@ public class DomainService extends BaseCdnServices{
 		}
 		return taskDetailInvocation.execute(this.buildExecutionOptions(TaskDetail.class));
 	}
-	
+
+	/**
+	 * Querying a Cache Refreshing or Preheating Task
+	 * @param params
+	 * @return {@link Tasks} instance
+	 * @throws ServerCdnErrorResponseException
+	 */
+	public CdnIPs queryCdnIPs(Map<String, String> params) throws ServerCdnErrorResponseException{
+		Preconditions.checkNotNull(params.get("ips"), "parameter `ips` should not be null");
+		Invocation<CdnIPs> cdnIPsInvocation = get(CdnIPs.class, uri("/ip-info"));
+		if (params != null) {
+			for (Map.Entry<String, String> entry : params.entrySet()) {
+				cdnIPsInvocation = cdnIPsInvocation.param(entry.getKey(), entry.getValue());
+			}
+		}
+		return cdnIPsInvocation.execute(this.buildExecutionOptions(CdnIPs.class));
+	}
 }

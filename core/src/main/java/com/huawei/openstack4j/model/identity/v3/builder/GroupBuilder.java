@@ -52,4 +52,9 @@ public interface GroupBuilder extends Builder<GroupBuilder, Group> {
      */
     GroupBuilder links(Map<String, String> links);
 
+    /**
+     * @see Group#getCreateTime()
+     */
+    GroupBuilder createTime(Long createTime);
+
 }

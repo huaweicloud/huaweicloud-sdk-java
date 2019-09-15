@@ -46,6 +46,11 @@ public interface User extends ModelEntity, Buildable<UserBuilder> {
     String getEmail();
 
     /**
+     * @return the mobile of the user
+     */
+    String getMobile();
+
+    /**
      * @return the description of the user
      */
     String getDescription();
@@ -56,9 +61,34 @@ public interface User extends ModelEntity, Buildable<UserBuilder> {
     String getPassword();
 
     /**
+     * @return the password status of the user
+     */
+    Boolean getPwdStatus();
+
+    /**
+     * @return the password strength of the user
+     */
+    String getPwdStrength();
+
+    /**
+     * @return the forceResetPwd of the user
+     */
+    Boolean getForceResetPwd();
+
+    /**
      * @return the defaultProjectId of the user
      */
     String getDefaultProjectId();
+
+    /**
+     * @return the last project id of the user
+     */
+    String getLastProjectId();
+
+    /**
+     * @return the password_expires_at of the user
+     */
+    String getPasswordExpiresAt();
 
     /**
      * @return the domainId of the user
@@ -74,6 +104,10 @@ public interface User extends ModelEntity, Buildable<UserBuilder> {
      * @return the links of the user
      */
     Map<String, String> getLinks();
+    /**
+     * @return the extra of the user
+     */
+    Map<String, String> getExtra();
 
     /**
      * @return the enabled status of the user

@@ -1,5 +1,5 @@
 /*******************************************************************************
- * 	Copyright 2017 HuaWei TLD
+ * 	Copyright 2017 Huawei Technologies Co., Ltd.
  * 	Copyright 2016 ContainX and OpenStack4j
  *
  * 	Licensed under the Apache License, Version 2.0 (the "License"); you may not      

@@ -49,7 +49,7 @@ public class LbWhitelistV2Test extends AbstractTest {
 	public void testUpdateWhitelist() throws IOException{
 		respondWith(WHITELIST_UPDATE_JSON);
 		String whitelistId = "dcaf46f1-037c-4f63-a31f-e0c4c18032c7";
-		String whiteList = "192.168.0.2";
+		String whiteList = "******";
 		NeutronWhitelistUpdate model = NeutronWhitelistUpdate.builder().whitelist(whiteList).build();		
 	    NeutronWhitelist res = osv3().networking().lbaasV2().lbWhitelist().update(model, whitelistId);
 	    assertNotNull(listenerId.equals(res.getListenerId()));

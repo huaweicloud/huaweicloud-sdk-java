@@ -86,6 +86,6 @@ public class Function {
         osclient.functionGraph().function().updateFunctionConfig(functionUrn, updateFunctionMetadata);
 
         //Delete funtion
-        osclient.functionGraphService().function().deleteFunction(functionUrn);
+        osclient.functionGraph().function().deleteFunction(functionUrn);
     }
 }

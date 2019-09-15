@@ -131,15 +131,20 @@ public final class ClientConstants {
     public static final String MAGNUM_CLUSTERTEMPLATES = "/clustertemplates";
     public static final String MAGNUM_PODS = "/pods";
 
-    //FunctionGraph path
+    //FunctionGraph path V1
     public static final String FGS_PATH = "/fss/functions";
+    public static final String FGS_TRIGGERS = "/fss/triggers";
+
+    //FunctionGraph path V2
+    public static final String FGS_PATH_V2 = "/fgs/functions";
+    public static final String FGS_TRIGGERS_V2 = "/fgs/triggers";
+
     public static final String FGS_CONFIG = "/config";
     public static final String FGS_CODE = "/code";
     public static final String FGS_VERSION = "/versions";
     public static final String FGS_MARKER = "marker";
     public static final String FGS_MAXITEMS = "maxitems";
     public static final String FGS_ALIASES = "/aliases";
-    public static final String FGS_TRIGGERS = "/fss/triggers";
     public static final String FGS_INVOCATIONS = "/invocations";
     public static final String FGS_INVOCATIONS_ASYNC = "/invocations-async";
 

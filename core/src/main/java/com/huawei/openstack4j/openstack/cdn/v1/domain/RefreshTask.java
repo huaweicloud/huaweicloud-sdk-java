@@ -39,7 +39,7 @@ public class RefreshTask implements ModelEntity{
 
 	private String id;
 	
-	@JsonProperty("taskType")
+	@JsonProperty("task_type")
 	private String taskType;
 	
 	private String status;

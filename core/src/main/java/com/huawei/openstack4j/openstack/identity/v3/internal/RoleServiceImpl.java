@@ -19,6 +19,7 @@ import static com.google.common.base.Preconditions.checkNotNull;
 import static com.huawei.openstack4j.core.transport.ClientConstants.*;
 
 import java.util.List;
+import java.util.Map;
 
 import com.huawei.openstack4j.api.identity.v3.RoleService;
 import com.huawei.openstack4j.model.common.ActionResponse;
@@ -107,6 +108,20 @@ public class RoleServiceImpl extends BaseOpenStackService implements RoleService
     @Override
     public List<? extends Role> list() {
         return get(Roles.class, uri("/roles")).execute().getList();
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public List<? extends Role> list(Map<String, String> filteringParams) {
+        Invocation<Roles> flavorInvocation = get(Roles.class, uri("/roles"));
+        if (filteringParams != null) {
+            for (Map.Entry<String, String> entry : filteringParams.entrySet()) {
+                flavorInvocation = flavorInvocation.param(entry.getKey(), entry.getValue());
+            }
+        }
+        return flavorInvocation.execute().getList();
     }
 
     /**

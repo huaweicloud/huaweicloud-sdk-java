@@ -91,6 +91,8 @@ public class CreateOneOrMoreServers {
 		
 		//create server
 		Server newServer = osclient.compute().servers().boot(scLinux);
+		// Use the waitForServerStatus function to query the server status until the server is ACTIVE.
+		// The timeout for this operation is 10 minutes.
 		osclient.compute().servers().waitForServerStatus(newServer.getId(), Status.ACTIVE, 10, TimeUnit.MINUTES);
 			
 		//Filter server list, wait for server status to Active
@@ -99,6 +101,8 @@ public class CreateOneOrMoreServers {
 		List<? extends Server> servers = osclient.compute().servers().list(filterName);
 		ArrayList<String> serverIds = new ArrayList<String>();
 		for (Server server : servers) {
+			// Use the waitForServerStatus function to query the server status until the server is ACTIVE.
+			// The timeout for this operation is 3 minutes.
 			osclient.compute().servers().waitForServerStatus(server.getId(), Status.ACTIVE, 3, TimeUnit.MINUTES);
 			serverIds.add(server.getId());
 		}

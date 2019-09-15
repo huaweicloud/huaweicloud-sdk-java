@@ -71,9 +71,7 @@ public class ShareServerTests extends AbstractTest {
         assertEquals(shareServer.getBackendDetails().get("router_id"), "4b62ce91-56c5-45c1-b0ef-8cbbe5dd34f4");
         assertEquals(shareServer.getBackendDetails().get("pk_path"), "/opt/stack/.ssh/id_rsa");
         assertEquals(shareServer.getBackendDetails().get("subnet_id"), "16e99ad6-5191-461c-9f34-ac84a39c3adb");
-        assertEquals(shareServer.getBackendDetails().get("ip"), "10.254.0.3");
         assertEquals(shareServer.getBackendDetails().get("instance_id"), "75f2f282-af65-49ba-a7b1-525705b1bf1a");
-        assertEquals(shareServer.getBackendDetails().get("public_address"), "10.254.0.3");
         assertEquals(shareServer.getBackendDetails().get("service_port_id"), "8ff21760-961e-4b83-a032-03fd559bb1d3");
         assertEquals(shareServer.getCreatedAt(), "2015-09-07T08:37:19.000000");
         assertEquals(shareServer.getUpdatedAt(), "2015-09-07T08:52:15.000000");

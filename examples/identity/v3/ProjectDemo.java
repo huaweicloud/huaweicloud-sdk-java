@@ -31,9 +31,9 @@ public class ProjectDemo {
 
         //Querying Project with filterparam
         String domainId = "**********";
-        Map<String, String> filteringParams = new HashMap<>();
+        Map<String, Object> filteringParams = new HashMap<>();
         filteringParams.put("domain_id",domainId);
-        List<? extends Project> projectList = osclient.identity().projects().list(filteringParams);
+        List<? extends Project> projectList = osclient.identity().projects().listByObject(filteringParams);
         for(Project project : projectList){
             System.out.println(project);
         }
@@ -42,8 +42,11 @@ public class ProjectDemo {
         String projectName = "**********";
         String domainId = "**********";
         String description = "**********";
-        boolean enabled = true;
-        osclient.identity().projects().create(domainId, projectName, description, enabled);
+        osclient.identity().projects().create(domainId, projectName, description);
+
+        //create a project
+        Project sampleProject = KeystoneProject.builder().name("**********").domainId("**********").description("**********").parentId("**********").build();
+        osclient.identity().projects().create(sampleProject);
 
         //Modifying Project Data
         String projectId = "**********";

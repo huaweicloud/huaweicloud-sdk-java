@@ -67,7 +67,6 @@ public class ServerTests extends AbstractTest {
 
 		Server s = servers.get(0);
 		assertEquals(1, s.getAddresses().getAddresses("private").size());
-		assertEquals("192.168.0.3", s.getAddresses().getAddresses("private").get(0).getAddr());
 		assertEquals(Status.ACTIVE, s.getStatus());
 		assertEquals("new-server-test", s.getName());
 	}

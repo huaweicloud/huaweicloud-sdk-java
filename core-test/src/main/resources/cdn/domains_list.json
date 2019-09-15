@@ -1,0 +1,421 @@
+{
+  "total": 8985,
+  "domains": [
+    {
+      "sources": [
+        {
+          "domain_id": "df784930b9c944f1a943b2014e7d8fc9",
+          "origin_type": "obs_bucket",
+          "ip_or_domain": "test78.obs.cn-north-7.myhuaweicloud.com",
+          "active_standby": 1,
+          "back_source_type": null
+        }
+      ],
+      "cname": "test78.it-ba.com.c.cdnhwc1.com",
+      "id": "df784930b9c944f1a943b2014e7d8fc9",
+      "user_domain_id": "aee06e7fb3e944f7a4b0682ff29f22b3",
+      "domain_name": "test78.it-ba.com",
+      "business_type": "web",
+      "service_area": "mainland_china",
+      "domain_status": "online",
+      "https_status": null,
+      "create_time": 1562573436235,
+      "modify_time": 1562574060501,
+      "domain_origin_host": {
+        "domain_id": "df784930b9c944f1a943b2014e7d8fc9",
+        "origin_host_type": "customize",
+        "customize_domain": "test78.obs.cn-north-7.myhuaweicloud.com"
+      },
+      "disabled": 0,
+      "locked": 0,
+      "third_part_cdn": null,
+      "range_status": "off",
+      "follow_status": "off",
+      "origin_status": "on",
+      "auto_refresh_preheat": 0,
+      "banned_reason": null,
+      "locked_reason": null,
+      "event_switch_status": 0
+    },
+    {
+      "sources": [
+        {
+          "domain_id": "41a4345e2c6e4dd481b02eb741c2c71a",
+          "origin_type": "ipaddr",
+          "ip_or_domain": "1.23.6.3",
+          "active_standby": 1,
+          "back_source_type": null
+        }
+      ],
+      "cname": "aee06e7f.621.stresstest.com.c.cdnhwc1.com",
+      "id": "41a4345e2c6e4dd481b02eb741c2c71a",
+      "user_domain_id": "aee06e7fb3e944f7a4b0682ff29f22b3",
+      "domain_name": "*.621.stresstest.com",
+      "business_type": "web",
+      "service_area": "mainland_china",
+      "domain_status": "online",
+      "https_status": null,
+      "create_time": 1561089253250,
+      "modify_time": 1561089360459,
+      "domain_origin_host": {
+        "domain_id": "41a4345e2c6e4dd481b02eb741c2c71a",
+        "origin_host_type": "accelerate",
+        "customize_domain": "*.621.stresstest.com"
+      },
+      "disabled": 0,
+      "locked": 0,
+      "third_part_cdn": null,
+      "range_status": "off",
+      "follow_status": "off",
+      "origin_status": "on",
+      "auto_refresh_preheat": 0,
+      "banned_reason": null,
+      "locked_reason": null,
+      "event_switch_status": 0
+    },
+    {
+      "sources": [
+        {
+          "domain_id": "89085c79e8534bcf9c9d564b55e5cd08",
+          "origin_type": "ipaddr",
+          "ip_or_domain": "100.133.0.1",
+          "active_standby": 1,
+          "back_source_type": null
+        },
+        {
+          "domain_id": "89085c79e8534bcf9c9d564b55e5cd08",
+          "origin_type": "ipaddr",
+          "ip_or_domain": "100.133.0.2",
+          "active_standby": 1,
+          "back_source_type": null
+        }
+      ],
+      "cname": "www.rzymw9de.620.stresstest.com.c.cdnhwc1.com",
+      "id": "89085c79e8534bcf9c9d564b55e5cd08",
+      "user_domain_id": "aee06e7fb3e944f7a4b0682ff29f22b3",
+      "domain_name": "www.rzymw9de.620.stresstest.com",
+      "business_type": "web",
+      "service_area": "mainland_china",
+      "domain_status": "online",
+      "https_status": null,
+      "create_time": 1561022395585,
+      "modify_time": 1561022461546,
+      "domain_origin_host": {
+        "domain_id": "89085c79e8534bcf9c9d564b55e5cd08",
+        "origin_host_type": "accelerate",
+        "customize_domain": "www.rzymw9de.620.stresstest.com"
+      },
+      "disabled": 0,
+      "locked": 0,
+      "third_part_cdn": null,
+      "range_status": "off",
+      "follow_status": "off",
+      "origin_status": "on",
+      "auto_refresh_preheat": 0,
+      "banned_reason": null,
+      "locked_reason": null,
+      "event_switch_status": 0
+    },
+    {
+      "sources": [
+        {
+          "domain_id": "e7e4e15e11ea4d00a6124117ab827e85",
+          "origin_type": "ipaddr",
+          "ip_or_domain": "100.133.0.1",
+          "active_standby": 1,
+          "back_source_type": null
+        },
+        {
+          "domain_id": "e7e4e15e11ea4d00a6124117ab827e85",
+          "origin_type": "ipaddr",
+          "ip_or_domain": "100.133.0.2",
+          "active_standby": 1,
+          "back_source_type": null
+        }
+      ],
+      "cname": "www.j9w0zx7h.620.stresstest.com.c.cdnhwc1.com",
+      "id": "e7e4e15e11ea4d00a6124117ab827e85",
+      "user_domain_id": "aee06e7fb3e944f7a4b0682ff29f22b3",
+      "domain_name": "www.j9w0zx7h.620.stresstest.com",
+      "business_type": "download",
+      "service_area": "mainland_china",
+      "domain_status": "online",
+      "https_status": null,
+      "create_time": 1561022396354,
+      "modify_time": 1561022461518,
+      "domain_origin_host": {
+        "domain_id": "e7e4e15e11ea4d00a6124117ab827e85",
+        "origin_host_type": "accelerate",
+        "customize_domain": "www.j9w0zx7h.620.stresstest.com"
+      },
+      "disabled": 0,
+      "locked": 0,
+      "third_part_cdn": null,
+      "range_status": "on",
+      "follow_status": "off",
+      "origin_status": "on",
+      "auto_refresh_preheat": 0,
+      "banned_reason": null,
+      "locked_reason": null,
+      "event_switch_status": 0
+    },
+    {
+      "sources": [
+        {
+          "domain_id": "5167b28a6b204f40acf8776aca2854a2",
+          "origin_type": "ipaddr",
+          "ip_or_domain": "100.133.0.1",
+          "active_standby": 1,
+          "back_source_type": null
+        },
+        {
+          "domain_id": "5167b28a6b204f40acf8776aca2854a2",
+          "origin_type": "ipaddr",
+          "ip_or_domain": "100.133.0.2",
+          "active_standby": 1,
+          "back_source_type": null
+        }
+      ],
+      "cname": "www.0edbvckt.620.stresstest.com.c.cdnhwc1.com",
+      "id": "5167b28a6b204f40acf8776aca2854a2",
+      "user_domain_id": "aee06e7fb3e944f7a4b0682ff29f22b3",
+      "domain_name": "www.0edbvckt.620.stresstest.com",
+      "business_type": "video",
+      "service_area": "mainland_china",
+      "domain_status": "online",
+      "https_status": null,
+      "create_time": 1561022396538,
+      "modify_time": 1561022461505,
+      "domain_origin_host": {
+        "domain_id": "5167b28a6b204f40acf8776aca2854a2",
+        "origin_host_type": "accelerate",
+        "customize_domain": "www.0edbvckt.620.stresstest.com"
+      },
+      "disabled": 0,
+      "locked": 0,
+      "third_part_cdn": null,
+      "range_status": "on",
+      "follow_status": "off",
+      "origin_status": "on",
+      "auto_refresh_preheat": 0,
+      "banned_reason": null,
+      "locked_reason": null,
+      "event_switch_status": 0
+    },
+    {
+      "sources": [
+        {
+          "domain_id": "24c467f0b2504efaa309ca0263b6ae73",
+          "origin_type": "ipaddr",
+          "ip_or_domain": "100.133.0.1",
+          "active_standby": 1,
+          "back_source_type": null
+        },
+        {
+          "domain_id": "24c467f0b2504efaa309ca0263b6ae73",
+          "origin_type": "ipaddr",
+          "ip_or_domain": "100.133.0.2",
+          "active_standby": 1,
+          "back_source_type": null
+        }
+      ],
+      "cname": "www.9b5oydza.620.stresstest.com.c.cdnhwc1.com",
+      "id": "24c467f0b2504efaa309ca0263b6ae73",
+      "user_domain_id": "aee06e7fb3e944f7a4b0682ff29f22b3",
+      "domain_name": "www.9b5oydza.620.stresstest.com",
+      "business_type": "video",
+      "service_area": "mainland_china",
+      "domain_status": "online",
+      "https_status": null,
+      "create_time": 1561022395698,
+      "modify_time": 1561022461498,
+      "domain_origin_host": {
+        "domain_id": "24c467f0b2504efaa309ca0263b6ae73",
+        "origin_host_type": "accelerate",
+        "customize_domain": "www.9b5oydza.620.stresstest.com"
+      },
+      "disabled": 0,
+      "locked": 0,
+      "third_part_cdn": null,
+      "range_status": "on",
+      "follow_status": "off",
+      "origin_status": "on",
+      "auto_refresh_preheat": 0,
+      "banned_reason": null,
+      "locked_reason": null,
+      "event_switch_status": 0
+    },
+    {
+      "sources": [
+        {
+          "domain_id": "855344b762214674969f0a441f267d10",
+          "origin_type": "ipaddr",
+          "ip_or_domain": "100.133.0.1",
+          "active_standby": 1,
+          "back_source_type": null
+        },
+        {
+          "domain_id": "855344b762214674969f0a441f267d10",
+          "origin_type": "ipaddr",
+          "ip_or_domain": "100.133.0.2",
+          "active_standby": 1,
+          "back_source_type": null
+        }
+      ],
+      "cname": "www.bzyhdjeu.620.stresstest.com.c.cdnhwc1.com",
+      "id": "855344b762214674969f0a441f267d10",
+      "user_domain_id": "aee06e7fb3e944f7a4b0682ff29f22b3",
+      "domain_name": "www.bzyhdjeu.620.stresstest.com",
+      "business_type": "web",
+      "service_area": "mainland_china",
+      "domain_status": "online",
+      "https_status": null,
+      "create_time": 1561022396396,
+      "modify_time": 1561022461465,
+      "domain_origin_host": {
+        "domain_id": "855344b762214674969f0a441f267d10",
+        "origin_host_type": "accelerate",
+        "customize_domain": "www.bzyhdjeu.620.stresstest.com"
+      },
+      "disabled": 0,
+      "locked": 0,
+      "third_part_cdn": null,
+      "range_status": "off",
+      "follow_status": "off",
+      "origin_status": "on",
+      "auto_refresh_preheat": 0,
+      "banned_reason": null,
+      "locked_reason": null,
+      "event_switch_status": 0
+    },
+    {
+      "sources": [
+        {
+          "domain_id": "b813c7d54317435883a3d4b2a36d5ebb",
+          "origin_type": "ipaddr",
+          "ip_or_domain": "100.133.0.1",
+          "active_standby": 1,
+          "back_source_type": null
+        },
+        {
+          "domain_id": "b813c7d54317435883a3d4b2a36d5ebb",
+          "origin_type": "ipaddr",
+          "ip_or_domain": "100.133.0.2",
+          "active_standby": 1,
+          "back_source_type": null
+        }
+      ],
+      "cname": "www.3ebtwnc5.620.stresstest.com.c.cdnhwc1.com",
+      "id": "b813c7d54317435883a3d4b2a36d5ebb",
+      "user_domain_id": "aee06e7fb3e944f7a4b0682ff29f22b3",
+      "domain_name": "www.3ebtwnc5.620.stresstest.com",
+      "business_type": "download",
+      "service_area": "mainland_china",
+      "domain_status": "online",
+      "https_status": null,
+      "create_time": 1561022396678,
+      "modify_time": 1561022461457,
+      "domain_origin_host": {
+        "domain_id": "b813c7d54317435883a3d4b2a36d5ebb",
+        "origin_host_type": "accelerate",
+        "customize_domain": "www.3ebtwnc5.620.stresstest.com"
+      },
+      "disabled": 0,
+      "locked": 0,
+      "third_part_cdn": null,
+      "range_status": "on",
+      "follow_status": "off",
+      "origin_status": "on",
+      "auto_refresh_preheat": 0,
+      "banned_reason": null,
+      "locked_reason": null,
+      "event_switch_status": 0
+    },
+    {
+      "sources": [
+        {
+          "domain_id": "42d2331cc9004634bfece9d60ae565f9",
+          "origin_type": "ipaddr",
+          "ip_or_domain": "100.133.0.1",
+          "active_standby": 1,
+          "back_source_type": null
+        },
+        {
+          "domain_id": "42d2331cc9004634bfece9d60ae565f9",
+          "origin_type": "ipaddr",
+          "ip_or_domain": "100.133.0.2",
+          "active_standby": 1,
+          "back_source_type": null
+        }
+      ],
+      "cname": "www.7rpftdu6.620.stresstest.com.c.cdnhwc1.com",
+      "id": "42d2331cc9004634bfece9d60ae565f9",
+      "user_domain_id": "aee06e7fb3e944f7a4b0682ff29f22b3",
+      "domain_name": "www.7rpftdu6.620.stresstest.com",
+      "business_type": "web",
+      "service_area": "mainland_china",
+      "domain_status": "online",
+      "https_status": null,
+      "create_time": 1561022396280,
+      "modify_time": 1561022461450,
+      "domain_origin_host": {
+        "domain_id": "42d2331cc9004634bfece9d60ae565f9",
+        "origin_host_type": "accelerate",
+        "customize_domain": "www.7rpftdu6.620.stresstest.com"
+      },
+      "disabled": 0,
+      "locked": 0,
+      "third_part_cdn": null,
+      "range_status": "off",
+      "follow_status": "off",
+      "origin_status": "on",
+      "auto_refresh_preheat": 0,
+      "banned_reason": null,
+      "locked_reason": null,
+      "event_switch_status": 0
+    },
+    {
+      "sources": [
+        {
+          "domain_id": "84532ded2a164da884cb1357442448ed",
+          "origin_type": "ipaddr",
+          "ip_or_domain": "100.133.0.1",
+          "active_standby": 1,
+          "back_source_type": null
+        },
+        {
+          "domain_id": "84532ded2a164da884cb1357442448ed",
+          "origin_type": "ipaddr",
+          "ip_or_domain": "100.133.0.2",
+          "active_standby": 1,
+          "back_source_type": null
+        }
+      ],
+      "cname": "www.c3nwoslx.620.stresstest.com.c.cdnhwc1.com",
+      "id": "84532ded2a164da884cb1357442448ed",
+      "user_domain_id": "aee06e7fb3e944f7a4b0682ff29f22b3",
+      "domain_name": "www.c3nwoslx.620.stresstest.com",
+      "business_type": "web",
+      "service_area": "mainland_china",
+      "domain_status": "online",
+      "https_status": null,
+      "create_time": 1561022396133,
+      "modify_time": 1561022461424,
+      "domain_origin_host": {
+        "domain_id": "84532ded2a164da884cb1357442448ed",
+        "origin_host_type": "accelerate",
+        "customize_domain": "www.c3nwoslx.620.stresstest.com"
+      },
+      "disabled": 0,
+      "locked": 0,
+      "third_part_cdn": null,
+      "range_status": "off",
+      "follow_status": "off",
+      "origin_status": "on",
+      "auto_refresh_preheat": 0,
+      "banned_reason": null,
+      "locked_reason": null,
+      "event_switch_status": 0
+    }
+  ]
+}

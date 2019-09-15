@@ -45,6 +45,11 @@ public interface UserBuilder extends Builder<UserBuilder, User> {
     UserBuilder defaultProjectId(String defaultProjectId);
 
     /**
+     * @see User#getLastProjectId()
+     */
+    UserBuilder lastProjectId(String lastProjectId);
+
+    /**
      * @see User#getDescription()
      */
     UserBuilder description(String description);
@@ -67,14 +72,44 @@ public interface UserBuilder extends Builder<UserBuilder, User> {
     UserBuilder email(String email);
 
     /**
+     * @see User#getMobile()
+     */
+    UserBuilder mobile(String mobile);
+
+    /**
      * @see User#getLinks()
      */
     UserBuilder links(Map<String, String> links);
 
     /**
+     * @see User#getExtra()
+     */
+    UserBuilder extra(Map<String, String> extra);
+
+    /**
      * @see User#getPassword()
      */
     UserBuilder password(String password);
+
+    /**
+     * @see User#getPwdStatus()
+     */
+    UserBuilder pwdStatus(Boolean pwdStatus);
+
+    /**
+     * @see User#getPwdStrength()
+     */
+    UserBuilder pwdStrength(String pwdStrength);
+
+    /**
+     * @see User#getPasswordExpiresAt()
+     */
+    UserBuilder passwordExpiresAt(String passwordExpiresAt);
+
+    /**
+     * @see User#getForceResetPwd()
+     */
+    UserBuilder forceResetPwd(Boolean forceResetPwd);
 
     /**
      * @see User#isEnabled()

@@ -15,6 +15,7 @@
  *******************************************************************************/
 package com.huawei.openstack4j.api.cdn.v1;
 
+import com.huawei.openstack4j.openstack.cdn.v1.domain.*;
 import okhttp3.mockwebserver.RecordedRequest;
 
 import java.io.IOException;
@@ -27,22 +28,10 @@ import org.testng.Assert;
 import org.testng.annotations.Test;
 
 import com.huawei.openstack4j.api.AbstractTest;
-import com.huawei.openstack4j.openstack.cdn.v1.domain.CacheConfig;
-import com.huawei.openstack4j.openstack.cdn.v1.domain.CacheRule;
-import com.huawei.openstack4j.openstack.cdn.v1.domain.Domain;
 import com.huawei.openstack4j.openstack.cdn.v1.domain.Domain.Domains;
-import com.huawei.openstack4j.openstack.cdn.v1.domain.DomainCreate;
-import com.huawei.openstack4j.openstack.cdn.v1.domain.HttpsInfo;
-import com.huawei.openstack4j.openstack.cdn.v1.domain.OriginHost;
-import com.huawei.openstack4j.openstack.cdn.v1.domain.PreheatingTask;
-import com.huawei.openstack4j.openstack.cdn.v1.domain.PreheatingTaskCreate;
-import com.huawei.openstack4j.openstack.cdn.v1.domain.Referer;
-import com.huawei.openstack4j.openstack.cdn.v1.domain.RefreshTask;
-import com.huawei.openstack4j.openstack.cdn.v1.domain.RefreshTaskCreate;
-import com.huawei.openstack4j.openstack.cdn.v1.domain.Source;
 import com.huawei.openstack4j.openstack.cdn.v1.domain.Source.Origin;
 import com.huawei.openstack4j.openstack.cdn.v1.domain.Task.Tasks;
-import com.huawei.openstack4j.openstack.cdn.v1.domain.TaskDetail;
+import com.huawei.openstack4j.openstack.cdn.v1.domain.CdnIP.CdnIPs;
 import com.huawei.openstack4j.openstack.cdn.v1.exception.ServerCdnErrorResponseException;
 
 @Test(suiteName = "Cdn/Domain", enabled = true)
@@ -59,14 +48,34 @@ public class DomainServiceTest extends AbstractTest {
 		Domains domains = osv3().cdn().domains().list(params);
 
 		RecordedRequest request = server.takeRequest();
-		Assert.assertEquals(request.getPath(), "/v1.0/cdn/domains?page_number=1&page_size=10");
+		Assert.assertEquals(request.getPath(), "/cdn/domains?page_number=1&page_size=10");
 		Assert.assertEquals(request.getMethod(), "GET");
-		Assert.assertEquals(domains.getList().size(), 2);
+		Assert.assertEquals(domains.getList().size(), 10);
 
 		Domain domain = domains.getList().get(0);
-		Assert.assertEquals(domain.getDomainName(), "hec3.donyd.com");
-		Assert.assertEquals(domain.getSources().get(0).getDomainId(), "8abe97de604d998f01604e7490130000");
-		Assert.assertEquals(domain.getDomainOriginHost().getCustomizeDomain(), "test961.donyd.com");
+		Assert.assertEquals(domain.getDomainName(), "test78.it-ba.com");
+		Assert.assertEquals(domain.getSources().get(0).getDomainId(), "df784930b9c944f1a943b2014e7d8fc9");
+		Assert.assertEquals(domain.getDomainOriginHost().getCustomizeDomain(), "test78.obs.cn-north-7.myhuaweicloud.com");
+	}
+
+	@Test
+	public void testQueryIps() throws IOException, InterruptedException {
+		respondWith("/cdn/cdnips.json");
+
+		Map<String, String> params = new HashMap<String, String>();
+		params.put("ips","1.1.1.1,2.2.2.2");
+
+		CdnIPs cdnips = osv3().cdn().domains().queryCdnIPs(params);
+
+		RecordedRequest request = server.takeRequest();
+		Assert.assertEquals(request.getPath(), "/cdn/ip-info?ips=1.1.1.1%2C2.2.2.2");
+		Assert.assertEquals(request.getMethod(), "GET");
+		Assert.assertEquals(cdnips.getList().size(), 2);
+
+		CdnIP cdnip = cdnips.getList().get(0);
+		Assert.assertEquals(cdnip.getIp(), "1.1.1.1");
+		Assert.assertEquals(cdnip.getRegion(), "Shandong");
+		Assert.assertEquals(cdnip.getPlatform(), null);
 	}
 
 	@Test

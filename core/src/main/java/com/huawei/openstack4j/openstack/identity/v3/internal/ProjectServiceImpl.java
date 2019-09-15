@@ -46,6 +46,14 @@ public class ProjectServiceImpl extends BaseOpenStackService implements ProjectS
     }
 
     @Override
+    public Project create(String domainId, String name, String description) {
+        checkNotNull(domainId);
+        checkNotNull(name);
+        checkNotNull(description);
+        return create(KeystoneProject.builder().domainId(domainId).name(name).description(description).build());
+    }
+
+    @Override
     public Project get(String projectId) {
         checkNotNull(projectId);
         return get(KeystoneProject.class, PATH_PROJECTS, "/", projectId).execute();
@@ -86,6 +94,17 @@ public class ProjectServiceImpl extends BaseOpenStackService implements ProjectS
 	    Invocation<Projects> flavorInvocation = get(Projects.class, uri(PATH_PROJECTS));
         if (filteringParams != null) {
             for (Map.Entry<String, String> entry : filteringParams.entrySet()) {
+                flavorInvocation = flavorInvocation.param(entry.getKey(), entry.getValue());
+            }
+        }
+        return  flavorInvocation.execute().getList();
+    }
+
+    @Override
+    public List<? extends Project> listByObject(Map<String, Object> filteringParams){
+        Invocation<Projects> flavorInvocation = get(Projects.class, uri(PATH_PROJECTS));
+        if (filteringParams != null) {
+            for (Map.Entry<String, Object> entry : filteringParams.entrySet()) {
                 flavorInvocation = flavorInvocation.param(entry.getKey(), entry.getValue());
             }
         }

@@ -1,5 +1,5 @@
 /*******************************************************************************
- * 	Copyright 2018 HuaWei Tld                                     
+ * 	Copyright 2018 Huawei Technologies Co., Ltd.
  * 	                                                                                 
  * 	Licensed under the Apache License, Version 2.0 (the "License"); you may not      
  * 	use this file except in compliance with the License. You may obtain a copy of    
@@ -69,9 +69,6 @@ public class SubnetTest extends AbstractTest {
 		Assert.assertNotNull(list);
 		Assert.assertEquals(list.size(), 2);
 		Assert.assertEquals(subnet.getId(), "9596613f-5d79-4a6a-8be0-ff468f388a16");
-		Assert.assertEquals(subnet.getCidr(),"192.168.0.0/24");
-		Assert.assertEquals(subnet.getGatewayIp(),"192.168.0.1");
-		Assert.assertEquals(subnet.getDnsList().get(0),"100.125.1.250");
 	}
 	
 	@Test
@@ -93,9 +90,6 @@ public class SubnetTest extends AbstractTest {
 		Assert.assertNotNull(list);
 		Assert.assertEquals(list.size(), 2);
 		Assert.assertEquals(subnet.getId(), "9596613f-5d79-4a6a-8be0-ff468f388a16");
-		Assert.assertEquals(subnet.getCidr(),"192.168.0.0/24");
-		Assert.assertEquals(subnet.getGatewayIp(),"192.168.0.1");
-		Assert.assertEquals(subnet.getDnsList().get(0),"100.125.1.250");
 	}
 	
 	@Test
@@ -103,11 +97,11 @@ public class SubnetTest extends AbstractTest {
 		respondWith("/vpc/v1/create_get_update_subnet_response.json");
 		
 		ArrayList<String> list = new ArrayList<String>();
-		list.add("114.114.114.114");
-		list.add("114.114.115.115");
+		list.add("******");
+		list.add("******");
 		
-		SubnetCreate creation = SubnetCreate.builder().name("subnet").cidr("192.168.20.0/24").gatewayIp("192.168.20.1")
-				.dhcpEnable(true).primaryDns("114.114.114.114").secondaryDns("114.114.115.115").dnsList(list)
+		SubnetCreate creation = SubnetCreate.builder().name("subnet").cidr("******").gatewayIp("******")
+				.dhcpEnable(true).primaryDns("******").secondaryDns("******").dnsList(list)
 				.availabilityZone("aa-bb-cc").vpcId("3ec3b33f-ac1c-4630-ad1c-7dba1ed79d85").build();
 
 		Subnet subnet = osv3().vpc().subnets().create(creation);
@@ -116,8 +110,8 @@ public class SubnetTest extends AbstractTest {
 		Assert.assertEquals(request.getPath(), "/v1/project-id/subnets");
 		Assert.assertEquals(request.getMethod(), "POST");
 		Assert.assertEquals(subnet.getName(), "subnet");
-		Assert.assertEquals(subnet.getCidr(),"192.168.20.0/24");
-		Assert.assertEquals(subnet.getDnsList().get(0),"114.114.114.114");
+		Assert.assertEquals(subnet.getCidr(),"******");
+		Assert.assertEquals(subnet.getDnsList().get(0),"******");
 	}
 	
 	@Test
@@ -131,7 +125,6 @@ public class SubnetTest extends AbstractTest {
 		Assert.assertEquals(request.getMethod(), "GET");
 		Assert.assertEquals(subnet.getId(), "4779ab1c-7c1a-44b1-a02e-93dfc361b32d");
 		Assert.assertEquals(subnet.getName(), "subnet");
-		Assert.assertEquals(subnet.getCidr(),"192.168.20.0/24");
 	}
 	
 	@Test
@@ -141,10 +134,10 @@ public class SubnetTest extends AbstractTest {
 		String subnetId = "4779ab1c-7c1a-44b1-a02e-93dfc361b32d";
 		String vpcId = "3ec3b33f-ac1c-4630-ad1c-7dba1ed79d85";
 		ArrayList<String> list = new ArrayList<String>();
-		list.add("114.114.114.114");
-		list.add("114.114.115.115");
+		list.add("******");
+		list.add("******");
 		SubnetUpdate subnetUpdate = SubnetUpdate.builder().name("subnet")
-				.dhcpEnable(true).primaryDns("114.114.114.114").secondaryDns("114.114.115.115").dnsList(list).build();
+				.dhcpEnable(true).primaryDns("******").secondaryDns("******").dnsList(list).build();
 
 		SubnetUpdateResp subnet = osv3().vpc().subnets().update(vpcId,subnetId,subnetUpdate);
 		RecordedRequest request = server.takeRequest();

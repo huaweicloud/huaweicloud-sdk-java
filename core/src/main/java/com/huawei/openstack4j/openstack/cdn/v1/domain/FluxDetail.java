@@ -39,14 +39,14 @@ public class FluxDetail implements ModelEntity{
 
 	@JsonProperty("start_time")
 	private Long startTime;
-	
+
 	@JsonProperty("end_time")
 	private Long endTime;
-	
+
 	private Integer interval;
-	
+
 	@JsonProperty("stat_type")
 	private String statType;
-	
+
 	private List<Long> values;
 }

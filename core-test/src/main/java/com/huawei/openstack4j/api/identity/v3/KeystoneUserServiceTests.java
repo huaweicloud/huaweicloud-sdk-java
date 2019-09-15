@@ -157,7 +157,7 @@ public class KeystoneUserServiceTests extends AbstractTest {
 
         respondWith(JSON_USER_CREATE);
 
-        User newUser = osv3().identity().users().create(USER_DOMAIN_ID, "foobar", "secret", "foobar@example.org", true);
+        User newUser = osv3().identity().users().create(USER_DOMAIN_ID, "foobar", "secret", "foobar@example.org",true);
         assertEquals(newUser.getName(), "foobar");
         assertEquals(newUser.getDomainId(), USER_DOMAIN_ID);
         assertEquals(newUser.getEmail(), "foobar@example.org");

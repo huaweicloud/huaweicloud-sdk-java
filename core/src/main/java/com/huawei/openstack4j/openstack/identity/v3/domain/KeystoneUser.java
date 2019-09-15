@@ -19,6 +19,7 @@ import java.util.List;
 import java.util.Map;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonRootName;
 import com.huawei.openstack4j.model.identity.v3.Domain;
@@ -54,6 +55,18 @@ public class KeystoneUser implements User {
     private String defaultProjectId;
     private Map<String, String> links;
     private Boolean enabled = true;
+    @JsonProperty("password_expires_at")
+    private String passwordExpiresAt;
+    private Map<String, String> extra;
+    @JsonProperty("pwd_status")
+    private Boolean pwdStatus;
+    @JsonProperty("pwd_strength")
+    private String pwdStrength;
+    private String mobile;
+    private Boolean forceResetPwd;
+    @JsonProperty("last_project_id")
+    private String lastProjectId;
+
 
     /**
      * @return the user builder
@@ -92,11 +105,43 @@ public class KeystoneUser implements User {
     }
 
     /**
+     * @return the mobile of the user
+     */
+    @Override
+    public String getMobile() {
+        return mobile;
+    }
+
+    /**
      * @return the password of the user
      */
     @Override
     public String getPassword() {
         return password;
+    }
+
+    /**
+     * @return the password status of the user
+     */
+    @Override
+    public Boolean getPwdStatus() {
+        return pwdStatus;
+    }
+
+    /**
+     * @return the password strength of the user
+     */
+    @Override
+    public String getPwdStrength() {
+        return pwdStrength;
+    }
+
+    /**
+     * @return the forceResetPwd of the user
+     */
+    @Override
+    public Boolean getForceResetPwd() {
+        return forceResetPwd;
     }
 
     /**
@@ -132,11 +177,35 @@ public class KeystoneUser implements User {
     }
 
     /**
+     * @return the last project id of the user
+     */
+    @Override
+    public String getLastProjectId() {
+        return lastProjectId;
+    }
+
+    /**
+     * @return the password_expires_at of the user
+     */
+    @Override
+    public String getPasswordExpiresAt() {
+        return passwordExpiresAt;
+    }
+
+    /**
      * @return the links of the user
      */
     @Override
     public Map<String, String> getLinks() {
         return links;
+    }
+
+    /**
+     * @return the extra of the user
+     */
+    @Override
+    public Map<String, String> getExtra() {
+        return extra;
     }
 
     /**
@@ -167,8 +236,15 @@ public class KeystoneUser implements User {
                 .add("description", description)
                 .add("domainId", domainId)
                 .add("links", links)
+                .add("extra",extra)
                 .add("enabled", enabled)
                 .add("defaultProjectId", defaultProjectId)
+                .add("passwordExpiresAt", passwordExpiresAt)
+                .add("mobile",mobile)
+                .add("pwdStatus", pwdStatus)
+                .add("pwdStrength", pwdStrength)
+                .add("forceResetPwd", forceResetPwd)
+                .add("lastProjectId", lastProjectId)
                 .toString();
     }
 
@@ -186,7 +262,7 @@ public class KeystoneUser implements User {
            && Objects.equal(this.password, that.password)
            && Objects.equal(this.description, that.description)
            && Objects.equal(this.domainId, that.domainId)
-           && Objects.equal(this.links, that.domainId)
+           && Objects.equal(this.links, that.links)
            && Objects.equal(this.enabled, that.enabled)
            && Objects.equal(this.defaultProjectId, that.defaultProjectId);
   }
@@ -262,6 +338,15 @@ public class KeystoneUser implements User {
         }
 
         /**
+         * @see KeystoneUser#getLastProjectId()
+         */
+        @Override
+        public UserBuilder lastProjectId(String lastProjectId) {
+            model.lastProjectId = lastProjectId;
+            return this;
+        }
+
+        /**
          * @see KeystoneUser#getDomainId()
          */
         @Override
@@ -290,6 +375,15 @@ public class KeystoneUser implements User {
         }
 
         /**
+         * @see KeystoneUser#getMobile()
+         */
+        @Override
+        public UserBuilder mobile(String mobile) {
+            model.mobile = mobile;
+            return this;
+        }
+
+        /**
          * @see KeystoneUser#getPassword()
          */
         @Override
@@ -299,11 +393,56 @@ public class KeystoneUser implements User {
         }
 
         /**
+         * @see KeystoneUser#getPwdStatus()
+         */
+        @Override
+        public UserBuilder pwdStatus(Boolean pwdStatus) {
+            model.pwdStatus = pwdStatus;
+            return this;
+        }
+
+        /**
+         * @see KeystoneUser#getPwdStrength()
+         */
+        @Override
+        public UserBuilder pwdStrength(String pwdStrength) {
+            model.pwdStrength = pwdStrength;
+            return this;
+        }
+
+        /**
+         * @see KeystoneUser#getPasswordExpiresAt()
+         */
+        @Override
+        public UserBuilder passwordExpiresAt(String passwordExpiresAt) {
+            model.passwordExpiresAt = passwordExpiresAt;
+            return this;
+        }
+
+        /**
+         * @see KeystoneUser#getForceResetPwd()
+         */
+        @Override
+        public UserBuilder forceResetPwd(Boolean forceResetPwd) {
+            model.forceResetPwd = forceResetPwd;
+            return this;
+        }
+
+        /**
          * @see KeystoneUser#getLinks()
          */
         @Override
         public UserBuilder links(Map<String, String> links) {
             model.links = links;
+            return this;
+        }
+
+        /**
+         * @see KeystoneUser#getLinks()
+         */
+        @Override
+        public UserBuilder extra(Map<String, String> extra) {
+            model.extra = extra;
             return this;
         }
 

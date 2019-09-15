@@ -25,28 +25,26 @@ import com.huawei.openstack4j.openstack.identity.internal.OverridableEndpointURL
 
 import java.util.List;
 
-public class CdnStatisticDemo
-{
+public class CdnStatisticDemo {
 
-    public static void main(String args[])
-    {
+    public static void main(String args[]) {
         // step 1: add cloud service override endpoint
         OverridableEndpointURLResolver endpointResolver = new OverridableEndpointURLResolver();
-        endpointResolver.addOverrideEndpoint(ServiceType.CDN, "https://cdn.example.com/v1.0");
-        // step 2: setup the authentication credit
+        endpointResolver.addOverrideEndpoint(ServiceType.CDN, "xxx");//example:"https://cdn.myhuaweicloud.com/v1.0"
+
+        // step 2: initial OpenStack4j Client
+        OSFactory.enableHttpLoggingFilter(true);
+        // step 3: config of the client
+        Config config = Config.newConfig()
+                .withEndpointURLResolver(endpointResolver);
+
+        // step 4: token authorization：setup the authentication credit
         String user = "username";
         String password = "password";
         String projectId = "projectId";
         String userDomainId = "userDomainId";
         String authUrl = "xxxxxxx";
 
-        // step 3: initial OpenStack4j Client
-        OSFactory.enableHttpLoggingFilter(true);
-        // config of the client
-        Config config = Config.newConfig()
-                .withEndpointURLResolver(endpointResolver);
-
-        // initial client
         OSClient.OSClientV3 osclient = OSFactory.builderV3()
                 .withConfig(config)
                 .endpoint(authUrl)
@@ -55,21 +53,31 @@ public class CdnStatisticDemo
                 .scopeToProject(Identifier.byId(projectId))
                 .authenticate();
 
+        /*
+        // step4：AKSK authorization：：setup the authentication credit
+        String ak = "xxxx";
+        String sk = "xxxx";
+        String projectId = "xxxx";
+        String region = "xxxx"; //example: region = "cn-north-1"
+        String cloud = "xxxx"; //example: cloud = "myhuaweicloud.com"
+
+        OSClient.OSClientAKSK osclient = OSFactory.builderAKSK().withConfig(config).credentials(ak, sk, region, projectId, cloud) .authenticate();
+        */
+
         //set enterprise_project_id or set is null or set is all
-        String enterpriseProjectId = "e451b831-6a62-4cd7-87bb-82fc38e1dad4";
+        String enterpriseProjectId = "xxxxx";
 
         //set domainName
         String domainName = "example.domain.xxx";
         //set statType
         String fluxStatType = "flux";
-
         //set area
         String area = "xxxxxx";
         String outside_area = "xxxxxx";
         //set startTime and endTime
         long endTime = 1537200000000L + 7 * 24 * 60 * 60 * 1000;
         long startTime = 1537200000000L;
-
+        //set interval
         int interval = 3600;
 
         //get  queryConsumptionSummary

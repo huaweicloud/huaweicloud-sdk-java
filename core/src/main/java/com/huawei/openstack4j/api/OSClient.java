@@ -75,6 +75,7 @@ import com.huawei.openstack4j.openstack.dss.v1.internal.DssService;
 import com.huawei.openstack4j.openstack.ecs.v1.internal.ElasticComputeService;
 import com.huawei.openstack4j.openstack.evs.v2.internal.ElasticVolumeService;
 import com.huawei.openstack4j.openstack.fgs.v1.internal.FunctionGraphService;
+import com.huawei.openstack4j.openstack.fgs.v2.internal.FunctionGraphV2Service;
 import com.huawei.openstack4j.openstack.iam.internal.IamService;
 import com.huawei.openstack4j.openstack.kms.internal.KeyManagementService;
 import com.huawei.openstack4j.openstack.maas.internal.MaaSService;
@@ -317,6 +318,8 @@ public interface OSClient<T extends OSClient<T>> {
 	 * @return the functionGraph service
 	 */
 	FunctionGraphService functionGraph();
+
+	FunctionGraphV2Service functionGraphV2();
 	/**
 	 * Returns the Magnum Service API
 	 * 

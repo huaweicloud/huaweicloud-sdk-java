@@ -18,6 +18,8 @@ package com.huawei.openstack4j.model.identity.v3.builder;
 import com.huawei.openstack4j.common.Buildable.Builder;
 import com.huawei.openstack4j.model.identity.v3.Region;
 
+import java.util.Map;
+
 public interface RegionBuilder extends Builder<RegionBuilder, Region> {
 
     /**
@@ -34,5 +36,23 @@ public interface RegionBuilder extends Builder<RegionBuilder, Region> {
      * @see Region#getParentRegionId()
      */
     RegionBuilder parentRegionId(String parentRegionId);
+
+    /**
+     *
+     * @see Region#getType()
+     */
+    RegionBuilder type(String type);
+
+    /**
+     *
+     * @see Region#getLinks()
+     */
+    RegionBuilder links(Map<String, String> links);
+
+    /**
+     *
+     * @see Region#getLocales()
+     */
+    RegionBuilder locales(Map<String, String> locales);
 
 }

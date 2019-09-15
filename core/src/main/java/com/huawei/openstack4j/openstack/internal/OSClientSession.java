@@ -36,6 +36,7 @@ import java.net.URISyntaxException;
 import java.util.Map;
 import java.util.Set;
 
+import com.huawei.openstack4j.openstack.fgs.v2.internal.FunctionGraphV2Service;
 import com.huawei.openstack4j.openstack.iam.internal.IamService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -339,6 +340,15 @@ public abstract class OSClientSession<R, T extends OSClient<T>> implements Endpo
     public FunctionGraphService functionGraph() {
         return Apis.getFunctionGraphServices();
     }
+
+	/**
+	 * {@inheritDoc}
+	 */
+	public FunctionGraphV2Service functionGraphV2() {
+		return Apis.getFunctionGraphV2Services();
+	}
+
+
 
     /**
      * {@inheritDoc}

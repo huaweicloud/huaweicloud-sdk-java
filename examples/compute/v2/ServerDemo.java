@@ -68,7 +68,8 @@ public class ServerDemo {
 			System.out.println("boot the first server failed");
 		}
 
-		//wait for server status to ACTIVE
+		// Use the waitForServerStatus function to query the server status until the server is ACTIVE.
+		// The timeout for this operation is 10 minutes.
 		Server waitServer = os.compute().servers().waitForServerStatus(server.getId(), Status.ACTIVE, 10, TimeUnit.MINUTES);
 		Status endStatus = waitServer.getStatus();
 		if (endStatus.toString().equalsIgnoreCase(Status.ACTIVE.toString())) {
@@ -87,6 +88,8 @@ public class ServerDemo {
 
 		//stop server
 		ActionResponse repStop = os.compute().servers().action(server.getId(), Action.STOP);
+		// Use the waitForServerStatus function to query the server status until the server is SHUTOFF.
+		// The timeout for this operation is 10 minutes.
 		os.compute().servers().waitForServerStatus(server.getId(), Status.SHUTOFF, 10, TimeUnit.MINUTES);
 		if (repStop.isSuccess()) {
 			System.out.println("Stop the server success");
@@ -104,6 +107,8 @@ public class ServerDemo {
 
 		//start server
 		ActionResponse repStart = os.compute().servers().action(server.getId(), Action.START);
+		// Use the waitForServerStatus function to query the server status until the server is ACTIVE.
+		// The timeout for this operation is 10 minutes.
 		os.compute().servers().waitForServerStatus(server.getId(), Status.ACTIVE, 10, TimeUnit.MINUTES);
 		if (repStart.isSuccess()) {
 			System.out.println("Start the server success");
@@ -209,6 +214,8 @@ public class ServerDemo {
 
 		//reboot server
 		ActionResponse repReboot = os.compute().servers().reboot(server.getId(), RebootType.HARD);
+		// Use the waitForServerStatus function to query the server status until the server is ACTIVE.
+		// The timeout for this operation is 10 minutes.
 		os.compute().servers().waitForServerStatus(server.getId(), Status.ACTIVE, 10, TimeUnit.MINUTES);
 		if (repReboot.isSuccess()) {
 			System.out.println("Reboot the server success");
@@ -218,6 +225,8 @@ public class ServerDemo {
 
 		//rebuild server
 		ActionResponse repRebuild = os.compute().servers().rebuild(server.getId(), RebuildOptions.create().image(newimageid));
+		// Use the waitForServerStatus function to query the server status until the server is ACTIVE.
+		// The timeout for this operation is 10 minutes.
 		os.compute().servers().waitForServerStatus(server.getId(), Status.ACTIVE, 10, TimeUnit.MINUTES);
 		if (repRebuild.isSuccess()) {
 			System.out.println("Rebuild the server success");
@@ -280,9 +289,13 @@ public class ServerDemo {
 
 		//resize server
 		os.compute().servers().action(server.getId(), Action.STOP);
+		// Use the waitForServerStatus function to query the server status until the server is shutoff.
+		// The timeout for this operation is 10 minutes.
 		os.compute().servers().waitForServerStatus(server.getId(), Status.SHUTOFF, 10, TimeUnit.MINUTES);
 		ActionResponse repResize = os.compute().servers().resize(server.getId(), newflavorid);
 		if (repResize.isSuccess()) {
+			// Use the waitForServerStatus function to query the server status until the server is VERIFY_RESIZE.
+			// The timeout for this operation is 10 minutes.
 			os.compute().servers().waitForServerStatus(server.getId(), Status.VERIFY_RESIZE, 10, TimeUnit.MINUTES);
 			System.out.println("Resize the server success");
 		} else{
@@ -292,6 +305,8 @@ public class ServerDemo {
 		//confirm resize
 		ActionResponse repconfirmResize = os.compute().servers().confirmResize(server.getId());
 		if (repconfirmResize.isSuccess()) {
+			// Use the waitForServerStatus function to query the server status until the server is VERIFY_RESIZE.
+			// The timeout for this operation is 10 minutes.
 			os.compute().servers().waitForServerStatus(server.getId(), Status.VERIFY_RESIZE, 10, TimeUnit.MINUTES);
 			System.out.println("ConfirmResize the server success");
 		} else{
@@ -301,6 +316,8 @@ public class ServerDemo {
 		//revert Resize
 		ActionResponse repRevertResize = os.compute().servers().revertResize(server.getId());
 		if (repRevertResize.isSuccess()) {
+			// Use the waitForServerStatus function to query the server status until the server is VERIFY_RESIZE.
+			// The timeout for this operation is 10 minutes.
 			os.compute().servers().waitForServerStatus(server.getId(), Status.VERIFY_RESIZE, 10, TimeUnit.MINUTES);
 			System.out.println("RevertResize the server success");
 		} else{
@@ -344,5 +361,23 @@ public class ServerDemo {
 		int length = 50;
 		String consoleOutput = os.compute().servers().getConsoleOutput(server.getId(), length);
 		System.out.println("console Output:" + consoleOutput);
+
+		//cloud server add SecurityGroup
+		String addSecurityGroupServerId = "xxxxxxxxxxxxxxxxxxxxxxxx";
+		ActionResponse addSecurityGroupResult = os.compute().servers().addSecurityGroup(addSecurityGroupServerId, "sg-6a78");
+		if (addSecurityGroupResult.isSuccess()) {
+			System.out.println("add securityGroup success");
+		} else {
+			System.out.println("add securityGroup failed");
+		}
+
+		//cloud server remove SecurityGroup
+		String removeSecurityGroupServerId = "xxxxxxxxxxxxxxxxxxxxxxxx";
+		ActionResponse removeSecurityGroupResult  = os.compute().servers().removeSecurityGroup(removeSecurityGroupServerId, "sg-6a78");
+		if (removeSecurityGroupResult.isSuccess()) {
+			System.out.println("remove securityGroup success");
+		} else {
+			System.out.println("remove securityGroup failed");
+		}
 	}
 }

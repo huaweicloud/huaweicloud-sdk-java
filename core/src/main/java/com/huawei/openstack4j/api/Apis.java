@@ -53,6 +53,7 @@ import com.huawei.openstack4j.api.tacker.TackerService;
 import com.huawei.openstack4j.api.workflow.WorkflowService;
 import com.huawei.openstack4j.openstack.ecs.v1.internal.ElasticComputeService;
 import com.huawei.openstack4j.openstack.fgs.v1.internal.FunctionGraphService;
+import com.huawei.openstack4j.openstack.fgs.v2.internal.FunctionGraphV2Service;
 import com.huawei.openstack4j.openstack.trove.internal.TroveService;
 
 /**
@@ -173,6 +174,10 @@ public class Apis {
 	 */
 	public static FunctionGraphService getFunctionGraphServices() {
 		return get(FunctionGraphService.class);
+	}
+
+	public static FunctionGraphV2Service getFunctionGraphV2Services() {
+		return get(FunctionGraphV2Service.class);
 	}
 
 	/**

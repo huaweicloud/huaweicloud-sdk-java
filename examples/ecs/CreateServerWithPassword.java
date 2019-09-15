@@ -63,8 +63,10 @@ public class CreateServerWithPassword {
 				.build();
 		System.out.println("New Server body " + scLinux);
 		
-		//create linux server, wait for server status to Active
+		// Create linux server.
 		Server newServer = osclient.compute().servers().boot(scLinux);
+		// Use the waitForServerStatus function to query the server status until the server is active.
+		// The timeout for this operation is 10 minutes.
 		Server waitResult = osclient.compute().servers().waitForServerStatus(newServer.getId(), Status.ACTIVE, 10, TimeUnit.MINUTES);
 		System.out.println("New Server status: " + waitResult.getStatus());
 		System.out.println("New Server: " + newServer);
@@ -81,8 +83,10 @@ public class CreateServerWithPassword {
 				.build();
 		System.out.println("New Server body " + scWindows);
 		
-		//create windows server, wait for server status to Active
+		//create windows server
 		Server newServerWindows = osclient.compute().servers().boot(scWindows);
+		// Use the waitForServerStatus function to query the server status until the server is active.
+		// The timeout for this operation is 10 minutes.
 		osclient.compute().servers().waitForServerStatus(newServerWindows.getId(), Status.ACTIVE, 10, TimeUnit.MINUTES);
 		System.out.println("New Server " + newServerWindows);
 
@@ -100,6 +104,8 @@ public class CreateServerWithPassword {
 		} else {
 			System.out.println("Stop the server failed " + newServer.getId());
 		}
+		// Use the waitForServerStatus function to query the server status until the server is shutoff.
+		// The timeout for this operation is 3 minutes.
 		osclient.compute().servers().waitForServerStatus(newServer.getId(), Status.SHUTOFF, 3, TimeUnit.MINUTES);
 		
 		// start server 
@@ -109,6 +115,8 @@ public class CreateServerWithPassword {
 		} else {
 			System.out.println("Start the server failed " + newServer.getId());
 		}
+		// Use the waitForServerStatus function to query the server status until the server is active.
+		// The timeout for this operation is 3 minutes.
 		osclient.compute().servers().waitForServerStatus(newServer.getId(), Status.ACTIVE, 3, TimeUnit.MINUTES);
 		
 		// reboot server       
@@ -118,6 +126,8 @@ public class CreateServerWithPassword {
 		} else {
 			System.out.println("Reboot the server failed " + newServer.getId());
 		}
+		// Use the waitForServerStatus function to query the server status until the server is active.
+		// The timeout for this operation is 3 minutes.
 		osclient.compute().servers().waitForServerStatus(newServer.getId(), Status.ACTIVE, 3, TimeUnit.MINUTES);
 		
 		// delete server

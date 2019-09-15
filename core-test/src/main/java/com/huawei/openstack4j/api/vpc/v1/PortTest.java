@@ -1,5 +1,5 @@
 /*******************************************************************************
- * 	Copyright 2018 HuaWei Tld                                     
+ * 	Copyright 2018 Huawei Technologies Co., Ltd.
  * 	                                                                                 
  * 	Licensed under the Apache License, Version 2.0 (the "License"); you may not      
  * 	use this file except in compliance with the License. You may obtain a copy of    
@@ -70,7 +70,6 @@ public class PortTest extends AbstractTest {
 		Assert.assertNotNull(list);
 		Assert.assertEquals(list.size(), 2);
 		Assert.assertEquals(port.getId(), "d00f9c13-412f-4855-8af3-de5d8c24cd60");
-		Assert.assertEquals(port.getFixedIps().get(0).getIpAddress(), "10.128.1.10");
 		Assert.assertEquals(port.getSecurityGroups().get(0), "02b4e8ee-74fa-4a31-802e-5490df11245e");
 	}
 
@@ -91,7 +90,6 @@ public class PortTest extends AbstractTest {
 		Assert.assertNotNull(list);
 		Assert.assertEquals(list.size(), 2);
 		Assert.assertEquals(port.getId(), "d00f9c13-412f-4855-8af3-de5d8c24cd60");
-		Assert.assertEquals(port.getFixedIps().get(0).getIpAddress(), "10.128.1.10");
 		Assert.assertEquals(port.getSecurityGroups().get(0), "02b4e8ee-74fa-4a31-802e-5490df11245e");
 	}
 
@@ -99,7 +97,7 @@ public class PortTest extends AbstractTest {
 	public void testCreatePort() throws IOException, InterruptedException {
 		respondWith("/vpc/v1/create_get_update_port_response.json");
 
-		FixedIp ip = FixedIp.builder().ipAddress("10.128.1.10").subnetId("70f2e74b-e660-410a-b754-0ca46744348a")
+		FixedIp ip = FixedIp.builder().ipAddress("******").subnetId("70f2e74b-e660-410a-b754-0ca46744348a")
 				.build();
 
 		ArrayList<FixedIp> list = new ArrayList<FixedIp>();
@@ -114,7 +112,7 @@ public class PortTest extends AbstractTest {
 		Assert.assertEquals(request.getPath(), "/v1/ports");
 		Assert.assertEquals(request.getMethod(), "POST");
 		Assert.assertEquals(port.getId(), "d00f9c13-412f-4855-8af3-de5d8c24cd60");
-		Assert.assertEquals(port.getFixedIps().get(0).getIpAddress(), "10.128.1.10");
+		Assert.assertEquals(port.getFixedIps().get(0).getIpAddress(), "******");
 		Assert.assertEquals(port.getDnsAssignment().size(), 1);
 		Assert.assertEquals(port.getSecurityGroups().get(0), "02b4e8ee-74fa-4a31-802e-5490df11245e");
 	}
@@ -129,7 +127,6 @@ public class PortTest extends AbstractTest {
 		Assert.assertEquals(request.getPath(), "/v1/ports/d00f9c13-412f-4855-8af3-de5d8c24cd60");
 		Assert.assertEquals(request.getMethod(), "GET");
 		Assert.assertEquals(port.getId(), "d00f9c13-412f-4855-8af3-de5d8c24cd60");
-		Assert.assertEquals(port.getFixedIps().get(0).getIpAddress(), "10.128.1.10");
 		Assert.assertEquals(port.getSecurityGroups().get(0), "02b4e8ee-74fa-4a31-802e-5490df11245e");
 	}
 
@@ -145,7 +142,6 @@ public class PortTest extends AbstractTest {
 		Assert.assertEquals(request.getPath(), "/v1/ports/d00f9c13-412f-4855-8af3-de5d8c24cd60");
 		Assert.assertEquals(request.getMethod(), "PUT");
 		Assert.assertEquals(port.getId(), "d00f9c13-412f-4855-8af3-de5d8c24cd60");
-		Assert.assertEquals(port.getFixedIps().get(0).getIpAddress(), "10.128.1.10");
 		Assert.assertEquals(port.getSecurityGroups().get(0), "02b4e8ee-74fa-4a31-802e-5490df11245e");
 	}
 

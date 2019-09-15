@@ -95,6 +95,17 @@ public interface UserService extends RestService {
 	User create(String domainId, String name, String password, String email, boolean enabled);
 
 	/**
+	 * creates a new user
+	 *
+	 * @param domainId the domain id
+	 * @param name the name of the new user
+	 * @param password the password of the new user
+	 * @param email the email of the new user
+	 * @return the newly created user
+	 */
+	User create(String domainId, String name, String password, String email);
+
+	/**
 	 * @param userId the user id
 	 * @return the domain of the user
 	 */

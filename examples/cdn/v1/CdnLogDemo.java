@@ -25,28 +25,26 @@ import com.huawei.openstack4j.openstack.identity.internal.OverridableEndpointURL
 
 import java.util.Date;
 
-public class CdnLogDemo
-{
+public class CdnLogDemo {
 
-    public static void main(String[] args)
-    {
+    public static void main(String[] args) {
         // step 1: add cloud service override endpoint
         OverridableEndpointURLResolver endpointResolver = new OverridableEndpointURLResolver();
-        endpointResolver.addOverrideEndpoint(ServiceType.CDN, "https://cdn.example.com/v1.0");
-        // step 2: setup the authentication credit
+        endpointResolver.addOverrideEndpoint(ServiceType.CDN, "xxx");//example:"https://cdn.myhuaweicloud.com/v1.0"
+
+        // step 2: initial OpenStack4j Client
+        OSFactory.enableHttpLoggingFilter(true);
+        // step 3: config of the client
+        Config config = Config.newConfig()
+                .withEndpointURLResolver(endpointResolver);
+
+        // step 4: token authorization：setup the authentication credit
         String user = "username";
         String password = "password";
         String projectId = "projectId";
         String userDomainId = "userDomainId";
         String authUrl = "xxxxxxx";
 
-        // step 3: initial OpenStack4j Client
-        OSFactory.enableHttpLoggingFilter(true);
-        // config of the client
-        Config config = Config.newConfig()
-                .withEndpointURLResolver(endpointResolver);
-
-        // initial client
         OSClient.OSClientV3 osclient = OSFactory.builderV3()
                 .withConfig(config)
                 .endpoint(authUrl)
@@ -55,11 +53,22 @@ public class CdnLogDemo
                 .scopeToProject(Identifier.byId(projectId))
                 .authenticate();
 
+        /*
+        // step4：AKSK authorization：：setup the authentication credit
+        String ak = "xxxx";
+        String sk = "xxxx";
+        String projectId = "xxxx";
+        String region = "xxxx"; //example: region = "cn-north-1"
+        String cloud = "xxxx"; //example: cloud = "myhuaweicloud.com"
+
+        OSClient.OSClientAKSK osclient = OSFactory.builderAKSK().withConfig(config).credentials(ak, sk, region, projectId, cloud) .authenticate();
+        */
+
         Long queryDate = new Date().getTime();
         //set enterprise_project_id or set is null or set is all
         String enterpriseProjectId = "xxxxxxxx";
         // queryLogs
-        Log.Logs logs = osclient.cdn().logs().queryLogs("xxxxxxxx",queryDate, 10,
+        Log.Logs logs = osclient.cdn().logs().queryLogs("xxxxxxxx", queryDate, 10,
                 1, enterpriseProjectId);
 
         //print

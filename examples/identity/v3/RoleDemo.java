@@ -27,6 +27,15 @@ public class RoleDemo {
             System.out.println(role);
         }
 
+        //Querying a Role List with filteringParams
+        Map<String, String> filteringParams = new HashMap<>();
+        String domainId3 = "**********";
+        filteringParams.put("domain_id", domainId3);
+        List<? extends Role> roleList = osclient.identity().roles().list(filteringParams);
+        for(Role role : roleList){
+            System.out.println(role);
+        }
+
         //Querying Role Details
         String roleId = "**********";
         Role sampleRole = osclient.identity().roles().get(roleId);
