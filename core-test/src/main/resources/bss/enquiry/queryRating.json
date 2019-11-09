@@ -1,0 +1,23 @@
+{
+  "ratingResult": {
+    "amount": 32.2,
+    "discountAmount": 0,
+    "originalAmount": 32.2,
+    "measureId": 1,
+    "currency": null,
+    "extendParams": null,
+    "productRatingResult": [
+      {
+        "id": "1",
+        "productId": "00301-52002-0--0",
+        "amount": 32.2,
+        "discountAmount": 0,
+        "originalAmount": 32.2,
+        "measureId": 1,
+        "extendParams": null
+      }
+    ]
+  },
+  "error_code": "CBC.0000",
+  "error_msg": "Success"
+}

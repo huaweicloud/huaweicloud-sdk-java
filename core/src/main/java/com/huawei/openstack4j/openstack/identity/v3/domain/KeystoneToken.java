@@ -81,6 +81,8 @@ public class KeystoneToken implements Token {
     @JsonIgnore
     private String extras;
     @JsonIgnore
+    private String authType;
+    @JsonIgnore
     private volatile SortedSetMultimap<String, Service> aggregatedCatalog;
 
     /**
@@ -175,6 +177,18 @@ public class KeystoneToken implements Token {
 
     public void setEndpoint(String endpoint) {
         this.endpoint = endpoint;
+    }
+
+    public String getAuthType() {
+        return authType;
+    }
+
+    public void setAuthType(String authType) {
+        this.authType = authType;
+    }
+
+    public void setCatalog(List<KeystoneService> catalog){
+        this.catalog = catalog;
     }
 
     public KeystoneToken applyContext(String endpoint, KeystoneAuth credentials) {

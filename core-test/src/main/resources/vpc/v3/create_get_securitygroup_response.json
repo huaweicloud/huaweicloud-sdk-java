@@ -1,0 +1,50 @@
+{
+  "security_group": {
+    "id": "16e6c430-3c11-456c-8d61-33b6b6141864",
+    "name": "qq",
+    "project_id": "1d23ea83a9d941618697b16a8f2318b9",
+    "description": "abc",
+    "enterprise_project_id": "99453e9a-33ec-4de4-bc51-2d1e86423506",
+    "security_group_rules": [
+      {
+        "id": "1897be46-9efe-4545-934e-08be4d4b9634",
+        "project_id": "1d23ea83a9d941618697b16a8f2318b9",
+        "security_group_id": "16e6c430-3c11-456c-8d61-33b6b6141864",
+        "remote_group_id": null,
+        "direction": "egress",
+        "protocol": null,
+        "description": "",
+        "created_at": "2019-10-09T08:15:04Z",
+        "updated_at": "2019-10-09T08:15:04Z",
+        "ethertype": "IPv4",
+        "remote_ip_prefix": null,
+        "port_range_max": null,
+        "port_range_min": null,
+        "remote_address_group_id": null,
+        "action": "allow",
+        "priority": 100
+      },
+      {
+        "id": "f00d0cc6-6f96-401c-99d6-4049949efb44",
+        "project_id": "1d23ea83a9d941618697b16a8f2318b9",
+        "security_group_id": "16e6c430-3c11-456c-8d61-33b6b6141864",
+        "remote_group_id": null,
+        "direction": "egress",
+        "protocol": null,
+        "description": "",
+        "created_at": "2019-10-09T08:15:04Z",
+        "updated_at": "2019-10-09T08:15:04Z",
+        "ethertype": "IPv6",
+        "remote_ip_prefix": null,
+        "port_range_max": null,
+        "port_range_min": null,
+        "remote_address_group_id": null,
+        "action": "allow",
+        "priority": 100
+      }
+    ],
+    "created_at": "2019-10-09T08:15:04Z",
+    "updated_at": "2019-10-09T08:15:04Z"
+  },
+  "request_id": "bbf6f6e9-604e-462c-9a60-f0f23064478e"
+}

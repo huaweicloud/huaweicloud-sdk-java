@@ -1,0 +1,18 @@
+{
+  "error_code": "CBC.0000",
+  "error_msg": "success",
+  "total_count": 1,
+  "resource_info_list": [
+    {
+      "id": "0b866a63-0eb9-4722-8ce0-9c1214253df3",
+      "amount": -288,
+      "resourceType": "hws.resource.type.volume",
+      "cloudServiceType": "hws.service.type.ebs",
+      "regionCode": "cn-north-1",
+      "preOrderId": "CS1806201614MS037",
+      "resource_id": null,
+      "measure_id": "3",
+      "customer_id": "f80662ce79e9402f80aa937e8d1f231d"
+    }
+  ]
+}

@@ -38,11 +38,19 @@ public class ServerResponseException extends ResponseException {
 		code = StatusCode.fromCode(status);
 	}
 
+	public ServerResponseException(String message, int status, String body) {
+		super(message, status, body);
+		code = StatusCode.fromCode(status);
+	}
 	/**
 	 * @return the status code mapping for the current {@link #getStatus()}
 	 */
 	public StatusCode getStatusCode() {
 		return code;
+	}
+
+	public String getBody(){
+		return body;
 	}
 
 	/**

@@ -1,0 +1,24 @@
+{
+  "totalCount": 1,
+  "customerResources": [
+    {
+      "customerResourceId": "745b8963bb75409bb35f10d0e9c5cdf0",
+      "customerId": "3d2c6b3ab1fd4e26846b0f2c46e67bda",
+      "regionCode": "cn-north-1",
+      "azCode": null,
+      "cloudServiceTypeCode": "hws.service.type.ebs",
+      "resourceTypeCode": "hws.resource.type.volume",
+      "resourceId": "39d90d01-4774-4af6-8136-83ba5732bccf",
+      "resourceName": null,
+      "startTime": "2018-06-11T20:00:00Z",
+      "endTime": null,
+      "status": 3,
+      "resourceSpecCode": "SAS",
+      "resourceInfo": "{\"specSize\":50.0}",
+      "chargingModeChangeFlag": "0",
+      "lastDeductType": "1"
+    }
+  ],
+  "error_code": "CBC.0000",
+  "error_msg": "success"
+}

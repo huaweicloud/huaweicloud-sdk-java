@@ -1,0 +1,64 @@
+{
+  "error_code": "CBC.0000",
+  "error_msg": "success",
+  "orderInfo": {
+    "orderId": "CS1906210009V3LZ2",
+    "baseOrderId": null,
+    "beId": "9689",
+    "customerId": "d75acd98d7b546a8a58fe60170110298",
+    "sourceType": 1,
+    "status": 5,
+    "orderType": 1,
+    "currency": 3,
+    "currencyAfterDiscount": 0,
+    "measureId": 1,
+    "measureName": null,
+    "createTime": "2019-06-20T16:09:52Z",
+    "paymentTime": "2019-06-20T16:10:11Z",
+    "lastUpdateTime": "2019-06-20T16:11:07Z",
+    "needAudit": false,
+    "contractId": null,
+    "currencyType": "CNY",
+    "currencyOfficial": 3,
+    "amountInfo": {
+      "discountList": [{
+        "discountType": "301",
+        "discountAmount": 3
+      }],
+      "cashcouponAmount": 0,
+      "couponAmount": 3,
+      "cardAmount": 0,
+      "commissionAmount": null,
+      "consumedAmount": null
+    },
+    "serviceType": "hws.service.type.ebs"
+  },
+  "count": 1,
+  "orderlineItems": [{
+    "orderLineItemId": "CS1906210009V3LZ2-000001",
+    "cloudServiceType": "hws.service.type.ebs",
+    "productId": "d5d5ba12f9ed4d0f997ab48464133d24",
+    "productSpecDesc": "普通IO",
+    "categoryCode": "hws.resource.storage1.evs",
+    "periodType": 2,
+    "periodNum": 1,
+    "validTime": "2019-06-20T16:10:30Z",
+    "expireTime": "2019-07-21T15:59:59Z",
+    "subscriptionNum": 1,
+    "currency": 3,
+    "currencyAfterDiscount": 0,
+    "currencyOfficial": 3,
+    "amountInfo": {
+      "discountList": [{
+        "discountType": "301",
+        "discountAmount": 3
+      }],
+      "cashcouponAmount": 0,
+      "couponAmount": 3,
+      "cardAmount": 0,
+      "commissionAmount": null,
+      "consumedAmount": null
+    },
+    "currencyType": "CNY"
+  }]
+}

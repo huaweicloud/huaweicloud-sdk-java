@@ -214,6 +214,16 @@ public interface IOSClientBuilder<R, T extends IOSClientBuilder<R, T>> {
          */
         V3 token(String tokenId);
 
+ 		/**
+         * A token object. With token authentication, the id uniquely identifies
+         * the token. This method is typically used in combination with a
+         * request to change authorization scope
+         *
+         * @param tokenId the token identifier
+         * @return self for method chaining
+         */
+        V3 authToken(String tokenId);
+
         /**
          * Scopes the token to a project level
          *

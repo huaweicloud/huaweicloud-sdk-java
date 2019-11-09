@@ -134,4 +134,5 @@ public interface Token extends ModelEntity {
 
 	void setProjectInfo(Project project);
 
+    String getAuthType();
 }

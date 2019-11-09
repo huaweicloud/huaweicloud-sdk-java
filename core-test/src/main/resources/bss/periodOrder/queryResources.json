@@ -1,0 +1,15 @@
+{
+  "totalSize": 1,
+  "resources": [
+    {
+      "resourceId": "01c25b49c6a1464299bc0997a52975f7",
+      "cloudServiceType": "hws.service.type.ec2",
+      "regionCode": "cn-north-1",
+      "resourceType": "hws.resource.type.vm",
+      "resourceSpecCode": "h1.8xlarge.4.gwc01",
+      "resourceSize": null,
+      "resouceSizeMeasureId": null,
+      "status": 1
+    }
+  ]
+}

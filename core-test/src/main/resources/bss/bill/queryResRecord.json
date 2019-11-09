@@ -1,0 +1,18 @@
+{
+  "monthlyRecords": [{
+    "cloudServiceTypeCode": "hws.service.type.marketplace",
+    "regionCode": "cn-north-1",
+    "resourceTypeCode": "hws.resource.type.marketplace",
+    "resInstanceId": null,
+    "resourceName": null,
+    "resourceTag": null,
+    "consumeAmount": 0,
+    "cycle": "2019-06",
+    "measureId": 3,
+    "enterpriseProjectId": null,
+    "payMethod": "0"
+  }
+  ],
+  "totalCount": 1,
+  "currency": "CNY"
+}

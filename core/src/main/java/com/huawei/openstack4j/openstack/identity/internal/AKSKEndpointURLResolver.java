@@ -73,7 +73,9 @@ public class AKSKEndpointURLResolver extends AbstractEndpointURLResolver {
 			endpoint = this.getEndpointProvider().getEndpoint(p.type, p.perspective);
 			// filter placeholder parameters
 			endpoint = endpoint.replace("%(domain)s", p.domain);
-			endpoint = endpoint.replace("%(region)s", p.region);
+			if(p.region!=null){
+				endpoint = endpoint.replace("%(region)s", p.region);
+			}
 			if(p.projectId!=null){
 				endpoint = endpoint.replace("%(projectId)s", p.projectId);
 			}

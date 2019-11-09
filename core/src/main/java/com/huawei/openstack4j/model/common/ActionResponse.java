@@ -31,9 +31,9 @@
  * *******************************************************************************/
 package com.huawei.openstack4j.model.common;
 
-import com.google.common.base.MoreObjects;
-
 import java.io.Serializable;
+
+import com.google.common.base.MoreObjects;
 
 /**
  * A response that is returned when an Action is performed against the server.  If {@link #isSuccess()} is true then the fault will always be null. The fault
@@ -47,6 +47,7 @@ public class ActionResponse implements Serializable {
 
 	String message;
 	int code;
+	String body;
 
 	private ActionResponse(int code) {
 	    this.code = code;
@@ -56,12 +57,22 @@ public class ActionResponse implements Serializable {
 		this.message = message;
 	}
 
+	public ActionResponse(String message, int code, String body) {
+		this.message = message;
+		this.code = code;
+		this.body = body;
+	}
+
 	public static ActionResponse actionSuccess() {
 		return new ActionResponse(200);
 	}
 
 	public static ActionResponse actionFailed(String message, int code) {
 		return new ActionResponse(message, code);
+	}
+
+	public static ActionResponse actionFailed(String message, int code, String body) {
+		return new ActionResponse(message, code, body);
 	}
 
 	/**
@@ -80,6 +91,9 @@ public class ActionResponse implements Serializable {
 		return message == null;
 	}
 
+	public String getBody() {
+		return body;
+	}
 	/**
 	 * @return the fault if the action was unsuccessful otherwise null
 	 */

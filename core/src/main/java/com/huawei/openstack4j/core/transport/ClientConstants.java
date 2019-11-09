@@ -161,4 +161,8 @@ public final class ClientConstants {
     //micro version
     public static final String HEADER_X_OPENSTACK_NOVA_API_VERSION= "X-OpenStack-Nova-API-Version";
     public static final String HEADER_OPENSTACK_API_VERSION= "OpenStack-API-Version";
+
+    //epmanagement
+    public static final String PATH_ENTERPRISE_PROJECTS = "/enterprise-projects";
+    public static final String PATH_ENTERPRISE_PROJECT_QUOTAS = "/enterprise-projects/quotas";
 }

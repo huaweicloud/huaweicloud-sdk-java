@@ -51,6 +51,8 @@ import com.huawei.openstack4j.api.networking.NetworkingService;
 import com.huawei.openstack4j.api.senlin.SenlinService;
 import com.huawei.openstack4j.api.tacker.TackerService;
 import com.huawei.openstack4j.api.workflow.WorkflowService;
+import com.huawei.openstack4j.openstack.bssintl.v1.internal.BusinessSupportSystemIntlService;
+import com.huawei.openstack4j.openstack.bss.v1.internal.BusinessSupportSystemService;
 import com.huawei.openstack4j.openstack.ecs.v1.internal.ElasticComputeService;
 import com.huawei.openstack4j.openstack.fgs.v1.internal.FunctionGraphService;
 import com.huawei.openstack4j.openstack.fgs.v2.internal.FunctionGraphV2Service;
@@ -278,15 +280,26 @@ public class Apis {
 	public static NatService getNatServices() {
 		return get(NatService.class);
 	}
-	
+
+    /**
+     * Gets the bss services API
+     * @return the bss services
+     */
+	public static BusinessSupportSystemService getBusinessSupportSystemService(){ return get(BusinessSupportSystemService.class); }
+
 	/**
 	 * Gets the deh services API
-	 * @return the DedicatedHost services 
+	 * @return the DedicatedHost services
 	 */
 	public static DehService getDehService() {
 		return get(DehService.class);
 	}
-	
+	/**
+	 * Gets the bssintl services API
+	 * @return the bssintl services
+	 */
+	public static BusinessSupportSystemIntlService getBusinessSupportSystemIntlService(){return get(BusinessSupportSystemIntlService.class);}
+
 	private static APIProvider initializeProvider() {
 		// No need to check for emptiness as there is default implementation registered
 		APIProvider p = ServiceLoader.load(APIProvider.class, Apis.class.getClassLoader()).iterator().next();

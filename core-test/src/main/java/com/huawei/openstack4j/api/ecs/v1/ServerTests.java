@@ -61,6 +61,7 @@ import com.huawei.openstack4j.openstack.ecs.v1.domain.ServerTags;
 import com.huawei.openstack4j.openstack.ecs.v1.domain.SupportAutoRecovery;
 import com.huawei.openstack4j.openstack.ecs.v1.domain.VolumeExtendParam;
 import com.huawei.openstack4j.openstack.ecs.v1.domain.PublicIP;
+import com.huawei.openstack4j.openstack.ecs.v1.domain.ResetPassword;
 
 
 @Test(suiteName = "ECS/Servers")
@@ -314,6 +315,21 @@ public class ServerTests extends AbstractTest {
 		CloudServers cloudServer = osv3().ecs().servers().listWithCount(filter);
 		assertEquals("1", cloudServer.getCount().toString());
 		assertEquals(1, cloudServer.getServers().size());
+	}
+
+	@Test
+	public void resetServerPasswordTest() throws Exception {
+		respondWith(200);
+		ResetPassword resetPasswordEntity = ResetPassword.builder().newPassword("xxxx").build();
+		String serverId = "server-id";
+		ActionResponse actionResponse = osv3().ecs().servers().resetPassword(serverId, resetPasswordEntity);
+		RecordedRequest request = server.takeRequest();
+		assertEquals(request.getPath(), "/v1/project-id/cloudservers/server-id/os-reset-password");
+		assertEquals(request.getMethod(), "PUT");
+		assertEquals(actionResponse.toString(), "ActionResponse{success=true, code=200}");
+		String requestBody = request.getBody().readUtf8();
+		String expectBody = this.getResource("/ecs/resetPassword.json");
+		Assert.assertEquals(requestBody, expectBody);
 	}
 
 //	@Test

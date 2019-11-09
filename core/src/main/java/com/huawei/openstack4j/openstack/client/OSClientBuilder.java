@@ -38,21 +38,37 @@ import com.huawei.openstack4j.api.OSClient;
 import com.huawei.openstack4j.api.OSClient.OSClientAKSK;
 import com.huawei.openstack4j.api.OSClient.OSClientV2;
 import com.huawei.openstack4j.api.OSClient.OSClientV3;
+import com.huawei.openstack4j.api.ServiceEndpointProvider;
 import com.huawei.openstack4j.api.client.CloudProvider;
 import com.huawei.openstack4j.api.client.IOSClientBuilder;
+import com.huawei.openstack4j.api.exceptions.ApiNotFoundException;
 import com.huawei.openstack4j.api.exceptions.AuthenticationException;
 import com.huawei.openstack4j.api.types.Facing;
+import com.huawei.openstack4j.api.types.ServiceType;
 import com.huawei.openstack4j.core.transport.Config;
+import com.huawei.openstack4j.core.transport.HttpRequest;
+import com.huawei.openstack4j.core.transport.HttpResponse;
+import com.huawei.openstack4j.core.transport.internal.HttpExecutor;
 import com.huawei.openstack4j.model.common.Identifier;
+import com.huawei.openstack4j.model.identity.v3.Endpoint;
+import com.huawei.openstack4j.model.identity.v3.Service;
 import com.huawei.openstack4j.openstack.common.Auth;
 import com.huawei.openstack4j.openstack.identity.v2.domain.Credentials;
 import com.huawei.openstack4j.openstack.identity.v2.domain.RaxApiKeyCredentials;
 import com.huawei.openstack4j.openstack.identity.v2.domain.TokenAuth;
 import com.huawei.openstack4j.openstack.identity.v3.domain.KeystoneAuth;
 import com.huawei.openstack4j.openstack.identity.v3.domain.KeystoneAuth.AuthScope;
+import com.huawei.openstack4j.openstack.identity.v3.domain.KeystoneEndpoint;
+import com.huawei.openstack4j.openstack.identity.v3.domain.KeystoneService;
+import com.huawei.openstack4j.openstack.identity.v3.domain.KeystoneToken;
 import com.huawei.openstack4j.openstack.internal.OSAuthenticator;
 import com.huawei.openstack4j.openstack.internal.OSClientSessionAKSK;
 import com.huawei.openstack4j.openstack.internal.OSClientSessionTempAKSK;
+import com.huawei.openstack4j.openstack.internal.OSClientSessionV3;
+
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
 /**
  * Builder definitions for creating a Client
@@ -94,6 +110,9 @@ public abstract class OSClientBuilder<R, T extends IOSClientBuilder<R, T>> imple
     @SuppressWarnings("unchecked")
     @Override
     public T endpoint(String endpoint) {
+        if(!endpoint.contains("/v3")){
+            endpoint = endpoint+"/v3";
+        }
         this.endpoint = endpoint;
         return (T) this;
     }
@@ -167,6 +186,7 @@ public abstract class OSClientBuilder<R, T extends IOSClientBuilder<R, T>> imple
         Identifier domain;
         AuthScope scope;
         String tokenId;
+        String authToken;
         String language;
 
         @Override
@@ -196,16 +216,69 @@ public abstract class OSClientBuilder<R, T extends IOSClientBuilder<R, T>> imple
         }
 
         @Override
+        public ClientV3 authToken(String authToken) {
+            this.authToken = authToken;
+            return this;
+        }
+
+        @Override
         public OSClientV3 authenticate() throws AuthenticationException {
             if (tokenId != null && tokenId.length() > 0)
                 return (OSClientV3) OSAuthenticator.invoke(new KeystoneAuth(tokenId, scope), endpoint, perspective, config,
                         provider);
+            if (authToken != null && authToken.length() > 0){
+                List<KeystoneService> catalog = getKeystoneServices();
+                KeystoneToken token = new KeystoneToken();
+                token.setId(authToken);
+                token.setCatalog(catalog);
+                return OSClientSessionV3.createSession(token, perspective, provider, config);
+            }
             if (user != null && user.length() > 0)
                 return (OSClientV3) OSAuthenticator.invoke(new KeystoneAuth(user, password, domain, scope), endpoint, perspective,
                         config, provider);
             // Use tokenless auth finally
             return (OSClientV3) OSAuthenticator.invoke(new KeystoneAuth(scope, Auth.Type.TOKENLESS), endpoint, perspective,
                     config, provider);
+        }
+
+        private List<KeystoneService> getKeystoneServices() {
+            String spath = null;
+            String epath = null;
+            if(endpoint.contains("/v3")){
+                spath = "/services";
+                epath = "/endpoints";
+            }else{
+                spath = "/v3/services";
+                epath = "/v3/endpoints";
+            }
+            HttpResponse servicesRes = HttpExecutor.create().execute(HttpRequest.builder().endpoint(endpoint).path(spath).config(config)
+                    .header("Content-Type","application/json;charset=utf8")
+                    .header("X-Auth-Token",authToken).build());
+            KeystoneService.Services services = servicesRes.getEntity(KeystoneService.Services.class);
+            List<KeystoneService> serviceList = services.getList();
+            HttpResponse endpointRes = HttpExecutor.create().execute(HttpRequest.builder().endpoint(endpoint).path(epath).config(config)
+                    .header("Content-Type","application/json;charset=utf8")
+                    .header("X-Auth-Token",authToken).build());
+            KeystoneEndpoint.Endpoints endpoints = endpointRes.getEntity(KeystoneEndpoint.Endpoints.class);
+            List<KeystoneEndpoint> endpointList = endpoints.getList();
+            List<KeystoneService> catalog = new ArrayList<>();
+            for(KeystoneService service : serviceList){
+                for (KeystoneEndpoint endpoint : endpointList){
+                    if(service.getId() ==null){
+                        continue;
+                    }
+                    if(service.getId().equals(endpoint.getServiceId())){
+                        if(!"PUBLIC".equalsIgnoreCase(endpoint.getIface().toString())){
+                            continue;
+                         }
+                        if(endpoint.getRegion() == null){
+                            service.setEndpoints(Arrays.asList(endpoint));
+                            catalog.add(service);
+                        }
+                    }
+                }
+            }
+            return catalog;
         }
 
         @Override
@@ -304,7 +377,7 @@ public abstract class OSClientBuilder<R, T extends IOSClientBuilder<R, T>> imple
 
             checkArgument(!Strings.isNullOrEmpty(accessKey),"parameter `accessKey` should not be empty");
             checkArgument(!Strings.isNullOrEmpty(secretKey),"parameter `secretKey` should not be empty");
-            checkArgument(!Strings.isNullOrEmpty(region),"parameter `region` should not be empty");
+//            checkArgument(!Strings.isNullOrEmpty(region),"parameter `region` should not be empty");
             checkArgument(!Strings.isNullOrEmpty(cloudDomainName),"parameter `domain` should not be empty");
             checkArgument(!Strings.isNullOrEmpty(domainId),"parameter `domainId` should not be empty");
 

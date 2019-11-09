@@ -39,6 +39,7 @@ package com.huawei.openstack4j.openstack.ecs.v1.internal;
  import com.huawei.openstack4j.openstack.ecs.v1.domain.ResizeServer;
  import com.huawei.openstack4j.openstack.ecs.v1.domain.ServerCreate;
  import com.huawei.openstack4j.openstack.ecs.v1.domain.SupportAutoRecovery;
+ import com.huawei.openstack4j.openstack.ecs.v1.domain.ResetPassword;
 
  public class CloudServerService extends BaseElasticComputeServices {
 
@@ -240,6 +241,20 @@ package com.huawei.openstack4j.openstack.ecs.v1.internal;
 		checkArgument(!(supportAutoRecovery == null), "parameter `supportAutoRecovery` should not be empty");
 		return put(ActionResponse.class, uri("/cloudservers/"+serverId+"/autorecovery")).entity(supportAutoRecovery).execute();
 	}
+
+	 /**
+	  * cloud server reset password
+	  *
+	  * @param serverId
+	  * @param resetPassword
+	  * @return
+	  */
+	 public ActionResponse resetPassword(String serverId, ResetPassword resetPassword) {
+		 checkArgument(!Strings.isNullOrEmpty(serverId), "parameter `serverId` should not be empty");
+		 checkArgument(!(resetPassword == null), "parameter `reset-password` should not be empty");
+		 checkArgument(!Strings.isNullOrEmpty(resetPassword.getNewPassword()), "parameter `new_password` should not be empty");
+		 return put(ActionResponse.class, uri("/cloudservers/" + serverId + "/os-reset-password")).entity(resetPassword).execute();
+	 }
 
 //	/**
 //	 *Query cloud server specification change support list

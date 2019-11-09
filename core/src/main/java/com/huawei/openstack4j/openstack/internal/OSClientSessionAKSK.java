@@ -90,6 +90,9 @@ public class OSClientSessionAKSK extends OSClientSession<OSClientSessionAKSK, OS
 	}
 
 	public void initServiceEndpoints(){
+		if(region == null){
+			return;
+		}
 		OSClientSessionAKSK osclient = (OSClientSessionAKSK)OSClientSession.getCurrent();
 		List<? extends Service> services = new ArrayList<>();
 		List<? extends Endpoint> endpoints = new ArrayList<>();
@@ -107,9 +110,7 @@ public class OSClientSessionAKSK extends OSClientSession<OSClientSessionAKSK, OS
 					continue;
 				}
 				if(service.getId().equals(endpoint.getServiceId())){
-					if(region == null){
-						break;
-					}
+
 					if(!region.equalsIgnoreCase(endpoint.getRegion()) || !"PUBLIC".equalsIgnoreCase(endpoint.getIface().toString())){
                         continue;
                     }
@@ -187,7 +188,7 @@ public class OSClientSessionAKSK extends OSClientSession<OSClientSessionAKSK, OS
 
 		checkArgument(!Strings.isNullOrEmpty(accessKey),"parameter `accessKey` should not be empty");
 		checkArgument(!Strings.isNullOrEmpty(secretKey),"parameter `secretKey` should not be empty");
-		checkArgument(!Strings.isNullOrEmpty(region),"parameter `region` should not be empty");
+//		checkArgument(!Strings.isNullOrEmpty(region),"parameter `region` should not be empty");
 		checkArgument(!Strings.isNullOrEmpty(domainId),"parameter `domainId` should not be empty");
 		checkArgument(!Strings.isNullOrEmpty(cloudDomainName),"parameter `domain` should not be empty");
 

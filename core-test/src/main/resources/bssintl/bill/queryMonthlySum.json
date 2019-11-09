@@ -1,0 +1,48 @@
+{
+  "currency": "CNY",
+  "error_code": "CBC.0000",
+  "error_msg": "success",
+  "total_count": 1,
+  "bill_sums": [
+    {
+      "debt": 0,
+      "discount": 0,
+      "customer_id": "62a26ff9b6c24d75b058c67d7f88b86b",
+      "resource_type_code": null,
+      "region_code": null,
+      "cloud_service_type_code": "hws.service.type.ebs",
+      "consume_time": "2018-05",
+      "pay_method": "0",
+      "consume_amount": 17000,
+      "measure_id": 3,
+      "bill_type": 0,
+      "account_details": [
+        {
+          "balance_type_id": "BALANCE_TYPE_DEBIT",
+          "deduct_amount": 8050
+        },
+        {
+          "balance_type_id": "BALANCE_TYPE_CREDIT",
+          "deduct_amount": 0
+        },
+        {
+          "balance_type_id": "BALANCE_TYPE_BONUS",
+          "deduct_amount": 0
+        },
+        {
+          "balance_type_id": "BALANCE_TYPE_COUPON",
+          "deduct_amount": 0
+        },
+        {
+          "balance_type_id": "BALANCE_TYPE_DEBIT_RATE",
+          "deduct_amount": 0
+        },
+        {
+          "balance_type_id": "BALANCE_TYPE_RCASH_COUPON",
+          "deduct_amount": 8950
+        }
+      ],
+      "discount_detail_infos": []
+    }
+  ]
+}

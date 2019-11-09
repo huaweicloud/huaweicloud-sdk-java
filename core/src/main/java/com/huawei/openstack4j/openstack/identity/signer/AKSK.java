@@ -139,8 +139,14 @@ public class AKSK {
 		String canonicalRequestHash = BinaryUtils.toHex(sha256(canonicalRequest));
 		// ************* TASK 2: CREATE THE STRING TO SIGN*************
 		// Match the algorithm to the hashing algorithm you use, either SHA-1 or SHA-256 (recommended)
-		String[] scopeArray = new String[] { datestamp, request.getRegion(), request.getService().getServiceName(),
-				Constants.SDK_TERMINATOR };
+		String[] scopeArray = null;
+		if(request.getRegion() != null) {
+			scopeArray = new String[]{datestamp, request.getRegion(), request.getService().getServiceName(),
+					Constants.SDK_TERMINATOR};
+		}else{
+			scopeArray = new String[]{datestamp, "",request.getService().getServiceName(),
+					Constants.SDK_TERMINATOR};
+		}
 		String credentialScope = Joiner.on("/").join(scopeArray);
 		String stringToSign = getStringToSign(Constants.SDK_SIGNING_ALGORITHM, dateTimeStamp, credentialScope,
 				canonicalRequestHash);
@@ -215,8 +221,14 @@ public class AKSK {
 		try {
 			byte[] keySecret = (Constants.SDK_NAME + secretKey).getBytes("UTF-8");
 			byte[] kDate = hmac(keySecret, datestamp);
-			byte[] kRegion = hmac(kDate, region);
-			byte[] kService = hmac(kRegion, serviceName);
+			byte[] kService = null;
+			if(region != null){
+				byte[] kRegion = hmac(kDate, region);
+				kService = hmac(kRegion, serviceName);
+			}else{
+				byte[] kRegion = hmac(kDate, "");
+				kService = hmac(kRegion, serviceName);
+			}
 			byte[] kSigning = hmac(kService, Constants.SDK_TERMINATOR);
 			byte[] signature = hmac(kSigning, stringToSign);
 			return BinaryUtils.toHex(signature);

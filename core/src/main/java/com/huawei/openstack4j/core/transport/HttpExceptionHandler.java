@@ -35,7 +35,8 @@ public class HttpExceptionHandler {
      * @return the response exception
      */
     public static ResponseException mapException(String message, int status) {
-        return mapException(message, status, null);
+        Throwable cause= null;
+        return mapException(message, status, cause);
     }
 
     /**
@@ -55,6 +56,17 @@ public class HttpExceptionHandler {
             return new ServerResponseException(message, status, cause);
 
         return new ResponseException(message, status, cause);
+    }
+
+    public static ResponseException mapException(String message, int status, String body) {
+        if (status == 401)
+            return new AuthenticationException(message, status, body);
+        if (status >= 400 && status < 499)
+            return new ClientResponseException(message, status, body);
+        if (status >= 500 && status < 600)
+            return new ServerResponseException(message, status, body);
+
+        return new ResponseException(message, status, body);
     }
     
 }

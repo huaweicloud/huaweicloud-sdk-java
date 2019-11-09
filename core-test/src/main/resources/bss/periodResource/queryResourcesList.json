@@ -1,0 +1,24 @@
+{
+  "data": [
+    {
+      "id": "01154-21800069-0",
+      "status": 2,
+      "resource_id": "2498f7c4-ac2d-47e3-8729-a683d5755c07",
+      "resource_name": "114.115.169.185",
+      "region_code": "cn-north-1",
+      "cloud_service_type_code": "hws.service.type.vpc",
+      "resource_type_code": "hws.resource.type.ip",
+      "resource_spec_code": "5_sbgp",
+      "project_code": "3f0ba7064edd4a06849eef1c9d71a400",
+      "product_id": "c1944e81eb214484992b1d925123a155",
+      "main_resource_id": "2498f7c4-ac2d-47e3-8729-a683d5755c07",
+      "is_main_resource": 1,
+      "valid_time": "2018-04-26T18:03:03Z",
+      "expire_time": "2018-06-27T15:59:59Z",
+      "next_operation_policy":"3"
+    }
+  ],
+  "error_code": "CBC.0000",
+  "error_msg": "success",
+  "total_count": 1
+}

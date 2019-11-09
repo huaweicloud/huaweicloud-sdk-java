@@ -32,7 +32,6 @@
 package com.huawei.openstack4j.api.exceptions;
 
 import com.google.common.base.MoreObjects;
-import com.google.common.base.Strings;
 
 /**
  * Base Exception for HTTP Errors during Rest Operations
@@ -46,6 +45,7 @@ public class ResponseException extends OS4JException {
 	protected int status;
 	
 	//protected String errorCode; 
+	protected String body;
 
 	public ResponseException(String message, int status) {
 		super(message);
@@ -55,6 +55,12 @@ public class ResponseException extends OS4JException {
 	public ResponseException(String message, int status, Throwable cause) {
 		super(message, cause);
 		this.status = status;
+	}
+
+	public ResponseException(String message, int status, String body) {
+		super(message);
+		this.status = status;
+		this.body = body;
 	}
 
 	/**

@@ -33,6 +33,31 @@ public class FlavorDemo {
 		} else {
 			System.out.println("get flavorList failed");
 		}
+
+        //list flavors with non filtering parameters
+        List<? extends Flavor> flavors = os.compute().flavors().list(true);
+        if (flavors.size() > 0) {
+            System.out.println("get flavorList success, size = " + flavors.size());
+            System.out.println("flavors:" + flavors.get(0).toString());
+        } else {
+            System.out.println("get flavorList failed");
+        }
+
+        Map<String, String> filterParam = new HashMap<String, String>();
+        filterParam.put("sort_key", "name");
+        filterParam.put("sort_dir", "desc");
+        //list flavors with filtering parameters,parameters affect the response data,available are:sort_key,sort_dir,
+        // limit,marker,minDisk,minRam,is_public
+        List<? extends Flavor> flavors = os.compute().flavors().list(false, filterParam);
+        if (flavors.size() > 0) {
+            System.out.println("flavors:" + flavors.get(0).toString());
+            for (Flavor flavor : flavors) {
+                System.out.println("flavor name:" + flavor.getName());
+            }
+            System.out.println("get flavorList success, size = " + flavors.size());
+        } else {
+            System.out.println("get flavorList failed");
+        }
 		
 		//get flavor
 		Flavor flavor = os.compute().flavors().get(flrId);

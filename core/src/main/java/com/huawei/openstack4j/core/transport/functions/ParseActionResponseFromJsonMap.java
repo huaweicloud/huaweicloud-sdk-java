@@ -33,9 +33,10 @@ package com.huawei.openstack4j.core.transport.functions;
 
 import java.util.Map;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.google.common.base.Function;
 import com.google.common.base.Strings;
-
 import com.huawei.openstack4j.core.transport.HttpResponse;
 import com.huawei.openstack4j.model.common.ActionResponse;
 
@@ -83,6 +84,13 @@ public class ParseActionResponseFromJsonMap implements Function<Map<String, Obje
 		if (map == null || map.isEmpty())
 			return null;
 
+		ObjectMapper mapper = new ObjectMapper();
+		String error= null;
+		try {
+			error = mapper.writeValueAsString(map);
+		} catch (JsonProcessingException e) {
+			e.printStackTrace();
+		}
 		for (String key : map.keySet()) {
 			if (Map.class.isAssignableFrom(map.get(key).getClass())) {
 				Map<String, Object> inner = (Map<String, Object>) map.get(key);
@@ -105,7 +113,7 @@ public class ParseActionResponseFromJsonMap implements Function<Map<String, Obje
 				}
 
 				if (!Strings.isNullOrEmpty(msg)) {
-					return ActionResponse.actionFailed(msg, response.getStatus());
+					return ActionResponse.actionFailed(msg, response.getStatus(), error);
 				}
 			}
 		}
@@ -128,7 +136,7 @@ public class ParseActionResponseFromJsonMap implements Function<Map<String, Obje
 		}
 
 		if (!Strings.isNullOrEmpty(message.toString())) {
-			return ActionResponse.actionFailed(message.toString(), response.getStatus());
+			return ActionResponse.actionFailed(message.toString(), response.getStatus(), error);
 		}
 
 		return null;

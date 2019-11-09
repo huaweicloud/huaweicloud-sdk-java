@@ -1,0 +1,16 @@
+{
+  "count": 1,
+  "customerInfoList": [{
+    "name": "xxx",
+    "domainName": "a9cafcdcab3b41208c0cda95a1217b96",
+    "customerId": "05add48f190025510fe4c00d14ee4ea0",
+    "cooperationTime": "2019-07-19T06:40:53Z",
+    "cooperationType": "3",
+    "label": null,
+    "telephone": "17729386686",
+    "verifiedStatus": "2",
+    "countryCode": null,
+    "customerType":1
+  }
+  ]
+}

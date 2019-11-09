@@ -31,14 +31,23 @@
  * *******************************************************************************/
 package com.huawei.openstack4j.openstack.identity.internal;
 
+import static com.huawei.openstack4j.openstack.identity.internal.AKSKEndpointURLResolver.defaultServiceEndpointFile;
+
+import java.io.InputStream;
 import java.net.URI;
 import java.net.URISyntaxException;
 import java.util.Map;
 import java.util.SortedSet;
 import java.util.concurrent.ConcurrentHashMap;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import com.google.common.base.Optional;
 import com.google.common.collect.SortedSetMultimap;
+import com.huawei.openstack4j.api.ServiceEndpointProvider;
+import com.huawei.openstack4j.api.exceptions.ApiNotFoundException;
+import com.huawei.openstack4j.api.exceptions.OS4JException;
 import com.huawei.openstack4j.api.exceptions.RegionEndpointNotFoundException;
 import com.huawei.openstack4j.api.identity.EndpointURLResolver;
 import com.huawei.openstack4j.api.types.Facing;
@@ -47,9 +56,6 @@ import com.huawei.openstack4j.model.identity.URLResolverParams;
 import com.huawei.openstack4j.model.identity.v2.Access;
 import com.huawei.openstack4j.model.identity.v2.Endpoint;
 import com.huawei.openstack4j.model.identity.v3.Token;
-
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 /**
  * Resolves an Endpoint URL based on the Service Type and Facing perspective
@@ -62,7 +68,7 @@ public class DefaultEndpointURLResolver implements EndpointURLResolver {
     private static final Map<Key, String> CACHE = new ConcurrentHashMap<Key, String>();
     private static boolean LEGACY_EP_HANDLING = Boolean.getBoolean(LEGACY_EP_RESOLVING_PROP);
     private String publicHostIP;
-    
+    private ServiceEndpointProvider endpointProvider;
     @Override
     public String findURLV2(URLResolverParams p) {
         if (p.type == null) {
@@ -107,7 +113,41 @@ public class DefaultEndpointURLResolver implements EndpointURLResolver {
         } else if (p.region != null)
             throw RegionEndpointNotFoundException.create(p.region, p.type.getServiceName());
 
+        /*if("tokenid".equals(p.token.getAuthType())){
+            if(p.type != ServiceType.BSSV1 && p.type != ServiceType.BSS_INTLV1){
+                throw new ApiNotFoundException("token id auth only support BSSV1 and BSS_INTLV1 service");
+            }
+            instanceEndpointProvider();
+            String endpoint = this.getEndpointProvider().getEndpoint(p.type, p.perspective);
+            // filter placeholder parameters
+            String domain = "";
+            String authUrl  = p.token.getEndpoint();
+            String[] split = authUrl.split("\\.");
+            for(int i =0;i<split.length;i++){
+                if(split[i].contains("com")){
+                    domain = split[i-1]+".com";
+                }
+            }
+            endpoint = endpoint.replace("%(domain)s", domain);
+            return endpoint;
+        }*/
         return p.token.getEndpoint();
+    }
+
+    /**
+     * default implementation
+     *
+     * @return
+     */
+    public void instanceEndpointProvider() {
+        ServiceEndpointProvider defaultEndpointProvider = null;
+        try{
+            InputStream is = AKSKEndpointURLResolver.class.getClassLoader().getResourceAsStream(defaultServiceEndpointFile);
+            defaultEndpointProvider = new AKSKEndpointURLResolver.LocalFileServiceEndpointProvider(is);
+        }catch(NullPointerException e){
+            throw new OS4JException("defaultServiceEndpointFile can not be found");
+        }
+        this.endpointProvider = defaultEndpointProvider;
     }
 
     private String resolveV2(URLResolverParams p) {
@@ -280,5 +320,7 @@ public class DefaultEndpointURLResolver implements EndpointURLResolver {
 		// TODO Auto-generated method stub
 		return null;
 	}
-
+    public ServiceEndpointProvider getEndpointProvider() {
+        return endpointProvider;
+    }
 }

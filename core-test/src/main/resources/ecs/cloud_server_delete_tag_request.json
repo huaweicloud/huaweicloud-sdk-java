@@ -1,0 +1,7 @@
+{
+  "action" : "delete",
+  "tags" : [ {
+    "key" : "key1",
+    "value" : "value1"
+  } ]
+}

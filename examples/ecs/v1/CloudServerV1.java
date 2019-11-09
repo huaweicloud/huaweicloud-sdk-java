@@ -262,6 +262,15 @@ public class CloudServerV1 {
 			System.out.println("schedulerHints: " + cloudServerDetail.getSchedulerHints());
 		}
 
+		//cloud server reset password
+		ResetPassword resetPassword = ResetPassword.builder().newPassword("xxxx").build();
+		ActionResponse actionResponse = os.ecs().servers().resetPassword(serverId, resetPassword);
+		if (actionResponse.isSuccess()) {
+			System.out.println("reset password success");
+		} else {
+			System.out.println("reset password failed");
+		}
+
 		//get autorecovery configuration of server
 		SupportAutoRecovery autoRecoveryConfig = os.ecs().servers().getAutoRecovery(serverId);
 		if (null != autoRecoveryConfig) {

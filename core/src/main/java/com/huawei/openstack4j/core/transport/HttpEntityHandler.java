@@ -31,16 +31,16 @@
  * *******************************************************************************/
 package com.huawei.openstack4j.core.transport;
 
+import static com.huawei.openstack4j.core.transport.HttpExceptionHandler.mapException;
+
+import java.io.IOException;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import com.huawei.openstack4j.api.exceptions.ResponseException;
 import com.huawei.openstack4j.core.transport.functions.ResponseToActionResponse;
 import com.huawei.openstack4j.model.common.ActionResponse;
-
-import static com.huawei.openstack4j.core.transport.HttpExceptionHandler.*;
-
-import java.io.IOException;
 
 /**
  * Handles retrieving an Entity from an HttpResponse while validating resulting
@@ -78,6 +78,12 @@ public class HttpEntityHandler {
 
                 if (handleLessThan500(handle).isComplete()) {
                     return handle.getReturnObject();
+                }
+
+                if (returnType.getName().contains(".bss.") || returnType.getName().contains(".bssintl.")) {
+                    if(handleMoreThan500(handle).isComplete()){
+                        return handle.getReturnObject();
+                    }
                 }
 
                 throw mapException(response.getStatusMessage(), response.getStatus());
@@ -130,7 +136,24 @@ public class HttpEntityHandler {
                 if (handle.getReturnType() == ActionResponse.class) {
                     return handle.complete((T) ar);
                 }
-                throw mapException(ar.getFault(), handle.getResponse().getStatus());
+                throw mapException(ar.getFault(), handle.getResponse().getStatus(), ar.getBody());
+            } catch (ResponseException re) {
+                throw re;
+            } catch (Exception e) {
+                LOG.error(e.getMessage(), e);
+            }
+        }
+        return handle.continueHandling();
+    }
+
+    private static <T> Handle<T> handleMoreThan500(Handle<T> handle) {
+        if (handle.getResponse().getStatus() == 500 || handle.getResponse().getStatus() == 503) {
+            try {
+                ActionResponse ar = ResponseToActionResponse.INSTANCE.apply(handle.getResponse());
+                if (handle.getReturnType() == ActionResponse.class) {
+                    return handle.complete((T) ar);
+                }
+                throw mapException(ar.getFault(), handle.getResponse().getStatus(), ar.getBody());
             } catch (ResponseException re) {
                 throw re;
             } catch (Exception e) {

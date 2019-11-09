@@ -126,6 +126,9 @@ public class KeystoneService implements Service, Comparable<Service> {
         this.enabled = enabled;
     }
 
+    public void setEndpoints(List<KeystoneEndpoint> endpoints) {
+        this.endpoints = endpoints;
+    }
     /**
      * {@inheritDoc}
      */

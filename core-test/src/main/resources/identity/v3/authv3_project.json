@@ -1488,6 +1488,90 @@
         "type": "iam",
         "id": "2241f6c6096a11e793ae92361f002671",
         "name": "iam"
+      },
+      {
+        "endpoints": [
+          {
+            "region_id": "RegionOne",
+            "url": "http://127.0.0.1:10029/v3/project-id",
+            "region": "RegionOne",
+            "interface": "public",
+            "id": "2241f1ee096a11e793ae92361f002671"
+          },
+          {
+            "region_id": "RegionOne",
+            "url": "http://127.0.0.1:10029/v3/project-id",
+            "region": "RegionOne",
+            "interface": "admin",
+            "id": "2241f446096a11e793ae92361f002671"
+          },
+          {
+            "region_id": "RegionOne",
+            "url": "http://127.0.0.1:10029/v3/project-id",
+            "region": "RegionOne",
+            "interface": "internal",
+            "id": "2241f55e096a11e793ae92361f002671"
+          }
+        ],
+        "type": "vpc3",
+        "id": "2241f6c6096a11e793ae92361f002671",
+        "name": "vpc3"
+      },
+      {
+        "endpoints": [
+          {
+            "region_id": "RegionOne",
+            "url": "http://127.0.0.1:10030/v1.0",
+            "region": "RegionOne",
+            "interface": "public",
+            "id": "2241f1ee096a11e793ae92361f002671"
+          },
+          {
+            "region_id": "RegionOne",
+            "url": "http://127.0.0.1:10030/v1.0",
+            "region": "RegionOne",
+            "interface": "admin",
+            "id": "2241f446096a11e793ae92361f002671"
+          },
+          {
+            "region_id": "RegionOne",
+            "url": "http://127.0.0.1:10030/v1.0",
+            "region": "RegionOne",
+            "interface": "internal",
+            "id": "2241f55e096a11e793ae92361f002671"
+          }
+        ],
+        "type": "bss-intlv1",
+        "id": "2241f6c6096a11e793ae92361f002671",
+        "name": "bss-intlv1"
+      },
+      {
+        "endpoints": [
+          {
+            "region_id": "RegionOne",
+            "url": "http://127.0.0.1:10031/v1.0",
+            "region": "RegionOne",
+            "interface": "public",
+            "id": "2241f1ee096a11e793ae92361f002671"
+          },
+          {
+            "region_id": "RegionOne",
+            "url": "http://127.0.0.1:10031/v1.0",
+            "region": "RegionOne",
+            "interface": "admin",
+            "id": "2241f446096a11e793ae92361f002671"
+          },
+          {
+            "region_id": "RegionOne",
+            "url": "http://127.0.0.1:10031/v1.0",
+            "region": "RegionOne",
+            "interface": "internal",
+            "id": "2241f55e096a11e793ae92361f002671"
+          }
+        ],
+        "type": "bssv1",
+        "id": "2241f6c6096a11e793ae92361f002671",
+        "name": "bssv1"
       }
     ],
     "extras": {},

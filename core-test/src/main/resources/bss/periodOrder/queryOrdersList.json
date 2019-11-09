@@ -1,0 +1,41 @@
+{
+    "error_code": "CBC.0000",
+    "error_msg": "success",
+    "data": {
+        "pageSize": 10,
+        "pageIndex": 1,
+        "totalSize": 1,
+        "orderInfos": [{
+            "orderId": "9Lw9bGzUCCALxuDqzlKWfqYW5Pg1gEamqK5k",
+            "baseOrderId": null,
+            "beId": "0",
+            "customerId": "L3BnGfjVGsxisDmyp1R6pOA3rivqO3RijBdD",
+            "sourceType": 1,
+            "status": 4,
+            "orderType": 1,
+            "currency": 30,
+            "currencyAfterDiscount": 30,
+            "measureId": 1,
+            "measureName": null,
+            "createTime": "2019-04-01T11:28:20Z",
+            "paymentTime": null,
+            "lastUpdateTime": "2019-04-02T11:29:42Z",
+            "needAudit": false,
+            "currencyType": "CNY",
+            "contractId": null,
+            "currencyOfficial": 30,
+            "amountInfo": {
+                "discountList": [{
+                    "discountType": "901",
+                    "discountAmount": 100
+                }],
+                "cashcouponAmount": 1,
+                "couponAmount": 2,
+                "cardAmount": 3,
+                "commissionAmount": 4,
+                "consumedAmount": 5
+            },
+            "serviceType": "hws.service.type.ebs"
+        }]
+    }
+}

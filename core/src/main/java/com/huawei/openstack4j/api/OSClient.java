@@ -66,6 +66,8 @@ import com.huawei.openstack4j.model.identity.v2.Access;
 import com.huawei.openstack4j.model.identity.v3.Token;
 import com.huawei.openstack4j.openstack.antiddos.internal.AntiDDoSServices;
 import com.huawei.openstack4j.openstack.bms.v1.internal.BareMetaService;
+import com.huawei.openstack4j.openstack.bssintl.v1.internal.BusinessSupportSystemIntlService;
+import com.huawei.openstack4j.openstack.bss.v1.internal.BusinessSupportSystemService;
 import com.huawei.openstack4j.openstack.cdn.v1.internal.CdnServices;
 import com.huawei.openstack4j.openstack.cloud.trace.v1.internal.CloudTraceV1Service;
 import com.huawei.openstack4j.openstack.cloud.trace.v2.internal.CloudTraceV2Service;
@@ -73,6 +75,7 @@ import com.huawei.openstack4j.openstack.csbs.v1.internal.CloudServerBackupServic
 import com.huawei.openstack4j.openstack.database.internal.DatabaseServices;
 import com.huawei.openstack4j.openstack.dss.v1.internal.DssService;
 import com.huawei.openstack4j.openstack.ecs.v1.internal.ElasticComputeService;
+import com.huawei.openstack4j.openstack.eps.v1.internal.EPManagementService;
 import com.huawei.openstack4j.openstack.evs.v2.internal.ElasticVolumeService;
 import com.huawei.openstack4j.openstack.fgs.v1.internal.FunctionGraphService;
 import com.huawei.openstack4j.openstack.fgs.v2.internal.FunctionGraphV2Service;
@@ -431,7 +434,19 @@ public interface OSClient<T extends OSClient<T>> {
 	  * @return the ElasticCompute service
 	  */
 	 ElasticComputeService ecs();
-     
+
+	/**
+	 * Returns the BusinessSupportSystemIntlService API
+	 * @return the BusinessSupportSystemIntlService service
+	 */
+	BusinessSupportSystemIntlService bssintlV1();
+
+    /**
+     * Returns the BusinessSupportSystemIntlService API
+     * @return the BusinessSupportSystemIntlService service
+     */
+    BusinessSupportSystemService bssV1();
+
 	 /**
 	  * Returns the TagManagementService API
 	  * @return
@@ -647,7 +662,12 @@ public interface OSClient<T extends OSClient<T>> {
 	  * @return the ElasticVolume service
 	  */
 	 com.huawei.openstack4j.openstack.evs.v2_1.internal.ElasticVolumeService evsV2_1();
-	 
+
+	/**
+	 * Returns the VirtualPrivateCloud Service API
+	 * @return the VirtualPrivateCloudService
+	 */
+	com.huawei.openstack4j.openstack.vpc.v3.internal.VirtualPrivateCloudService vpcV3();
 
 	 /**
 	  * Returns the VirtualPrivateCloud Service API
@@ -700,4 +720,10 @@ public interface OSClient<T extends OSClient<T>> {
 	 * @return
 	 */
 	IamService iam();
+
+	/**
+	 * Returns the EPManagementService API
+	 * @return
+	 */
+	EPManagementService eps();
 }

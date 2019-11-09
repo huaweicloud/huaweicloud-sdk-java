@@ -103,7 +103,10 @@ public abstract class AbstractTest {
         FGS(10025),
 		DSS(10026),
 		EVS(10027),
-        IAM(10028);
+        IAM(10028),
+		VPC3(10029),
+		BSS_INTLV1(10030),
+        BSSV1(10031);
         //@on
 
 		private final int port;

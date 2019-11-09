@@ -1,4 +1,10 @@
 {
+  "BSSV1": {
+    "public": "https://bss.%(domain)s/v1.0"
+  },
+  "BSS_INTLV1": {
+    "public": "https://cbc.ap-southeast-1.%(domain)s/v1.0"
+  },
   "DNS": {
     "public": "https://dns.%(region)s.%(domain)s/"
   },
@@ -64,6 +70,9 @@
   },
    "EVS2_1":{
   	"public": "https://evs.%(region)s.%(domain)s/v2.1/%(projectId)s"
+  },
+   "VPC3":{
+    "public": "https://vpc.%(region)s.%(domain)s/v3/%(projectId)s"
   },
    "VPC2":{
   	"public": "https://vpc.%(region)s.%(domain)s/v2.0/%(projectId)s"

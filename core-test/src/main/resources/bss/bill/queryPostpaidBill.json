@@ -1,0 +1,28 @@
+{
+  "billCycle": "2019-01",
+  "creditDebtAmount": 22500,
+  "consumeAmount": 22500,
+  "writeoffdebt": 0,
+  "unsubscribeAmount": 0,
+  "measureId": 1,
+  "currency": "USD",
+  "taxAmount": null,
+  "unclearedAmount": 10,
+  "dueDate": "2019-02-15",
+  "billList": [
+    {
+      "billType": "0",
+      "cloudServiceTypeCode": "hws.service.type.kms",
+      "resourceTypeCode": "hws.resource.type.dev.codehub",
+      "payMethod": "1",
+      "creditDebtAmount": 30000,
+      "customerAmountDue": 30000,
+      "settlementType": 0,
+      "partnerRatio": 0.75,
+      "partnerAmount": 22500,
+      "periodType":3,
+      "periodNum":1,
+      "categoryCode": "hws.resource.storage1.evs"
+    }
+  ]
+}

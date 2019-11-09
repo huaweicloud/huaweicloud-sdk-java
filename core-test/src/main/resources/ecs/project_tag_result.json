@@ -1,0 +1,10 @@
+{
+  "tags" : [ {
+    "key" : "key1",
+    "values": [
+      "value1",
+      "value2"
+    ]
+  } ]
+}
+

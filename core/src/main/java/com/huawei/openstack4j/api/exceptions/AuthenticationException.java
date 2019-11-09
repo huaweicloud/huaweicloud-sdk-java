@@ -32,4 +32,11 @@ public class AuthenticationException extends ResponseException {
 		super(message, status);
 	}
 
+	public AuthenticationException(String message, int status, String body) {
+		super(message, status, body);
+	}
+
+	public String getBody(){
+		return body;
+	}
 }
