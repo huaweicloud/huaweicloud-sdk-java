@@ -88,6 +88,8 @@ public class NeutronLbPoolV2 implements LbPoolV2 {
 
     private List<ListItem> listeners;
 
+    private List<ListItem> loadbalancers;
+
     private List<ListItem> members;
 
     @JsonProperty("healthmonitor_id")
@@ -180,6 +182,10 @@ public class NeutronLbPoolV2 implements LbPoolV2 {
     @Override
     public List<ListItem> getMembers(){
         return members;
+    }
+
+    public List<ListItem> getLoadbalancers(){
+        return loadbalancers;
     }
 
     /**
