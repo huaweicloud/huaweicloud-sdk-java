@@ -13,12 +13,16 @@ public class ServerGroupDemo {
 	public static void main(String[] args) {
 		
 		// Using credentials for authentication
-		//请在 华为云控制台>用户名称>我的凭证>访问密钥匙 中查询
-		String authUrl = "xxxxxxxxxxxxxxxxxxxxxxxxxxxxx"; //endpoint Url
-		String user = "xxxxx"; //username
-		String password = "xxxxx"; //password
-		String projectId = "xxxxxxxxxxxxxxxxxxxxxxxxxxxxx"; //projectId
-		String userDomainId = "xxxxxxxxxxxxxxxxxxxxxxxxxxxxx"; //domainId
+		
+		String authUrl = "xxxxxxxxxxxxxxxxxxxxxxxxxxxxx"; //终端节点（Endpoint）
+		//authUrl请在 华为云>开发者>API Endpoint 中查询
+		
+		String user = "xxxxx"; //华为云账号名
+		String password = "xxxxx"; //华为云登陆密码
+		
+		String projectId = "xxxxxxxxxxxxxxxxxxxxxxxxxxxxx"; //项目ID
+		String userDomainId = "xxxxxxxxxxxxxxxxxxxxxxxxxxxxx"; //账号ID
+		//projectId和userDomainId请在 华为云控制台>用户名称>我的凭证>API凭证 中查询
 
 		// create connection
 		OSClientV3 os = OSFactory.builderV3()
