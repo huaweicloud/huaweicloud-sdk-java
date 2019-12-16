@@ -13,6 +13,7 @@ public class ServerGroupDemo {
 	public static void main(String[] args) {
 		
 		// Using credentials for authentication
+		//请在华为云控制台>用户名称>我的凭证>访问密钥匙 中查询
 		String authUrl = "xxxxxxxxxxxxxxxxxxxxxxxxxxxxx"; //endpoint Url
 		String user = "xxxxx"; //username
 		String password = "xxxxx"; //password
