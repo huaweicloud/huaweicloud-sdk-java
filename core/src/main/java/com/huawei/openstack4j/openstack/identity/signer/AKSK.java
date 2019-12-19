@@ -343,7 +343,7 @@ public class AKSK {
 
 	public static String urlEncode(String url) {
 		try {
-			return URLEncoder.encode(url, "UTF-8").replace("+", "%20");
+			return URLEncoder.encode(url, "UTF-8").replace("+", "%20").replace("*", "%2A");
 		} catch (UnsupportedEncodingException e) {
 			throw new RuntimeException("UTF-8 encoding is not supported.", e);
 		}

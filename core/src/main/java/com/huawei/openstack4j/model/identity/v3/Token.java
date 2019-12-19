@@ -133,6 +133,4 @@ public interface Token extends ModelEntity {
     SortedSetMultimap<String, Service> getAggregatedCatalog();
 
 	void setProjectInfo(Project project);
-
-    String getAuthType();
 }
