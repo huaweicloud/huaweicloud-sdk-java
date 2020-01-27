@@ -33,8 +33,7 @@ public class UserDemo {
         String domainId = "**********";
         String userName = "**********";
         String userPassword = "**********";
-        String email = "**********";
-        User user1 = osclient.identity().users().create(domainId, userName, password, email);
+        User user1 = osclient.identity().users().create(domainId, userName, password);
         System.out.println(user1);
 
         //Deleting a User
