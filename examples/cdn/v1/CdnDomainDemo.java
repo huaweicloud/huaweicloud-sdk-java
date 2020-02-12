@@ -55,7 +55,7 @@ public class CdnDomainDemo {
         Config config = Config.newConfig()
                 .withEndpointURLResolver(endpointResolver);
 
-        // step 4: token authorization：setup the authentication credit
+        // step 4: token authorization: setup the authentication credit
         String user = "username";
         String password = "password";
         String projectId = "projectId";
@@ -71,7 +71,7 @@ public class CdnDomainDemo {
                 .authenticate();
 
         /*
-        // step4：AKSK authorization：：setup the authentication credit
+        // step4: AK SK authorization:: setup the authentication credit
         String ak = "xxxx";
         String sk = "xxxx";
         String projectId = "xxxx";
