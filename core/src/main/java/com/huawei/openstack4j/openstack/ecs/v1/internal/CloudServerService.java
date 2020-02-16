@@ -34,6 +34,8 @@ package com.huawei.openstack4j.openstack.ecs.v1.internal;
  import com.huawei.openstack4j.openstack.ecs.v1.domain.CloudServer;
  import com.huawei.openstack4j.openstack.ecs.v1.domain.AsyncServerRespEntity;
  import com.huawei.openstack4j.openstack.ecs.v1.domain.CloudServer.CloudServers;
+ import com.huawei.openstack4j.openstack.ecs.v1.domain.InterfaceAttachment;
+ import com.huawei.openstack4j.openstack.ecs.v1.domain.InterfaceAttachment.InterfaceAttachments;
  import com.huawei.openstack4j.openstack.ecs.v1.domain.Flavor;
  import com.huawei.openstack4j.openstack.ecs.v1.domain.Flavor.Flavors;
  import com.huawei.openstack4j.openstack.ecs.v1.domain.ResizeServer;
@@ -255,6 +257,16 @@ package com.huawei.openstack4j.openstack.ecs.v1.internal;
 		 checkArgument(!Strings.isNullOrEmpty(resetPassword.getNewPassword()), "parameter `new_password` should not be empty");
 		 return put(ActionResponse.class, uri("/cloudservers/" + serverId + "/os-reset-password")).entity(resetPassword).execute();
 	 }
+
+	/**
+	  * get interfaces of server
+	  * @param serverId
+	  * @return
+	  */
+	public List<InterfaceAttachment> getInterfaces(String serverId){
+		checkArgument(!Strings.isNullOrEmpty(serverId), "parameter `serverId` should not be empty");
+		return get(InterfaceAttachments.class, uri("/cloudservers/"+serverId+"/os-interface")).execute().getList();
+	}
 
 //	/**
 //	 *Query cloud server specification change support list
