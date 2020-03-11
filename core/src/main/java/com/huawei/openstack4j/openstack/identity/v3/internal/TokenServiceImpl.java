@@ -26,6 +26,7 @@ import com.huawei.openstack4j.model.identity.v3.Domain;
 import com.huawei.openstack4j.model.identity.v3.Project;
 import com.huawei.openstack4j.model.identity.v3.Service;
 import com.huawei.openstack4j.model.identity.v3.Token;
+import com.huawei.openstack4j.openstack.identity.v3.domain.token.Auth;
 import com.huawei.openstack4j.openstack.identity.v3.domain.KeystoneToken;
 import com.huawei.openstack4j.openstack.identity.v3.domain.KeystoneDomain.Domains;
 import com.huawei.openstack4j.openstack.identity.v3.domain.KeystoneProject.Projects;
@@ -39,6 +40,19 @@ public class TokenServiceImpl extends BaseOpenStackService implements TokenServi
         checkNotNull(tokenId);
         return get(KeystoneToken.class, PATH_TOKENS).header(HEADER_X_SUBJECT_TOKEN, tokenId).execute();
     }
+
+    @Override
+    public Token getWithoutCatalog(String tokenId, String nocatalog) {
+        checkNotNull(tokenId);
+        return get(KeystoneToken.class, PATH_TOKENS).header(HEADER_X_SUBJECT_TOKEN, tokenId).param("nocatalog", nocatalog).execute();
+    }
+
+    @Override
+    public Token create(String nocatalog, Auth auth){
+        checkNotNull(auth.getIdentity().getMethods());
+        return post(KeystoneToken.class, PATH_TOKENS).param("nocatalog", nocatalog).entity(auth).execute();
+    }
+
 
     @Override
     public ActionResponse check(String tokenId) {
@@ -55,6 +69,11 @@ public class TokenServiceImpl extends BaseOpenStackService implements TokenServi
     @Override
     public List<? extends Service> getServiceCatalog(String tokenId) {
         checkNotNull(tokenId);
+        return get(Catalog.class, uri(PATH_SERVICE_CATALOGS)).execute().getList();
+    }
+
+    @Override
+    public List<? extends Service> getServiceCatalog() {
         return get(Catalog.class, uri(PATH_SERVICE_CATALOGS)).execute().getList();
     }
 

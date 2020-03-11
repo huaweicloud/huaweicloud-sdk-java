@@ -39,6 +39,7 @@ import com.google.common.collect.SortedSetMultimap;
 import com.huawei.openstack4j.model.ModelEntity;
 import com.huawei.openstack4j.model.identity.AuthStore;
 import com.huawei.openstack4j.model.identity.AuthVersion;
+import com.huawei.openstack4j.openstack.identity.v3.domain.token.AssumedBy;
 
 /**
  * V3 token model
@@ -56,6 +57,11 @@ public interface Token extends ModelEntity {
      * @return the catalog of the token
      */
     List<? extends Service> getCatalog();
+
+    /**
+     * @return the entity assumed by
+     */
+    AssumedBy getAssumedBy();
 
     /**
      * @return the timestamp when the token expires

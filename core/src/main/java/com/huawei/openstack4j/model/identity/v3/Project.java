@@ -70,6 +70,12 @@ public interface Project extends ModelEntity, Buildable<ProjectBuilder> {
     String getParentId();
 
     /**
+     *
+     * @return if the project id a domain
+     */
+    Boolean  getIsDomain();
+
+    /**
      * 
      * @return the subtree of the project
      */

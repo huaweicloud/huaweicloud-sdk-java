@@ -68,6 +68,7 @@ public class Source implements ModelEntity{
 	@NoArgsConstructor
 	@AllArgsConstructor
 	@JsonRootName("origin")
+	@ToString
 	public static class Origin{
 
 		/**

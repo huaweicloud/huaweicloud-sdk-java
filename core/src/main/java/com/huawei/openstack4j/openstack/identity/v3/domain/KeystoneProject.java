@@ -72,6 +72,8 @@ public class KeystoneProject implements Project {
     private String parents;
     private Boolean enabled = true;
     private Map<String, String> extra = new HashMap<String, String>();
+    @JsonProperty("is_domain")
+    private Boolean isDomain;
 
     /**
      * @return the Project builder
@@ -96,6 +98,7 @@ public class KeystoneProject implements Project {
     public String getId() {
         return id;
     }
+
 
     /**
      * {@inheritDoc}
@@ -160,6 +163,14 @@ public class KeystoneProject implements Project {
      * {@inheritDoc}
      */
     @Override
+    public Boolean getIsDomain() {
+        return isDomain;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
     public String getSubtree() {
         return subtree;
     }
@@ -187,6 +198,7 @@ public class KeystoneProject implements Project {
     public String getExtra(String key) {
         return extra.get(key);
     }
+
 
     @JsonAnyGetter
     public Map<String, String> getExtra() {
@@ -218,7 +230,6 @@ public class KeystoneProject implements Project {
      */
     @Override
     public String toString() {
-        String domainId = null;
         if (domain != null) {
             domainId = domain.getId();
         }
@@ -233,6 +244,7 @@ public class KeystoneProject implements Project {
                 .add("subtree", subtree)
                 .add("parents", parents)
                 .add("enabled", enabled)
+                .add("isDomain", isDomain)
                 .omitNullValues()
                 .toString();
     }
@@ -263,6 +275,7 @@ public class KeystoneProject implements Project {
                 && Objects.equal(this.parentId, that.parentId)
                 && Objects.equal(this.subtree, that.subtree)
                 && Objects.equal(this.parents, that.parents)
+                && Objects.equal(this.isDomain, that.isDomain)
                 && Objects.equal(this.enabled, that.enabled);
     }
 
@@ -391,6 +404,12 @@ public class KeystoneProject implements Project {
         @Override
         public ProjectBuilder domainId(String domainId) {
             model.domainId = domainId;
+            return this;
+        }
+
+        @Override
+        public ProjectBuilder isDomain(Boolean isDomain) {
+            model.isDomain = isDomain;
             return this;
         }
 

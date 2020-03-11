@@ -68,6 +68,21 @@ public interface RoleBuilder extends Builder<RoleBuilder, Role> {
     RoleBuilder description(String description);
 
     /**
+     * @see Role#getUpdatedTime()
+     */
+    RoleBuilder updatedTime(String updatedTime);
+
+    /**
+     * @see Role#getCreatedTime()
+     */
+    RoleBuilder createdTime(String createdTime);
+
+    /**
+     * @see Role#getDescriptionCn()
+     */
+    RoleBuilder descriptionCn(String descriptionCn);
+
+    /**
      * @see Role#getPolicy()
      */
     RoleBuilder policy(Map<String, Object> policy);

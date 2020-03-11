@@ -1,5 +1,6 @@
+package com.huawei.openstack.sample.v3;
+
 import com.huawei.openstack4j.api.OSClient;
-import com.huawei.openstack4j.core.transport.Config;
 import com.huawei.openstack4j.model.common.Identifier;
 import com.huawei.openstack4j.model.identity.v3.Region;
 import com.huawei.openstack4j.openstack.OSFactory;
@@ -21,13 +22,15 @@ public class RegionDemo {
                 .scopeToDomain(Identifier.byId(userDomainId))
                 .authenticate();
 
-        //Querying a Region List
+        //Query a Region List
+        //GET  /v3/regions
         List<? extends Region> regionList = osclient.identity().regions().list();
         for(Region region : regionList){
             System.out.println(region);
         }
 
-        //Querying Region Details
+        //Query region detail
+        //GET  /v3/regions/{region_id}
         String regionId = "**********";
         Region region = osclient.identity().regions().get(regionId);
         System.out.println("Region Id : " + region.getId());

@@ -40,6 +40,12 @@ public interface ProjectBuilder extends Builder<ProjectBuilder, Project> {
     ProjectBuilder domainId(String domainId);
 
     /**
+     *
+     * @see Project#getIsDomain()
+     */
+    ProjectBuilder isDomain(Boolean isDomain);
+
+    /**
      * Accepts an existing domain and uses its id
      * 
      * @see Project#getDomainId()

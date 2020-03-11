@@ -48,7 +48,7 @@ public class KeystoneAuth implements Authentication, AuthStore {
     private AuthScope scope;
     @JsonIgnore
     private transient Type type;
-    
+
     public KeystoneAuth() {
     	super();
     }

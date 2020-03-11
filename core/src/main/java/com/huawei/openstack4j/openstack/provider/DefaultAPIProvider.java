@@ -339,6 +339,8 @@ import com.huawei.openstack4j.openstack.heat.internal.ResourcesServiceImpl;
 import com.huawei.openstack4j.openstack.heat.internal.SoftwareConfigServiceImpl;
 import com.huawei.openstack4j.openstack.heat.internal.StackServiceImpl;
 import com.huawei.openstack4j.openstack.heat.internal.TemplateServiceImpl;
+import com.huawei.openstack4j.openstack.iam.internal.AgencyService;
+import com.huawei.openstack4j.openstack.iam.internal.CustomRoleService;
 import com.huawei.openstack4j.openstack.iam.internal.IamService;
 import com.huawei.openstack4j.openstack.iam.internal.SecuritytokenService;
 import com.huawei.openstack4j.openstack.identity.v2.internal.ServiceManagerServiceImpl;
@@ -559,14 +561,21 @@ public class DefaultAPIProvider implements APIProvider {
 		bind(com.huawei.openstack4j.api.identity.v3.VersionService.class, VersionServiceImpl.class);
 		bind(IamService.class, IamService.class);
 		bind(SecuritytokenService.class, SecuritytokenService.class);
+		bind(com.huawei.openstack4j.openstack.iam.internal.UserService.class, com.huawei.openstack4j.openstack.iam.internal.UserService.class);
+		bind(com.huawei.openstack4j.openstack.iam.internal.ProjectService.class, com.huawei.openstack4j.openstack.iam.internal.ProjectService.class);
+        bind(com.huawei.openstack4j.openstack.iam.internal.CredentialService.class, com.huawei.openstack4j.openstack.iam.internal.CredentialService.class);
+        bind(CustomRoleService.class, CustomRoleService.class);
+        bind(AgencyService.class, AgencyService.class);
 
-		// tms
+
+        // tms
 		bind(TagManagementService.class, TagManagementService.class);
 		bind(TagService.class, TagService.class);
 		// new ecs v1
 		bind(ElasticComputeService.class, ElasticComputeService.class);
 		bind(com.huawei.openstack4j.openstack.ecs.v1.internal.JobService.class, com.huawei.openstack4j.openstack.ecs.v1.internal.JobService.class);
 		bind(com.huawei.openstack4j.openstack.ecs.v1.internal.TagService.class, com.huawei.openstack4j.openstack.ecs.v1.internal.TagService.class);
+        bind(com.huawei.openstack4j.openstack.ecs.v1.internal.InterfaceService.class, com.huawei.openstack4j.openstack.ecs.v1.internal.InterfaceService.class);
 		bind(com.huawei.openstack4j.openstack.ecs.v1_1.internal.ElasticComputeService.class, com.huawei.openstack4j.openstack.ecs.v1_1.internal.ElasticComputeService.class);
 		bind(com.huawei.openstack4j.openstack.ecs.v1.internal.CloudServerService.class, com.huawei.openstack4j.openstack.ecs.v1.internal.CloudServerService.class);
 		bind(com.huawei.openstack4j.openstack.ecs.v1_1.internal.CloudServerService.class, com.huawei.openstack4j.openstack.ecs.v1_1.internal.CloudServerService.class);

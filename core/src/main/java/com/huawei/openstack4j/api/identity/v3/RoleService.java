@@ -219,4 +219,14 @@ public interface RoleService extends RestService {
      * @return the ActionResponse
      */
     ActionResponse checkDomainGroupRole(String domainId, String groupId, String roleId);
+
+    /**
+     * grant a role to a specified group on all projects
+     *
+     * @param domainId the domain id
+     * @param groupId the group id
+     * @param roleId the role id
+     * @return the ActionResponse
+     */
+    ActionResponse grantGroupAllProjectsRole(String domainId, String groupId, String roleId);
 }

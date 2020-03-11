@@ -46,4 +46,8 @@ public class ElasticComputeService extends BaseElasticComputeServices implements
 		return Apis.get(TagService.class);
 	}
 
+	public InterfaceService interfaces() {
+		return Apis.get(InterfaceService.class);
+	}
+
 }

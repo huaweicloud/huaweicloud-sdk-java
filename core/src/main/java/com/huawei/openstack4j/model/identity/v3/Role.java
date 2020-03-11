@@ -71,6 +71,21 @@ public interface Role extends ModelEntity, Buildable<RoleBuilder> {
     String getDescription();
 
     /**
+     * @return the updated time
+     */
+    String getUpdatedTime();
+
+    /**
+     * @return the created time
+     */
+    String getCreatedTime();
+
+    /**
+     * @return the Chinese description of the role
+     */
+    String getDescriptionCn();
+
+    /**
      * @return the policy of the role
      */
     Map<String, Object> getPolicy();

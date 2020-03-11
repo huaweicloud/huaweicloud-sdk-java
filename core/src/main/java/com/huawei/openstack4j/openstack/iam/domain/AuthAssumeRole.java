@@ -6,6 +6,8 @@ import com.fasterxml.jackson.annotation.JsonRootName;
 import com.huawei.openstack4j.model.ModelEntity;
 import lombok.*;
 
+import java.util.Map;
+
 @Getter
 @ToString
 @Builder(toBuilder = true)
@@ -41,4 +43,9 @@ public class AuthAssumeRole implements ModelEntity {
     @JsonProperty("duration-seconds")
     private String durationSeconds;
 
+    /**
+     * the session user information
+     */
+    @JsonProperty("session_user")
+    private AuthSessionUser sessionUser;
 }

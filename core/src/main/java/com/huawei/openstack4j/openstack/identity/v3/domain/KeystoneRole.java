@@ -50,6 +50,14 @@ public class KeystoneRole implements Role {
     private String flag;
     private String description;
     private Map<String, Object> policy;
+    @JsonProperty("created_time")
+    private String createdTime;
+    @JsonProperty("description_cn")
+    private String descriptionCn;
+    @JsonProperty("updated_time")
+    private String updatedTime;
+
+
 
     @Override
     public RoleBuilder toBuilder() {
@@ -136,6 +144,31 @@ public class KeystoneRole implements Role {
      * {@inheritDoc}
      */
     @Override
+    public String getUpdatedTime() {
+        return updatedTime;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public String getCreatedTime() {
+        return createdTime;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public String getDescriptionCn() {
+        return descriptionCn;
+    }
+
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
     public Map<String, Object> getPolicy() {
         return policy;
     }
@@ -153,6 +186,9 @@ public class KeystoneRole implements Role {
                 .add("catalog", catalog)
                 .add("flag", flag)
                 .add("description", description)
+                .add("descriptionCn", descriptionCn)
+                .add("updatedTime", updatedTime)
+                .add("createdTime", createdTime)
                 .add("policy", policy)
                 .toString();
     }
@@ -231,6 +267,24 @@ public class KeystoneRole implements Role {
         @Override
         public RoleBuilder description(String description) {
             model.description = description;
+            return this;
+        }
+
+        @Override
+        public RoleBuilder updatedTime(String updatedTime) {
+            model.updatedTime = updatedTime;
+            return this;
+        }
+
+        @Override
+        public RoleBuilder createdTime(String createdTime) {
+            model.createdTime = createdTime;
+            return this;
+        }
+
+        @Override
+        public RoleBuilder descriptionCn(String descriptionCn) {
+            model.descriptionCn = descriptionCn;
             return this;
         }
 

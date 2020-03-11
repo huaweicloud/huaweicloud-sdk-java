@@ -23,7 +23,7 @@ import com.huawei.openstack4j.openstack.OSFactory;
 import com.huawei.openstack4j.openstack.cdn.v1.domain.Log;
 import com.huawei.openstack4j.openstack.identity.internal.OverridableEndpointURLResolver;
 
-import java.util.Date;
+import java.util.TimeZone;
 
 public class CdnLogDemo {
 
@@ -34,16 +34,27 @@ public class CdnLogDemo {
 
         // step 2: initial OpenStack4j Client
         OSFactory.enableHttpLoggingFilter(true);
+
         // step 3: config of the client
         Config config = Config.newConfig()
                 .withEndpointURLResolver(endpointResolver);
 
+        // step4：AKSK authorization：：setup the authentication credit
+        String ak = "xxxx";
+        String sk = "xxxx";
+        String projectId = "xxxx";// the project ID of cn-north-1
+        String region = "xxxx"; //example: region = "cn-north-1"
+        String cloud = "xxxx"; //example: cloud = "myhuaweicloud.com"
+
+        OSClient.OSClientAKSK osclient = OSFactory.builderAKSK().withConfig(config).credentials(ak, sk, region, projectId, cloud).authenticate();
+
+        /*
         // step 4: token authorization：setup the authentication credit
-        String user = "username";
-        String password = "password";
-        String projectId = "projectId";
-        String userDomainId = "userDomainId";
-        String authUrl = "xxxxxxx";
+        String user = "username"; // IAM User Name
+        String password = "password"; // IAM User Password
+        String projectId = "projectId"; // the project ID of cn-north-1
+        String userDomainId = "userDomainId"; // Account ID
+        String authUrl = "xxxxxxx"; // example: authUrl = "https://iam.myhuaweicloud.com/v3/"
 
         OSClient.OSClientV3 osclient = OSFactory.builderV3()
                 .withConfig(config)
@@ -52,25 +63,19 @@ public class CdnLogDemo {
                 .scopeToDomain(Identifier.byId(userDomainId))
                 .scopeToProject(Identifier.byId(projectId))
                 .authenticate();
-
-        /*
-        // step4：AKSK authorization：：setup the authentication credit
-        String ak = "xxxx";
-        String sk = "xxxx";
-        String projectId = "xxxx";
-        String region = "xxxx"; //example: region = "cn-north-1"
-        String cloud = "xxxx"; //example: cloud = "myhuaweicloud.com"
-
-        OSClient.OSClientAKSK osclient = OSFactory.builderAKSK().withConfig(config).credentials(ak, sk, region, projectId, cloud) .authenticate();
         */
 
-        Long queryDate = new Date().getTime();
+        // set domain name
+        String domainName = "example.domain.xxx";
+        // set date
+        Long queryDate = System.currentTimeMillis() / (1000 * 3600 * 24) * (1000 * 3600 * 24) - TimeZone.getDefault().getRawOffset();
+        // set page size & page number
+        int pageSize = 10;
+        int pageNumber = 1;
         //set enterprise_project_id or set is null or set is all
-        String enterpriseProjectId = "xxxxxxxx";
+        String enterpriseProjectId = null;
         // queryLogs
-        Log.Logs logs = osclient.cdn().logs().queryLogs("xxxxxxxx", queryDate, 10,
-                1, enterpriseProjectId);
-
+        Log.Logs logs = osclient.cdn().logs().queryLogs(domainName, queryDate, pageSize, pageNumber, enterpriseProjectId);
         //print
         System.out.println(logs);
     }

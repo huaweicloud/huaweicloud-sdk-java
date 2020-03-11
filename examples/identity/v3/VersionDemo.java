@@ -1,3 +1,5 @@
+package com.huawei.openstack.sample.v3;
+
 import com.huawei.openstack4j.api.OSClient;
 import com.huawei.openstack4j.model.common.Identifier;
 import com.huawei.openstack4j.model.identity.v3.Token;
@@ -19,6 +21,7 @@ public class VersionDemo {
                 .authenticate();
 
         //Querying Information About Keystone API Version 3.0
+        //GET  /v3
         Version sampleVersion = osclient.identity().versions().get();
         System.out.println(sampleVersion);
 

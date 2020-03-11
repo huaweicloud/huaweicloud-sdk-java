@@ -84,4 +84,5 @@ public interface EndpointBuilder extends Builder<EndpointBuilder, Endpoint> {
      */
     EndpointBuilder enabled(boolean enabled);
 
+
 }

@@ -6,27 +6,27 @@
     },
     {
       "datetime": "2017-08-10 03:15:08",
-      "content": "[Warning] 'proxies_priv' entry '@ root@host-172-16-1-176' ignored in --skip-name-resolve mode."
+      "content": "[Warning] 'proxies_priv' entry '' ignored in --skip-name-resolve mode."
     },
     {
       "datetime": "2017-08-09 09:48:58",
-      "content": "[Warning] 'proxies_priv' entry '@ root@host-172-16-1-176' ignored in --skip-name-resolve mode."
+      "content": "[Warning] 'proxies_priv' entry '' ignored in --skip-name-resolve mode."
     },
     {
       "datetime": "2017-08-09 09:48:58",
-      "content": "[Warning] 'proxies_priv' entry '@ root@host-172-16-1-176' ignored in --skip-name-resolve mode."
+      "content": "[Warning] 'proxies_priv' entry '' ignored in --skip-name-resolve mode."
     },
     {
       "datetime": "2017-08-09 09:48:57",
-      "content": "[Warning] 'proxies_priv' entry '@ root@host-172-16-1-176' ignored in --skip-name-resolve mode."
+      "content": "[Warning] 'proxies_priv' entry '' ignored in --skip-name-resolve mode."
     },
     {
       "datetime": "2017-08-09 09:48:52",
-      "content": "[Warning] 'proxies_priv' entry '@ root@host-172-16-1-176' ignored in --skip-name-resolve mode."
+      "content": "[Warning] 'proxies_priv' entry '' ignored in --skip-name-resolve mode."
     },
     {
       "datetime": "2017-08-09 09:48:52",
-      "content": "[Warning] 'proxies_priv' entry '@ root@host-172-16-1-176' ignored in --skip-name-resolve mode."
+      "content": "[Warning] 'proxies_priv' entry '' ignored in --skip-name-resolve mode."
     },
     {
       "datetime": "2017-08-09 09:48:52",
@@ -34,11 +34,11 @@
     },
     {
       "datetime": "2017-08-09 09:48:52",
-      "content": "[Warning] 'user' entry 'root@host-172-16-1-176' ignored in --skip-name-resolve mode."
+      "content": "[Warning] 'user' entry '' ignored in --skip-name-resolve mode."
     },
     {
       "datetime": "2017-08-09 09:48:51",
-      "content": "[Warning] 'proxies_priv' entry '@ root@host-172-16-1-176' ignored in --skip-name-resolve mode."
+      "content": "[Warning] 'proxies_priv' entry '' ignored in --skip-name-resolve mode."
     },
     {
       "datetime": "2017-08-09 09:48:51",
@@ -46,7 +46,7 @@
     },
     {
       "datetime": "2017-08-09 09:48:51",
-      "content": "[Warning] 'user' entry 'root@host-172-16-1-176' ignored in --skip-name-resolve mode."
+      "content": "[Warning] 'user' entry '' ignored in --skip-name-resolve mode."
     },
     {
       "datetime": "2017-08-09 09:48:51",

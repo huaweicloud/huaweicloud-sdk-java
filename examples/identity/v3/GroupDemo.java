@@ -1,3 +1,5 @@
+package com.huawei.openstack.sample.v3;
+
 import com.huawei.openstack4j.api.OSClient;
 import com.huawei.openstack4j.model.common.ActionResponse;
 import com.huawei.openstack4j.model.common.Identifier;
@@ -24,65 +26,76 @@ public class GroupDemo {
                 .scopeToDomain(Identifier.byId(userDomainId))
                 .authenticate();
 
-        //Creating a User Group
-        Group sampleGroup = KeystoneGroup.builder().name("**********").description("**********").build();
-        osclient.identity().groups().create(sampleGroup);
+        //Create a user group
+        //POST  /v3/groups
+        Group sampleGroup01 = KeystoneGroup.builder().domainId("**********").name("**********").description("**********").build();
+        Group group01 = osclient.identity().groups().create(sampleGroup01);
+        System.out.println(group01);
 
-        //Create a User Group with param
-        String domainId = "**********";
-        String groupName = "**********";
-        String description = "**********";
-        Group sampleGroup = osclient.identity().groups().create(domainId, groupName, description);
-        System.out.println(sampleGroup);
-
-
-        //Deleting a User Group
-        String groupId = "**********";
-        osclient.identity().groups().delete(groupId);
-
-        //Deleting a User from a User Group
-        String groupId2 = "**********";
-        String userId = "**********";
-        ActionResponse resp = osclient.identity().groups().removeUserFromGroup(groupId2, userId);
-        if(resp.isSuccess()){
-            System.out.println("Delete user from user group successfully");
+        //Add a user to a user group
+        //PUT  /v3/groups/{group_id}/users/{user_id}
+        String groupId02 = "**********";
+        String userId02 = "**********";
+        ActionResponse resp02 = osclient.identity().groups().addUserToGroup(groupId02, userId02);
+        if(resp02.isSuccess()){
+            System.out.println("Add user to user group successfully");
         }else{
-            System.out.println("Delete user from user group failed : " + resp.getFault());
+            System.out.println("Add user to user group failed : " + resp02.getFault());
         }
 
-        //Updating a User Group
-        Group sampleGroup2 = KeystoneGroup.builder().id("**********").description("**********").build();
-        osclient.identity().groups().update(sampleGroup2);
-
-        //Querying a User Group
-        String groupName = "**********";
-        String domainId = "**********";
-        Group sampleGroup3 = osclient.identity().groups().getByName(groupName, domainId);
-        System.out.println(sampleGroup3);
-
-        //Querying User Group list with filterparam
-        Map<String, String> filteringParams = new HashMap<>();
-        String domainId = "**********";
-        filteringParams.put("domain_id", domainId);
-        List<? extends Group> groupList = osclient.identity().groups().list(filteringParams);
-        for(Group group : groupList) {
-            System.out.println(group);
-        }
-
-        //Querying User Group Details
-        String groupId3 = "**********";
-        Group sampleGroup4 = osclient.identity().groups().get(groupId3);
-        System.out.println(sampleGroup4);
-
-        //Querying Whether a User Belongs to a User Group
-        String groupId4 = "**********";
-        String userId2 = "**********";
-        ActionResponse response = osclient.identity().groups().checkGroupUser(groupId4, userId2);
+        //Check whether a user belongs to a user group
+        //HEAD  /v3/groups/{group_id}/users/{user_id}
+        String groupId03 = "**********";
+        String userId03 = "**********";
+        ActionResponse response = osclient.identity().groups().checkGroupUser(groupId03, userId03);
         if(response.isSuccess()){
             System.out.println("The user belongs to this usergroup");
         }else{
             System.out.println("The user does not belong to this usergroup");
         }
 
+        //Delete a user group
+        //DELETE  /v3/groups/{group_id}
+        String groupId04 = "**********";
+        ActionResponse response04 = osclient.identity().groups().delete(groupId04);
+        if(response04.isSuccess()){
+            System.out.println("Delete group successfully.");
+        }else{
+            System.out.println("Delete group failed.");
+        }
+
+        //List user group with filterparam
+        //GET  /v3/groups
+        Map<String, String> filteringParams = new HashMap<>();
+        String domainId05 = "**********";
+        filteringParams.put("domain_id", domainId05);
+        List<? extends Group> groupList = osclient.identity().groups().list(filteringParams);
+        for(Group group : groupList) {
+            System.out.println(group);
+        }
+
+        //Query user group detail
+        //GET  /v3/groups/{group_id}
+        String groupId06 = "**********";
+        Group sampleGroup06 = osclient.identity().groups().get(groupId06);
+        System.out.println(sampleGroup06);
+
+        //Delete a User from a User Group
+        //DELETE  /v3/groups/{group_id}/users/{user_id}
+        String groupId07 = "**********";
+        String userId07 = "**********";
+        ActionResponse resp07 = osclient.identity().groups().removeUserFromGroup(groupId07, userId07);
+        if(resp07.isSuccess()){
+            System.out.println("Delete user from user group successfully");
+        }else{
+            System.out.println("Delete user from user group failed : " + resp07.getFault());
+        }
+
+        //Update a user group
+        //PATCH  /v3/groups/{group_id}
+        String groupId08 = "**********";
+        Group sampleGroup08 = KeystoneGroup.builder().id(groupId08).domainId("**********").name("**********").description("**********").build();
+        Group group08 = osclient.identity().groups().update(sampleGroup08);
+        System.out.println(group08);
     }
 }

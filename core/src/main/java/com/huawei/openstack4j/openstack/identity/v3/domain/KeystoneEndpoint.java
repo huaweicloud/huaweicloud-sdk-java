@@ -55,7 +55,7 @@ public class KeystoneEndpoint implements Endpoint {
     @JsonProperty
     private URL url;
     private Map<String, String> links;
-    private Boolean enabled = true;
+    private Boolean enabled;
 
     /**
      * @return the endpoint builder
@@ -160,6 +160,7 @@ public class KeystoneEndpoint implements Endpoint {
         return (enabled != null && enabled);
     }
 
+
     /**
      * set endpoint enabled
      *
@@ -183,6 +184,7 @@ public class KeystoneEndpoint implements Endpoint {
                 .add("interface", iface)
                 .add("serviceId", serviceId)
                 .add("regionId", regionId)
+                .add("region", region)
                 .add("url", url)
                 .add("links", links)
                 .add("enabled", enabled)
@@ -341,6 +343,7 @@ public class KeystoneEndpoint implements Endpoint {
             model.enabled = enabled;
             return this;
         }
+
 
         /**
          * {@inheritDoc}

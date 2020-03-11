@@ -221,4 +221,11 @@ public class RoleServiceImpl extends BaseOpenStackService implements RoleService
         return head(ActionResponse.class, uri("/domains/%s/groups/%s/roles/%s", domainId, groupId, roleId)).execute();
     }
 
+    @Override
+    public ActionResponse grantGroupAllProjectsRole(String domainId, String groupId, String roleId) {
+        checkNotNull(domainId);
+        checkNotNull(groupId);
+        checkNotNull(roleId);
+        return put(ActionResponse.class, uri("OS-INHERIT/domains/%s/groups/%s/roles/%s/inherited_to_projects", domainId, groupId, roleId)).execute();
+    }
 }

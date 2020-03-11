@@ -86,6 +86,13 @@ public final class ClientConstants {
     public static final String PATH_SERVICE_CATALOGS = "auth/catalog";
     public static final String PATH_TENANTS = "/tenants";
     public static final String PATH_ARTIFACTS = "/artifacts";
+    public static final String PATH_IAM_USERS = "/OS-USER/users";
+    public static final String PATH_IAM_INFO = "/info";
+    public static final String PATH_IAM_CREDENTIALS = "/OS-CREDENTIAL";
+    public static final String PATH_IAM_ROLES = "/OS-ROLE/roles";
+    public static final String PATH_IAM_AGENCIES = "/OS-AGENCY";
+
+
 
     // DNS/Designate
     public static final String PATH_ZONES = "/zones";

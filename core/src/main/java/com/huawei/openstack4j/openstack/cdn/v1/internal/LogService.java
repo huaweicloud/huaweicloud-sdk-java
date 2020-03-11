@@ -1,12 +1,12 @@
 /*******************************************************************************
  * 	Copyright 2018 Huawei Technologies Co., Ltd.                                       
- * 	                                                                                 
+ *
  * 	Licensed under the Apache License, Version 2.0 (the "License"); you may not      
  * 	use this file except in compliance with the License. You may obtain a copy of    
  * 	the License at                                                                   
- * 	                                                                                 
+ *
  * 	    http://www.apache.org/licenses/LICENSE-2.0                                   
- * 	                                                                                 
+ *
  * 	Unless required by applicable law or agreed to in writing, software              
  * 	distributed under the License is distributed on an "AS IS" BASIS, WITHOUT        
  * 	WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the         
@@ -21,32 +21,30 @@ import com.huawei.openstack4j.openstack.cdn.v1.exception.ServerCdnErrorResponseE
 
 /**
  * CDN Logs Service
- * 
- * @author ChangjunZhao
- * @date 2018-05-06
  */
 public class LogService extends BaseCdnServices {
 
-	/**
-	 * Querying Logs
-	 * @param domainName
-	 * @param queryDate
-	 * @param pageSize
-	 * @param pageNumber
-	 * @param enterpriseProjectId 企业id
-	 * @return {@link Logs} instance
-	 * @throws ServerCdnErrorResponseException
-	 */
-	public Logs queryLogs(String domainName, Long queryDate, Integer pageSize, Integer pageNumber, String enterpriseProjectId) throws ServerCdnErrorResponseException{
-		Preconditions.checkNotNull(domainName, "parameter `domainName` should not be null");
-		Preconditions.checkNotNull(queryDate, "parameter `queryDate` should not be null");
-		Preconditions.checkNotNull(pageSize, "parameter `pageSize` should not be null");
-		Preconditions.checkNotNull(pageNumber, "parameter `pageNumber` should not be null");
-		Invocation<Logs> logsInvocation = get(Logs.class,
-				uri("/logs")).param("domain_name", domainName).param("query_date", queryDate)
-				.param("page_size",pageSize).param("page_number", pageNumber).param("enterprise_project_id", enterpriseProjectId);
+    /**
+     * Querying Logs
+     *
+     * @param domainName          domain name
+     * @param queryDate           query date
+     * @param pageSize            page size
+     * @param pageNumber          page number
+     * @param enterpriseProjectId enterprise project id
+     * @return {@link Logs} instance
+     * @throws ServerCdnErrorResponseException CDN Exception
+     */
+    public Logs queryLogs(String domainName, Long queryDate, Integer pageSize, Integer pageNumber, String enterpriseProjectId) throws ServerCdnErrorResponseException {
+        Preconditions.checkNotNull(domainName, "parameter `domainName` should not be null");
+        Preconditions.checkNotNull(queryDate, "parameter `queryDate` should not be null");
+        Preconditions.checkNotNull(pageSize, "parameter `pageSize` should not be null");
+        Preconditions.checkNotNull(pageNumber, "parameter `pageNumber` should not be null");
+        Invocation<Logs> logsInvocation = get(Logs.class,
+                uri("/logs")).param("domain_name", domainName).param("query_date", queryDate)
+                .param("page_size", pageSize).param("page_number", pageNumber).param("enterprise_project_id", enterpriseProjectId);
 
-		return logsInvocation.execute(this.buildExecutionOptions(Logs.class));
-	}
+        return logsInvocation.execute(this.buildExecutionOptions(Logs.class));
+    }
 
 }

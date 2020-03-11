@@ -1,10 +1,14 @@
+package com.huawei.openstack.sample.v3;
+
 import com.huawei.openstack4j.api.OSClient;
 import com.huawei.openstack4j.model.common.ActionResponse;
 import com.huawei.openstack4j.model.common.Identifier;
 import com.huawei.openstack4j.model.identity.v3.Role;
 import com.huawei.openstack4j.openstack.OSFactory;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class RoleDemo {
 
@@ -21,107 +25,122 @@ public class RoleDemo {
                 .scopeToDomain(Identifier.byId(userDomainId))
                 .authenticate();
 
-        //Querying a Role List
-        List<? extends Role> roleList = osclient.identity().roles().list();
-        for(Role role : roleList){
-            System.out.println(role);
+        //Check role for group on domain
+        //HEAD  /v3/domains/{domain_id}/groups/{group_id}/roles/{role_id}
+        String domainId01 = "**********";
+        String groupId01 = "********** ";
+        String roleId01 = "**********";
+        ActionResponse resp01 = osclient.identity().roles().checkDomainGroupRole(domainId01, groupId01, roleId01);
+        if(resp01.isSuccess()){
+            System.out.println("The user group under the domain has this permission");
+        }else{
+            System.out.println("The user group under the domain does not has this permission");
         }
 
-        //Querying a Role List with filteringParams
-        Map<String, String> filteringParams = new HashMap<>();
-        String domainId3 = "**********";
-        filteringParams.put("domain_id", domainId3);
-        List<? extends Role> roleList = osclient.identity().roles().list(filteringParams);
-        for(Role role : roleList){
-            System.out.println(role);
+        //Check role for group on project
+        //HEAD  /v3/projects/{project_id}/groups/{group_id}/roles/{role_id}
+        String projectId02 = "**********";
+        String groupId02 = "**********";
+        String roleId02 = "**********";
+        ActionResponse resp02 = osclient.identity().roles().checkProjectGroupRole(projectId02, groupId02, roleId02);
+        if(resp02.isSuccess()){
+            System.out.println("The user group under the project has this permission");
+        }else{
+            System.out.println("The user group under the project does not has this permission");
         }
 
-        //Querying Role Details
-        String roleId = "**********";
-        Role sampleRole = osclient.identity().roles().get(roleId);
-        System.out.println(sampleRole);
-
-        //Querying Permissions of a User Group Under a Domain
-        String groupId = "**********";
-        String domainId = "**********";
-        List<? extends Role> roleList2 = osclient.identity().groups().listDomainGroupRoles(groupId, domainId);
-        for(Role role : roleList2){
-            System.out.println(role);
-        }
-
-        //Querying Permissions of a User Group Corresponding to a Project
-        String groupId2 = "**********";
-        String projectId = "**********";
-        List<? extends Role> roleList3 = osclient.identity().groups().listProjectGroupRoles(groupId2, projectId);
-        for(Role role : roleList3){
-            System.out.println(role);
-        }
-
-        //Granting Permissions to a User Group of a Domain
-        String domainId2 = "**********";
-        String groupId3 = "**********";
-        String roleId2 = "**********";
-        ActionResponse resp = osclient.identity().roles().grantDomainGroupRole(domainId2, groupId3, roleId2);
+        //Grant permissions to a user group on a domain
+        //PUT  /v3/domains/{domain_id}/groups/{group_id}/roles/{role_id}
+        String domainId03 = "**********";
+        String groupId03 = "**********";
+        String roleId03 = "**********";
+        ActionResponse resp = osclient.identity().roles().grantDomainGroupRole(domainId03, groupId03, roleId03);
         if(resp.isSuccess()){
             System.out.println("Grant permission to user group of a domain successfully");
         }else{
             System.out.println("Grant permission to user group of a domain failed : " + resp.getFault());
         }
 
-        //Granting Permissions to a User Group Corresponding to a Project
-        String projectId2 = "**********";
-        String groupId4 = "**********";
-        String roleId3 = "**********";
-        ActionResponse resp2 = osclient.identity().roles().grantProjectGroupRole(projectId2, groupId4, roleId3);
-        if(resp2.isSuccess()){
+        //Grant permissions to a user group on a project
+        //PUT  /v3/projects/{project_id}/groups/{group_id}/roles/{role_id}
+        String projectId04 = "**********";
+        String groupId04 = "**********";
+        String roleId04 = "**********";
+        ActionResponse resp04 = osclient.identity().roles().grantProjectGroupRole(projectId04, groupId04, roleId04);
+        if(resp04.isSuccess()){
             System.out.println("Grant permission to user group of a project successfully");
         }else{
-            System.out.println("Grant permission to user group of a project failed : " + resp2.getFault());
+            System.out.println("Grant permission to user group of a project failed : " + resp04.getFault());
         }
 
-        //Deleting Permissions of a User Group Corresponding to a Project
-        String projectId3 = "**********";
-        String groupId5 = "**********";
-        String roleId4 = "**********";
-        ActionResponse resp3 = osclient.identity().roles().revokeProjectGroupRole(projectId3, groupId5, roleId4);
-        if(resp3.isSuccess()){
-            System.out.println("Delete permission of user group corresponding to a project successfully");
-        }else{
-            System.out.println("Delete permission of user group corresponding to a project failed : " + resp3.getFault());
+        //List a roles with filteringParams
+        //GET  /v3/roles
+        Map<String, String> filteringParams = new HashMap<>();
+        String domainId05 = "**********";
+        filteringParams.put("domain_id", domainId05);
+        List<? extends Role> roleList05 = osclient.identity().roles().list(filteringParams);
+        for(Role role : roleList05){
+            System.out.println(role);
         }
 
-        //Deleting Permissions of a User Group of a Domain
-        String domainId3 = "**********";
-        String groupId6 = "**********";
-        String roleId5 = "**********";
-        ActionResponse resp4 = osclient.identity().roles().revokeDomainGroupRole(domainId3, groupId6, roleId5);
-        if(resp4.isSuccess()){
+        //List roles of a user group under a domain
+        //GET  /v3/domains/{domain_id}/groups/{group_id}/roles
+        String groupId06 = "**********";
+        String domainId06 = "**********";
+        List<? extends Role> roleList06 = osclient.identity().groups().listDomainGroupRoles(groupId06, domainId06);
+        for(Role role : roleList06){
+            System.out.println(role);
+        }
+
+        //List roles of a user group under a project
+        //GET  /v3/projects/{project_id}/groups/{group_id}/roles
+        String groupId07 = "**********";
+        String projectId07 = "**********";
+        List<? extends Role> roleList07 = osclient.identity().groups().listProjectGroupRoles(groupId07, projectId07);
+        for (Role role : roleList07) {
+            System.out.println(role);
+        }
+
+        //Query role detail
+        //GET  /v3/roles/{role_id}
+        String roleId08 = "**********";
+        Role sampleRole08 = osclient.identity().roles().get(roleId08);
+        System.out.println(sampleRole08);
+
+        //Delete roles of a user group on a domain
+        //DELETE  /v3/domains/{domain_id}/groups/{group_id}/roles/{role_id}
+        String domainId09 = "**********";
+        String groupId09 = "**********";
+        String roleId09 = "**********";
+        ActionResponse resp09 = osclient.identity().roles().revokeDomainGroupRole(domainId09, groupId09, roleId09);
+        if(resp09.isSuccess()){
             System.out.println("Delete permission of user group corresponding to a domain successfully");
         }else{
-            System.out.println("Delete permission of user group corresponding to a domain failed : " + resp4.getFault());
+            System.out.println("Delete permission of user group corresponding to a domain failed : " + resp09.getFault());
         }
 
-        //Querying Whether a User Group Under a Domain Has Specific Permissions
-        String domainId4 = "**********";
-        String groupId7 = "**********";
-        String roleId6 = "**********";
-        ActionResponse resp5 = osclient.identity().roles().checkDomainGroupRole(domainId4, groupId7, roleId6);
-        if(resp5.isSuccess()){
-            System.out.println("The user group under the domain has this permission");
+        //Delete roles of a user group on a project
+        //DELETE  /v3/projects/{project_id}/groups/{group_id}/roles/{role_id}
+        String projectId10 = "**********";
+        String groupId10 = "**********";
+        String roleId10 = "**********";
+        ActionResponse resp10 = osclient.identity().roles().revokeProjectGroupRole(projectId10, groupId10, roleId10);
+        if(resp10.isSuccess()){
+            System.out.println("Delete permission of user group corresponding to a project successfully");
         }else{
-            System.out.println("The user group under the domain does not has this permission");
+            System.out.println("Delete permission of user group corresponding to a project failed : " + resp10.getFault());
         }
 
-        //Querying Whether a User Group Corresponding to a Project Has Specific Permissions
-        String projectId4 = "**********";
-        String groupId8 = "**********";
-        String roleId7 = "**********";
-        ActionResponse resp6 = osclient.identity().roles().checkProjectGroupRole(projectId4, groupId8, roleId7);
-        if(resp6.isSuccess()){
-            System.out.println("The user group under the project has this permission");
+        //Grant permissions to a user group on all projects
+        //PUT  /v3/OS-INHERIT/domains/{domain_id}/groups/{group_id}/roles/{role_id}/inherited_to_projects
+        String domainId11 = "**********";
+        String groupId11 = "**********";
+        String roleId11 = "**********";
+        ActionResponse resp11 = osclient.identity().roles().grantGroupAllProjectsRole(domainId11, groupId11, roleId11);
+        if(resp11.isSuccess()){
+            System.out.println("Grant permissions to a user group on all projects successfully");
         }else{
-            System.out.println("The user group under the project does not has this permission");
+            System.out.println("Grant permissions to a user group on all projects failed : " + resp.getFault());
         }
-
     }
 }

@@ -23,6 +23,7 @@ import com.huawei.openstack4j.model.identity.v3.Domain;
 import com.huawei.openstack4j.model.identity.v3.Project;
 import com.huawei.openstack4j.model.identity.v3.Service;
 import com.huawei.openstack4j.model.identity.v3.Token;
+import com.huawei.openstack4j.openstack.identity.v3.domain.token.Auth;
 
 /**
  * Identity V3 Token operations
@@ -32,11 +33,27 @@ public interface TokenService extends RestService {
     
     /***
      * Validates and shows information for a token.
-     * 
+     *
      * @param tokenId the identifier of the token that is subject to be checked
      * @return the token if valid
      */
     Token get(String tokenId);
+
+    /***
+     * Validates and shows information for a token.
+     *
+     * @param tokenId the identifier of the token that is subject to be checked
+     * @return the token without catalog if valid
+     */
+    Token getWithoutCatalog(String tokenId, String nocatalog);
+
+    /***
+     * token.
+     *
+     * @param nocatalog if not empty , return token without catalog
+     * @return the token
+     */
+    Token create(String nocatalog, Auth auth);
     
     /**
      * Validates a token.
@@ -57,7 +74,14 @@ public interface TokenService extends RestService {
     /**
      * Get service catalog for specified token
      *
+     * @return the service catalog for the token provided in the request
+     */
+    List<? extends Service> getServiceCatalog();
+
+    /**
+     * Get service catalog for specified token
      * @param tokenId the identifier of the token, of which the catalog of services is requested
+     *
      * @return the service catalog for the token provided in the request
      */
     List<? extends Service> getServiceCatalog(String tokenId);

@@ -111,6 +111,7 @@ public class UserServiceImpl extends BaseOpenStackService implements UserService
      * {@inheritDoc}
      */
     @Override
+    @Deprecated
     public User create(String domainId, String name, String password, String email, boolean enabled) {
         checkNotNull(domainId);
         checkNotNull(name);
@@ -124,6 +125,7 @@ public class UserServiceImpl extends BaseOpenStackService implements UserService
      * {@inheritDoc}
      */
     @Override
+    @Deprecated
     public User create(String domainId, String name, String password, String email) {
         checkNotNull(domainId);
         checkNotNull(name);

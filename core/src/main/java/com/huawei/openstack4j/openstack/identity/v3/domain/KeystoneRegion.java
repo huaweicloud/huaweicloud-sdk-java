@@ -75,7 +75,6 @@ public class KeystoneRegion implements Region {
         return parentRegionId;
     }
 
-    @JsonIgnore
     @Override
     public Map<String, String> getLinks() {
         return links;
@@ -138,6 +137,8 @@ public class KeystoneRegion implements Region {
         private static final long serialVersionUID = 1L;
         @JsonProperty("regions")
         private List<KeystoneRegion> list;
+
+        private Map<String, String> links;
 
         @Override
         public List<KeystoneRegion> value() {
