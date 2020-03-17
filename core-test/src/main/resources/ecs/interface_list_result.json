@@ -1,0 +1,20 @@
+{
+  "interfaceAttachments": [
+    {
+      "port_state": "ACTIVE",
+      "fixed_ips": [
+        {
+          "subnet_id": "4979f291-a8ca-45d7-b6a6-b2bcb3d2d3af",
+          "ip_address": "192.168.0.13"
+        },
+        {
+          "subnet_id": "6ddbd159-9b7b-46c8-920e-4a01f9cba42f",
+          "ip_address": "2001:db8:a583:84:66c6:5db5:5ea:19b2"
+        }
+      ],
+      "net_id": "b670eaf6-7e40-438a-868c-745ec8c9c7c6",
+      "port_id": "392b4165-6f2f-4d87-9e91-6053d2b4fcb4",
+      "mac_addr": "fa:16:3e:cb:c6:d5"
+    }
+  ]
+}
