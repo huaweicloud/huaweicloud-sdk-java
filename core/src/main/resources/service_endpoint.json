@@ -106,5 +106,8 @@
   },
   "IAM": {
     "public": "https://iam.%(region)s.%(domain)s/v3.0"
+  },
+  "RDSV3": {
+    "public": "https://rds.%(region)s.%(domain)s/v3/%(projectId)s"
   }
 }

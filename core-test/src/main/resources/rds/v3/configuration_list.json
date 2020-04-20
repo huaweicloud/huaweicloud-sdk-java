@@ -1,0 +1,164 @@
+{
+  "configurations": [
+    {
+      "id": "fbd6e24973b14aeb9acc76e84e165bd6pr04",
+      "name": "Default-Microsoft SQL Server-2014_WEB",
+      "description": "Default parameter group for Microsoft SQL Server 2014 WEB",
+      "datastore_version_name": "2014_WEB",
+      "datastore_name": "sqlserver",
+      "created": "2018-08-07T03:20:09+0000",
+      "updated": "2018-08-07T03:20:09+0000",
+      "user_defined": false
+    },
+    {
+      "id": "fbd6e24973b04ab39acc76e84e165bd4pr04",
+      "name": "Default-Microsoft SQL Server-2016_EE",
+      "description": "Default parameter group for Microsoft SQL Server 2016 EE",
+      "datastore_version_name": "2016_EE",
+      "datastore_name": "sqlserver",
+      "created": "2018-08-07T03:20:09+0000",
+      "updated": "2018-08-07T03:20:09+0000",
+      "user_defined": false
+    },
+    {
+      "id": "fbd6e24973b04ab39acc76e84e165bd3pr04",
+      "name": "Default-Microsoft SQL Server-2014_EE",
+      "description": "Default parameter group for Microsoft SQL Server 2014 EE",
+      "datastore_version_name": "2014_EE",
+      "datastore_name": "sqlserver",
+      "created": "2018-08-07T03:20:09+0000",
+      "updated": "2018-08-07T03:20:09+0000",
+      "user_defined": false
+    },
+    {
+      "id": "07fc12a8e0e94df7a3fcf53d0b5e1605pr01",
+      "name": "Default-MySQL-5.6",
+      "description": "Default parameter group for MySQL 5.6",
+      "datastore_version_name": "5.6",
+      "datastore_name": "mysql",
+      "created": "2018-07-26T12:34:59+0000",
+      "updated": "2018-07-26T12:34:59+0000",
+      "user_defined": false
+    },
+    {
+      "id": "f08a2fa368ef4c85883158a0c64ffe24pr03",
+      "name": "Default-PostgreSQL-9.5",
+      "description": "Default parameter group for PostgreSQL 9.5",
+      "datastore_version_name": "9.5",
+      "datastore_name": "postgresql",
+      "created": "2017-10-28T09:33:17+0000",
+      "updated": "2017-10-28T09:33:17+0000",
+      "user_defined": false
+    },
+    {
+      "id": "e53e51f16f544faf98b642979003bd25pr03",
+      "name": "Default-PostgreSQL-9.6",
+      "description": "Default parameter group for PostgreSQL 9.6",
+      "datastore_version_name": "9.6",
+      "datastore_name": "postgresql",
+      "created": "2017-10-28T09:33:17+0000",
+      "updated": "2017-10-28T09:33:17+0000",
+      "user_defined": false
+    },
+    {
+      "id": "c24e51f16f544faf98b642979003bd26pr03",
+      "name": "Default-PostgreSQL-11",
+      "description": "Default parameter group for PostgreSQL 11",
+      "datastore_version_name": "11",
+      "datastore_name": "postgresql",
+      "created": "2018-09-06T05:45:28+0000",
+      "updated": "2018-09-06T05:45:28+0000",
+      "user_defined": false
+    },
+    {
+      "id": "3bc1e9cc0d34404b9225ed7a58fb284epr01",
+      "name": "Default-MySQL-5.7",
+      "description": "Default parameter group for MySQL 5.7",
+      "datastore_version_name": "5.7",
+      "datastore_name": "mysql",
+      "created": "2018-07-26T12:34:59+0000",
+      "updated": "2018-07-26T12:34:59+0000",
+      "user_defined": false
+    },
+    {
+      "id": "ee03eace6f544faf98b642979003bd26pr03",
+      "name": "Default-PostgreSQL-1.0",
+      "description": "Default parameter group for PostgreSQL 1.0",
+      "datastore_version_name": "1.0",
+      "datastore_name": "postgresql",
+      "created": "2019-01-04T07:45:45+0000",
+      "updated": "2019-01-04T07:45:45+0000",
+      "user_defined": false
+    },
+    {
+      "id": "0405571325394075a40a1b3933e47c8apr01",
+      "name": "Default-Financial-Edition-MySQL-5.7",
+      "description": "Default parameter group for Financial Edition MySQL 5.7",
+      "datastore_version_name": "5.7",
+      "datastore_name": "mysql",
+      "created": "2018-09-26T07:27:40+0000",
+      "updated": "2018-09-26T07:27:40+0000",
+      "user_defined": false
+    },
+    {
+      "id": "d79e51f16f544faf98b642979003bd26pr03",
+      "name": "Default-PostgreSQL-10",
+      "description": "Default parameter group for PostgreSQL 10",
+      "datastore_version_name": "10",
+      "datastore_name": "postgresql",
+      "created": "2017-10-28T09:33:17+0000",
+      "updated": "2017-10-28T09:33:17+0000",
+      "user_defined": false
+    },
+    {
+      "id": "fbd6e24973b04ab39acc76e84e165bd6pr04",
+      "name": "Default-Microsoft SQL Server-2008_R2_EE",
+      "description": "Default parameter group for Microsoft SQL Server 2008 R2 EE",
+      "datastore_version_name": "2008_R2_EE",
+      "datastore_name": "sqlserver",
+      "created": "2018-08-07T03:20:09+0000",
+      "updated": "2018-08-07T03:20:09+0000",
+      "user_defined": false
+    },
+    {
+      "id": "fbd6e24973b08aeb9acc76e84e165bd6pr04",
+      "name": "Default-Microsoft SQL Server-2008_R2_WEB",
+      "description": "Default parameter group for Microsoft SQL Server 2008 R2 WEB",
+      "datastore_version_name": "2008_R2_WEB",
+      "datastore_name": "sqlserver",
+      "created": "2018-08-07T03:20:09+0000",
+      "updated": "2018-08-07T03:20:09+0000",
+      "user_defined": false
+    },
+    {
+      "id": "fbd6e24973b04ab39acc76e84e165bd1pr04",
+      "name": "Default-Microsoft SQL Server-2014_SE",
+      "description": "Default parameter group for Microsoft SQL Server 2014 SE",
+      "datastore_version_name": "2014_SE",
+      "datastore_name": "sqlserver",
+      "created": "2018-08-07T03:20:09+0000",
+      "updated": "2018-08-07T03:20:09+0000",
+      "user_defined": false
+    },
+    {
+      "id": "fbd6e24973b04ab39acc76e84e165bd5pr04",
+      "name": "Default-Microsoft SQL Server-2016_SE",
+      "description": "Default parameter group for Microsoft SQL Server 2016 SE",
+      "datastore_version_name": "2016_SE",
+      "datastore_name": "sqlserver",
+      "created": "2018-08-07T03:20:09+0000",
+      "updated": "2018-08-07T03:20:09+0000",
+      "user_defined": false
+    },
+    {
+      "id": "fbd6e24973b16aeb9acc76e84e165bd6pr04",
+      "name": "Default-Microsoft SQL Server-2016_WEB",
+      "description": "Default parameter group for Microsoft SQL Server 2016 WEB",
+      "datastore_version_name": "2016_WEB",
+      "datastore_name": "sqlserver",
+      "created": "2018-08-07T03:20:09+0000",
+      "updated": "2018-08-07T03:20:09+0000",
+      "user_defined": false
+    }
+  ]
+}

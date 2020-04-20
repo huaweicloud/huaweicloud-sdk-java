@@ -1,0 +1,11 @@
+{
+  "backup": {
+    "id": "2f4ddb93-b901-4b08-93d8-1d2e472f30fe",
+    "name": "backupDemo",
+    "description": "This is a description",
+    "begin_time": "2016-09-12T01:17:05",
+    "status": "BUILDING",
+    "type": "manual",
+    "instance_id": "4b7a23f9db4e463fb4a85ade02027897in01"
+  }
+}

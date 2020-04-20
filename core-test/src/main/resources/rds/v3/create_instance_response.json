@@ -1,0 +1,31 @@
+{
+    "instance": {
+        "id": "dsfae23fsfdsae3435in01",
+        "name": "trove-instance-rep2",
+        "datastore": {
+            "type": "MySQL",
+            "version": "5.6"
+        },
+        "flavor_ref": "rds.mysql.s1.large",
+        "volume": {
+            "type": "ULTRAHIGH",
+            "size": 100
+        },
+        "disk_encryption_id": "2gfdsh-844a-4023-a776-fc5c5fb71fb4",
+        "region": "cn-north-4",
+        "availability_zone": "cn-north-4",
+        "vpc_id": "490a4a08-ef4b-44c5-94be-3051ef9e4fce",
+        "subnet_id": "0e2eda62-1d42-4d64-a9d1-4e9aa9cd994f",
+        "security_group_id": "2a1f7fc8-3307-42a7-aa6f-42c8b9b8f8c5",
+        "port": "8635",
+        "backup_strategy": {
+            "start_time": "08:15-09:15",
+            "keep_days": 12
+        },
+        "configuration_id": "452408-44c5-94be-305145fg",
+        "charge_info": {
+            "charge_mode": "postPaid"
+        }
+    },
+    "job_id": "dff1d289-4d03-4942-8b9f-463ea07c000d"
+}

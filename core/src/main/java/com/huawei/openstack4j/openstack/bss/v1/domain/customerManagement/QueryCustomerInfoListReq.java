@@ -76,6 +76,12 @@ public class QueryCustomerInfoListReq implements ModelEntity
     */
    @JsonProperty("cooperationTimeEnd")
    private String cooperationTimeEnd;
+
+   /**
+    * Customer domain ID.
+    */
+   @JsonProperty("customerId")
+   private String customerId;
 }
 
 

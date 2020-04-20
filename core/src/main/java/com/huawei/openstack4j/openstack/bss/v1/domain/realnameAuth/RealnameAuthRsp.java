@@ -40,6 +40,6 @@ public class RealnameAuthRsp implements ModelEntity
     /**
      * Error list.
      */
-    @JsonProperty("errorItems")
-    private List<String> errorItems;
+    @JsonProperty("failCheckItems")
+    private List<String> failCheckItems;
 }

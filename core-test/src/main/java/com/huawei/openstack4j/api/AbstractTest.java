@@ -106,7 +106,8 @@ public abstract class AbstractTest {
         IAM(10028),
 		VPC3(10029),
 		BSS_INTLV1(10030),
-        BSSV1(10031);
+        BSSV1(10031),
+    	RDSV3(10032);
         //@on
 
 		private final int port;

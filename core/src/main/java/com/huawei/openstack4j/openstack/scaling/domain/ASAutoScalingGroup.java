@@ -80,6 +80,9 @@ public class ASAutoScalingGroup implements ScalingGroup {
 	@JsonProperty("lb_listener_id")
 	String lbListenerId;
 
+	@JsonProperty("lbaas_listeners")
+	List<LBPool> lbaasListeners;
+
 	@JsonProperty("available_zones")
 	List<String> availabilityZones;
 
@@ -108,6 +111,9 @@ public class ASAutoScalingGroup implements ScalingGroup {
 	@JsonProperty("health_periodic_audit_time")
 	Integer healthPeriodicAuditTime;
 
+	@JsonProperty("health_periodic_audit_grace_period")
+	Integer healthPeriodicAuditGracePeriod;
+
 	@JsonProperty("instance_terminate_policy")
 	InstanceTerminatePolicy instanceTerminatePolicy;
 
@@ -116,6 +122,9 @@ public class ASAutoScalingGroup implements ScalingGroup {
 
 	@JsonProperty("delete_publicip")
 	Boolean deletePublicip;
+
+	@JsonProperty("multi_az_priority_policy")
+	MultiAZPriorityPolicy multiAZPriorityPolicy;
 
 	public static class ASAutoScalingGroups extends ListResult<ASAutoScalingGroup> {
 		private static final long serialVersionUID = 1L;

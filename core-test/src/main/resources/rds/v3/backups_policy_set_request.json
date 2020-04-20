@@ -1,0 +1,7 @@
+{
+  "backup_policy": {
+    "keep_days": 7,
+    "start_time": "19:00-20:00",
+    "period": "1,2"
+  }
+}

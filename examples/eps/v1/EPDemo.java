@@ -3,11 +3,8 @@ package sample;
 import java.util.List;
 
 import java.util.ArrayList;
-import java.util.List;
 
 import com.huawei.openstack4j.api.OSClient.OSClientV3;
-import com.huawei.openstack4j.api.types.ServiceType;
-import com.huawei.openstack4j.core.transport.Config;
 import com.huawei.openstack4j.model.common.ActionResponse;
 import com.huawei.openstack4j.model.common.Identifier;
 import com.huawei.openstack4j.openstack.OSFactory;
@@ -15,7 +12,6 @@ import com.huawei.openstack4j.openstack.eps.v1.domain.*;
 import com.huawei.openstack4j.openstack.eps.v1.domain.action.EPResourceActionRequest;
 import com.huawei.openstack4j.openstack.eps.v1.domain.filter.EPResourceFilterRequest;
 import com.huawei.openstack4j.openstack.eps.v1.domain.filter.EPResourceFilterResponse;
-import com.huawei.openstack4j.openstack.identity.internal.OverridableEndpointURLResolver;
 
 
 public class EPDemo {
@@ -24,8 +20,8 @@ public class EPDemo {
         // step 1: setup the authentication credit
         String user = "xxxxxxxxxxxxxxxxxxxxxxxxxxxx";
         String password = "xxxxxxxxxxxxxxx";
-        String userDomainId = "9a24ebd5e4ee45c0ac9336c6f9d83ec2";
-        String authUrl = "https://iam.xxx.yyy.com/v3";
+        String userDomainId = "xxxxxxxxxxxxxxx";
+        String authUrl = "https://iam.xxx.com/v3";
 
         // step 2: initial client
         OSClientV3 osClient = OSFactory.builderV3().endpoint(authUrl)

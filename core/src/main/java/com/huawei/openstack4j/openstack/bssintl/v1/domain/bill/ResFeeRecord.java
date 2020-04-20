@@ -198,4 +198,10 @@ public class ResFeeRecord implements ModelEntity
      */
     @JsonProperty("rIMeasureId")
     private Integer rIMeasureId;
+
+    /**
+     * official amount
+     */
+    @JsonProperty("officialAmount")
+    private Integer officialAmount;
 }

@@ -41,6 +41,7 @@ import com.huawei.openstack4j.openstack.bssintl.v1.internal.BusinessSupportSyste
 import com.huawei.openstack4j.openstack.eps.v1.internal.EPManagementService;
 import com.huawei.openstack4j.openstack.fgs.v2.internal.FunctionGraphV2Service;
 import com.huawei.openstack4j.openstack.iam.internal.IamService;
+import com.huawei.openstack4j.openstack.rds.v3.internal.RdsService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -624,6 +625,11 @@ public abstract class OSClientSession<R, T extends OSClient<T>> implements Endpo
 	{
 		return Apis.get(DssService.class);
 	}
+
+	public RdsService rds()
+    {
+        return Apis.get(RdsService.class);
+    }
 
 	/**
 	 *

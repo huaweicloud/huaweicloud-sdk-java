@@ -1,0 +1,15 @@
+{
+  "datastore_version_name": "5.7",
+  "datastore_name": "mysql",
+  "created": "2018-10-11 11:40:44",
+  "updated": "2018-10-11 11:40:44",
+  "configuration_parameters": [{
+    "name": "auto_increment_increment",
+    "value": "1",
+    "restart_required": false,
+    "readonly": false,
+    "value_range": "1-65535",
+    "type": "integer",
+    "description": "auto_increment_increment和auto_increment_offset 用于master-to-master的复制，并可以用来控制AUTO_INCREMENT列的操作。"
+  }]
+}

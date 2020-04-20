@@ -96,4 +96,10 @@ public class MonthlyRecord implements ModelEntity
      */
     @JsonProperty("payMethod")
     private String payMethod;
+
+    /**
+     * Official amount
+     */
+    @JsonProperty("officialAmount")
+    private BigDecimal officialAmount;
 }

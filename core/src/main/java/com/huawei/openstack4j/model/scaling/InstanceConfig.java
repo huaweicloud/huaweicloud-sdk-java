@@ -20,6 +20,7 @@ import java.util.Map;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.huawei.openstack4j.model.ModelEntity;
+import com.huawei.openstack4j.openstack.networking.domain.ext.ListItem;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -70,4 +71,7 @@ public class InstanceConfig implements ModelEntity {
 
 	@JsonProperty("user_data")
 	private String userData;
+
+	@JsonProperty("security_groups")
+	private List<ListItem> securityGroups;
 }

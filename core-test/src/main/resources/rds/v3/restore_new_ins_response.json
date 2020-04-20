@@ -1,0 +1,27 @@
+{
+  "instance": {
+    "id": "4b7a23f9db4e463fb4a85ade02027897in01",
+    "name": "targetInst",
+    "status": "BUILD",
+    "datastore": {
+      "type": "MySQL",
+      "version": "5.6"
+    },
+    "port": "3306",
+    "volume": {
+      "type": "ULTRAHIGH",
+      "size": "100"
+    },
+    "region": "cn-xianhz-1",
+    "backup_strategy": {
+      "start_time": "06:15-07:15",
+      "keep_days": "7"
+    },
+    "flavor_ref": "rds.mysql.c2.medium.ha",
+    "availability_zone": "az2xahz,az1xahz",
+    "vpc_id": "e9e3631a-5b2b-4275-8533-70d1ee0405e4",
+    "subnet_id": "a056aa37-103a-4bc0-9d5f-ec1f3562ba2d",
+    "security_group_id": "a9144c93-15c9-4fa0-8683-a4ad293b40ae"
+  },
+  "job_id": "bf003379-afea-4aa5-aa83-4543542070bc"
+}

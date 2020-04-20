@@ -1,0 +1,19 @@
+{
+  "backups": [
+    {
+      "id": "2f4ddb93-b901-4b08-93d8-1d2e472f30fe",
+      "name": "backupDemo",
+      "type": "auto",
+      "size": 2803,
+      "status": "COMPLETED",
+      "begin_time": "2018-08-06T12:41:14+0800",
+      "end_time": "2018-08-06T12:43:14+0800",
+      "datastore": {
+        "type": "MySQL",
+        "version": "5.6"
+      },
+      "instance_id": "4b7a23f9db4e463fb4a85ade02027897in01"
+    }
+  ],
+  "total_count": 1
+}

@@ -1,0 +1,16 @@
+{
+  "configuration_id": "7f3faac779484f6ea4d7ceeae7fc0614pr01",
+  "configuration_name": "configuration_test",
+  "apply_results": [{
+    "instance_id": "00d5e5ca0e67426c80ed237c0e17212ain01",
+    "instance_name": "zyy1",
+    "restart_required": false,
+    "success": false
+  }, {
+    "instance_id": "73ea2bf70c73497f89ee0ad4ee008aa2in01",
+    "instance_name": "zyy2",
+    "restart_required": false,
+    "success": false
+  }],
+  "success": false
+}

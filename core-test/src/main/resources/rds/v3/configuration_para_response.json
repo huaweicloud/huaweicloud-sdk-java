@@ -1,0 +1,38 @@
+{
+  "id": "7f3faac779484f6ea4d7ceeae7fc0614pr01",
+  "name": "configuration_test",
+  "description": "configuration_test",
+  "datastore_version_name": "5.6",
+  "datastore_name": "mysql",
+  "created": "2019-10-12T01:48:03+0000",
+  "updated": "2019-10-12T01:48:03+0000",
+  "configuration_parameters": [
+    {
+      "name": "auto_increment_increment",
+      "value": "1",
+      "restart_required": false,
+      "readonly": false,
+      "value_range": "1-65535",
+      "type": "integer",
+      "description": "auto_increment_increment and auto_increment_offset are intended for use with master-to-master replication, and can be used to control the operation of AUTO_INCREMENT columns."
+    },
+    {
+      "name": "auto_increment_offset",
+      "value": "1",
+      "restart_required": false,
+      "readonly": false,
+      "value_range": "1-65535",
+      "type": "integer",
+      "description": "auto_increment_increment and auto_increment_offset are intended for use with master-to-master replication, and can be used to control the operation of AUTO_INCREMENT columns. "
+    },
+    {
+      "name": "back_log",
+      "value": "default",
+      "restart_required": true,
+      "readonly": false,
+      "value_range": "1-65535",
+      "type": "integer",
+      "description": "The number of outstanding connection requests MySQL can have. This comes into play when the main MySQL thread gets very many connection requests in a very short time. It then takes some time (although very little) for the main thread to check the connection and start a new thread. The back_log value indicates how many requests can be stacked during this short time before MySQL momentarily stops answering new requests. The default value depends on system architecture."
+    }
+  ]
+}

@@ -85,6 +85,7 @@ import com.huawei.openstack4j.openstack.maas.internal.MaaSService;
 import com.huawei.openstack4j.openstack.message.notification.internal.NotificationService;
 import com.huawei.openstack4j.openstack.message.queue.internal.MessageQueueAsyncService;
 import com.huawei.openstack4j.openstack.message.queue.internal.MessageQueueService;
+import com.huawei.openstack4j.openstack.rds.v3.internal.RdsService;
 import com.huawei.openstack4j.openstack.tms.v1.internal.TagManagementService;
 import com.huawei.openstack4j.openstack.trove.internal.TroveService;
 import com.huawei.openstack4j.openstack.vpc.v2.internal.VirtualPrivateCloudService;
@@ -726,4 +727,9 @@ public interface OSClient<T extends OSClient<T>> {
 	 * @return
 	 */
 	EPManagementService eps();
+	/**
+	 * Return the Rds Service API
+	 * @return
+	 */
+	RdsService rds();
 }

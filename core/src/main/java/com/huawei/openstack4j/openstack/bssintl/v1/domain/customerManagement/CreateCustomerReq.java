@@ -76,4 +76,11 @@ public class CreateCustomerReq implements ModelEntity
      */
     @JsonProperty("isCloseMarketMs")
     private String isCloseMarketMs;
+
+    /**
+     * Association type.
+     * 1: Referral.
+     */
+    @JsonProperty("cooperationType")
+    private String cooperationType;
 }

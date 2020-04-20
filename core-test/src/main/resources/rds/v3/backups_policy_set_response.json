@@ -1,0 +1,5 @@
+{
+  "backup_policy": {
+    "keep_days": 0
+  }
+}

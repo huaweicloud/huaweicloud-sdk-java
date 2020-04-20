@@ -48,4 +48,12 @@ public class OrderRenewByResourceIdRsp implements ModelEntity
      */
     @JsonProperty("order_ids")
     private List<String> orderIds;
+
+
+    /**
+     * List of resources that cannot be renewed due to expiration.
+     * This parameter has a value only when the error code is 3016.
+     */
+    @JsonProperty("expiredResourceIds")
+    private List<String> expiredResourceIds;
 }

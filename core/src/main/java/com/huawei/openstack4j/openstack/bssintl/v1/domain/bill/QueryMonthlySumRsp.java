@@ -19,6 +19,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.huawei.openstack4j.model.ModelEntity;
 import lombok.*;
 
+import java.math.BigDecimal;
 import java.util.List;
 
 @Getter
@@ -54,6 +55,57 @@ public class QueryMonthlySumRsp implements ModelEntity
      */
     @JsonProperty("total_count")
     private Integer totalCount;
+
+    /**
+     * Total amount (tax included).
+     */
+    @JsonProperty("total_amount")
+    private BigDecimal totalAmount;
+
+    /**
+     * Total debt.
+     */
+    @JsonProperty("debt_amount")
+    private BigDecimal debtAmount;
+
+    /**
+     * Cash coupon amount.
+     */
+    @JsonProperty("coupon_amount")
+    private BigDecimal couponAmount;
+
+    /**
+     * Flexi-purchase coupon amount (reserved).
+     */
+    @JsonProperty("cashcoupon_amount")
+    private BigDecimal cashcouponAmount;
+
+    /**
+     * Stored-value card amount (reserved).
+     */
+    @JsonProperty("storedcard_amount")
+    private BigDecimal storedcardAmount;
+
+    /**
+     * Balance in the cash account.
+     */
+    @JsonProperty("debit_amount")
+    private BigDecimal debitAmount;
+
+    /**
+     * Balance in the credit account.
+     */
+    @JsonProperty("credit_amount")
+    private BigDecimal creditAmount;
+
+    /**
+     * Unit.
+     * 1: Yuan/Dollar
+     * 2: Jiao/Dime
+     * 3: Fen/Cent
+     */
+    @JsonProperty("measure_id")
+    private Integer measureId;
 
     /**
      * Record information.

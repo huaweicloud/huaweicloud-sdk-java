@@ -86,6 +86,7 @@ public enum ServiceType {
 	EPS("EPS", "eps"),
 	BSS_INTLV1("bss-intlv1","bss-intlv1"),
     BSSV1("bssv1","bssv1"),
+    RDSV3("rdsv3", "rdsv3"),
 	UNKNOWN("NA", "NA")
 	;
 	//@on

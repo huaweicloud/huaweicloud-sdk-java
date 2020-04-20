@@ -448,6 +448,11 @@ import com.huawei.openstack4j.openstack.networking.internal.ext.LoadBalancerV2Se
 import com.huawei.openstack4j.openstack.networking.internal.ext.MemberServiceImpl;
 import com.huawei.openstack4j.openstack.networking.internal.ext.NetQuotaServiceImpl;
 import com.huawei.openstack4j.openstack.networking.internal.ext.VipServiceImpl;
+import com.huawei.openstack4j.openstack.rds.v3.domain.Backup;
+import com.huawei.openstack4j.openstack.rds.v3.internal.BackupsAndRestoreService;
+import com.huawei.openstack4j.openstack.rds.v3.internal.InstanceManageService;
+import com.huawei.openstack4j.openstack.rds.v3.internal.ParamConfigService;
+import com.huawei.openstack4j.openstack.rds.v3.internal.RdsService;
 import com.huawei.openstack4j.openstack.scaling.internal.AutoScalingActivityLogServiceImpl;
 import com.huawei.openstack4j.openstack.scaling.internal.AutoScalingConfigServiceImpl;
 import com.huawei.openstack4j.openstack.scaling.internal.AutoScalingGroupInstanceServiceImpl;
@@ -958,6 +963,12 @@ public class DefaultAPIProvider implements APIProvider {
         //eps
         bind(EPManagementService.class, EPManagementService.class);
         bind(EPService.class, EPService.class);
+
+        //rds
+        bind(RdsService.class, RdsService.class);
+        bind(InstanceManageService.class, InstanceManageService.class);
+        bind(ParamConfigService.class, ParamConfigService.class);
+        bind(BackupsAndRestoreService.class, BackupsAndRestoreService.class);
 	}
 
 	/**

@@ -85,6 +85,9 @@ public class AKSK {
 		// Step 1.1: Add Host header
 		String endpoint = request.getEndpoint();
 		String requestPath = request.getPath();
+		if(!Strings.isNullOrEmpty(requestPath) && !requestPath.startsWith("/")){
+			requestPath = "/" + requestPath;
+		}
 		URL url = convertToURL(endpoint, requestPath);
 		String host = buildCanonicalHost(url);
 		authenticationHeaders.put(Constants.HOST, host);

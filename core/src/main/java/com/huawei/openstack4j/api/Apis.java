@@ -56,6 +56,7 @@ import com.huawei.openstack4j.openstack.bss.v1.internal.BusinessSupportSystemSer
 import com.huawei.openstack4j.openstack.ecs.v1.internal.ElasticComputeService;
 import com.huawei.openstack4j.openstack.fgs.v1.internal.FunctionGraphService;
 import com.huawei.openstack4j.openstack.fgs.v2.internal.FunctionGraphV2Service;
+import com.huawei.openstack4j.openstack.rds.v3.internal.RdsService;
 import com.huawei.openstack4j.openstack.trove.internal.TroveService;
 
 /**
@@ -299,7 +300,13 @@ public class Apis {
 	 * @return the bssintl services
 	 */
 	public static BusinessSupportSystemIntlService getBusinessSupportSystemIntlService(){return get(BusinessSupportSystemIntlService.class);}
-
+	/**
+	 * Gets the RDS services API
+	 * @return
+	 */
+	public static RdsService getRdsService(){
+		return get(RdsService.class);
+	}
 	private static APIProvider initializeProvider() {
 		// No need to check for emptiness as there is default implementation registered
 		APIProvider p = ServiceLoader.load(APIProvider.class, Apis.class.getClassLoader()).iterator().next();

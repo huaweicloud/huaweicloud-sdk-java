@@ -1,0 +1,12 @@
+{
+  "name": "configuration_test",
+  "description": "configuration_test",
+  "values": {
+    "max_connections": "10",
+    "autocommit": "OFF"
+  },
+  "datastore": {
+    "type": "mysql",
+    "version": "5.6"
+  }
+}
