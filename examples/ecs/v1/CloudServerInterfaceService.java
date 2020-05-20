@@ -28,7 +28,7 @@ public class CloudServerInterfaceService {
     public static void main(String[] args) {
 
         // Using credentials for authentication
-        String authUrl = "xxxxxxxxxxxxxxxxxxxxxxxx"; //endpoint Url
+        String authUrl = "https://iam.XXX.YYY.com/v3"; //endpoint Url
         String user = "xxxxxxxx"; //username
         String password = "xxxxxxxx"; //password
         String projectId = "xxxxxxxxxxxxxxxxxxxxxxxx"; //projectId

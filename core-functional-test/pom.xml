@@ -4,7 +4,7 @@
 	<parent>
 		<groupId>com.huawei</groupId>
 		<artifactId>openstack4j-parent</artifactId>
-		<version>1.0.22</version>
+		<version>1.0.23</version>
 	</parent>
 	<artifactId>openstack4j-core-functional-test</artifactId>
 	<name>OpenStack4j Core Functional Test Cases</name>
@@ -21,7 +21,7 @@
 			<groupId>com.huawei</groupId>
 			<artifactId>openstack4j</artifactId>
 			<version>${project.version}</version>
-			<!-- 
+			<!--
 			<exclusions>
 				<exclusion>
 					<groupId>com.huawei.openstack4j.connectors</groupId>
@@ -30,7 +30,7 @@
 			</exclusions>
 			 -->
 		</dependency>
-		
+
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-logging</artifactId>

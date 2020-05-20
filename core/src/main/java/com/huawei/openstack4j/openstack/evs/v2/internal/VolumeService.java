@@ -63,7 +63,6 @@ public class VolumeService extends BaseElasticVolumeService{
 	 */
 	public CloudVolumesResponse list(Map<String,Object> filteringParams){
 		processListParams(filteringParams, "ids");
-		processListParams(filteringParams, "enterprise_project_ids");
 		Invocation<CloudVolumesResponse> volumeInvocation = buildInvocation(filteringParams);
 		return volumeInvocation.execute();
 	}

@@ -25,6 +25,7 @@ public enum VolumeType {
 	SSD("SSD"),		// 超高IO磁盘类型。
 	CO_PL("co-pl"),	// 高IO (性能优化Ⅰ型)
 	UH_L1("uh-l1"),	// 超高IO (时延优化)
+	GPSSD("GPSSD"),  // 通用型SSD
 	;	
 	
 

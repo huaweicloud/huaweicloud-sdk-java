@@ -31,7 +31,7 @@ public class CloudServer {
     public static void main(String[] args) {
 
         // Using credentials for authentication
-        String authUrl = "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"; //endpoint Url
+        String authUrl = "https://iam.XXX.YYY.com/v3"; //endpoint Url
         String user = "xxxxx"; //username
         String password = "xxxxx"; //password
         String projectId = "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"; //projectId

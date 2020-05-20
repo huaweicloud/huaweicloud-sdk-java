@@ -13,7 +13,7 @@ public class JobDemo {
 	public static void main(String[] args) {
 
 		// Using credentials for authentication
-		String authUrl = "xxxxxxxxxxxxxxxx"; //endpoint Url
+		String authUrl = "https://iam.XXX.YYY.com/v3"; //endpoint Url
 		String user = "xxxx"; //username
 		String password = "xxxx"; //password
 		String projectId = "xxxxxxxxxxxxxxxx"; //projectID

@@ -13,7 +13,7 @@ public class KeypairDemo {
 	public static void main(String[] args) {
 		
 		// Using credentials for authentication
-		String authUrl = "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"; //endpoint Url
+		String authUrl = "https://iam.XXX.YYY.com/v3"; //endpoint Url
 		String user = "xxxxxx"; //username
 		String password = "xxxxxx"; //password
 		String projectId = "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"; //projectId

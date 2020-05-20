@@ -50,12 +50,40 @@ public class ServerExtendParam {
 	@JsonProperty("enterprise_project_id")
 	String enterpriseProjectId;
 
+	/**
+	 * 建竞价实例时，需指定该参数的值为“spot”。
+	 * 约束：
+	 * 当chargingMode=0时且marketType=spot时此参数生效。
+	 */
+	@JsonProperty("marketType")
+	String marketType;
+
+
+	/**
+	 * 用户愿意为竞价实例每小时支付的最高价格。
+	 * 约束：
+	 * 仅chargingMode=0且marketType=spot时，该参数设置后生效。
+	 * 当chargingMode=0且marketType=spot时，如果不传递spotPrice，默认使用按需购买的价格作为竞价。
+	 */
+	@JsonProperty("spotPrice")
+	String spotPrice;
+
 	@java.beans.ConstructorProperties({ "chargingMode", "regionId", "autoRecovery", "enterpriseProjectId"})
 	public ServerExtendParam(ServerChargingMode chargingMode, String regionId, Boolean autoRecovery, String enterpriseProjectId) {
 		this.chargingMode = chargingMode;
 		this.regionId = regionId;
 		this.autoRecovery = autoRecovery;
 		this.enterpriseProjectId = enterpriseProjectId;
+	}
+
+	@java.beans.ConstructorProperties({"chargingMode", "regionId", "autoRecovery", "enterpriseProjectId", "marketType", "spotPrice"})
+	public ServerExtendParam(ServerChargingMode chargingMode, String regionId, Boolean autoRecovery, String enterpriseProjectId, String marketType, String spotPrice) {
+		this.chargingMode = chargingMode;
+		this.regionId = regionId;
+		this.autoRecovery = autoRecovery;
+		this.enterpriseProjectId = enterpriseProjectId;
+		this.marketType = marketType;
+		this.spotPrice = spotPrice;
 	}
 
 	public ServerExtendParam() {
@@ -80,11 +108,21 @@ public class ServerExtendParam {
 	public String getEnterpriseProjectId(){
 		return this.enterpriseProjectId;
 	}
-	@Override
-	public String toString() {
-		return "ServerExtendParam(chargingMode=" + this.getChargingMode() + ", regionId=" + this.getRegionId()
-				+ ", autoRecovery=" + this.getAutoRecovery() + ")" + ", enterpriseProjectId=" + this.getEnterpriseProjectId() + ")";
+
+	public String getMarketType() {
+		return marketType;
 	}
+
+	public String getSpotPrice() {
+		return spotPrice;
+	}
+
+    @Override
+    public String toString() {
+        return "ServerExtendParam(chargingMode=" + this.getChargingMode() + ", regionId=" + this.getRegionId()
+                + ", autoRecovery=" + this.getAutoRecovery()  + ", enterpriseProjectId=" + this.getEnterpriseProjectId()
+                + ", marketType=" + this.getMarketType() + ", spotPrice=" + this.getSpotPrice() + ")";
+    }
 
 	public ServerExtendParamBuilder toBuilder() {
 		return new ServerExtendParamBuilder().chargingMode(this.chargingMode).regionId(this.regionId)
@@ -96,7 +134,8 @@ public class ServerExtendParam {
 		private String regionId;
 		private Boolean autoRecovery;
 		private String enterpriseProjectId;
-
+		private String marketType;
+		private String spotPrice;
 		ServerExtendParamBuilder() {
 		}
 
@@ -120,14 +159,30 @@ public class ServerExtendParam {
 			return this;
 		}
 
+		public ServerExtendParam.ServerExtendParamBuilder marketType(String marketType) {
+			this.marketType = marketType;
+			return this;
+		}
+
+		public ServerExtendParam.ServerExtendParamBuilder spotPrice(String spotPrice) {
+			this.spotPrice = spotPrice;
+			return this;
+		}
+
 		public ServerExtendParam build() {
-			return new ServerExtendParam(chargingMode, regionId, autoRecovery, enterpriseProjectId);
+			if (null != marketType) {
+				return new ServerExtendParam(chargingMode, regionId, autoRecovery, enterpriseProjectId, marketType, spotPrice);
+			} else {
+				return new ServerExtendParam(chargingMode, regionId, autoRecovery, enterpriseProjectId);
+			}
+
 		}
 
 		@Override
 		public String toString() {
 			return "ServerExtendParam.ServerExtendParamBuilder(chargingMode=" + this.chargingMode + ", regionId="
-					+ this.regionId + ", autoRecovery=" + this.autoRecovery + ", enterpriseProjectId=" + this.enterpriseProjectId + ")";
+					+ this.regionId + ", autoRecovery=" + this.autoRecovery + ", enterpriseProjectId=" + this.enterpriseProjectId
+					+ ", marketType=" + this.marketType + ", spotPrice=" + this.spotPrice + ")";
 		}
 	}
 }

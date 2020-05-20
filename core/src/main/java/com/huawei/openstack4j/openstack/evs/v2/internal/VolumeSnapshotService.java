@@ -42,7 +42,6 @@ package com.huawei.openstack4j.openstack.evs.v2.internal;
       * @return CloudVolumeSnapshots
       */
      public CloudVolumeSnapshotsResponse list(Map<String,Object> filteringParams){
-         processListParams(filteringParams, "enterprise_project_ids");
          Invocation<CloudVolumeSnapshotsResponse> snapshotInvocation = buildInvocation(filteringParams);
          return snapshotInvocation.execute();
      }

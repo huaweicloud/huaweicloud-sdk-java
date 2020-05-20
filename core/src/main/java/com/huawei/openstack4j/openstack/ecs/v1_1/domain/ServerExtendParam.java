@@ -96,4 +96,21 @@ public class ServerExtendParam {
 	@JsonProperty("enterprise_project_id")
 	String enterpriseProjectId;
 
+	/**
+	 * 建竞价实例时，需指定该参数的值为“spot”。
+	 * 约束：
+	 * 当chargingMode=0时且marketType=spot时此参数生效。
+	 */
+	@JsonProperty("marketType")
+	String marketType;
+
+
+	/**
+	 * 用户愿意为竞价实例每小时支付的最高价格。
+	 * 约束：
+	 * 仅chargingMode=0且marketType=spot时，该参数设置后生效。
+	 * 当chargingMode=0且marketType=spot时，如果不传递spotPrice，默认使用按需购买的价格作为竞价。
+	 */
+	@JsonProperty("spotPrice")
+	String spotPrice;
 }

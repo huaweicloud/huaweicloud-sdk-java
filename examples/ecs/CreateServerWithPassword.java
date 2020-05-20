@@ -24,7 +24,7 @@ public class CreateServerWithPassword {
 	public static void main(String[] args) {
 		
 		// Using credentials for authentication
-		String authUrl = "xxxxxxxxxxxxxxxxxxxx"; //endpoint Url
+		String authUrl = "https://iam.XXX.YYY.com/v3"; //endpoint Url
 		String user = "xxxxx"; //username
 		String password = "xxxxx"; //password
 		String projectId = "xxxxxxxxxxxxxxxxxxxx"; //projectID

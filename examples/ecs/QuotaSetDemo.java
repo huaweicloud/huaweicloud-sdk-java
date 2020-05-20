@@ -11,7 +11,7 @@ public class QuotaSetDemo {
 	public static void main(String[] args) {
 
 		// Using credentials for authentication
-		String authUrl = "xxxxxxxxxxxxxxxxxxxxxxxxxxx"; //endpoint Url
+		String authUrl = "https://iam.XXX.YYY.com/v3"; //endpoint Url
 		String username = "xxxxxxx"; //username
 		String password = "xxxxxxx"; //password
 		String projectId = "xxxxxxxxxxxxxxxxxxxxxxxxxxx"; //projectId
