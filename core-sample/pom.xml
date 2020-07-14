@@ -4,7 +4,7 @@
 	<parent>
 		<groupId>com.huawei</groupId>
 		<artifactId>openstack4j-parent</artifactId>
-		<version>1.0.23</version>
+		<version>1.0.24</version>
 	</parent>
 	<artifactId>openstack-core-sample</artifactId>
 	<name>OpenStack4j Sample</name>

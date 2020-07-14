@@ -24,11 +24,15 @@ import lombok.*;
 @ToString
 @Builder(toBuilder = true)
 @NoArgsConstructor
-@AllArgsConstructor
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class CloudEyeMetricDemension implements MetricDimensions {
     private static final long serialVersionUID = -959253863059879414L;
 
     String name;
     String value;
+
+    public CloudEyeMetricDemension(String name, String value) {
+        this.name = name;
+        this.value = value;
+    }
 }

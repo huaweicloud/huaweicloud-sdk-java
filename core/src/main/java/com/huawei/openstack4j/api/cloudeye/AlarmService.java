@@ -20,10 +20,17 @@ import java.util.List;
 import com.huawei.openstack4j.common.RestService;
 import com.huawei.openstack4j.model.cloudeye.Alarm;
 import com.huawei.openstack4j.model.common.ActionResponse;
+import com.huawei.openstack4j.openstack.cloudeye.domain.CloudEyeCreateAlarmReq;
 import com.huawei.openstack4j.openstack.cloudeye.internal.AlarmFilterOptions;
 
 public interface AlarmService extends RestService {
-	
+
+    /**
+     * @param alarm The alarm info for creating
+     * @return
+     */
+    ActionResponse create(CloudEyeCreateAlarmReq alarm);
+
 	/**
 	 * list alarm
 	 * @return

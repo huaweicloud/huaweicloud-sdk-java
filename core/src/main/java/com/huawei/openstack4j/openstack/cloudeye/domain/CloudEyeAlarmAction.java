@@ -28,11 +28,15 @@ import java.util.List;
 @ToString
 @Builder(toBuilder = true)
 @NoArgsConstructor
-@AllArgsConstructor
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class CloudEyeAlarmAction implements AlarmAction{
     private static final long serialVersionUID = 5604518526573924452L;
 
     AlarmType type;
     List<String> notificationlist;
+
+    public CloudEyeAlarmAction(AlarmType type, List<String> notificationlist) {
+        this.type = type;
+        this.notificationlist = notificationlist;
+    }
 }
