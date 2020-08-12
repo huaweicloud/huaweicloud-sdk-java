@@ -72,6 +72,9 @@ public class NeutronMemberV2 implements MemberV2 {
     @JsonProperty("admin_state_up")
     private boolean adminStateUp = true;
 
+    @JsonProperty("operating_status")
+    private String operatingStatus;
+
     /**
      * {@inheritDoc}
      */
@@ -139,6 +142,7 @@ public class NeutronMemberV2 implements MemberV2 {
                 .add("adminStateUp", adminStateUp)
                 .add("weight",weight)
                 .add("subnetId",subnetId)
+                .add("operatingStatus", operatingStatus)
                 .toString();
     }
 
@@ -250,6 +254,16 @@ public class NeutronMemberV2 implements MemberV2 {
 			m.name = name;
             return this;
 		}
+
+        /**
+         * {@inheritDoc}
+         */
+        @Override
+        public MemberV2Builder operatingStatus(String operatingStatus) {
+            m.operatingStatus = operatingStatus;
+            return this;
+        }
+
     }
 
     @Override
@@ -259,5 +273,13 @@ public class NeutronMemberV2 implements MemberV2 {
 
     public static MemberV2Builder builder(){
         return new MemberV2ConcreteBuilder();
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public String getOperatingStatus() {
+        return operatingStatus;
     }
 }

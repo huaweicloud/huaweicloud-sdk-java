@@ -94,4 +94,12 @@ public interface MemberV2Builder extends Buildable.Builder<MemberV2Builder, Memb
      * @return MemberV2Builder
      */
     MemberV2Builder adminStateUp(boolean adminStateUp);
+
+    /**
+     * the health check state of the member, which is one of ONLINE, OFFLINE,
+     * NO_MONITOR
+     * 
+     * @return {@link MemberV2Builder}
+     */
+    MemberV2Builder operatingStatus(String operatingStatus);
 }
