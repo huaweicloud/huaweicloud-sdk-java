@@ -35,6 +35,7 @@ package com.huawei.openstack4j.openstack.networking.domain.ext;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonRootName;
+import com.huawei.openstack4j.model.network.ext.MemberOperatingStatus;
 import com.huawei.openstack4j.model.network.ext.MemberV2;
 import com.huawei.openstack4j.model.network.ext.builder.MemberV2Builder;
 import com.huawei.openstack4j.openstack.common.ListResult;
@@ -73,7 +74,7 @@ public class NeutronMemberV2 implements MemberV2 {
     private boolean adminStateUp = true;
 
     @JsonProperty("operating_status")
-    private String operatingStatus;
+    private MemberOperatingStatus operatingStatus;
 
     /**
      * {@inheritDoc}
@@ -259,7 +260,7 @@ public class NeutronMemberV2 implements MemberV2 {
          * {@inheritDoc}
          */
         @Override
-        public MemberV2Builder operatingStatus(String operatingStatus) {
+        public MemberV2Builder operatingStatus(MemberOperatingStatus operatingStatus) {
             m.operatingStatus = operatingStatus;
             return this;
         }
@@ -279,7 +280,7 @@ public class NeutronMemberV2 implements MemberV2 {
      * {@inheritDoc}
      */
     @Override
-    public String getOperatingStatus() {
+    public MemberOperatingStatus getOperatingStatus() {
         return operatingStatus;
     }
 }

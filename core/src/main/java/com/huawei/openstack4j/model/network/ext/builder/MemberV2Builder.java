@@ -32,6 +32,7 @@
 package com.huawei.openstack4j.model.network.ext.builder;
 
 import com.huawei.openstack4j.common.Buildable;
+import com.huawei.openstack4j.model.network.ext.MemberOperatingStatus;
 import com.huawei.openstack4j.model.network.ext.MemberV2;
 
 public interface MemberV2Builder extends Buildable.Builder<MemberV2Builder, MemberV2> {
@@ -101,5 +102,5 @@ public interface MemberV2Builder extends Buildable.Builder<MemberV2Builder, Memb
      * 
      * @return {@link MemberV2Builder}
      */
-    MemberV2Builder operatingStatus(String operatingStatus);
+    MemberV2Builder operatingStatus(MemberOperatingStatus operatingStatus);
 }
