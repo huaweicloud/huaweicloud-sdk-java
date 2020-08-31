@@ -38,6 +38,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.concurrent.TimeUnit;
 
+import com.huawei.openstack4j.openstack.compute.domain.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -66,20 +67,9 @@ import com.huawei.openstack4j.model.compute.actions.LiveMigrateOptions;
 import com.huawei.openstack4j.model.compute.actions.RebuildOptions;
 import com.huawei.openstack4j.model.compute.builder.ServerCreateBuilder;
 import com.huawei.openstack4j.openstack.common.Metadata;
-import com.huawei.openstack4j.openstack.compute.domain.AdminPass;
-import com.huawei.openstack4j.openstack.compute.domain.ConsoleOutput;
-import com.huawei.openstack4j.openstack.compute.domain.ConsoleOutputOptions;
-import com.huawei.openstack4j.openstack.compute.domain.MetadataItem;
-import com.huawei.openstack4j.openstack.compute.domain.NovaPassword;
-import com.huawei.openstack4j.openstack.compute.domain.NovaServer;
 import com.huawei.openstack4j.openstack.compute.domain.NovaServer.Servers;
-import com.huawei.openstack4j.openstack.compute.domain.NovaServerCreate;
-import com.huawei.openstack4j.openstack.compute.domain.NovaServerUpdate;
-import com.huawei.openstack4j.openstack.compute.domain.NovaVNCConsole;
-import com.huawei.openstack4j.openstack.compute.domain.NovaVolumeAttachment;
 import com.huawei.openstack4j.openstack.compute.domain.actions.BackupAction;
 import com.huawei.openstack4j.openstack.compute.domain.actions.BasicActions;
-import com.huawei.openstack4j.openstack.compute.domain.actions.BasicActions.ChangePassword;
 import com.huawei.openstack4j.openstack.compute.domain.actions.BasicActions.ConfirmResize;
 import com.huawei.openstack4j.openstack.compute.domain.actions.BasicActions.Migrate;
 import com.huawei.openstack4j.openstack.compute.domain.actions.BasicActions.Reboot;
@@ -363,6 +353,23 @@ public class ServerServiceImpl extends BaseComputeServices implements ServerServ
 				.execute();
 		return (c != null) ? c.getOutput() : null;
 	}
+
+	/**
+	 * {@inheritDoc}
+	 */
+	@Override
+	public NovaRemoteConsoleResponse getRemoteConsole(String serverId, NovaRemoteConsole remoteConsole, Map<String, String> headers) {
+		checkNotNull(serverId);
+		checkNotNull(remoteConsole);
+		checkNotNull(remoteConsole.getProtocol());
+		checkNotNull(remoteConsole.getType());
+		checkNotNull(headers);
+
+		return post(NovaRemoteConsoleResponse.class, uri("/servers/%s/remote-consoles", serverId))
+				.entity(remoteConsole).headers(headers)
+				.execute();
+	}
+
 
 	/**
 	 * {@inheritDoc}

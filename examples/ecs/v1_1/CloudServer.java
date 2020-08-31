@@ -87,8 +87,29 @@ public class CloudServer {
 		//create prepaid server
 		AsyncServerRespEntity rep1 = os.ecsV1_1().servers().create(creation1);
 		if (null != rep1) {
-			System.out.println("create server success, orderid = " + rep1.getOrderId());
-			System.out.println("serverIds = " + rep1.getServerIds());
+			Job job = os.ecs().jobs().get(rep1.getJobId());
+			while (!"SUCCESS".equals(job.getStatus()) && !"FAIL".equals(job.getStatus())) {
+				try {
+					Thread.sleep(8000);
+				} catch (InterruptedException e) {
+					e.printStackTrace();
+				}
+				System.out.println("jobStatus" + job.getStatus());
+				job = os.ecs().jobs().get(rep1.getJobId());
+			}
+			List<SubJob> subJobList = job.getEntities().getSubJobs();
+			List<String> successServers = new ArrayList<>();
+			List<String> failServers = new ArrayList<>();
+			for (SubJob subJob : subJobList) {
+				if ("SUCCESS".equals(subJob.getStatus())) {
+					successServers.add(subJob.getEntities().getServerId());
+				} else {
+					failServers.add(subJob.getEntities().getServerId());
+				}
+			}
+			System.out.println("create server success, jobId = " + rep1.getJobId());
+			System.out.println("success servers=" + successServers);
+			System.out.println("fail servers=" + failServers);
 		} else {
 			System.out.println("create server failed");
 		}

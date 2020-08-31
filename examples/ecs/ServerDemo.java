@@ -10,6 +10,7 @@ import com.huawei.openstack4j.api.Builders;
 import com.huawei.openstack4j.api.OSClient.OSClientV3;
 import com.huawei.openstack4j.model.common.ActionResponse;
 import com.huawei.openstack4j.model.common.Identifier;
+import com.huawei.openstack4j.model.compute.StopType;
 import com.huawei.openstack4j.model.network.Network;
 import com.huawei.openstack4j.openstack.OSFactory;
 
@@ -95,7 +96,7 @@ public class ServerDemo {
 		}
 
 		//stop server with type
-		ActionResponse repStopWithType = os.compute().servers().stop(serverId, StopType.HARD);
+		ActionResponse repStopWithType = os.compute().servers().stop(secServerId, StopType.HARD);
 		if (repStopWithType.isSuccess()) {
 			System.out.println("hard stop server success");
 		} else {

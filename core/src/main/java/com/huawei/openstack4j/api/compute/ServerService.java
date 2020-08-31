@@ -54,6 +54,8 @@ import com.huawei.openstack4j.model.compute.actions.EvacuateOptions;
 import com.huawei.openstack4j.model.compute.actions.LiveMigrateOptions;
 import com.huawei.openstack4j.model.compute.actions.RebuildOptions;
 import com.huawei.openstack4j.model.compute.builder.ServerCreateBuilder;
+import com.huawei.openstack4j.openstack.compute.domain.NovaRemoteConsole;
+import com.huawei.openstack4j.openstack.compute.domain.NovaRemoteConsoleResponse;
 
 /**
  * Server Operations API
@@ -258,6 +260,16 @@ public interface ServerService {
      * @return console output as string or null
      */
     String getConsoleOutput(String serverId, int numLines);
+
+    /**
+     * This API is used to obtain the address for remotely logging in to an ECS using VNC.
+     *
+     * @param serverId      Specifies the ECS ID.
+     * @param remoteConsole Obtains the address for remotely logging in to an ECS using VNC.
+     * @param headers Request header
+     * @return Obtains the address for remotely logging in to an ECS
+     */
+    NovaRemoteConsoleResponse getRemoteConsole(String serverId, NovaRemoteConsole remoteConsole, Map<String, String> headers);
 
     /**
      * Obtains the VNC Console connection information for the given server and VNC Console Type

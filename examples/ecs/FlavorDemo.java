@@ -22,7 +22,7 @@ public class FlavorDemo {
 		OSClientV3 os = OSFactory.builderV3()
 		.endpoint(authUrl)
 		.credentials(user, password, Identifier.byId(userDomainId))
-		.scopeToProject(Identifier.byId(projectId)).authenticate()
+		.scopeToProject(Identifier.byId(projectId)).authenticate();
 		
 		//get list of flavor
 		List<? extends Flavor> flavors = os.compute().flavors().list();

@@ -110,7 +110,7 @@ public class VolumeTests extends AbstractTest {
     public void getVolumeV2() throws Exception {
         // Check get volume
         respondWith("/storage/v2/volume.json");
-        Volume volume = osv3().blockStorage().volumes().get("8a9287b7-4f4d-4213-8d75-63470f19f27c");
+        Volume volume = osv3().blockStorage().volumes().get("de3108dd-860c-43bc-a572-42a47f561582");
         
         RecordedRequest getRequest = server.takeRequest();
         assertTrue(getRequest.getPath().matches("/v[12]/project-id/volumes/8a9287b7-4f4d-4213-8d75-63470f19f27c"));

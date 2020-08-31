@@ -20,7 +20,9 @@ import com.huawei.openstack4j.openstack.ecs.v1.contants.NetworkChargingMode;
 import com.huawei.openstack4j.openstack.ecs.v1.contants.ShareType;
 import com.huawei.openstack4j.openstack.ecs.v1.contants.VolumeType;
 import com.huawei.openstack4j.openstack.ecs.v1.domain.Bandwidth;
+import com.huawei.openstack4j.openstack.ecs.v1.domain.CloudServer;
 import com.huawei.openstack4j.openstack.ecs.v1.domain.Job;
+import com.huawei.openstack4j.openstack.ecs.v1.domain.ResetPassword;
 import com.huawei.openstack4j.openstack.ecs.v1.domain.SubJob;
 import com.huawei.openstack4j.openstack.ecs.v1.domain.CloudServer.CloudServers;
 import com.huawei.openstack4j.openstack.ecs.v1.domain.DataVolume;
@@ -264,8 +266,8 @@ public class CloudServerV1 {
 
 		//cloud server reset password
 		ResetPassword resetPassword = ResetPassword.builder().newPassword("xxxx").build();
-		ActionResponse actionResponse = os.ecs().servers().resetPassword(serverId, resetPassword);
-		if (actionResponse.isSuccess()) {
+		ActionResponse resetPwdActionResponse = os.ecs().servers().resetPassword(serverId, resetPassword);
+		if (resetPwdActionResponse.isSuccess()) {
 			System.out.println("reset password success");
 		} else {
 			System.out.println("reset password failed");

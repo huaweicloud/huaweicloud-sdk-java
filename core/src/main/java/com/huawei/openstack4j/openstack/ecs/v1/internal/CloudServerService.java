@@ -30,16 +30,9 @@ package com.huawei.openstack4j.openstack.ecs.v1.internal;
  import com.huawei.openstack4j.model.compute.StopType;
  import com.huawei.openstack4j.openstack.common.AsyncJobEntity;
  import com.huawei.openstack4j.openstack.common.IdResourceEntity;
- import com.huawei.openstack4j.openstack.ecs.v1.domain.CloudAbsoluteLimit;
- import com.huawei.openstack4j.openstack.ecs.v1.domain.CloudServer;
- import com.huawei.openstack4j.openstack.ecs.v1.domain.AsyncServerRespEntity;
+ import com.huawei.openstack4j.openstack.ecs.v1.domain.*;
  import com.huawei.openstack4j.openstack.ecs.v1.domain.CloudServer.CloudServers;
- import com.huawei.openstack4j.openstack.ecs.v1.domain.Flavor;
  import com.huawei.openstack4j.openstack.ecs.v1.domain.Flavor.Flavors;
- import com.huawei.openstack4j.openstack.ecs.v1.domain.ResizeServer;
- import com.huawei.openstack4j.openstack.ecs.v1.domain.ServerCreate;
- import com.huawei.openstack4j.openstack.ecs.v1.domain.SupportAutoRecovery;
- import com.huawei.openstack4j.openstack.ecs.v1.domain.ResetPassword;
 
  public class CloudServerService extends BaseElasticComputeServices {
 
@@ -54,7 +47,6 @@ package com.huawei.openstack4j.openstack.ecs.v1.internal;
 		checkArgument(!Strings.isNullOrEmpty(creation.getFlavorRef()), "parameter `flavorRef` should not be empty");
 		checkArgument(!Strings.isNullOrEmpty(creation.getName()), "parameter `name` should not be empty");
 		checkArgument(!Strings.isNullOrEmpty(creation.getVpcId()), "parameter `vpcid` should not be empty");
-		checkArgument(!Strings.isNullOrEmpty(creation.getAvailabilityZone()), "parameter `availability_zone` should not be empty");
 		checkArgument(!(creation.getPersonality() != null && creation.getPersonality().size() > 5),
 				"size of parameter `personality` should not greate than 5");
 		checkArgument(creation.getNetworks() != null && creation.getNetworks().size() > 0,
@@ -74,10 +66,34 @@ package com.huawei.openstack4j.openstack.ecs.v1.internal;
 		 checkArgument(!Strings.isNullOrEmpty(creation.getFlavorRef()), "parameter `flavorRef` should not be empty");
 		 checkArgument(!Strings.isNullOrEmpty(creation.getName()), "parameter `name` should not be empty");
 		 checkArgument(!Strings.isNullOrEmpty(creation.getVpcId()), "parameter `vpcid` should not be empty");
-		 checkArgument(!Strings.isNullOrEmpty(creation.getAvailabilityZone()), "parameter `availability_zone` should not be empty");
 		 checkArgument(creation.getNetworks() != null && creation.getNetworks().size() > 0,
 				 "parameter `networks` should not be empty");
 		 checkArgument(creation.getRootVolume() != null, "parameter `root_volume` should not be empty");
+		 return post(AsyncServerRespEntity.class, "/cloudservers").entity(creation).execute();
+	 }
+
+	 /**
+	  * create one or multiple server
+	  *
+	  * @param creation
+	  * @return job-id of the asynchronous create server task
+	  */
+	 public AsyncServerRespEntity createServer(ServerCreate creation, Boolean isDryRun) {
+		 checkArgument(!Strings.isNullOrEmpty(creation.getImageRef()), "parameter `imageRef` should not be empty");
+		 checkArgument(!Strings.isNullOrEmpty(creation.getFlavorRef()), "parameter `flavorRef` should not be empty");
+		 checkArgument(!Strings.isNullOrEmpty(creation.getName()), "parameter `name` should not be empty");
+		 checkArgument(!Strings.isNullOrEmpty(creation.getVpcId()), "parameter `vpcid` should not be empty");
+		 checkArgument(!Strings.isNullOrEmpty(creation.getAvailabilityZone()), "parameter `availability_zone` should not be empty");
+		 checkArgument(!(creation.getPersonality() != null && creation.getPersonality().size() > 5),
+				 "size of parameter `personality` should not greate than 5");
+		 checkArgument(creation.getNetworks() != null && creation.getNetworks().size() > 0,
+				 "parameter `networks` should not be empty");
+		 checkArgument(creation.getRootVolume() != null, "parameter `root_volume` should not be empty");
+		 ServerCreateRequest serverCreateRequest = new ServerCreateRequest(isDryRun, creation);
+		 if (isDryRun) {
+			 post(AsyncServerRespEntity.class, "/cloudservers").entity(serverCreateRequest).execute();
+			 return null;
+		 }
 		 return post(AsyncServerRespEntity.class, "/cloudservers").entity(creation).execute();
 	 }
 
@@ -255,6 +271,21 @@ package com.huawei.openstack4j.openstack.ecs.v1.internal;
 		 checkArgument(!Strings.isNullOrEmpty(resetPassword.getNewPassword()), "parameter `new_password` should not be empty");
 		 return put(ActionResponse.class, uri("/cloudservers/" + serverId + "/os-reset-password")).entity(resetPassword).execute();
 	 }
+
+	 /**
+	  * Obtaining the VNC Login Address
+	  *
+	  * @param serverId
+	  * @return
+	  */
+	 public RemoteConsoleResponse remoteConsole(String serverId, RemoteConsole remoteConsole) {
+		 checkArgument(!Strings.isNullOrEmpty(serverId), "parameter `serverId` should not be empty");
+		 checkArgument(!(remoteConsole == null), "parameter `remote_console` should not be empty");
+		 checkArgument(!Strings.isNullOrEmpty(remoteConsole.getType()), "parameter `type` should not be empty");
+		 checkArgument(!Strings.isNullOrEmpty(remoteConsole.getProtocol()), "parameter `protocol` should not be empty");
+		 return post(RemoteConsoleResponse.class, uri("/cloudservers/" + serverId + "/remote_console")).entity(remoteConsole).execute();
+	 }
+
 
 //	/**
 //	 *Query cloud server specification change support list
