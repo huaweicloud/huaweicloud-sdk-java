@@ -68,4 +68,11 @@ public class CloudEyeMetric implements Metric {
 			return list;
 		}
 	}
+
+	public CloudEyeMetric(String metricName, String unit, String namespace, List<CloudEyeMetricDemension> dimensions) {
+		this.metricName = metricName;
+		this.unit = unit;
+		this.namespace = namespace;
+		this.dimensions = dimensions;
+	}
 }

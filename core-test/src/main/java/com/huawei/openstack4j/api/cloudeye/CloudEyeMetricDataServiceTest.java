@@ -1,21 +1,25 @@
- /*******************************************************************************
- * 	Copyright 2018 Huawei Technologies Co.,Ltd.                                         
- * 	                                                                                 
- * 	Licensed under the Apache License, Version 2.0 (the "License"); you may not      
- * 	use this file except in compliance with the License. You may obtain a copy of    
- * 	the License at                                                                   
- * 	                                                                                 
- * 	    http://www.apache.org/licenses/LICENSE-2.0                                   
- * 	                                                                                 
- * 	Unless required by applicable law or agreed to in writing, software              
- * 	distributed under the License is distributed on an "AS IS" BASIS, WITHOUT        
- * 	WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the         
- * 	License for the specific language governing permissions and limitations under    
- * 	the License.                                                                     
- *******************************************************************************/
+/*
+ * 	Copyright 2018 Huawei Technologies Co.,Ltd.
+ *
+ * 	Licensed under the Apache License, Version 2.0 (the "License"); you may not
+ * 	use this file except in compliance with the License. You may obtain a copy of
+ * 	the License at
+ *
+ * 	    http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * 	Unless required by applicable law or agreed to in writing, software
+ * 	distributed under the License is distributed on an "AS IS" BASIS, WITHOUT
+ * 	WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the
+ * 	License for the specific language governing permissions and limitations under
+ * 	the License.
+ */
+
 package com.huawei.openstack4j.api.cloudeye;
 
-import org.testng.annotations.ExpectedExceptions;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
+
 import org.testng.annotations.Test;
 
 import com.huawei.openstack4j.api.AbstractTest;
@@ -27,11 +31,10 @@ import com.huawei.openstack4j.openstack.cloudeye.domain.CloudEyeMetric;
 import com.huawei.openstack4j.openstack.cloudeye.domain.CloudEyeMetricData;
 import com.huawei.openstack4j.openstack.cloudeye.domain.CloudEyeMetricDemension;
 
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
-
-import static org.testng.Assert.*;
+import static org.testng.Assert.assertEquals;
+import static org.testng.Assert.assertNotNull;
+import static org.testng.Assert.assertNull;
+import static org.testng.Assert.assertTrue;
 
 /**
  * Tests the CloudEye API version Metric Service
@@ -50,7 +53,7 @@ public class CloudEyeMetricDataServiceTest extends AbstractTest {
         respondWith(JSON_METRIC_AGGREGATION);
 
         MetricAggregation metricAggregation = osv3().cloudEye().metricsDatas().get("SYS.ECS", "network_incoming_bytes_aggregate_rate",
-                new Date(1498321875058l), new Date(), Period.FIVE_MINS, Filter.AVERAGE, new String[]{"instance_id,33328f02-3814-422e-b688-bfdba93d4050"});
+            new Date(1498321875058L), new Date(), Period.FIVE_MINS, Filter.AVERAGE, new String[] {"instance_id,33328f02-3814-422e-b688-bfdba93d4050"});
         assertNotNull(metricAggregation);
         assertNotNull(metricAggregation.getDatapoints());
         assertEquals(metricAggregation.getDatapoints().size(), 1);
@@ -58,48 +61,48 @@ public class CloudEyeMetricDataServiceTest extends AbstractTest {
     }
 
     @Test(expectedExceptions = NullPointerException.class)
-    public void getMetricAggregationDataFailed1Test() throws Exception {
-       osv3().cloudEye().metricsDatas().get("SYS.ECS", "network_incoming_bytes_aggregate_rate",
-                new Date(1498321875058l), new Date(), Period.FIVE_MINS, null, new String[]{"instance_id,33328f02-3814-422e-b688-bfdba93d4050"});
+    public void getMetricAggregationDataFailed1Test() {
+        osv3().cloudEye().metricsDatas().get("SYS.ECS", "network_incoming_bytes_aggregate_rate",
+            new Date(1498321875058L), new Date(), Period.FIVE_MINS, null, new String[] {"instance_id,33328f02-3814-422e-b688-bfdba93d4050"});
     }
 
     public void getMetricAggregationDataFailed2Test() throws Exception {
         respondWith(JSON_METRIC_AGGREGATION_ERROR);
         //From & To are same
         MetricAggregation metricAggregation = osv3().cloudEye().metricsDatas().get("SYS.ECS", "network_incoming_bytes_aggregate_rate",
-                new Date(1498321875058l), new Date(1498321875058l), Period.FIVE_MINS, Filter.AVERAGE, new String[]{"instance_id,33328f02-3814-422e-b688-bfdba93d4050"});
+            new Date(1498321875058L), new Date(1498321875058L), Period.FIVE_MINS, Filter.AVERAGE, new String[] {"instance_id,33328f02-3814-422e-b688-bfdba93d4050"});
         assertNotNull(metricAggregation);
         assertNull(metricAggregation.getDatapoints());
     }
 
-    public void addMetricDataTest() throws Exception {
+    public void addMetricDataTest() {
         respondWith(201);
         List<CloudEyeMetricData> metrics = new ArrayList<>();
         CloudEyeMetricDemension.CloudEyeMetricDemensionBuilder dimBuilder = CloudEyeMetricDemension.builder().name("instance_id" +
-                "").value("33328f02-3814-422e-b688-bfdba93d4050");
+            "").value("33328f02-3814-422e-b688-bfdba93d4050");
         CloudEyeMetricDemension dim1 = dimBuilder.build();
         List<CloudEyeMetricDemension> dimList = new ArrayList<>();
         dimList.add(dim1);
 
         CloudEyeMetric.CloudEyeMetricBuilder metricBuilder = CloudEyeMetric.builder().namespace("MINE.APP")
-                .metricName("test_add_metric_data_1")
-                .dimensions(dimList);
+            .metricName("test_add_metric_data_1")
+            .dimensions(dimList);
         CloudEyeMetricData.CloudEyeMetricDataBuilder builder1 = CloudEyeMetricData.builder()
-                .metric(metricBuilder.build())
-                .ttl(172800)
-                .collectTime(new Date())
-                .value(60)
-                .unit("%");
+            .metric(metricBuilder.build())
+            .ttl(172800)
+            .collectTime(new Date())
+            .value(60)
+            .unit("%");
 
         CloudEyeMetric.CloudEyeMetricBuilder metricBuilder2 = CloudEyeMetric.builder().namespace("MINE.APP")
-                .metricName("cpu_util")
-                .dimensions(dimList);
+            .metricName("cpu_util")
+            .dimensions(dimList);
         CloudEyeMetricData.CloudEyeMetricDataBuilder builder2 = CloudEyeMetricData.builder()
-                .metric(metricBuilder2.build())
-                .ttl(172800)
-                .collectTime(new Date())
-                .value(70)
-                .unit("%");
+            .metric(metricBuilder2.build())
+            .ttl(172800)
+            .collectTime(new Date())
+            .value(70)
+            .unit("%");
         metrics.add(builder1.build());
         metrics.add(builder2.build());
 

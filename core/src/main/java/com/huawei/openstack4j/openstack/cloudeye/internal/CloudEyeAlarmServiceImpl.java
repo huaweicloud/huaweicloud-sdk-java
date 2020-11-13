@@ -26,8 +26,15 @@ import com.huawei.openstack4j.api.cloudeye.AlarmService;
 import com.huawei.openstack4j.model.cloudeye.Alarm;
 import com.huawei.openstack4j.model.common.ActionResponse;
 import com.huawei.openstack4j.openstack.cloudeye.domain.CloudEyeAlarm;
+import com.huawei.openstack4j.openstack.cloudeye.domain.CloudEyeCreateAlarmReq;
 
-public class CloudEyeAlarmServiceImpl extends BaseCloudEyeServices implements AlarmService {
+ public class CloudEyeAlarmServiceImpl extends BaseCloudEyeServices implements AlarmService {
+
+	@Override
+	public ActionResponse create(CloudEyeCreateAlarmReq alarm) {
+		checkNotNull(alarm);
+		return postWithResponse(PATH_ALARMS).entity(alarm).execute();
+	}
 
 	@Override
 	public List<? extends Alarm> list() {

@@ -17,6 +17,7 @@ package com.huawei.openstack4j.openstack.ecs.v1.domain;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonRootName;
+import com.huawei.openstack4j.openstack.ecs.v1.contants.InterruptionPolicyEnum;
 import com.huawei.openstack4j.openstack.ecs.v1.contants.ServerChargingMode;
 
 @JsonRootName("server")
@@ -68,6 +69,34 @@ public class ServerExtendParam {
 	@JsonProperty("spotPrice")
 	String spotPrice;
 
+	/**
+	 * 购买的竞价实例时长。
+	 * 约束：
+	 * 仅interruption_policy=immediate 时该字段有效 。
+	 * spot_duration_hours大于0。最大值由预测系统给出可以从flavor的extra_specs的cond:spot_block:operation:longest_duration_hours字段中查询。
+	 */
+	@JsonProperty("spot_duration_hours")
+	Integer spotDurationHours;
+
+	/**
+	 * 表示购买的“竞价实例时长”的个数
+	 * 约束：
+	 * 仅spot_duration_hours>0 时该字段有效。
+	 * spot_duration_hours小于6时，spot_duration_count值必须为1。
+	 * spot_duration_hours等于6时，spot_duration_count大于等于1。
+	 * spot_duration_count的最大值由预测系统给出可以从flavor的extra_specs的cond:spot_block:operation:longest_duration_count字段中查询。
+	 */
+	@JsonProperty("spot_duration_count")
+	Integer spotDurationCount;
+
+	/**
+	 * 竞价实例中断策略，当前支持immediate。
+	 * 约束：
+	 * 当interruption_policy=immediate时表示释放策略为立即释放。
+	 */
+	@JsonProperty("interruption_policy")
+	InterruptionPolicyEnum interruptionPolicy;
+
 	@java.beans.ConstructorProperties({ "chargingMode", "regionId", "autoRecovery", "enterpriseProjectId"})
 	public ServerExtendParam(ServerChargingMode chargingMode, String regionId, Boolean autoRecovery, String enterpriseProjectId) {
 		this.chargingMode = chargingMode;
@@ -84,6 +113,20 @@ public class ServerExtendParam {
 		this.enterpriseProjectId = enterpriseProjectId;
 		this.marketType = marketType;
 		this.spotPrice = spotPrice;
+	}
+
+	@java.beans.ConstructorProperties({"chargingMode", "regionId", "autoRecovery", "enterpriseProjectId", "marketType", "spotPrice", "spotDurationHours", "spotDurationCount", "interruptionPolicy"})
+	public ServerExtendParam(ServerChargingMode chargingMode, String regionId, Boolean autoRecovery, String enterpriseProjectId,
+							 String marketType, String spotPrice, Integer spotDurationHours, Integer spotDurationCount, InterruptionPolicyEnum interruptionPolicy) {
+		this.chargingMode = chargingMode;
+		this.regionId = regionId;
+		this.autoRecovery = autoRecovery;
+		this.enterpriseProjectId = enterpriseProjectId;
+		this.marketType = marketType;
+		this.spotPrice = spotPrice;
+		this.spotDurationHours = spotDurationHours;
+		this.spotDurationCount = spotDurationCount;
+		this.interruptionPolicy = interruptionPolicy;
 	}
 
 	public ServerExtendParam() {
@@ -117,12 +160,42 @@ public class ServerExtendParam {
 		return spotPrice;
 	}
 
-    @Override
-    public String toString() {
-        return "ServerExtendParam(chargingMode=" + this.getChargingMode() + ", regionId=" + this.getRegionId()
-                + ", autoRecovery=" + this.getAutoRecovery()  + ", enterpriseProjectId=" + this.getEnterpriseProjectId()
-                + ", marketType=" + this.getMarketType() + ", spotPrice=" + this.getSpotPrice() + ")";
-    }
+	public Integer getSpotDurationHours() {
+		return spotDurationHours;
+	}
+
+	public Integer getSpotDurationCount() {
+		return spotDurationCount;
+	}
+
+	public InterruptionPolicyEnum getInterruptionPolicy() {
+		return interruptionPolicy;
+	}
+
+	@Override
+	public String toString() {
+		StringBuilder builder = new StringBuilder();
+		builder.append("ServerExtendParam(chargingMode=");
+		builder.append(this.getChargingMode());
+		builder.append(", regionId=");
+		builder.append(this.getRegionId());
+		builder.append(", autoRecovery=");
+		builder.append(this.getAutoRecovery());
+		builder.append(", enterpriseProjectId=");
+		builder.append(this.getEnterpriseProjectId());
+		builder.append(", marketType=");
+		builder.append(this.getMarketType());
+		builder.append(", spotPrice=");
+		builder.append(this.getSpotPrice());
+		builder.append(", spotDurationHours=");
+		builder.append(this.getSpotDurationHours());
+		builder.append(", spotDurationCount=");
+		builder.append(this.getSpotDurationCount());
+		builder.append(", interruptionPolicy=");
+		builder.append(this.getInterruptionPolicy());
+		builder.append(")");
+		return builder.toString();
+	}
 
 	public ServerExtendParamBuilder toBuilder() {
 		return new ServerExtendParamBuilder().chargingMode(this.chargingMode).regionId(this.regionId)
@@ -136,6 +209,10 @@ public class ServerExtendParam {
 		private String enterpriseProjectId;
 		private String marketType;
 		private String spotPrice;
+		Integer spotDurationHours;
+		Integer spotDurationCount;
+		InterruptionPolicyEnum interruptionPolicy;
+
 		ServerExtendParamBuilder() {
 		}
 
@@ -169,9 +246,25 @@ public class ServerExtendParam {
 			return this;
 		}
 
+		public ServerExtendParam.ServerExtendParamBuilder spotDurationHours(Integer spotDurationHours) {
+			this.spotDurationHours = spotDurationHours;
+			return this;
+		}
+
+		public ServerExtendParam.ServerExtendParamBuilder spotDurationCount(Integer spotDurationCount) {
+			this.spotDurationCount = spotDurationCount;
+			return this;
+		}
+
+		public ServerExtendParam.ServerExtendParamBuilder interruptionPolicy(InterruptionPolicyEnum interruptionPolicy) {
+			this.interruptionPolicy = interruptionPolicy;
+			return this;
+		}
+
 		public ServerExtendParam build() {
 			if (null != marketType) {
-				return new ServerExtendParam(chargingMode, regionId, autoRecovery, enterpriseProjectId, marketType, spotPrice);
+				return new ServerExtendParam(chargingMode, regionId, autoRecovery, enterpriseProjectId,
+						marketType, spotPrice, spotDurationHours, spotDurationCount, interruptionPolicy);
 			} else {
 				return new ServerExtendParam(chargingMode, regionId, autoRecovery, enterpriseProjectId);
 			}
@@ -180,9 +273,27 @@ public class ServerExtendParam {
 
 		@Override
 		public String toString() {
-			return "ServerExtendParam.ServerExtendParamBuilder(chargingMode=" + this.chargingMode + ", regionId="
-					+ this.regionId + ", autoRecovery=" + this.autoRecovery + ", enterpriseProjectId=" + this.enterpriseProjectId
-					+ ", marketType=" + this.marketType + ", spotPrice=" + this.spotPrice + ")";
+			StringBuilder builder = new StringBuilder();
+			builder.append("ServerExtendParam.ServerExtendParamBuilder(chargingMode=");
+			builder.append(this.chargingMode);
+			builder.append(", regionId=");
+			builder.append(this.regionId);
+			builder.append(", autoRecovery=");
+			builder.append(this.autoRecovery);
+			builder.append(", enterpriseProjectId=");
+			builder.append(this.enterpriseProjectId);
+			builder.append(", marketType=");
+			builder.append(this.marketType);
+			builder.append(", spotPrice=");
+			builder.append(this.spotPrice);
+			builder.append(", spotDurationHours=");
+			builder.append(this.spotDurationHours);
+			builder.append(", spotDurationCount=");
+			builder.append(this.spotDurationCount);
+			builder.append(", interruptionPolicy=");
+			builder.append(this.interruptionPolicy);
+			builder.append(")");
+			return builder.toString();
 		}
 	}
 }

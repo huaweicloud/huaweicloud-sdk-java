@@ -19,8 +19,11 @@ import static org.testng.Assert.assertEquals;
 import static org.testng.Assert.assertNotNull;
 import static org.testng.AssertJUnit.assertTrue;
 
+import java.util.ArrayList;
 import java.util.List;
 
+import com.huawei.openstack4j.model.cloudeye.AlarmType;
+import com.huawei.openstack4j.openstack.cloudeye.domain.*;
 import org.testng.annotations.Test;
 
 import com.huawei.openstack4j.api.AbstractTest;
@@ -30,7 +33,7 @@ import com.huawei.openstack4j.model.cloudeye.OrderType;
 import com.huawei.openstack4j.model.common.ActionResponse;
 import com.huawei.openstack4j.openstack.cloudeye.internal.AlarmFilterOptions;
 
-@Test(groups = "cloudeye", suiteName = "cloudeye/Alarms")
+ @Test(groups = "cloudeye", suiteName = "cloudeye/Alarms")
 public class CloudEyeAlarmServiceTest extends AbstractTest {
     private static final String JSON_ALARMS = "/cloudeye/list_alarms.json";
     public static final String ALARM_ID = "al1483387711418ZNpR8DX3g";
@@ -88,5 +91,20 @@ public class CloudEyeAlarmServiceTest extends AbstractTest {
         assertTrue(ptrRestoreActionResponse.isSuccess());
     }
 
+    public void createAlarmTest() throws Exception {
+        CloudEyeMetricDemension dimension = new CloudEyeMetricDemension("instance_id", "1234567899_id");
+        List<CloudEyeMetricDemension> dimensions = new ArrayList<>();
+        dimensions.add(dimension);
+        CloudEyeMetric metric = new CloudEyeMetric("cpu_util", "%", "SYS.ECS", dimensions);
+        CloudEyeAlarmCondition condition = new CloudEyeAlarmCondition(300, "average", ">", 12, "%", 3);
+        CloudEyeAlarmAction action = new CloudEyeAlarmAction(AlarmType.NOTIFICATION, new ArrayList<String>());
+        List<CloudEyeAlarmAction> actions = new ArrayList<>();
+        actions.add(action);
+        CloudEyeCreateAlarmReq alarm = new CloudEyeCreateAlarmReq("alarm_test", "alarm_desc", metric, condition, actions, actions,
+                actions, true, false, 2);
+
+        ActionResponse ptrRestoreActionResponse = osv3().cloudEye().alarms().create(alarm);
+        assertTrue(ptrRestoreActionResponse.isSuccess());
+    }
 }
 

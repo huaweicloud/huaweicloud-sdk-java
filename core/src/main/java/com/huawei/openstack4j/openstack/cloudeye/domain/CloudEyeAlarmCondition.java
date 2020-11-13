@@ -26,7 +26,6 @@ import lombok.*;
 @ToString
 @Builder(toBuilder = true)
 @NoArgsConstructor
-@AllArgsConstructor
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class CloudEyeAlarmCondition implements Condition {
     private static final long serialVersionUID = 5719142668031530589L;
@@ -37,5 +36,14 @@ public class CloudEyeAlarmCondition implements Condition {
     Number value;
     String unit;
     Integer count;
+
+    public CloudEyeAlarmCondition (Integer period, String filter, String comparisonOperator, Number value, String unit, Integer count) {
+        this.period = period;
+        this.filter = filter;
+        this.comparisonOperator = comparisonOperator;
+        this.value = value;
+        this.unit = unit;
+        this.count = count;
+    }
 }
 

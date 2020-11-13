@@ -20,7 +20,7 @@
 	<parent>
 		<groupId>com.huawei</groupId>
 		<artifactId>openstack4j-parent</artifactId>
-		<version>1.0.23</version>
+		<version>1.0.26</version>
 	</parent>
 	<modelVersion>4.0.0</modelVersion>
 	<artifactId>openstack4j-core</artifactId>
@@ -266,10 +266,10 @@
 			<groupId>org.slf4j</groupId>
 			<artifactId>slf4j-simple</artifactId>
 		</dependency>
-		<dependency>
-			<groupId>com.github.fge</groupId>
-			<artifactId>json-patch</artifactId>
-		</dependency>
+        <dependency>
+            <groupId>com.github.java-json-tools</groupId>
+            <artifactId>json-patch</artifactId>
+        </dependency>
 		<dependency>
 			<groupId>org.testng</groupId>
 			<artifactId>testng</artifactId>

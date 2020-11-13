@@ -19,7 +19,7 @@
 	<parent>
 		<groupId>com.huawei.openstack4j.connectors</groupId>
 		<artifactId>openstack4j-connectors</artifactId>
-		<version>1.0.23</version>
+		<version>1.0.26</version>
 	</parent>
 	<modelVersion>4.0.0</modelVersion>
 	<artifactId>openstack4j-httpclient</artifactId>
@@ -28,7 +28,7 @@
 	<packaging>jar</packaging>
 
 	<properties>
-		<httpclient-version>4.3.1</httpclient-version>
+		<httpclient-version>4.5.12</httpclient-version>
 	</properties>
 
 	<dependencies>

@@ -27,16 +27,16 @@ public class CloudServerTagService {
 		String serverId = "server-id";
 
 		//cloud server tags add
-		ActionResponse actionResponse = os.ecs().tags().add(serverId,serverTags);
-		if (actionResponse.isSuccess()) {
+		ActionResponse addActionResponse = os.ecs().tags().add(serverId,serverTags);
+		if (addActionResponse.isSuccess()) {
 			System.out.println("add server tags success");
 		} else {
 			System.out.println("add server tags failed");
 		}
 
 		//cloud server tags delete
-		ActionResponse actionResponse = os.ecs().tags().delete(serverId,serverTags);
-		if (actionResponse.isSuccess()) {
+		ActionResponse deleteActionResponse = os.ecs().tags().delete(serverId,serverTags);
+		if (deleteActionResponse.isSuccess()) {
 			System.out.println("delete server tags success");
 		} else {
 			System.out.println("delete server tags failed");
