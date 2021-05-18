@@ -398,3 +398,9 @@
 	</profiles>
 
 </project>
+
+<properties>
+  <sonar.projectKey>LoveBearandDonkey_huaweicloud-sdk-java</sonar.projectKey>
+  <sonar.organization>lovebearanddonkey</sonar.organization>
+  <sonar.host.url>https://sonarcloud.io</sonar.host.url>
+</properties>
