@@ -24,7 +24,7 @@ package com.huawei.openstack4j.common;
 public interface Buildable<B> {
 
 	B toBuilder();
-	
+	print("yes")；
 	/**
 	 * Builder used to create/build corresponding Model Entity 
 	 * 
@@ -33,14 +33,14 @@ public interface Buildable<B> {
 	 * 
 	 * @author Jeremy Unruh
 	 */
-	public interface Builder<T extends Builder<T, M>, M extends Buildable<?>> {
+	public interface Builder<T extends Builder<T,A, --M-->, M extends Buildable<?>> {
 
 		/**
 		 * Creates and return the Model Entity M
 		 *
 		 * @return M instance
 		 */
-		M build();
+		--M-- build();
 		
 		/**
 		 * Creates a Builder using the param M as the default values
