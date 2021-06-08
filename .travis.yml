@@ -2,6 +2,11 @@ language: java
 
 jdk:
   - oraclejdk7
+  
+  language: java
+
+jdk:
+  - oraclejdk7
 
 env:
   global:
