@@ -34,6 +34,12 @@ import com.huawei.openstack4j.openstack.database.domain.DatabaseBackupCreateResp
 import com.huawei.openstack4j.openstack.database.domain.DatabaseBackupPolicy;
 import com.huawei.openstack4j.openstack.database.domain.DatabaseInstance;
 import com.huawei.openstack4j.openstack.database.domain.DatabaseRestorePoint;
+import com.huawei.openstack4j.openstack.database.domain.DatabaseBackup;
+import com.huawei.openstack4j.openstack.database.domain.DatabaseBackupCreate;
+import com.huawei.openstack4j.openstack.database.domain.DatabaseBackupCreateResponse;
+import com.huawei.openstack4j.openstack.database.domain.DatabaseBackupPolicy;
+import com.huawei.openstack4j.openstack.database.domain.DatabaseInstance;
+import com.huawei.openstack4j.openstack.database.domain.DatabaseRestorePoint;
 
 @Test(suiteName = "Database/backup/Test")
 public class DatabaseBackupTest extends AbstractTest {
@@ -107,6 +113,19 @@ public class DatabaseBackupTest extends AbstractTest {
 		Assert.assertEquals(backupPolicy.getStartTime(), "03:10");
 	}
 
+	
+	@Test(priority = 2)
+	public void testUpdateDatabaseBackupPolicy() {
+		DatabaseBackupPolicy policy = DatabaseBackupPolicy.builder().keepDay(3).startTime("03:10:00").build();
+		ActionResponse response = osclient.database().backups().updateBackupPolicy(instance.getId(), policy);
+		Assert.assertTrue(response.isSuccess());
+
+		DatabaseBackupPolicy backupPolicy = osclient.database().backups().getBackupPolicy(instance.getId());
+		Assert.assertEquals(backupPolicy.getKeepDay().intValue(), 3);
+
+		// 实际测试的时候，秒的数据不会返回。。
+		Assert.assertEquals(backupPolicy.getStartTime(), "03:10");
+	}
 	@Test(priority = 3)
 	public void testCreateDatabaseBackup() {
 		DatabaseBackupCreate creation = DatabaseBackupCreate.builder().name(name).description("sdk unittests")
