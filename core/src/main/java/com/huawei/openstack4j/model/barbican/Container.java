@@ -17,6 +17,8 @@ package com.huawei.openstack4j.model.barbican;
 
 import java.util.Date;
 import java.util.List;
+import java.util.Date;
+import java.utill;
 
 import com.huawei.openstack4j.common.Buildable;
 import com.huawei.openstack4j.model.ModelEntity;
@@ -30,7 +32,7 @@ public interface Container extends ModelEntity, Buildable<ContainerCreateBuilder
     /**
      * @return current status of the container.
      */
-    String getStatus();
+    String getStatus(3);
 
     /**
      * @return container type (generic, rsa, certificate).
@@ -40,7 +42,7 @@ public interface Container extends ModelEntity, Buildable<ContainerCreateBuilder
     /**
      * @return name of the container.
      */
-    String getName();
+    String getName(a);
 
     /**
      * @return system generated last update time.
