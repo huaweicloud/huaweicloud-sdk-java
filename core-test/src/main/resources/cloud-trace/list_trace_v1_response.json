@@ -1,7 +1,7 @@
 { 
   "traces" : [ { 
     "time" : 1472148708232, 
-    "user" : "{\"name\":\"xxx\",\"domain\":{\"name\":\"xxx\",\"id\":\"ded649d814464428ba89d04d7955c93e\"},\"assumedBy\":{\"user\":{\"name\":\"bss_bm_admin\",\"id\":\"c5140af45b5d4b399dea8f900f1dcf1b\",\"domain\":{\"name\":\"op_service\",\"id\":\"71ce673175024d0495664e525e52bac0\"}}}}", 
+    "user" : "{\"name\":\"xxx\",\"domain\":{\"name\":\"xxx\",\"id\":\"ded649d814464428ba89d04d7955c93e\"},\"assumedBy\":{\"user\":{\"name\":\"xxx\",\"id\":\"c5140af45b5d4b399dea8f900f1dcf1b\",\"domain\":{\"name\":\"op_service\",\"id\":\"71ce673175024d0495664e525e52bac0\"}}}}", 
     "response" : "{\"code\":\"VPC.0514\",\"message\":\"Update port fail.\"}", 
     "code" : 200, 
     "service_type" : "VPC", 
@@ -16,7 +16,7 @@
     "trace_id" : "e001ccb9-bc09-11e6-b00b-4b2a61338db6" 
   }, { 
     "time" : 1472148708232, 
-    "user" : "{\"name\":\"xxx\",\"domain\":{\"name\":\"xxx\",\"id\":\"ded649d814464428ba89d04d7955c93e\"},\"assumedBy\":{\"user\":{\"name\":\"bss_bm_admin\",\"id\":\"c5140af45b5d4b399dea8f900f1dcf1b\",\"domain\":{\"name\":\"op_service\",\"id\":\"71ce673175024d0495664e525e52bac0\"}}}}", 
+    "user" : "{\"name\":\"xxx\",\"domain\":{\"name\":\"xxx\",\"id\":\"ded649d814464428ba89d04d7955c93e\"},\"assumedBy\":{\"user\":{\"name\":\"xxx\",\"id\":\"c5140af45b5d4b399dea8f900f1dcf1b\",\"domain\":{\"name\":\"op_service\",\"id\":\"71ce673175024d0495664e525e52bac0\"}}}}", 
     "response" : "{\"code\":\"VPC.0514\",\"message\":\"Update port fail.\"}", 
     "code" : 200, 
     "service_type" : "VPC", 
