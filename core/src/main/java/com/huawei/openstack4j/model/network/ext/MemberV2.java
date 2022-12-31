@@ -60,4 +60,10 @@ public interface MemberV2  extends ModelEntity, Buildable<MemberV2Builder> {
      */
     boolean isAdminStateUp();
 
+    /**
+     * @return the health check state of the member, which is one of ONLINE,
+     *         OFFLINE, NO_MONITOR
+     */
+    MemberOperatingStatus getOperatingStatus();
+
 }
