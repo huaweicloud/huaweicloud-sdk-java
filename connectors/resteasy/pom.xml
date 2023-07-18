@@ -28,7 +28,7 @@
 	<packaging>jar</packaging>
 
 	<properties>
-		<resteasy-version>2.3.7.Final</resteasy-version>
+		<resteasy-version>3.0.20.Final</resteasy-version>
 	</properties>
 
 	<dependencies>
